@@ -33,11 +33,11 @@ class ScraperController extends Controller
         $remoteokScraper=new RemoteokScraperService();
         $remoteokScraper->scrape("https://remoteok.io/api");
 
-        //$remotiveScraper=new RemotiveScraperService();
-        //$remotiveScraper->scrape("https://remotive.io/remote-laravel-jobs?live_jobs%5Bquery%5D=laravel&live_jobs%5BsortBy%5D=live_jobs_sort_by_date");
+        $remotiveScraper=new RemotiveScraperService();
+        $remotiveScraper->scrape("https://remotive.io/api/remote-jobs?search=laravel");
 
-        //$arcScraper=new ArcScraperService();
-        //$arcScraper->scrape("https://arc.dev/remote-jobs/laravel");
+        $arcScraper=new ArcScraperService();
+        $arcScraper->scrape("https://arc.dev/remote-jobs/laravel");
 
         
         

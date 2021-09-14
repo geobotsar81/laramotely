@@ -2,6 +2,7 @@
 namespace App\Services;
 use Goutte\Client;
 use App\Services\Scraper;
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\HttpClient;
 
 
@@ -12,10 +13,13 @@ class ArcScraperService extends Scraper{
         $client = new Client(HttpClient::create(['timeout' => 5]));
         $crawler = $client->request('GET', $url);
 
-        $crawler->filter('.card-container')->each(function ($node) {
+        $nodes = $crawler->filter('.card-container');
+        foreach ($nodes as $node) {
+            $node = new Crawler($node);
+
             $tags=[];
             $logo="";
-            $link="https://arc.dev".$node->filter('h2 a')->first()->attr("href");
+            $url="https://arc.dev".$node->filter('h2 a')->first()->attr("href");
             $title = $node->filter('h2 a')->first()->text();
             $company = $node->filter('.company div:nth-child(2)')->first()->text();
             $location = $node->filter('.hyccSk')->first()->text();
@@ -26,18 +30,30 @@ class ArcScraperService extends Scraper{
                     array_push($tags, $tag);
                 }
                 
-                
                 return $tags[0];
             });
 
-            echo $title."</br>";
-            echo $company."</br>";
-            echo $location."</br>";
-            echo implode(",",$tags)."</br>";
-            echo $link."</br></br>";
+
+            $job=[
+                'title' => $title,
+                'url' => $url,
+                'description' => "",
+                'date' => now(),
+                'location' => $location,
+                'company' => $company,
+                'company_logo' => "",
+                'source' => 'arc.dev'
+            ];
+        
+            //Break from the loop if the current url already exists in the database
+            if($this->jobsRepo->urlInDB($url)){
+                break;
+            }else{
+                $this->jobsRepo->save($job);
+            }   
 
 
-        });
+        };
 
     }
 }

@@ -2,6 +2,7 @@
 namespace App\Services;
 use Goutte\Client;
 use App\Services\Scraper;
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\HttpClient;
 
 
@@ -15,6 +16,7 @@ class WwrScraperService extends Scraper{
 
         $nodes = $crawler->filter('.jobs li');
         foreach ($nodes as $node) {
+            $node = new Crawler($node);
             $company_logo="";
             $date="";
             
