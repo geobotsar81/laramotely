@@ -11,7 +11,7 @@ class RemoteokScraperService extends Scraper{
 
     public function scrape($url){
 
-        $response = Http::get('https://remoteok.io/api?ref=producthunt');
+        $response = Http::get($url);
 
         $counter=0;
 
@@ -23,19 +23,32 @@ class RemoteokScraperService extends Scraper{
             
                 if($counter!=0){
                     $title=$job['position'];
-                    $link=$job['url'];
+                    $url=$job['url'];
                     $company=$job['company'];
                     $tags=$job['tags'];
                     $date=$job['date'];
                     $description=$job['description'];
+                    $company_logo=$job['company_logo'];
+                    $location=$job['location'];
 
                     if ((strpos(strtolower($title), 'laravel') !== false) || (strpos(strtolower($description), 'laravel') !== false)){
-                    echo $title."</br>";
-                    echo $company."</br>";
-                    echo $date."</br>";
-                    echo $description."</br>";
-                    echo implode(",",$tags)."</br>";
-                    echo $link."</br></br>";
+                        $job=[
+                            'title' => $title,
+                            'url' => $url,
+                            'description' => $description,
+                            'date' => $date,
+                            'location' => $location,
+                            'company' => $company,
+                            'company_logo' => $company_logo,
+                            'source' => 'remoteok.com'
+                        ];
+                    
+                        //Break from the loop if the current url already exists in the database
+                        if($this->jobsRepo->urlInDB($url)){
+                        break;
+                        }else{
+                            $this->jobsRepo->save($job);
+                        }
                     }
                 }
                 
