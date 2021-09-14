@@ -13,7 +13,8 @@ class LarajobsScraperService extends Scraper{
         $client = new Client(HttpClient::create(['timeout' => 60]));
         $crawler = $client->request('GET', $url);
 
-        $crawler->filter('.job-link')->each(function ($node) {
+        $nodes = $crawler->filter('.job-link');
+        foreach ($nodes as $node) {
             $tags=[];
             $company_logo="";
             $url=$node->attr("data-url");
@@ -48,13 +49,13 @@ class LarajobsScraperService extends Scraper{
            
             //Break from the loop if the current url already exists in the database
             if($this->jobsRepo->urlInDB($url)){
-                exit();
+                break;
             }else{
                 $this->jobsRepo->save($job);
             }
 
 
-        });
+        };
 
     }
 }

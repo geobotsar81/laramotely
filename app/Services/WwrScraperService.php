@@ -13,7 +13,8 @@ class WwrScraperService extends Scraper{
         $client = new Client(HttpClient::create(['timeout' => 60]));
         $crawler = $client->request('GET', $url);
 
-        $crawler->filter('.jobs li')->each(function ($node) {
+        $nodes = $crawler->filter('.jobs li');
+        foreach ($nodes as $node) {
             $company_logo="";
             $date="";
             
@@ -48,7 +49,7 @@ class WwrScraperService extends Scraper{
                    
                     //Break from the loop if the current url already exists in the database
                     if($this->jobsRepo->urlInDB($url)){
-                        exit();
+                        break;
                     }else{
                         $this->jobsRepo->save($job);
                     }
@@ -58,7 +59,7 @@ class WwrScraperService extends Scraper{
             }
 
 
-        });
+        };
 
     }
 }

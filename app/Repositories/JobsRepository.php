@@ -25,6 +25,8 @@ class JobsRepository{
         $job->company_logo= $data["company_logo"];
         $job->source= $data["source"];
 
+       echo $data["title"].",".$data["source"]."<br>";
+
         $job->save();
     }
 

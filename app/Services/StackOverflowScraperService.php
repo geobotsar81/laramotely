@@ -13,15 +13,16 @@ class StackOverflowScraperService extends Scraper{
         $client = new Client(HttpClient::create(['timeout' => 60]));
         $crawler = $client->request('GET', $url);
 
-        $crawler->filter('.listResults .js-result')->each(function ($node) {
+        $nodes = $crawler->filter('.listResults .js-result');
+        foreach ($nodes as $node) {
             $tags=[];
-            $logo="";
-            $link="https://stackoverflow.com".$node->filter('.s-link')->first()->attr('href');
+            $company_logo="";
+            $url="https://stackoverflow.com".$node->filter('.s-link')->first()->attr('href');
             $title = $node->filter('.s-link')->first()->text();
             $company = $node->filter('h3 span')->first()->text();
 
             if(!empty($node->filter('.s-avatar--image')->count() > 0)){
-                $logo = $node->filter('.s-avatar--image')->first()->attr("src");
+                $company_logo = $node->filter('.s-avatar--image')->first()->attr("src");
             }
 
             $tags=$node->filter('.s-tag')->each(function ($node) use($tags){
@@ -29,19 +30,31 @@ class StackOverflowScraperService extends Scraper{
                     $tag=$node->text();
                     array_push($tags, $tag);
                 }
-                
-                
                 return $tags[0];
             });
 
-            echo $title."</br>";
-            echo $company."</br>";
-            echo $logo."</br>";
-            echo implode(",",$tags)."</br>";
-            echo $link."</br></br>";
+            $location = $node->filter('.horizontal-list li:nth-child(2)')->first()->text();
+
+            $job=[
+                'title' => $title,
+                'url' => $url,
+                'description' => "",
+                'date' => now(),
+                'location' => $location,
+                'company' => $company,
+                'company_logo' => $company_logo,
+                'source' => 'stackoverflow.com'
+            ];
+           
+            //Break from the loop if the current url already exists in the database
+            if($this->jobsRepo->urlInDB($url)){
+                break;
+            }else{
+                $this->jobsRepo->save($job);
+            }
 
 
-        });
+        };
 
     }
 }
