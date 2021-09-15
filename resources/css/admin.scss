@@ -1,0 +1,13 @@
+$icgBlue: #1556a1;
+$icgRed: #b11838;
+
+.table,
+label,
+.form-control,
+.form-control::placeholder {
+    color: #000;
+}
+
+.btn-primary {
+    background-color: $icgBlue !important;
+}

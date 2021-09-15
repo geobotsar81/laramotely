@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,7 +11,18 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix.js("resources/js/app.js", "public/js")
+    .vue({
+        globalStyles: "resources/css/sass/variables.scss",
+    })
+    .sass("resources/css/app.scss", "public/css")
+    .sass("resources/css/admin.scss", "public/css")
+    .options({
+        processCssUrls: false,
+    })
+    .browserSync({
+        proxy: "laramotely.test",
+    })
+    .webpackConfig(require("./webpack.config"));
+
+mix.version();
