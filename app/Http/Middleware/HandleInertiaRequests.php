@@ -37,7 +37,19 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
-            //
+            'storageUrl' => asset('storage'),
+            'publicUrl' => url("/"),
+            'currentYear' => today()->format('Y'),
+            'menus' => [
+                'login' => getMenu(2),
+                'amlsuite' => getMenu(3),
+             ],
+             'meta' => [
+                'title' => getSiteTitle(), 
+                'description' => getSiteDescription(),
+                'ogImage' => asset('images/ogImage.jpg')
+             ],
+             'translations' => __('app')
         ]);
     }
 }
