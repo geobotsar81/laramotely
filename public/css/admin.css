@@ -1,0 +1,18 @@
+.form-control::-moz-placeholder {
+  color: #000;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #000;
+}
+
+.table,
+label,
+.form-control,
+.form-control::placeholder {
+  color: #000;
+}
+
+.btn-primary {
+  background-color: #1556a1 !important;
+}

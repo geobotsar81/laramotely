@@ -64,7 +64,7 @@ class Kernel extends ConsoleKernel
             $arcScraper=new ArcScraperService();
             $arcScraper->scrape("https://arc.dev/remote-jobs/laravel");
         })
-        ->hourlyAt(45);
+        ->hourlyAt(55);
     }
 
     /**

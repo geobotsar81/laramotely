@@ -20,17 +20,15 @@ class PageController extends Controller
      *
      * @return void
      */
-    public function showWelcome(){
-        if(Auth::check()){
-            return redirect()->route('dashboard');
-        }else{
-            return redirect()->route('login');
+    public function showHome(){
+        $page=getPageFromSlug("/");
+        $meta=[];
+
+        if(!empty($page)){
+            $meta=['title' => $page->title,'description' => $page->meta_description,'url' =>route('home.show')];
         }
+        return Inertia::render('Home',$meta);
     }
-
-
-
-
 
 
     /**
