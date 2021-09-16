@@ -20,6 +20,9 @@ class ScraperController extends Controller
      * @return void
      */
     public function scrape(){
+/*
+        $remoteokScraper=new RemoteokScraperService();
+        $remoteokScraper->scrape("https://remoteok.io/api");
 
         $larajobsScraper=new LarajobsScraperService();
         $larajobsScraper->scrape("https://larajobs.com");
@@ -30,14 +33,11 @@ class ScraperController extends Controller
         $soScraper=new StackOverflowScraperService();
         $soScraper->scrape("https://stackoverflow.com/jobs?q=laravel&sort=p");
 
-        $remoteokScraper=new RemoteokScraperService();
-        $remoteokScraper->scrape("https://remoteok.io/api");
-
         $remotiveScraper=new RemotiveScraperService();
         $remotiveScraper->scrape("https://remotive.io/api/remote-jobs?search=laravel");
-
         $arcScraper=new ArcScraperService();
         $arcScraper->scrape("https://arc.dev/remote-jobs/laravel");
+*/
 
         
         

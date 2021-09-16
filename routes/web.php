@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ScraperController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\PageController;
 */
 
 Route::get('/', [PageController::class,'showHome'])->name("home.show");
-
+Route::get('/scrape', [ScraperController::class,'scrape'])->name("scraper.scrape");
 /*
 Route::get('/', function () {
     return Inertia::render('Welcome', [

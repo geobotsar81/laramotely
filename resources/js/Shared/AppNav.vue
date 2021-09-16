@@ -43,12 +43,12 @@ export default {
     }
 
     :deep(.nav-link) {
-        font-size: 14px;
+        font-size: 16px;
         line-height: 22px;
         padding: 0px;
         margin: 0px 20px;
         color: $appBlack;
-        font-weight: 600;
+        font-weight: 700;
         transition: $appTransition;
         display: inline-block;
 
@@ -60,7 +60,7 @@ export default {
         &:hover,
         &:focus,
         &.active {
-            color: $appBlue !important;
+            color: $appRed !important;
         }
 
         &.dropdown-toggle {
