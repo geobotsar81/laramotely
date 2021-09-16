@@ -18,10 +18,9 @@ main {
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    padding: 60px 45px;
+    padding: 120px 0px;
     color: $appBlack;
     min-height: 100vh;
-    background-color: $appLightGrey;
     position: relative;
 
     :deep(hr) {

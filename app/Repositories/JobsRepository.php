@@ -19,7 +19,7 @@ class JobsRepository{
         $job->title= $data["title"];
         $job->url= $data["url"];
         $job->description= $data["description"];
-        $job->date= $data["date"];
+        $job->posted_date= $data["date"];
         $job->location= $data["location"];
         $job->company= $data["company"];
         $job->company_logo= $data["company_logo"];

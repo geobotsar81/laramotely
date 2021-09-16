@@ -2,15 +2,13 @@
     <header class="header">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-8 col-sm-4 col-lg-3 col-xl-2 mt-2">
+                <div class="col-4">
                     <inertia-link :href="route('home.show')">
                         <app-logo class="header__logo"></app-logo>
                     </inertia-link>
                 </div>
-                <div class="col-2 d-none d-lg-block col-lg-6 col-xl-7 mt-md-4 mt-lg-2 text-end text-lg-start">
+                <div class="col-8 text-end">
                     <app-nav v-if="mainMenu" :menu="mainMenu" class="d-none d-lg-inline-block"> </app-nav>
-                </div>
-                <div class="col-4 col-sm-8 col-lg-3 text-end ps-0">
                     <div class="hamburger hamburger--spring mt-2 mt-sm-0" :class="isActiveBurger ? 'is-active' : ''" @click="toggleBurger">
                         <div class="hamburger-box">
                             <div class="hamburger-inner"></div>
@@ -58,6 +56,7 @@ export default {
     transition: $appTransition;
     z-index: $zindexHeader;
     border-bottom: 1px solid $appLightGrey2;
+    background-color: #fff;
 
     .header__login {
         color: $appBlack;
@@ -72,13 +71,6 @@ export default {
         &:focus {
             color: $appBlue;
         }
-    }
-
-    .header__logo {
-        display: none;
-    }
-    .header__logoDark {
-        display: block;
     }
 
     &.sticky {

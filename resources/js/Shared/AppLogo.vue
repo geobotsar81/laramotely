@@ -1,5 +1,5 @@
 <template>
-    <img :src="this.$page.props.publicUrl + '/img/aml_logo.png'" :class="cls" />
+    <img :src="this.$page.props.publicUrl + '/img/logo.svg'" :class="cls" />
 </template>
 <script>
 export default {

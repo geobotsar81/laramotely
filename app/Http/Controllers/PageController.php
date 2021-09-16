@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use Inertia\Inertia;
 use App\Models\Country;
 use App\Models\Question;
@@ -22,12 +23,16 @@ class PageController extends Controller
      */
     public function showHome(){
         $page=getPageFromSlug("/");
-        $meta=[];
+        $data=[];
+
+        $jobs=Job::orderBy('posted_date','desc')->get();
 
         if(!empty($page)){
-            $meta=['title' => $page->title,'description' => $page->meta_description,'url' =>route('home.show')];
+            $data=['title' => $page->title,'description' => $page->meta_description,'url' =>route('home.show')];
         }
-        return Inertia::render('Home',$meta);
+
+        $data['jobs']=$jobs;
+        return Inertia::render('Home',$data);
     }
 
 
