@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [PageController::class,'showWelcome']);
+Route::get('/', [PageController::class,'showHome'])->name("home.show");
 
 /*
 Route::get('/', function () {

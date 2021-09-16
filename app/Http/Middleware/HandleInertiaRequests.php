@@ -41,8 +41,7 @@ class HandleInertiaRequests extends Middleware
             'publicUrl' => url("/"),
             'currentYear' => today()->format('Y'),
             'menus' => [
-                'login' => getMenu(2),
-                'amlsuite' => getMenu(3),
+                'main' => getMenu(2),
              ],
              'meta' => [
                 'title' => getSiteTitle(), 

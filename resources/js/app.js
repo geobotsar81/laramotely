@@ -7,8 +7,15 @@ import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/inertia-vue3";
 import { InertiaProgress } from "@inertiajs/progress";
 
-const appName =
-    window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
+//Initiate Progress Bar
+InertiaProgress.init({
+    delay: 0,
+    color: "#4B5563",
+    includeCSS: true,
+    showSpinner: true,
+});
+
+const appName = window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

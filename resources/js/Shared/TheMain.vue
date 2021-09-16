@@ -19,13 +19,13 @@ main {
     line-height: 24px;
     font-weight: 400;
     padding: 60px 45px;
-    color: $projectBlack;
+    color: $appBlack;
     min-height: 100vh;
-    background-color: $projectGrey14;
+    background-color: $appLightGrey;
     position: relative;
 
     :deep(hr) {
-        border-top: solid 1px $projectGrey7;
+        border-top: solid 1px $appGrey2;
     }
 
     img.aligncenter {
@@ -37,11 +37,11 @@ main {
         font-size: 16px;
         line-height: 24px;
         font-weight: 400;
-        color: $projectDarkGrey1;
+        color: $appGrey2;
     }
 
     :deep(a:not(.buttonBlue):not(.buttonWhite):not(.buttonGold):not(.buttonArrow):not(.nav-link):not(.dropdown-item)) {
-        color: $projectBlue;
+        color: $appBlue;
         font-weight: 600;
         transition: color 0.4s;
         text-decoration: none;
@@ -49,7 +49,7 @@ main {
         &:hover,
         &:focus {
             text-decoration: none;
-            color: $projectBlue2;
+            color: $appBlue;
             box-shadow: none;
             outline: none;
         }
@@ -70,7 +70,7 @@ main {
             padding-right: 15px;
             font-weight: 700;
             font-size: 15px;
-            color: $projectRed;
+            color: $appLightBlue;
         }
     }
 
@@ -88,7 +88,7 @@ main {
         }
         li::before {
             content: counter(li) ".";
-            color: $projectRed;
+            color: $appLightBlue;
             display: inline-block;
             font-weight: 500;
             padding-right: 5px;
