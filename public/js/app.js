@@ -24585,6 +24585,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _Shared_TheHead__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Shared/TheHead */ "./resources/js/Shared/TheHead.vue");
 /* harmony import */ var _Shared_TheMain__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Shared/TheMain */ "./resources/js/Shared/TheMain.vue");
+/* harmony import */ var _Shared_AppButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Shared/AppButton */ "./resources/js/Shared/AppButton.vue");
+
 
 
 
@@ -24592,7 +24594,8 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
     TheHead: _Shared_TheHead__WEBPACK_IMPORTED_MODULE_1__["default"],
-    TheMain: _Shared_TheMain__WEBPACK_IMPORTED_MODULE_2__["default"]
+    TheMain: _Shared_TheMain__WEBPACK_IMPORTED_MODULE_2__["default"],
+    AppButton: _Shared_AppButton__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   layout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
   computed: {
@@ -25254,7 +25257,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    InertiaLink: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.InertiaLink
+  },
   props: {
     cls: {
       type: String,
@@ -25471,7 +25479,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    InertiaHead: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.InertiaHead
+  },
   props: {
     title: {
       type: String,
@@ -28010,14 +28023,14 @@ var _hoisted_3 = {
   "class": "job"
 };
 var _hoisted_4 = {
-  "class": "row"
+  "class": "row align-items-center"
 };
 var _hoisted_5 = {
   "class": "col-2 col-xl-1 text-center"
 };
 var _hoisted_6 = ["src"];
 var _hoisted_7 = {
-  "class": "col-10 col-xl-11"
+  "class": "col-8 col-xl-9"
 };
 var _hoisted_8 = {
   "class": "row"
@@ -28043,11 +28056,18 @@ var _hoisted_14 = {
 var _hoisted_15 = {
   "class": "col-12 job__source"
 };
+var _hoisted_16 = {
+  "class": "col-2"
+};
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("VIEW");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_the_head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("the-head");
+
+  var _component_app_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-button");
 
   var _component_the_main = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("the-main");
 
@@ -28078,7 +28098,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT */
         )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(job.source), 1
         /* TEXT */
-        )])])])])])]);
+        )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_button, {
+          type: "external",
+          "class": "buttonRed",
+          link: job.url
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [_hoisted_17];
+          }),
+          _: 2
+          /* DYNAMIC */
+
+        }, 1032
+        /* PROPS, DYNAMIC_SLOTS */
+        , ["link"])])])])])]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])];
@@ -29510,18 +29543,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return $props.type === 'external' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
     key: 0,
     href: $props.link,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$props.cls, "button"])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($props.cls),
+    target: "blank"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default", {}, undefined, true)], 10
   /* CLASS, PROPS */
   , _hoisted_1)) : $props.type === 'submit' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 1,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$props.cls, "button"])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($props.cls)
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default", {}, undefined, true)], 2
   /* CLASS */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
     key: 2,
     href: $props.link,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$props.cls, "button"])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($props.cls)
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default", {}, undefined, true)];
@@ -29639,7 +29673,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
-    src: this.$page.props.publicUrl + '/img/logo.svg',
+    src: this.$page.props.publicUrl + '/img/logo.png',
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)($props.cls)
   }, null, 10
   /* CLASS, PROPS */
@@ -30287,13 +30321,13 @@ var _hoisted_2 = {
   "class": "container-fluid"
 };
 var _hoisted_3 = {
-  "class": "row"
+  "class": "row align-items-center"
 };
 var _hoisted_4 = {
-  "class": "col-4"
+  "class": "col-3 col-xl-2"
 };
 var _hoisted_5 = {
-  "class": "col-8 text-end"
+  "class": "col-9 col-xl-10 text-end"
 };
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -30320,7 +30354,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_logo, {
-        "class": "header__logo"
+        "class": "header__logo img-fluid"
       })];
     }),
     _: 1
@@ -36117,7 +36151,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".acurisCheck[data-v-c672d8f2] {\n  display: block;\n  padding: 15px;\n  width: 100%;\n  text-align: center;\n  border: solid 1px #007fe8;\n  border-radius: 3px;\n  transition: all 0.6s;\n  background-color: #ffffff;\n}\n.acurisCheck[data-v-c672d8f2]:hover, .acurisCheck[data-v-c672d8f2]:focus {\n  background-color: #d0ddec;\n}\n.acurisCheck.disabled[data-v-c672d8f2] {\n  pointer-events: none;\n  background-color: #ccc;\n}\n.buttonBlue[data-v-c672d8f2],\n.upload[data-v-c672d8f2] {\n  display: inline-block;\n  background-color: #007fe8;\n  font-weight: 700;\n  font-style: normal;\n  font-size: 14px;\n  color: #fff;\n  border-radius: 3px;\n  padding: 15px 40px;\n  transition: all 0.4s ease-out;\n  text-decoration: none;\n  border: none;\n  border: 0px solid #007fe8;\n}\n.buttonBlue[data-v-c672d8f2]:hover, .buttonBlue[data-v-c672d8f2]:focus,\n.upload[data-v-c672d8f2]:hover,\n.upload[data-v-c672d8f2]:focus {\n  color: #fff;\n  border: 0px solid #007fe8;\n  background-color: #00b4cd;\n  text-decoration: none;\n  outline: none;\n  box-shadow: none;\n}\n.buttonBlue[data-v-c672d8f2] i,\n.upload[data-v-c672d8f2] i {\n  font-size: 12px;\n  padding: 0px 5px;\n}\n.buttonBlue.disabled[data-v-c672d8f2],\n.upload.disabled[data-v-c672d8f2] {\n  background-color: #a4b3ca;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n.buttonWhite[data-v-c672d8f2] {\n  display: inline-block;\n  font-weight: 700;\n  font-style: normal;\n  font-size: 14px;\n  color: #007fe8;\n  border-radius: 3px;\n  padding: 15px 40px;\n  transition: all 0.4s ease-out;\n  background-color: #fff;\n  text-decoration: none;\n  border: none;\n  border: 1px solid #007fe8;\n}\n.buttonWhite[data-v-c672d8f2]:hover, .buttonWhite[data-v-c672d8f2]:focus {\n  color: #007fe8;\n  background-color: #d0ddec;\n  text-decoration: none;\n  outline: none;\n  box-shadow: none;\n}\n.buttonWhite i[data-v-c672d8f2] {\n  font-size: 12px;\n  padding: 0px 5px;\n}\n.buttonTransparent[data-v-c672d8f2] {\n  display: inline-block;\n  font-weight: 700;\n  font-style: normal;\n  font-size: 14px;\n  color: #007fe8;\n  border-radius: 3px;\n  padding: 15px 40px;\n  transition: all 0.4s ease-out;\n  background-color: transparent;\n  text-decoration: none;\n  border: none;\n  border: 1px solid #a4b3ca;\n}\n.buttonTransparent[data-v-c672d8f2]:hover, .buttonTransparent[data-v-c672d8f2]:focus {\n  color: #007fe8;\n  border: 1px solid #007fe8;\n  background-color: transparent;\n  text-decoration: none;\n  outline: none;\n  box-shadow: none;\n}\n.buttonTransparent i[data-v-c672d8f2] {\n  font-size: 12px;\n  padding: 0px 5px;\n}\n.um input[type=submit].um-button[data-v-c672d8f2] {\n  display: inline-block !important;\n  background-color: #007fe8 !important;\n  font-weight: 700 !important;\n  font-style: normal !important;\n  font-size: 15px !important;\n  color: #fff !important;\n  border-radius: 3px !important;\n  padding: 15px 30px !important;\n  transition: all 0.4s ease-out !important;\n  text-decoration: none !important;\n  border: none !important;\n}\n.um input[type=submit].um-button[data-v-c672d8f2]:hover, .um input[type=submit].um-button[data-v-c672d8f2]:focus {\n  color: #fff !important;\n  border: 0px solid #007fe8 !important;\n  background-color: #00b4cd !important;\n  text-decoration: none !important;\n  outline: none !important;\n  box-shadow: none !important;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".buttonRed[data-v-c672d8f2] {\n  display: inline-block;\n  background-color: #ff2d20;\n  font-weight: 700;\n  font-style: normal;\n  font-size: 14px;\n  color: #fff;\n  border-radius: 4px;\n  padding: 12px 40px;\n  transition: all 0.4s ease-out;\n  text-decoration: none;\n  border: none;\n  border: 0px solid #ff2d20;\n}\n.buttonRed[data-v-c672d8f2]:hover, .buttonRed[data-v-c672d8f2]:focus {\n  color: #fff;\n  border: 0px solid #212529;\n  background-color: #212529;\n  text-decoration: none;\n  outline: none;\n  box-shadow: none;\n}\n.buttonRed[data-v-c672d8f2] i {\n  font-size: 12px;\n  padding: 0px 5px;\n}\n.buttonRed.disabled[data-v-c672d8f2] {\n  background-color: #a4b3ca;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n.buttonWhite[data-v-c672d8f2] {\n  display: inline-block;\n  font-weight: 700;\n  font-style: normal;\n  font-size: 14px;\n  color: #007fe8;\n  border-radius: 3px;\n  padding: 15px 40px;\n  transition: all 0.4s ease-out;\n  background-color: #fff;\n  text-decoration: none;\n  border: none;\n  border: 1px solid #007fe8;\n}\n.buttonWhite[data-v-c672d8f2]:hover, .buttonWhite[data-v-c672d8f2]:focus {\n  color: #007fe8;\n  background-color: #d0ddec;\n  text-decoration: none;\n  outline: none;\n  box-shadow: none;\n}\n.buttonWhite i[data-v-c672d8f2] {\n  font-size: 12px;\n  padding: 0px 5px;\n}\n.buttonTransparent[data-v-c672d8f2] {\n  display: inline-block;\n  font-weight: 700;\n  font-style: normal;\n  font-size: 14px;\n  color: #007fe8;\n  border-radius: 3px;\n  padding: 15px 40px;\n  transition: all 0.4s ease-out;\n  background-color: transparent;\n  text-decoration: none;\n  border: none;\n  border: 1px solid #a4b3ca;\n}\n.buttonTransparent[data-v-c672d8f2]:hover, .buttonTransparent[data-v-c672d8f2]:focus {\n  color: #007fe8;\n  border: 1px solid #007fe8;\n  background-color: transparent;\n  text-decoration: none;\n  outline: none;\n  box-shadow: none;\n}\n.buttonTransparent i[data-v-c672d8f2] {\n  font-size: 12px;\n  padding: 0px 5px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36285,7 +36319,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".header[data-v-0d9ecbb2] {\n  padding: 10px 45px;\n  position: fixed;\n  width: 100%;\n  left: 0;\n  top: 0;\n  transition: all 0.6s;\n  z-index: 4000;\n  border-bottom: 1px solid #cfdee8;\n  background-color: #fff;\n}\n.header .header__login[data-v-0d9ecbb2] {\n  color: #212529;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 12px;\n  font-weight: 700;\n  margin: 0px 20px;\n  transition: all 0.6s;\n}\n.header .header__login[data-v-0d9ecbb2]:hover, .header .header__login[data-v-0d9ecbb2]:focus {\n  color: #007fe8;\n}\n.header.sticky[data-v-0d9ecbb2] {\n  background-color: #fff;\n  padding: 10px 45px;\n  box-shadow: 0px 10px 20px 0px rgba(40, 42, 57, 0.35);\n}\n.header.sticky .header__logo[data-v-0d9ecbb2] {\n  display: none;\n}\n.header.sticky .header__logoDark[data-v-0d9ecbb2] {\n  display: block;\n}\n.header .button[data-v-0d9ecbb2] {\n  font-weight: 400;\n}\n.header__logoDark[data-v-0d9ecbb2] {\n  display: none;\n}\n.hamburger[data-v-0d9ecbb2] {\n  display: none;\n  vertical-align: text-bottom;\n}\n.home .header[data-v-0d9ecbb2],\n.is-active .header[data-v-0d9ecbb2] {\n  padding: 35px 45px;\n  border-bottom: 0px;\n}\n.home .header__logo[data-v-0d9ecbb2],\n.is-active .header__logo[data-v-0d9ecbb2] {\n  display: block;\n}\n.home .header__logoDark[data-v-0d9ecbb2],\n.is-active .header__logoDark[data-v-0d9ecbb2] {\n  display: none;\n}\n.home .header__login[data-v-0d9ecbb2],\n.is-active .header__login[data-v-0d9ecbb2] {\n  color: #ffffff;\n}\n.home .nav[data-v-0d9ecbb2] .nav-link,\n.is-active .nav[data-v-0d9ecbb2] .nav-link {\n  color: #ffffff;\n}\n.home .sticky[data-v-0d9ecbb2],\n.is-active .sticky[data-v-0d9ecbb2] {\n  padding: 10px 45px;\n}\n.home .sticky .nav[data-v-0d9ecbb2] .nav-link,\n.is-active .sticky .nav[data-v-0d9ecbb2] .nav-link {\n  color: #212529;\n}\n.home .sticky .header__login[data-v-0d9ecbb2],\n.is-active .sticky .header__login[data-v-0d9ecbb2] {\n  color: #212529;\n}\n.home .sticky .button[data-v-0d9ecbb2]:hover, .home .sticky .button[data-v-0d9ecbb2]:focus,\n.is-active .sticky .button[data-v-0d9ecbb2]:hover,\n.is-active .sticky .button[data-v-0d9ecbb2]:focus {\n  color: #ffffff;\n}\n.home .sticky .button[data-v-0d9ecbb2]:hover strong, .home .sticky .button[data-v-0d9ecbb2]:focus strong,\n.is-active .sticky .button[data-v-0d9ecbb2]:hover strong,\n.is-active .sticky .button[data-v-0d9ecbb2]:focus strong {\n  color: #ffffff;\n}\n.home .hamburger .hamburger-inner[data-v-0d9ecbb2],\n.home .hamburger .hamburger-inner[data-v-0d9ecbb2]::before,\n.home .hamburger .hamburger-inner[data-v-0d9ecbb2]::after,\n.is-active .hamburger .hamburger-inner[data-v-0d9ecbb2],\n.is-active .hamburger .hamburger-inner[data-v-0d9ecbb2]::before,\n.is-active .hamburger .hamburger-inner[data-v-0d9ecbb2]::after {\n  background-color: #fff;\n}\n.home .sticky .hamburger .hamburger-inner[data-v-0d9ecbb2],\n.home .sticky .hamburger .hamburger-inner[data-v-0d9ecbb2]::before,\n.home .sticky .hamburger .hamburger-inner[data-v-0d9ecbb2]::after,\n.is-active .sticky .hamburger .hamburger-inner[data-v-0d9ecbb2],\n.is-active .sticky .hamburger .hamburger-inner[data-v-0d9ecbb2]::before,\n.is-active .sticky .hamburger .hamburger-inner[data-v-0d9ecbb2]::after {\n  background-color: #212529;\n}\n@media (max-width: 1199.98px) {\n.header[data-v-0d9ecbb2] {\n    padding: 15px;\n}\n.header.sticky[data-v-0d9ecbb2] {\n    padding: 10px 15px;\n}\n.home .header[data-v-0d9ecbb2],\n.is-active .header[data-v-0d9ecbb2] {\n    padding: 15px;\n}\n.home .header.sticky[data-v-0d9ecbb2],\n.is-active .header.sticky[data-v-0d9ecbb2] {\n    padding: 10px 15px;\n}\n}\n@media (max-width: 991.98px) {\n.hamburger[data-v-0d9ecbb2] {\n    display: inline-block;\n}\n.header[data-v-0d9ecbb2] .button--large {\n    padding: 5px 10px;\n    margin-top: 7px;\n}\n.header .header__login[data-v-0d9ecbb2] {\n    vertical-align: top;\n    padding-top: 22px;\n}\n}\n@media (max-width: 575.98px) {\n.header__logo[data-v-0d9ecbb2],\n.header__logoDark[data-v-0d9ecbb2] {\n    width: 157px;\n}\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".header[data-v-0d9ecbb2] {\n  padding: 10px 45px;\n  position: fixed;\n  width: 100%;\n  left: 0;\n  top: 0;\n  transition: all 0.6s;\n  z-index: 4000;\n  border-bottom: 1px solid #cfdee8;\n  background-color: #fff;\n}\n.header .header__login[data-v-0d9ecbb2] {\n  color: #212529;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 12px;\n  font-weight: 700;\n  margin: 0px 20px;\n  transition: all 0.6s;\n}\n.header .header__login[data-v-0d9ecbb2]:hover, .header .header__login[data-v-0d9ecbb2]:focus {\n  color: #007fe8;\n}\n.header.sticky[data-v-0d9ecbb2] {\n  background-color: #fff;\n  padding: 10px 45px;\n  box-shadow: 0px 10px 20px 0px rgba(40, 42, 57, 0.35);\n}\n.header.sticky .header__logo[data-v-0d9ecbb2] {\n  display: none;\n}\n.header.sticky .header__logoDark[data-v-0d9ecbb2] {\n  display: block;\n}\n.header .button[data-v-0d9ecbb2] {\n  font-weight: 400;\n}\n.hamburger[data-v-0d9ecbb2] {\n  display: none;\n  vertical-align: text-bottom;\n}\n.home .header[data-v-0d9ecbb2],\n.is-active .header[data-v-0d9ecbb2] {\n  padding: 35px 45px;\n  border-bottom: 0px;\n}\n.home .header__logo[data-v-0d9ecbb2],\n.is-active .header__logo[data-v-0d9ecbb2] {\n  display: block;\n}\n.home .header__logoDark[data-v-0d9ecbb2],\n.is-active .header__logoDark[data-v-0d9ecbb2] {\n  display: none;\n}\n.home .header__login[data-v-0d9ecbb2],\n.is-active .header__login[data-v-0d9ecbb2] {\n  color: #ffffff;\n}\n.home .nav[data-v-0d9ecbb2] .nav-link,\n.is-active .nav[data-v-0d9ecbb2] .nav-link {\n  color: #ffffff;\n}\n.home .sticky[data-v-0d9ecbb2],\n.is-active .sticky[data-v-0d9ecbb2] {\n  padding: 10px 45px;\n}\n.home .sticky .nav[data-v-0d9ecbb2] .nav-link,\n.is-active .sticky .nav[data-v-0d9ecbb2] .nav-link {\n  color: #212529;\n}\n.home .sticky .header__login[data-v-0d9ecbb2],\n.is-active .sticky .header__login[data-v-0d9ecbb2] {\n  color: #212529;\n}\n.home .sticky .button[data-v-0d9ecbb2]:hover, .home .sticky .button[data-v-0d9ecbb2]:focus,\n.is-active .sticky .button[data-v-0d9ecbb2]:hover,\n.is-active .sticky .button[data-v-0d9ecbb2]:focus {\n  color: #ffffff;\n}\n.home .sticky .button[data-v-0d9ecbb2]:hover strong, .home .sticky .button[data-v-0d9ecbb2]:focus strong,\n.is-active .sticky .button[data-v-0d9ecbb2]:hover strong,\n.is-active .sticky .button[data-v-0d9ecbb2]:focus strong {\n  color: #ffffff;\n}\n.home .hamburger .hamburger-inner[data-v-0d9ecbb2],\n.home .hamburger .hamburger-inner[data-v-0d9ecbb2]::before,\n.home .hamburger .hamburger-inner[data-v-0d9ecbb2]::after,\n.is-active .hamburger .hamburger-inner[data-v-0d9ecbb2],\n.is-active .hamburger .hamburger-inner[data-v-0d9ecbb2]::before,\n.is-active .hamburger .hamburger-inner[data-v-0d9ecbb2]::after {\n  background-color: #fff;\n}\n.home .sticky .hamburger .hamburger-inner[data-v-0d9ecbb2],\n.home .sticky .hamburger .hamburger-inner[data-v-0d9ecbb2]::before,\n.home .sticky .hamburger .hamburger-inner[data-v-0d9ecbb2]::after,\n.is-active .sticky .hamburger .hamburger-inner[data-v-0d9ecbb2],\n.is-active .sticky .hamburger .hamburger-inner[data-v-0d9ecbb2]::before,\n.is-active .sticky .hamburger .hamburger-inner[data-v-0d9ecbb2]::after {\n  background-color: #212529;\n}\n@media (max-width: 1199.98px) {\n.header[data-v-0d9ecbb2] {\n    padding: 15px;\n}\n.header.sticky[data-v-0d9ecbb2] {\n    padding: 10px 15px;\n}\n.home .header[data-v-0d9ecbb2],\n.is-active .header[data-v-0d9ecbb2] {\n    padding: 15px;\n}\n.home .header.sticky[data-v-0d9ecbb2],\n.is-active .header.sticky[data-v-0d9ecbb2] {\n    padding: 10px 15px;\n}\n}\n@media (max-width: 991.98px) {\n.hamburger[data-v-0d9ecbb2] {\n    display: inline-block;\n}\n.header[data-v-0d9ecbb2] .button--large {\n    padding: 5px 10px;\n    margin-top: 7px;\n}\n.header .header__login[data-v-0d9ecbb2] {\n    vertical-align: top;\n    padding-top: 22px;\n}\n}\n@media (max-width: 575.98px) {\n.header__logo[data-v-0d9ecbb2],\n.header__logoDark[data-v-0d9ecbb2] {\n    width: 157px;\n}\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36309,7 +36343,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "main[data-v-56114fc4] {\n  font-size: 16px;\n  line-height: 24px;\n  font-weight: 400;\n  padding: 120px 0px;\n  color: #212529;\n  min-height: 100vh;\n  position: relative;\n}\nmain[data-v-56114fc4] hr {\n  border-top: solid 1px #677385;\n}\nmain img.aligncenter[data-v-56114fc4] {\n  display: block;\n  margin: auto;\n}\nmain p[data-v-56114fc4] {\n  font-size: 16px;\n  line-height: 24px;\n  font-weight: 400;\n  color: #677385;\n}\nmain[data-v-56114fc4] a:not(.buttonBlue):not(.buttonWhite):not(.buttonGold):not(.buttonArrow):not(.nav-link):not(.dropdown-item) {\n  color: #007fe8;\n  font-weight: 600;\n  transition: color 0.4s;\n  text-decoration: none;\n}\nmain[data-v-56114fc4] a:not(.buttonBlue):not(.buttonWhite):not(.buttonGold):not(.buttonArrow):not(.nav-link):not(.dropdown-item):hover, main[data-v-56114fc4] a:not(.buttonBlue):not(.buttonWhite):not(.buttonGold):not(.buttonArrow):not(.nav-link):not(.dropdown-item):focus {\n  text-decoration: none;\n  color: #007fe8;\n  box-shadow: none;\n  outline: none;\n}\nmain ul[data-v-56114fc4]:not(.nav-tabs):not(.dropdown-menu) {\n  padding-left: 30px;\n}\nmain ul:not(.nav-tabs):not(.dropdown-menu) li[data-v-56114fc4] {\n  display: block;\n  text-indent: -30px;\n  padding-bottom: 10px;\n  font-size: 14px;\n  line-height: 16px;\n}\nmain ul:not(.nav-tabs):not(.dropdown-menu) li[data-v-56114fc4]:before {\n  content: \"\\f0da\";\n  font-family: \"Font Awesome 5 Pro\";\n  padding-right: 15px;\n  font-weight: 700;\n  font-size: 15px;\n  color: #00b4cd;\n}\nmain ol[data-v-56114fc4]:not(.nav-tabs):not(.dropdown-menu) {\n  list-style: none;\n  counter-reset: li;\n  padding-left: 30px;\n}\nmain ol:not(.nav-tabs):not(.dropdown-menu) li[data-v-56114fc4] {\n  counter-increment: li;\n  font-size: 14px;\n  line-height: 16px;\n  padding-bottom: 10px;\n  text-indent: -15px;\n}\nmain ol:not(.nav-tabs):not(.dropdown-menu) li[data-v-56114fc4]::before {\n  content: counter(li) \".\";\n  color: #00b4cd;\n  display: inline-block;\n  font-weight: 500;\n  padding-right: 5px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "main[data-v-56114fc4] {\n  font-size: 16px;\n  line-height: 24px;\n  font-weight: 400;\n  padding: 120px 0px;\n  color: #212529;\n  min-height: 100vh;\n  position: relative;\n}\nmain[data-v-56114fc4] hr {\n  border-top: solid 1px #677385;\n}\nmain img.aligncenter[data-v-56114fc4] {\n  display: block;\n  margin: auto;\n}\nmain p[data-v-56114fc4] {\n  font-size: 16px;\n  line-height: 24px;\n  font-weight: 400;\n  color: #677385;\n}\nmain[data-v-56114fc4] a:not(.buttonRed):not(.buttonWhite):not(.buttonGold):not(.buttonArrow):not(.nav-link):not(.dropdown-item) {\n  color: #ff2d20;\n  font-weight: 600;\n  transition: color 0.4s;\n  text-decoration: none;\n}\nmain[data-v-56114fc4] a:not(.buttonRed):not(.buttonWhite):not(.buttonGold):not(.buttonArrow):not(.nav-link):not(.dropdown-item):hover, main[data-v-56114fc4] a:not(.buttonRed):not(.buttonWhite):not(.buttonGold):not(.buttonArrow):not(.nav-link):not(.dropdown-item):focus {\n  text-decoration: none;\n  color: #007fe8;\n  box-shadow: none;\n  outline: none;\n}\nmain ul[data-v-56114fc4]:not(.nav-tabs):not(.dropdown-menu) {\n  padding-left: 30px;\n}\nmain ul:not(.nav-tabs):not(.dropdown-menu) li[data-v-56114fc4] {\n  display: block;\n  text-indent: -30px;\n  padding-bottom: 10px;\n  font-size: 14px;\n  line-height: 16px;\n}\nmain ul:not(.nav-tabs):not(.dropdown-menu) li[data-v-56114fc4]:before {\n  content: \"\\f0da\";\n  font-family: \"Font Awesome 5 Pro\";\n  padding-right: 15px;\n  font-weight: 700;\n  font-size: 15px;\n  color: #00b4cd;\n}\nmain ol[data-v-56114fc4]:not(.nav-tabs):not(.dropdown-menu) {\n  list-style: none;\n  counter-reset: li;\n  padding-left: 30px;\n}\nmain ol:not(.nav-tabs):not(.dropdown-menu) li[data-v-56114fc4] {\n  counter-increment: li;\n  font-size: 14px;\n  line-height: 16px;\n  padding-bottom: 10px;\n  text-indent: -15px;\n}\nmain ol:not(.nav-tabs):not(.dropdown-menu) li[data-v-56114fc4]::before {\n  content: counter(li) \".\";\n  color: #00b4cd;\n  display: inline-block;\n  font-weight: 500;\n  padding-right: 5px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

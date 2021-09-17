@@ -6,11 +6,11 @@
             <div class="row" v-for="(job, index) in jobs" :key="index">
                 <div class="col-12">
                     <div class="job">
-                        <div class="row">
+                        <div class="row align-items-center">
                             <div class="col-2 col-xl-1 text-center">
                                 <img :src="job.company_logo" class="img-fluid job__logo" />
                             </div>
-                            <div class="col-10 col-xl-11">
+                            <div class="col-8 col-xl-9">
                                 <div class="row">
                                     <div class="col-12">
                                         <h3>{{ job.title }}</h3>
@@ -26,6 +26,9 @@
                                     <div class="col-12 job__source">{{ job.source }}</div>
                                 </div>
                             </div>
+                            <div class="col-2">
+                                <app-button type="external" class="buttonRed" :link="job.url">VIEW</app-button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -38,12 +41,14 @@
 import AppLayout from "@/Layouts/AppLayout";
 import TheHead from "@/Shared/TheHead";
 import TheMain from "@/Shared/TheMain";
+import AppButton from "@/Shared/AppButton";
 
 export default {
     components: {
         AppLayout,
         TheHead,
         TheMain,
+        AppButton,
     },
     layout: AppLayout,
     computed: {

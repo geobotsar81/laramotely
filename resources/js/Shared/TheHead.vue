@@ -13,7 +13,12 @@
     </inertia-head>
 </template>
 <script>
+import { InertiaHead } from "@inertiajs/inertia-vue3";
+
 export default {
+    components: {
+        InertiaHead,
+    },
     props: {
         title: {
             type: String,

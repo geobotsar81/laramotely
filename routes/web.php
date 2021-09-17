@@ -18,7 +18,7 @@ use App\Http\Controllers\ScraperController;
 */
 
 Route::get('/', [PageController::class,'showHome'])->name("home.show");
-Route::get('/scrape', [ScraperController::class,'scrape'])->name("scraper.scrape");
+Route::get('/scrape/{type}', [ScraperController::class,'scrape'])->name("scraper.scrape");
 /*
 Route::get('/', function () {
     return Inertia::render('Welcome', [
