@@ -25,6 +25,9 @@ class StackOverflowScraperService extends Scraper{
 
             if(!empty($node->filter('.s-avatar--image')->count() > 0)){
                 $company_logo = $node->filter('.s-avatar--image')->first()->attr("src");
+                $contents = file_get_contents($company_logo);
+                Storage::disk('local')->put('public/companies/'.basename($company_logo), $contents);
+                $company_logo = basename($company_logo);
             }
 
             $tags=$node->filter('.s-tag')->each(function ($node) use($tags){

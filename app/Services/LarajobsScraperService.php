@@ -2,6 +2,7 @@
 namespace App\Services;
 use Goutte\Client;
 use App\Services\Scraper;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\HttpClient;
 
@@ -26,6 +27,9 @@ class LarajobsScraperService extends Scraper{
 
             if(!empty($node->filter('img')->count() > 0)){
                 $company_logo = "https://larajobs.com/".$node->filter('img')->first()->attr("src");
+                $contents = file_get_contents($company_logo);
+                Storage::disk('local')->put('public/companies/'.basename($company_logo), $contents);
+                $company_logo = basename($company_logo);
             }
 
             $tags=$node->filter('.border-gray-400')->each(function ($node) use($tags){

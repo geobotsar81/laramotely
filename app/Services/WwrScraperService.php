@@ -36,6 +36,9 @@ class WwrScraperService extends Scraper{
 
                     if(!empty($node->filter('.flag-company_logo')->count() > 0)){
                         $company_logo = $node->filter('.flag-company_logo')->first()->attr("style");
+                        $contents = file_get_contents($company_logo);
+                        Storage::disk('local')->put('public/companies/'.basename($company_logo), $contents);
+                        $company_logo = basename($company_logo);
                     }
 
                     $job=[

@@ -32,6 +32,14 @@ class RemoteokScraperService extends Scraper{
                     $location=$job['location'];
 
                     if ((strpos(strtolower($title), 'laravel') !== false) || (strpos(strtolower($description), 'laravel') !== false)){
+
+                        if(!empty($company_logo)){
+                        $contents = file_get_contents($company_logo);
+                        $contents = file_get_contents($company_logo);
+                        Storage::disk('local')->put('public/companies/'.basename($company_logo), $contents);
+                        $company_logo = basename($company_logo);
+                        }
+
                         $job=[
                             'title' => $title,
                             'url' => $url,
