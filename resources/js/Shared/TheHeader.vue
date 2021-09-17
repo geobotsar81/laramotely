@@ -1,13 +1,13 @@
 <template>
     <header class="header">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-4">
+            <div class="row align-items-center">
+                <div class="col-3 col-xl-2">
                     <inertia-link :href="route('home.show')">
-                        <app-logo class="header__logo"></app-logo>
+                        <app-logo class="header__logo img-fluid"></app-logo>
                     </inertia-link>
                 </div>
-                <div class="col-8 text-end">
+                <div class="col-9 col-xl-10 text-end">
                     <app-nav v-if="mainMenu" :menu="mainMenu" class="d-none d-lg-inline-block"> </app-nav>
                     <div class="hamburger hamburger--spring mt-2 mt-sm-0" :class="isActiveBurger ? 'is-active' : ''" @click="toggleBurger">
                         <div class="hamburger-box">
@@ -90,8 +90,7 @@ export default {
         font-weight: 400;
     }
 }
-.header__logoDark {
-    display: none;
+.header__logo {
 }
 
 .hamburger {

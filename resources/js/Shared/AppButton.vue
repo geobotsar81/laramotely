@@ -1,16 +1,21 @@
 <template>
-    <a v-if="type === 'external'" :href="link" :class="cls" class="button"><slot /></a>
+    <a v-if="type === 'external'" :href="link" :class="cls" target="blank"><slot /></a>
 
-    <button v-else-if="type === 'submit'" :class="cls" class="button">
+    <button v-else-if="type === 'submit'" :class="cls">
         <slot />
     </button>
 
-    <inertia-link v-else :href="link" :class="cls" class="button">
+    <inertia-link v-else :href="link" :class="cls">
         <slot />
     </inertia-link>
 </template>
 <script>
+import { InertiaLink } from "@inertiajs/inertia-vue3";
+
 export default {
+    components: {
+        InertiaLink,
+    },
     props: {
         cls: {
             type: String,
@@ -28,47 +33,25 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.acurisCheck {
-    display: block;
-    padding: 15px;
-    width: 100%;
-    text-align: center;
-    border: solid 1px $appBlue;
-    border-radius: 3px;
-    transition: $appTransition;
-    background-color: #ffffff;
-
-    &:hover,
-    &:focus {
-        background-color: #d0ddec;
-    }
-
-    &.disabled {
-        pointer-events: none;
-        background-color: #ccc;
-    }
-}
-
-.buttonBlue,
-.upload {
+.buttonRed {
     display: inline-block;
-    background-color: $appBlue;
+    background-color: $appRed;
     font-weight: 700;
     font-style: normal;
     font-size: 14px;
     color: #fff;
-    border-radius: 3px;
-    padding: 15px 40px;
+    border-radius: 4px;
+    padding: 12px 40px;
     transition: all 0.4s ease-out;
     text-decoration: none;
     border: none;
-    border: 0px solid $appBlue;
+    border: 0px solid $appRed;
 
     &:hover,
     &:focus {
         color: #fff;
-        border: 0px solid $appBlue;
-        background-color: $appLightBlue;
+        border: 0px solid $appBlack;
+        background-color: $appBlack;
         text-decoration: none;
         outline: none;
         box-shadow: none;
@@ -144,36 +127,4 @@ export default {
         padding: 0px 5px;
     }
 }
-
-.um input[type="submit"].um-button {
-    display: inline-block !important;
-    background-color: $appBlue !important;
-    font-weight: 700 !important;
-    font-style: normal !important;
-    font-size: 15px !important;
-    color: #fff !important;
-    border-radius: 3px !important;
-    padding: 15px 30px !important;
-    transition: all 0.4s ease-out !important;
-    text-decoration: none !important;
-    border: none !important;
-
-    &:hover,
-    &:focus {
-        color: #fff !important;
-        border: 0px solid $appBlue !important;
-        background-color: $appLightBlue !important;
-        text-decoration: none !important;
-        outline: none !important;
-        box-shadow: none !important;
-    }
-}
-
-// Button Arrow
-$text-arrow-space: 12px;
-$shaft-width: 1px;
-$newshaft-width: 64px;
-$shaft-thickness: 1px;
-$arrow-head-width: 6px;
-$arrow-head-thickness: $shaft-thickness;
 </style>

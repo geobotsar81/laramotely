@@ -1,5 +1,5 @@
 <template>
-    <img :src="this.$page.props.publicUrl + '/img/logo.svg'" :class="cls" />
+    <img :src="this.$page.props.publicUrl + '/img/logo.png'" :class="cls" />
 </template>
 <script>
 export default {

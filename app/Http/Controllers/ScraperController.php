@@ -19,27 +19,37 @@ class ScraperController extends Controller
      *
      * @return void
      */
-    public function scrape(){
-/*
-        $remoteokScraper=new RemoteokScraperService();
+    public function scrape($type){
+
+        if($type == 1){
+            $larajobsScraper=new LarajobsScraperService();
+            $larajobsScraper->scrape("https://larajobs.com");
+        }
+
+        if($type == 2){
+            $remoteokScraper=new RemoteokScraperService();
         $remoteokScraper->scrape("https://remoteok.io/api");
+        }
 
-        $larajobsScraper=new LarajobsScraperService();
-        $larajobsScraper->scrape("https://larajobs.com");
+        if($type == 3){
+            $remotiveScraper=new RemotiveScraperService();
+            $remotiveScraper->scrape("https://remotive.io/api/remote-jobs?search=laravel");
+        }
 
-        $wwrScraper=new WwrScraperService();
-        $wwrScraper->scrape("https://weworkremotely.com/remote-jobs/search?term=laravel");
+        if($type == 4){
+            $soScraper=new StackOverflowScraperService();
+            $soScraper->scrape("https://stackoverflow.com/jobs?q=laravel&sort=p");
+        }
 
-        $soScraper=new StackOverflowScraperService();
-        $soScraper->scrape("https://stackoverflow.com/jobs?q=laravel&sort=p");
+        if($type == 5){
+            $wwrScraper=new WwrScraperService();
+            $wwrScraper->scrape("https://weworkremotely.com/remote-jobs/search?term=laravel");
+        }
 
-        $remotiveScraper=new RemotiveScraperService();
-        $remotiveScraper->scrape("https://remotive.io/api/remote-jobs?search=laravel");
-        $arcScraper=new ArcScraperService();
-        $arcScraper->scrape("https://arc.dev/remote-jobs/laravel");
-*/
-
-        
-        
+        if($type == 6){
+            $arcScraper=new ArcScraperService();
+            $arcScraper->scrape("https://arc.dev/remote-jobs/laravel");
+        }
+       
     }
 }

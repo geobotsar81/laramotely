@@ -39,8 +39,8 @@ main {
         color: $appGrey2;
     }
 
-    :deep(a:not(.buttonBlue):not(.buttonWhite):not(.buttonGold):not(.buttonArrow):not(.nav-link):not(.dropdown-item)) {
-        color: $appBlue;
+    :deep(a:not(.buttonRed):not(.buttonWhite):not(.buttonGold):not(.buttonArrow):not(.nav-link):not(.dropdown-item)) {
+        color: $appRed;
         font-weight: 600;
         transition: color 0.4s;
         text-decoration: none;
