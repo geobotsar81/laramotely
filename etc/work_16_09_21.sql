@@ -202,7 +202,7 @@ CREATE TABLE `jobs` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
-  `date` timestamp NOT NULL DEFAULT '2021-09-15 01:49:26',
+  `posted_date` timestamp NOT NULL DEFAULT '2021-09-15 01:49:26',
   `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `company_logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,

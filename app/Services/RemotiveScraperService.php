@@ -26,6 +26,10 @@ class RemotiveScraperService extends Scraper{
                 $company=$job['company_name'];
                 if(!empty($job['company_logo_url'])){
                     $company_logo=$job['company_logo_url'];
+
+                    $contents = file_get_contents($company_logo);
+                    Storage::disk('local')->put('public/companies/'.basename($company_logo), $contents);
+                    $company_logo = basename($company_logo);
                 }
                 $tags=$job['category'];
                 $date=$job['publication_date'];
