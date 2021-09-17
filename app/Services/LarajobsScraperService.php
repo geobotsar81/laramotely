@@ -27,9 +27,13 @@ class LarajobsScraperService extends Scraper{
 
             if(!empty($node->filter('img')->count() > 0)){
                 $company_logo = "https://larajobs.com/".$node->filter('img')->first()->attr("src");
-                $contents = file_get_contents($company_logo);
+                if(strpos($company_logo,"?") !== FALSE){
+                $company_logo = substr($company_logo, 0, strpos($company_logo, '?'));}
+                $contents = @file_get_contents($company_logo);
+                if($contents){
                 Storage::disk('local')->put('public/companies/'.basename($company_logo), $contents);
                 $company_logo = basename($company_logo);
+                }else{$company_logo="";}
             }
 
             $tags=$node->filter('.border-gray-400')->each(function ($node) use($tags){

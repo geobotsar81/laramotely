@@ -38,7 +38,8 @@ class ScraperController extends Controller
 
         if($type == 4){
             $soScraper=new StackOverflowScraperService();
-            $soScraper->scrape("https://stackoverflow.com/jobs?q=laravel&sort=p");
+            //$soScraper->scrape("https://stackoverflow.com/jobs?q=laravel&sort=p");
+            $soScraper->scrape("https://stackoverflow.com/jobs/developer-jobs-using-laravel");
         }
 
         if($type == 5){

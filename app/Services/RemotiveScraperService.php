@@ -3,6 +3,7 @@ namespace App\Services;
 use Goutte\Client;
 use App\Services\Scraper;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpClient\HttpClient;
 
 
@@ -26,10 +27,13 @@ class RemotiveScraperService extends Scraper{
                 $company=$job['company_name'];
                 if(!empty($job['company_logo_url'])){
                     $company_logo=$job['company_logo_url'];
-
-                    $contents = file_get_contents($company_logo);
+                    if(strpos($company_logo,"?") !== FALSE){
+                        $company_logo = substr($company_logo, 0, strpos($company_logo, '?'));}
+                    $contents = @file_get_contents($company_logo);
+                    if($contents){
                     Storage::disk('local')->put('public/companies/'.basename($company_logo), $contents);
                     $company_logo = basename($company_logo);
+                    }else{$company_logo="";}
                 }
                 $tags=$job['category'];
                 $date=$job['publication_date'];

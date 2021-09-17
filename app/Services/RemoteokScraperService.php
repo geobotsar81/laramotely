@@ -3,6 +3,7 @@ namespace App\Services;
 use Goutte\Client;
 use App\Services\Scraper;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpClient\HttpClient;
 
 
@@ -34,10 +35,13 @@ class RemoteokScraperService extends Scraper{
                     if ((strpos(strtolower($title), 'laravel') !== false) || (strpos(strtolower($description), 'laravel') !== false)){
 
                         if(!empty($company_logo)){
-                        $contents = file_get_contents($company_logo);
-                        $contents = file_get_contents($company_logo);
-                        Storage::disk('local')->put('public/companies/'.basename($company_logo), $contents);
-                        $company_logo = basename($company_logo);
+                            if(strpos($company_logo,"?") !== FALSE){
+                                $company_logo = substr($company_logo, 0, strpos($company_logo, '?'));}
+                            $contents = @file_get_contents($company_logo);
+                            if($contents){
+                            Storage::disk('local')->put('public/companies/'.basename($company_logo), $contents);
+                            $company_logo = basename($company_logo);
+                            }else{$company_logo="";}
                         }
 
                         $job=[

@@ -1,5 +1,5 @@
 <template>
-    <a v-if="type === 'external'" :href="link" :class="cls" target="blank"><slot /></a>
+    <a v-if="type === 'external'" :href="link" :class="cls" target="_blank"><slot /></a>
 
     <button v-else-if="type === 'submit'" :class="cls">
         <slot />
