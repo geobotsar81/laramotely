@@ -122,8 +122,11 @@ export default {
         }
     }
 }
-@media (max-width: 575.98px) {
+@media (max-width: 767.98px) {
     .footer {
+        text-align: center;
+    }
+    .footer__social {
         text-align: center;
     }
 }

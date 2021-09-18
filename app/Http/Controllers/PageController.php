@@ -32,7 +32,7 @@ class PageController extends Controller
         }
 
         $data['jobs']=$jobs;
-        return Inertia::render('Home',$data);
+        return Inertia::render('Home/Index',$data);
     }
 
 

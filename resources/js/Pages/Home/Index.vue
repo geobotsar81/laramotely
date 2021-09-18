@@ -32,7 +32,6 @@ export default {
         AppJob,
     },
     layout: AppLayout,
-
     computed: {
         jobs: function () {
             return this.$page.props.jobs;
@@ -40,11 +39,4 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-h1 {
-    font-weight: 700;
-}
-h2 {
-    color: $appRed;
-}
-</style>
+<style lang="scss" scoped></style>

@@ -36,7 +36,7 @@ export default {
 <style lang="scss" scoped>
 .nav {
     display: inline-block;
-    padding-top: 15px;
+    padding-top: 5px;
 
     > div {
         display: inline-block;

@@ -2,12 +2,12 @@
     <header class="header" :class="isActiveBurger ? 'is-active' : ''">
         <div class="container-fluid">
             <div class="row align-items-center">
-                <div class="col-9 col-lg-4">
+                <div class="col-10 col-lg-4">
                     <inertia-link href="/">
                         <app-logo class="header__logo img-fluid"></app-logo>
                     </inertia-link>
                 </div>
-                <div class="col-3 col-lg-8 text-end">
+                <div class="col-2 col-lg-8 text-end mt-2 mt-md-0">
                     <app-nav v-if="mainMenu" :menu="mainMenu" class="d-none d-lg-inline-block"> </app-nav>
                     <div class="hamburger hamburger--spring mt-2 mt-sm-0" :class="isActiveBurger ? 'is-active' : ''" @click="toggleBurger">
                         <div class="hamburger-box">
@@ -50,7 +50,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-    padding: 10px 45px;
+    padding: 5px 45px;
     position: fixed;
     width: 100%;
     left: 0;
@@ -154,7 +154,6 @@ export default {
 
 @media (max-width: 1199.98px) {
     .header {
-        padding: 15px;
         &.sticky {
             padding: 10px 15px;
         }
@@ -192,9 +191,5 @@ export default {
 }
 
 @media (max-width: 575.98px) {
-    .header__logo,
-    .header__logoDark {
-        width: 157px;
-    }
 }
 </style>
