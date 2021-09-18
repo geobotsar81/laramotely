@@ -57,7 +57,7 @@ class RemotiveScraperService extends Scraper{
             
                 //Break from the loop if the current url already exists in the database
                 if($this->jobsRepo->urlInDB($url)){
-                    echo "Found:"; print_r($job);
+                    echo "Found:"; 
                     break;
                 }else{
                     $this->jobsRepo->save($job);

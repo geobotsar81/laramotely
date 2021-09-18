@@ -23,6 +23,9 @@ class StackOverflowScraperService extends Scraper{
             $company_logo="";
             $location="";
             $url="https://stackoverflow.com".$node->filter('.s-link')->first()->attr('href');
+            if(strpos($url,"?") !== FALSE){
+                $url=substr($url,0,strpos($url,"?"));
+            }
             $title = $node->filter('.s-link')->first()->text();
             $company = $node->filter('h3 span')->first()->text();
 
