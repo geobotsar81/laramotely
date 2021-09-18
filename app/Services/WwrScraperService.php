@@ -10,8 +10,9 @@ use Symfony\Component\HttpClient\HttpClient;
 class WwrScraperService extends Scraper{
 
 
-    public function scrape($url){
+    public function scrape(){
 
+        $url="https://weworkremotely.com/remote-jobs/search?term=laravel";
         $client = new Client(HttpClient::create(['timeout' => 60]));
         $crawler = $client->request('GET', $url);
 
@@ -25,7 +26,7 @@ class WwrScraperService extends Scraper{
                 if($node->filter('.title')->count() > 0){
                     
                     $title = $node->filter('.title')->first()->text();
-                    $url="https://weworkremotely.com".$node->filter('a:last-child')->first()->attr("href");
+                    $url="https://weworkremotely.com".$node->filter('a[href*="remote-jobs"]')->first()->attr("href");
                     $title = $node->filter('.title')->first()->text();
                     $company = $node->filter('.company')->first()->text();
                     $location = $node->filter('.region')->first()->text();

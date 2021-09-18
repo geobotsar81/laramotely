@@ -10,8 +10,9 @@ use Symfony\Component\HttpClient\HttpClient;
 class RemoteokScraperService extends Scraper{
 
 
-    public function scrape($url){
+    public function scrape(){
 
+        $url="https://remoteok.io/api";
         $response = Http::get($url);
 
         $counter=0;

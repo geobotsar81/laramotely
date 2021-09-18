@@ -10,8 +10,9 @@ use Symfony\Component\HttpClient\HttpClient;
 class StackOverflowScraperService extends Scraper{
 
 
-    public function scrape($url){
+    public function scrape(){
 
+        $url="https://stackoverflow.com/jobs/developer-jobs-using-laravel";
         $client = new Client(HttpClient::create(['timeout' => 60]));
         $crawler = $client->request('GET', $url);
 
@@ -46,13 +47,25 @@ class StackOverflowScraperService extends Scraper{
                 });
             }
 
+            $date=$node->filter('.horizontal-list li:first-child span')->first()->text();
+
+            if(!empty($date)){
+                if(strpos($date,"yesterday") !== FALSE){
+                    $date = date('Y-m-d', strtotime('-1 days', strtotime(now())));
+                }
+                elseif(strpos($date,"d ago") !== FALSE){
+                    $date=str_replace("d ago","",$date);
+                    $date = date('Y-m-d', strtotime('-'.($date*1).' days', strtotime(now())));
+                }else{$date=now();}
+            }
+
             //$location = $node->filter('.horizontal-list li:nth-child(2)')->first()->text();
 
             $job=[
                 'title' => $title,
                 'url' => $url,
                 'description' => "",
-                'date' => now(),
+                'date' => $date,
                 'location' => $location,
                 'company' => $company,
                 'company_logo' => $company_logo,

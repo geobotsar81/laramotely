@@ -10,8 +10,9 @@ use Symfony\Component\HttpClient\HttpClient;
 class RemotiveScraperService extends Scraper{
 
 
-    public function scrape($url){
+    public function scrape){
 
+        $url="https://remotive.io/api/remote-jobs?search=laravel";
         $response = Http::get($url);
 
         if(!empty($response->json())){
