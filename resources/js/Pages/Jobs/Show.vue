@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-sm-8 col-lg-9">
+                <div class="col-sm-12 col-lg-9">
                     <div class="row">
                         <div class="col-12 job__date">{{ job.formated_date }}</div>
                     </div>
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4 col-lg-2">
+                <div class="col-lg-3 d-none d-lg-block">
                     <div class="job__companyCell">
                         <div class="row">
                             <div class="col-12">

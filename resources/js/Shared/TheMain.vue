@@ -48,7 +48,7 @@ main {
         &:hover,
         &:focus {
             text-decoration: none;
-            color: $appBlue;
+            color: $appBlack;
             box-shadow: none;
             outline: none;
         }

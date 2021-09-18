@@ -18,6 +18,6 @@ class JobController extends Controller
 
        $data=['job' => $job];
 
-        return Inertia::render('Job',$data);
+        return Inertia::render('Jobs/Show',$data);
     }
 }
