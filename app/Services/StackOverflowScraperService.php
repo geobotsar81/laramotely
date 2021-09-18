@@ -64,7 +64,9 @@ class StackOverflowScraperService extends Scraper{
                 echo "Found:"; print_r($job);
                // break;
             }else{
+                if(in_array("laravel",$tags)){
                 $this->jobsRepo->save($job);
+                }
             }
 
 

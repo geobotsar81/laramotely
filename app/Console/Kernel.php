@@ -34,37 +34,43 @@ class Kernel extends ConsoleKernel
             $larajobsScraper=new LarajobsScraperService();
             $larajobsScraper->scrape("https://larajobs.com");
         })
-        ->hourlyAt(5);
+        //->hourlyAt(5);
+        ->everyTwoMinutes();
 
         $schedule->call(function () {
             $wwrScraper=new WwrScraperService();
             $wwrScraper->scrape("https://weworkremotely.com/remote-jobs/search?term=laravel");
         })
-        ->hourlyAt(15);
+        //->hourlyAt(15);
+        ->everyTwoMinutes();
 
         $schedule->call(function () {
             $soScraper=new StackOverflowScraperService();
             $soScraper->scrape("https://stackoverflow.com/jobs/developer-jobs-using-laravel");
         })
-        ->hourlyAt(25);
+        //->hourlyAt(25);
+        ->everyTwoMinutes();
 
         $schedule->call(function () {
             $remoteokScraper=new RemoteokScraperService();
             $remoteokScraper->scrape("https://remoteok.io/api");
         })
-        ->hourlyAt(35);
+        //->hourlyAt(35);
+        ->everyTwoMinutes();
 
         $schedule->call(function () {
             $remotiveScraper=new RemotiveScraperService();
             $remotiveScraper->scrape("https://remotive.io/api/remote-jobs?search=laravel");
         })
-        ->hourlyAt(45);
+        //->hourlyAt(45);
+        ->everyTwoMinutes();
 
         $schedule->call(function () {
             $arcScraper=new ArcScraperService();
             $arcScraper->scrape("https://arc.dev/remote-jobs/laravel");
         })
-        ->hourlyAt(55);
+        //->hourlyAt(55);
+        ->everyTwoMinutes();
     }
 
     /**
