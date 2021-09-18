@@ -44,7 +44,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
             $soScraper=new StackOverflowScraperService();
-            $soScraper->scrape("https://stackoverflow.com/jobs?q=laravel&sort=p");
+            $soScraper->scrape("https://stackoverflow.com/jobs/developer-jobs-using-laravel");
         })
         ->hourlyAt(25);
 
