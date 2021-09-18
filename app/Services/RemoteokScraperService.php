@@ -28,7 +28,7 @@ class RemoteokScraperService extends Scraper{
                     $url=$job['url'];
                     $company=$job['company'];
                     $tags=$job['tags'];
-                    $date=$job['date'];
+                    $date=date('Y-m-d H:i:s',strtotime($job['date']));
                     $description=$job['description'];
                     $company_logo=$job['company_logo'];
                     $location=$job['location'];
