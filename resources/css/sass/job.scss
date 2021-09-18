@@ -7,6 +7,12 @@
     h3 {
         font-size: 24px;
         font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: rgba(255, 212, 0, 0.1);
     }
 }
 
@@ -33,6 +39,9 @@
 }
 .job__company {
     color: $appRed;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 .job__source {
