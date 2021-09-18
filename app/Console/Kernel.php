@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Services\ArcScraperService;
+use App\Services\JobScraperService;
 use App\Services\WwrScraperService;
 use App\Services\LarajobsScraperService;
 use App\Services\RemoteokScraperService;
@@ -30,6 +31,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+
+        $schedule->call(function () {
+            $larajobsScraper=new JobScraperService();
+            $larajobsScraper->scrape();
+        })
+        ->everyFiveMinutes();
+
         $schedule->call(function () {
             $larajobsScraper=new LarajobsScraperService();
             $larajobsScraper->scrape();
