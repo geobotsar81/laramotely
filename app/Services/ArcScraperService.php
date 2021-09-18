@@ -24,7 +24,7 @@ class ArcScraperService extends Scraper{
             $title = $node->filter('h2 a')->first()->text();
             $company = $node->filter('.company div:nth-child(2)')->first()->text();
             $location = $node->filter('.hyccSk')->first()->text();
-            $description = $node->filter('.hidden')->first()->text();
+            $description = $node->filter('.hidden')->first()->html();
             $date=$node->filter('.ecyiGK')->first()->text();
 
             if(!empty($date)){

@@ -17,15 +17,16 @@
                 <div class="row">
                     <div class="col-12 job__company">{{ job.company }}</div>
                 </div>
-                <div class="row">
-                    <div class="col-12 job__source">{{ job.formated_location }}</div>
+                <div class="row" v-if="job.location">
+                    <div class="col-12 job__source"><i class="far fa-globe-americas"></i> {{ job.formated_location }}</div>
                 </div>
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-12 job__source">{{ job.source }}</div>
-                </div>
+                </div>-->
             </div>
             <div class="col-2">
-                <app-button type="external" class="buttonRed" :link="job.url">VIEW</app-button>
+                <app-button type="external" v-if="job.source == 'larajobs.com'" class="buttonRed" :link="job.url"><i class="fas fa-external-link-square-alt"></i> VIEW</app-button>
+                <app-button v-else class="buttonRed" :link="route('job.show', job.id)">VIEW</app-button>
             </div>
         </div>
     </div>
@@ -50,45 +51,4 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-.job {
-    border: solid 1px $appLightGrey;
-    border-radius: 2px;
-    padding: 20px;
-    margin-bottom: 10px;
-
-    h3 {
-        font-size: 24px;
-        font-weight: 700;
-    }
-}
-
-.job__logo {
-    margin: auto;
-    border: solid 1px $appLightGrey;
-    border-radius: 50%;
-}
-
-.job__logoAlternative {
-    width: 80px;
-    height: 80px;
-    background-color: $appBlack;
-    color: #ffffff;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 700;
-    padding-top: 20px;
-}
-
-.job__date {
-    font-size: 14px;
-}
-.job__company {
-    color: $appRed;
-}
-
-.job__source {
-    font-style: italic;
-}
-</style>
+<style lang="scss" scoped></style>

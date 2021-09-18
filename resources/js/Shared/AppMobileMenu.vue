@@ -21,10 +21,12 @@
 </template>
 <script>
 import AppButton from "@/Shared/AppButton";
+import { InertiaLink } from "@inertiajs/inertia-vue3";
 
 export default {
     components: {
         AppButton,
+        InertiaLink,
     },
     data() {
         return {
@@ -74,27 +76,6 @@ export default {
         padding: 5px;
     }
 
-    .mobileMenu__login {
-        font-size: 14px;
-        line-height: 22px;
-        color: #ffffff;
-        font-weight: 600;
-        transition: $appTransition;
-        display: inline-block;
-        text-decoration: none;
-
-        i {
-            padding-right: 5px;
-            font-size: 12px;
-        }
-
-        &:hover,
-        &:focus,
-        &.active {
-            color: $appBlue;
-        }
-    }
-
     ul.mobileMenu__primary {
         margin-bottom: 0px;
         width: 100%;
@@ -104,9 +85,9 @@ export default {
             list-style: none;
             display: block;
             padding: 10px 0px;
-            border-bottom: solid 1px $appLightBlue;
             transform: scale(1.15) translateY(-30px);
             opacity: 0;
+            text-align: center;
             transition: transform 0.5s $cubic, opacity 0.6s $cubic;
 
             @for $i from 1 through $menuItems {
@@ -132,7 +113,7 @@ export default {
                 &:hover,
                 &:focus,
                 &.active {
-                    color: $appLightBlue;
+                    color: $appBlack2;
                 }
             }
 

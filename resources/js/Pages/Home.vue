@@ -41,6 +41,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+h1 {
+    font-weight: 700;
+}
 h2 {
     color: $appRed;
 }

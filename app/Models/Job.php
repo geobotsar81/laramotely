@@ -20,7 +20,9 @@ class Job extends Model
     }
 
     public function getFormatedLocationAttribute()
-    {
-        return (strip_tags($this->location));
+    {  
+        $location=strip_tags($this->location);
+        $location=str_replace("🌎","",$location);
+        return $location;
     }
 }

@@ -1,9 +1,20 @@
 <?php
 
+use App\Models\Job;
 use TCG\Voyager\Models\Page;
 use TCG\Voyager\Models\Post;
 use TCG\Voyager\Models\Category;
 use Illuminate\Support\Facades\Cache;
+
+function getJobsCount(){
+    $cacheDuration=env("CACHE_DURATION");
+
+    $jobscount = Cache::remember('jobscount', $cacheDuration, function (){
+        return $jobs=Job::get()->count();
+    });
+
+    return $jobscount;
+}
 
 function getSiteTitle(){
     $cacheDuration=env("CACHE_DURATION");

@@ -53,7 +53,7 @@ class RemoteokScraperService extends Scraper{
                             'location' => $location,
                             'company' => $company,
                             'company_logo' => $company_logo,
-                            'source' => 'remoteok.com'
+                            'source' => 'remoteok.io'
                         ];
                     
                         //Break from the loop if the current url already exists in the database

@@ -4,6 +4,7 @@
         <app-mobile-menu :menuClass="showMobileMenu ? 'is-active' : ''"></app-mobile-menu>
         <the-header @toggle-mobile-menu="burgerIsClicked"></the-header>
         <slot />
+        <the-footer></the-footer>
     </div>
 </template>
 

@@ -6,9 +6,11 @@ $appRed: #ff2d20;
 $appYellow: #e8be2f;
 $appGreyDark: #4f5267;
 $appGrey: #a4b3ca;
-$appLightGrey: #cfdee8;
-
+$appLightGrey: #f8f9fa;
 $appLightGrey2: #cfdee8;
+
+$appTransition: all 0.6s;
+$appTransitionDuration: 0.6s;
 
 $appBlue: #007fe8;
 $appLightBlue: #00b4cd;
@@ -20,9 +22,6 @@ $appGrey2: #677385;
 $appGradient: linear-gradient(45deg, rgba(128, 195, 66, 1) 0%, rgba(0, 180, 204, 1) 100%);
 
 $appBorderRadius: 3px;
-
-$appTransition: all 0.6s;
-$appTransitionDuration: 0.6s;
 
 $zindexPreloader: 9000;
 $zindexHeader: 4000;

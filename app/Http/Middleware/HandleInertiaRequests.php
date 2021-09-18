@@ -40,6 +40,7 @@ class HandleInertiaRequests extends Middleware
             'storageUrl' => asset('storage'),
             'publicUrl' => url("/"),
             'currentYear' => today()->format('Y'),
+            'jobsCount' => getJobsCount(),
             'menus' => [
                 'main' => getMenu(2),
              ],

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Goutte\Client;
 use Illuminate\Http\Request;
 use App\Services\ArcScraperService;
+use App\Services\JobScraperService;
 use App\Services\WwrScraperService;
 use App\Services\LarajobsScraperService;
 use App\Services\RemoteokScraperService;
@@ -20,6 +21,11 @@ class ScraperController extends Controller
      * @return void
      */
     public function scrape($type){
+
+        if($type == 0){
+            $larajobsScraper=new JobScraperService();
+            $larajobsScraper->scrape();
+        }
 
         if($type == 1){
             $larajobsScraper=new LarajobsScraperService();
