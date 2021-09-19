@@ -12,12 +12,13 @@ class LinkedInScraperService extends Scraper{
 
     public function scrape(){
 
-        $url="https://www.linkedin.com/jobs/search/?f_WRA=true&keywords=laravel";
+        $url="https://www.linkedin.com/jobs/remote-laravel-jobs";
         $client = new Client(HttpClient::create(['timeout' => 60]));
         $crawler = $client->request('GET', $url);
         
 
         $nodes = $crawler->filter('.base-card');
+        dd($nodes);
         foreach ($nodes as $node) {
             $node = new Crawler($node);
             $company_logo="";
@@ -26,7 +27,7 @@ class LinkedInScraperService extends Scraper{
             $company="";
             $location="";
             
-            dd($nodes);
+            
             if(!empty($node)){
                 if($node->filter('.base-search-card__title')->count() > 0){
 
