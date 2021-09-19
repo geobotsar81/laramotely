@@ -8,6 +8,7 @@ use App\Services\ArcScraperService;
 use App\Services\JobScraperService;
 use App\Services\WwrScraperService;
 use App\Services\LarajobsScraperService;
+use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use Symfony\Component\HttpClient\HttpClient;
@@ -57,6 +58,11 @@ class ScraperController extends Controller
             $arcScraper=new ArcScraperService();
             $arcScraper->scrape();
         }
-       
+
+        if($type == 7){
+            $linkedInScraper=new LinkedInScraperService();
+            $linkedInScraper->scrape();
+        }
+        
     }
 }

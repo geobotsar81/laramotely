@@ -45,6 +45,12 @@ class Kernel extends ConsoleKernel
         ->hourlyAt(5);
 
         $schedule->call(function () {
+            $linkedInScraper=new LinkedInScraperService();
+            $linkedInScraper->scrape();
+        })
+        ->hourlyAt(10);
+
+        $schedule->call(function () {
             $wwrScraper=new WwrScraperService();
             $wwrScraper->scrape();
         })

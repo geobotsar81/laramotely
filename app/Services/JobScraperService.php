@@ -25,6 +25,20 @@ class JobScraperService extends Scraper{
 
                 if(!empty($url)){
                     
+                    if($source == 'linkedin.com'){
+                        $client = new Client(HttpClient::create(['timeout' => 120]));
+                        $crawler = $client->request('GET', $url);
+
+                        echo "Is linkedin<br>-------------";
+
+                        if(!empty($crawler->filter('.show-more-less-html__markup')->count() > 0)){
+                            $description = $crawler->filter('.show-more-less-html__markup')->first()->html();
+                        }
+
+                        $job->description=$description;
+                        $job->is_scraped=1;
+                        $job->save();
+                    }
 
                     if($source == 'stackoverflow.com'){
                         $client = new Client(HttpClient::create(['timeout' => 120]));

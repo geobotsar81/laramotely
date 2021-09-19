@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <inertia-link :href="route('job.index')"><i class="far fa-chevron-square-left"></i> Back to jobs</inertia-link>
+                    <inertia-link :href="route('home.show')"><i class="far fa-chevron-square-left"></i> Back to jobs</inertia-link>
                 </div>
             </div>
             <div class="row mt-2">
@@ -37,7 +37,7 @@
                     <div class="job__companyCell">
                         <div class="row">
                             <div class="col-12">
-                                <img v-if="job.company_logo" :src="storageUrl + 'companies/' + job.company_logo" class="img-fluid job__logo" />
+                                <img v-if="job.company_logo && job.source != 'linkedin.com'" :src="storageUrl + 'companies/' + job.company_logo" class="img-fluid job__logo" />
                                 <div v-else class="job__logoAlternative">{{ job.company }}</div>
                             </div>
                         </div>

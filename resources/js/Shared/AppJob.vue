@@ -2,7 +2,7 @@
     <div class="job">
         <div class="row align-items-center">
             <div class="col-3 col-md-2 col-lg-1">
-                <img v-if="job.company_logo" :src="storageUrl + 'companies/' + job.company_logo" class="img-fluid job__logo" />
+                <img v-if="job.company_logo && job.source != 'linkedin.com'" :src="storageUrl + 'companies/' + job.company_logo" class="img-fluid job__logo" />
                 <div v-else class="job__logoAlternative">{{ job.company }}</div>
                 <!--<div class="row mt-2">
                     <div class="col-12 job__company">{{ job.company }}</div>
