@@ -31,7 +31,6 @@ class LinkedInScraperService extends Scraper{
             if(!empty($node)){
                 if($node->filter('.base-search-card__title')->count() > 0){
 
-                    dd($node);
                     $title = $node->filter('.base-search-card__title')->first()->text();
                     $url=$node->filter('.base-card__full-link')->first()->attr("href");
                     if(strpos($url,"?") !== FALSE){
@@ -68,12 +67,15 @@ class LinkedInScraperService extends Scraper{
                     ];
 
                     print_r($job);
-                    //Break from the loop if the current url already exists in the database
-                    if($this->jobsRepo->urlInDB($url)){
-                        echo "Found:"; print_r($job);
-                        break;
-                    }else{
-                        $this->jobsRepo->save($job);
+
+                    if(strpos(strtolower($title),"laravel") !== FALSE){
+                        //Break from the loop if the current url already exists in the database
+                        if($this->jobsRepo->urlInDB($url)){
+                            echo "Found:"; print_r($job);
+                            break;
+                        }else{
+                            $this->jobsRepo->save($job);
+                        }
                     }
                     
                    
