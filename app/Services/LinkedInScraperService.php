@@ -26,6 +26,7 @@ class LinkedInScraperService extends Scraper{
             $company="";
             $location="";
             
+            dd($nodes);
             if(!empty($node)){
                 if($node->filter('.base-search-card__title')->count() > 0){
 
