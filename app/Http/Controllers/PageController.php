@@ -25,7 +25,7 @@ class PageController extends Controller
         $page=getPageFromSlug("/");
         $data=[];
 
-        $jobs=Job::orderBy('posted_date','desc')->take(20)->get();
+        $jobs=Job::paginate(10);
 
         if(!empty($page)){
             $data=['title' => $page->title,'description' => $page->meta_description,'url' =>route('home.show')];

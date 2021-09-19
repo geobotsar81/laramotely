@@ -9,9 +9,10 @@
             <div class="row text-center mb-5">
                 <div class="col-12"><h2>for the remote Laravel developer</h2></div>
             </div>
-            <div v-for="(job, index) in jobs" :key="index">
+            <div v-for="(job, index) in jobs.data" :key="index">
                 <app-job :job="job"></app-job>
             </div>
+            <pagination :links="jobs.links" />
         </div>
     </the-main>
 </template>
@@ -22,6 +23,7 @@ import TheHead from "@/Shared/TheHead";
 import TheMain from "@/Shared/TheMain";
 import AppButton from "@/Shared/AppButton";
 import AppJob from "@/Shared/AppJob";
+import Pagination from "@/Shared/AppPagination";
 
 export default {
     components: {
@@ -30,6 +32,7 @@ export default {
         TheMain,
         AppButton,
         AppJob,
+        Pagination,
     },
     layout: AppLayout,
     computed: {
