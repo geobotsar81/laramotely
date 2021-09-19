@@ -18,7 +18,7 @@ class LinkedInScraperService extends Scraper{
         
 
         $nodes = $crawler->filter('.base-card');
-        dd($nodes);
+
         foreach ($nodes as $node) {
             $node = new Crawler($node);
             $company_logo="";
