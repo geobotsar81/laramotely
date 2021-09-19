@@ -26,6 +26,8 @@ class LinkedInScraperService extends Scraper{
             $tags="";
             $company="";
             $location="";
+
+            dd($node);
             
             
             if(!empty($node)){
