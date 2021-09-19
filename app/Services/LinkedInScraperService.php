@@ -12,7 +12,7 @@ class LinkedInScraperService extends Scraper{
 
     public function scrape(){
 
-        $url="https://www.linkedin.com/jobs/remote-laravel-jobs";
+        $url="https://www.linkedin.com/jobs/remote-laravel-jobs?position=1&pageNum=0";
         $client = new Client(HttpClient::create(['timeout' => 60]));
         $crawler = $client->request('GET', $url);
         
