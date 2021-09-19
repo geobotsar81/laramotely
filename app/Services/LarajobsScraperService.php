@@ -86,7 +86,8 @@ class LarajobsScraperService extends Scraper{
                 'location' => $location,
                 'company' => $company,
                 'company_logo' => $company_logo,
-                'source' => 'larajobs.com'
+                'source' => 'larajobs.com',
+                'tags' => $tags
             ];
            
             //Break from the loop if the current url already exists in the database

@@ -67,3 +67,13 @@
         font-weight: 700;
     }
 }
+
+.job__tag {
+    padding: 5px 10px;
+    color: $appBlack !important;
+    background-color: $appLightGrey;
+    margin: 0px 5px;
+    font-size: 12px;
+    border-radius: 4px;
+    display: inline-block;
+}

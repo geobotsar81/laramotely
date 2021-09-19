@@ -11356,6 +11356,16 @@ h2, .h2 {
   font-weight: 700;
 }
 
+.job__tag {
+  padding: 5px 10px;
+  color: #212529 !important;
+  background-color: #f8f9fa;
+  margin: 0px 5px;
+  font-size: 12px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
 /*!
  * Hamburgers
  * @description Tasty CSS-animated hamburgers

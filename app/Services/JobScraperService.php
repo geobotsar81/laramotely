@@ -21,6 +21,7 @@ class JobScraperService extends Scraper{
                 $url=$job->url;
                 $source=$job->source;
                 $description="";
+                $tags="";
 
                 if(!empty($url)){
                     

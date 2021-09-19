@@ -27,4 +27,14 @@ export default {
         font-size: 26px;
     }
 }
+
+@media (max-width: 575.98px) {
+    .logo {
+        font-size: 30px;
+
+        i {
+            font-size: 20px;
+        }
+    }
+}
 </style>

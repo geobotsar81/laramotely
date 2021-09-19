@@ -72,7 +72,8 @@ class StackOverflowScraperService extends Scraper{
                 'location' => $location,
                 'company' => $company,
                 'company_logo' => $company_logo,
-                'source' => 'stackoverflow.com'
+                'source' => 'stackoverflow.com',
+                'tags' => $tags
             ];
            
             //Break from the loop if the current url already exists in the database

@@ -61,7 +61,8 @@ class ArcScraperService extends Scraper{
                 'location' => $location,
                 'company' => $company,
                 'company_logo' => "",
-                'source' => 'arc.dev'
+                'source' => 'arc.dev',
+                'tags' => $tags
             ];
         
             //Break from the loop if the current url already exists in the database

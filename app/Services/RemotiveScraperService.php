@@ -19,6 +19,7 @@ class RemotiveScraperService extends Scraper{
 
             $results=$response->json();
             $jobs=$results['jobs'];
+            $tags="";
 
             foreach($jobs as $job){
                 $company_logo="";
@@ -52,7 +53,8 @@ class RemotiveScraperService extends Scraper{
                     'location' => $location,
                     'company' => $company,
                     'company_logo' => $company_logo,
-                    'source' => 'remotive.io'
+                    'source' => 'remotive.io',
+                    'tags' => $tags
                 ];
             
                 //Break from the loop if the current url already exists in the database
