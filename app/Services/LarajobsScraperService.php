@@ -60,7 +60,7 @@ class LarajobsScraperService extends Scraper{
                         $date=str_replace("w","",$date);
                         $date = date('Y-m-d', strtotime('-'.($date*14).' days', strtotime(now())));
                 }else{
-                    $date = $node->filter('.flex.justify-end div:nth-child(2)')->first()->text();
+                    $date = $node->filter('.flex.justify-end div:nth-child(1)')->first()->text();
                     if(!empty($date)){
                         if(strpos($date,"h") !== FALSE){
                             $date=str_replace("h","",$date);
@@ -92,10 +92,11 @@ class LarajobsScraperService extends Scraper{
            
             //Break from the loop if the current url already exists in the database
             if($this->jobsRepo->urlInDB($url)){
-                echo "Found:"; print_r($job);
-                break;
+                echo "Found:$title<BR>"; 
+                //break;
             }else{
                 if(!$doNotSave){
+                    echo "NOT Found:$title<BR>"; 
                 $this->jobsRepo->save($job);
                 }
             }
