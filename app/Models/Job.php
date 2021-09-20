@@ -10,7 +10,7 @@ class Job extends Model
 {
     use HasFactory;
 
-    public $appends = ['formated_date','formated_location'];
+    public $appends = ['formated_date','formated_location','formated_tags'];
 
 
     public function getFormatedDateAttribute()
@@ -20,7 +20,14 @@ class Job extends Model
     }
 
     public function getFormatedLocationAttribute()
-    {
-        return (strip_tags($this->location));
+    {  
+        $location=strip_tags($this->location);
+        $location=str_replace("🌎","",$location);
+        return $location;
+    }
+
+    public function getFormatedTagsAttribute()
+    {  
+        return json_decode($this->tags);
     }
 }

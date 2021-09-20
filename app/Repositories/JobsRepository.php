@@ -24,6 +24,8 @@ class JobsRepository{
         $job->company= $data["company"];
         $job->company_logo= $data["company_logo"];
         $job->source= $data["source"];
+        $job->is_scraped= 0;
+        $job->tags= json_encode($data["tags"]);
 
        echo $data["title"].",".$data["source"]."<br>";
 

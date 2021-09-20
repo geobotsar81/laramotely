@@ -10,14 +10,16 @@ use Symfony\Component\HttpClient\HttpClient;
 class RemotiveScraperService extends Scraper{
 
 
-    public function scrape($url){
+    public function scrape(){
 
+        $url="https://remotive.io/api/remote-jobs?search=laravel";
         $response = Http::get($url);
 
         if(!empty($response->json())){
 
             $results=$response->json();
             $jobs=$results['jobs'];
+            $tags="";
 
             foreach($jobs as $job){
                 $company_logo="";
@@ -29,11 +31,14 @@ class RemotiveScraperService extends Scraper{
                     $company_logo=$job['company_logo_url'];
                     if(strpos($company_logo,"?") !== FALSE){
                         $company_logo = substr($company_logo, 0, strpos($company_logo, '?'));}
-                    $contents = @file_get_contents($company_logo);
-                    if($contents){
-                    Storage::disk('local')->put('public/companies/'.basename($company_logo), $contents);
-                    $company_logo = basename($company_logo);
-                    }else{$company_logo="";}
+                        $contents = @file_get_contents($company_logo);
+                        if($contents){
+                        $company_logo = basename($company_logo);
+                        $company_logo=str_replace("logo","logo".strtotime(now()),$company_logo);
+                        echo $company_logo."<br><br>";
+                        Storage::disk('local')->put('public/companies/'.$company_logo, $contents);
+                        
+                        }else{$company_logo="";}
                 }
                 $tags=$job['category'];
                 $date=$job['publication_date'];
@@ -48,12 +53,13 @@ class RemotiveScraperService extends Scraper{
                     'location' => $location,
                     'company' => $company,
                     'company_logo' => $company_logo,
-                    'source' => 'remotive.io'
+                    'source' => 'remotive.io',
+                    'tags' => $tags
                 ];
             
                 //Break from the loop if the current url already exists in the database
                 if($this->jobsRepo->urlInDB($url)){
-                    echo "Found:"; print_r($job);
+                    echo "Found:"; 
                     break;
                 }else{
                     $this->jobsRepo->save($job);

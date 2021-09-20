@@ -10,8 +10,9 @@ use Symfony\Component\HttpClient\HttpClient;
 class RemoteokScraperService extends Scraper{
 
 
-    public function scrape($url){
+    public function scrape(){
 
+        $url="https://remoteok.io/api";
         $response = Http::get($url);
 
         $counter=0;
@@ -27,7 +28,7 @@ class RemoteokScraperService extends Scraper{
                     $url=$job['url'];
                     $company=$job['company'];
                     $tags=$job['tags'];
-                    $date=$job['date'];
+                    $date=date('Y-m-d H:i:s',strtotime($job['date']));
                     $description=$job['description'];
                     $company_logo=$job['company_logo'];
                     $location=$job['location'];
@@ -52,7 +53,8 @@ class RemoteokScraperService extends Scraper{
                             'location' => $location,
                             'company' => $company,
                             'company_logo' => $company_logo,
-                            'source' => 'remoteok.com'
+                            'source' => 'remoteok.io',
+                            'tags' => $tags
                         ];
                     
                         //Break from the loop if the current url already exists in the database

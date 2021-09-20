@@ -10,5 +10,5 @@ abstract class Scraper{
     public function __construct(){
         $this->jobsRepo=new JobsRepository;
     }
-    public abstract function scrape($url);
+    public abstract function scrape();
 }

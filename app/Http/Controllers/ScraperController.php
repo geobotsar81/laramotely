@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Goutte\Client;
 use Illuminate\Http\Request;
 use App\Services\ArcScraperService;
+use App\Services\JobScraperService;
 use App\Services\WwrScraperService;
 use App\Services\LarajobsScraperService;
+use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use Symfony\Component\HttpClient\HttpClient;
@@ -21,36 +23,46 @@ class ScraperController extends Controller
      */
     public function scrape($type){
 
+        if($type == 0){
+            $larajobsScraper=new JobScraperService();
+            $larajobsScraper->scrape();
+        }
+
         if($type == 1){
             $larajobsScraper=new LarajobsScraperService();
-            $larajobsScraper->scrape("https://larajobs.com");
+            $larajobsScraper->scrape();
         }
 
         if($type == 2){
             $remoteokScraper=new RemoteokScraperService();
-        $remoteokScraper->scrape("https://remoteok.io/api");
+            $remoteokScraper->scrape();
         }
 
         if($type == 3){
             $remotiveScraper=new RemotiveScraperService();
-            $remotiveScraper->scrape("https://remotive.io/api/remote-jobs?search=laravel");
+            $remotiveScraper->scrape();
         }
 
         if($type == 4){
             $soScraper=new StackOverflowScraperService();
             //$soScraper->scrape("https://stackoverflow.com/jobs?q=laravel&sort=p");
-            $soScraper->scrape("https://stackoverflow.com/jobs/developer-jobs-using-laravel");
+            $soScraper->scrape();
         }
 
         if($type == 5){
             $wwrScraper=new WwrScraperService();
-            $wwrScraper->scrape("https://weworkremotely.com/remote-jobs/search?term=laravel");
+            $wwrScraper->scrape();
         }
 
         if($type == 6){
             $arcScraper=new ArcScraperService();
-            $arcScraper->scrape("https://arc.dev/remote-jobs/laravel");
+            $arcScraper->scrape();
         }
-       
+
+        if($type == 7){
+            $linkedInScraper=new LinkedInScraperService();
+            $linkedInScraper->scrape();
+        }
+        
     }
 }

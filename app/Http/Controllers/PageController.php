@@ -25,14 +25,14 @@ class PageController extends Controller
         $page=getPageFromSlug("/");
         $data=[];
 
-        $jobs=Job::orderBy('posted_date','desc')->get();
+        $jobs=Job::orderBy('posted_date','desc')->paginate(8);
 
         if(!empty($page)){
             $data=['title' => $page->title,'description' => $page->meta_description,'url' =>route('home.show')];
         }
 
         $data['jobs']=$jobs;
-        return Inertia::render('Home',$data);
+        return Inertia::render('Home/Index',$data);
     }
 
 
