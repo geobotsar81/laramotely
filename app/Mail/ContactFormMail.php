@@ -28,7 +28,7 @@ class ContactFormMail extends Mailable
      */
     public function build()
     {
-        return $this->from(env('MAIL_FROM_ADDRESS'))
+        return $this->from('info@laramotely.com')
                 ->markdown('contactform')
                 ->with([
                         'subject' => $this->form['subject'],

@@ -51,7 +51,7 @@ class ContactController extends Controller
         ];
 
     
-        Mail::to(env('MAIL_TO_ADDRESS'))->send(new ContactFormMail($contact));
+        Mail::to('info@laramotely.com')->send(new ContactFormMail($contact));
         
         return redirect()->route('contact')->with('status', 'Your message has been sent');
     }
