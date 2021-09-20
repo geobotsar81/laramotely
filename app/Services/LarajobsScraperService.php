@@ -22,6 +22,9 @@ class LarajobsScraperService extends Scraper{
             $tags=[];
             $company_logo="";
             $url=$node->attr("data-url");
+            if(strpos($url,"?") !== FALSE){
+                $url=substr($url,0,strpos($url,"?"));
+            }
             $title = $node->filter('.description')->first()->text();
             $company = $node->filter('h4')->first()->text();
             $location = $node->filter('.text-xs.text-gray-600')->first()->text();

@@ -47,7 +47,7 @@ class HandleInertiaRequests extends Middleware
              'meta' => [
                 'title' => getSiteTitle(), 
                 'description' => getSiteDescription(),
-                'ogImage' => asset('images/ogImage.jpg')
+                'ogImage' => asset('img/ogImage.jpg')
              ],
              'translations' => __('app')
         ]);
