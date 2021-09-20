@@ -53,7 +53,7 @@ class ContactController extends Controller
     
         Mail::to('info@laramotely.com')->send(new ContactFormMail($contact));
         
-        return redirect()->route('contact')->with('status', 'Your message has been sent');
+        return redirect()->route('contact.show')->with('status', 'Your message has been sent');
     }
 
 }
