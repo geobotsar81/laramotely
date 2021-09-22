@@ -30215,54 +30215,60 @@ var _hoisted_5 = {
   "class": "job__logoAlternative"
 };
 var _hoisted_6 = {
-  "class": "col-9 col-md-7 col-lg-8 mb-2"
+  "class": "row mt-2"
 };
 var _hoisted_7 = {
-  "class": "row"
+  "class": "col-12 job__company"
 };
 var _hoisted_8 = {
-  "class": "col-12 job__date"
+  "class": "col-9 col-md-7 col-lg-8 mb-2"
 };
 var _hoisted_9 = {
   "class": "row"
 };
 var _hoisted_10 = {
-  "class": "col-12"
+  "class": "col-12 job__date"
 };
 var _hoisted_11 = {
-  key: 0,
   "class": "row"
 };
 var _hoisted_12 = {
+  "class": "col-12"
+};
+var _hoisted_13 = {
+  key: 0,
+  "class": "row"
+};
+var _hoisted_14 = {
   "class": "col-12 job__source"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "far fa-globe-americas"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_16 = {
   key: 1,
   "class": "row mt-2"
 };
-var _hoisted_15 = {
+var _hoisted_17 = {
   "class": "col-12"
 };
-var _hoisted_16 = {
+var _hoisted_18 = {
   "class": "col-md-3 text-center text-md-end"
 };
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fas fa-external-link-square-alt"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" VIEW");
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" VIEW");
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("VIEW");
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("READ MORE");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -30277,13 +30283,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_4)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.job.company), 1
   /* TEXT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<div class=\"row mt-2\">\n                    <div class=\"col-12 job__company\">{{ job.company }}</div>\n                </div>")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.job.formated_date), 1
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.job.company), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.job.title), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.job.formated_date), 1
   /* TEXT */
-  )])]), $props.job.location ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.job.formated_location), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.job.title), 1
   /* TEXT */
-  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.job.formated_tags ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.job.formated_tags, function (tag, index) {
+  )])]), $props.job.location ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.job.formated_location), 1
+  /* TEXT */
+  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.job.formated_tags ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.job.formated_tags, function (tag, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       "class": "job__tag",
       key: index
@@ -30292,14 +30300,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     );
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<div class=\"row\">\n                    <div class=\"col-12 job__source\">{{ job.source }}</div>\n                </div>")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [!$props.job.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_app_button, {
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<div class=\"row\">\n                    <div class=\"col-12 job__source\">{{ job.source }}</div>\n                </div>")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [!$props.job.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_app_button, {
     key: 0,
     type: "external",
     "class": "buttonRed",
     link: $props.job.url
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_17, _hoisted_18];
+      return [_hoisted_19, _hoisted_20];
     }),
     _: 1
     /* STABLE */
@@ -30312,7 +30320,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     link: _ctx.route('job.show', $props.job.id)
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_19];
+      return [_hoisted_21];
     }),
     _: 1
     /* STABLE */
@@ -36908,7 +36916,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".pagination .page-item[data-v-0935896f] {\n  margin: 0px 2px;\n}\n.pagination .page-item.active .page-link[data-v-0935896f] {\n  background-color: #ff2d20;\n  border-color: #ff2d20;\n  color: #fff !important;\n}\n.pagination .page-item:first-child .page-link[data-v-0935896f], .pagination .page-item:last-child .page-link[data-v-0935896f] {\n  color: #ff2d20;\n  font-size: 12px;\n  line-height: 14px;\n  font-weight: 700;\n}\n.pagination .page-link[data-v-0935896f] {\n  border-radius: 3px;\n  font-size: 12px;\n  line-height: 14px;\n  font-weight: 700;\n  width: 32px;\n  height: 32px;\n  text-align: center;\n  padding-top: 8px;\n  color: #677385;\n  border-color: #dfe3e8;\n}\n.pagination .page-link[data-v-0935896f]:hover, .pagination .page-link[data-v-0935896f]:focus {\n  box-shadow: none;\n  outline: none;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".pagination[data-v-0935896f] {\n  display: block;\n  text-align: center;\n}\n.pagination .page-item[data-v-0935896f] {\n  margin: 0px 2px;\n  display: inline-block;\n}\n.pagination .page-item.active .page-link[data-v-0935896f] {\n  background-color: #ff2d20;\n  border-color: #ff2d20;\n  color: #fff !important;\n}\n.pagination .page-item:first-child .page-link[data-v-0935896f], .pagination .page-item:last-child .page-link[data-v-0935896f] {\n  color: #ff2d20;\n  font-size: 12px;\n  line-height: 14px;\n  font-weight: 700;\n}\n.pagination .page-link[data-v-0935896f] {\n  border-radius: 3px;\n  font-size: 12px;\n  line-height: 14px;\n  font-weight: 700;\n  width: 32px;\n  height: 32px;\n  text-align: center;\n  padding-top: 8px;\n  color: #677385;\n  border-color: #dfe3e8;\n}\n.pagination .page-link[data-v-0935896f]:hover, .pagination .page-link[data-v-0935896f]:focus {\n  box-shadow: none;\n  outline: none;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

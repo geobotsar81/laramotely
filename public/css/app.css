@@ -11328,10 +11328,11 @@ h2, .h2 {
 }
 
 .job__company {
-  color: #ff2d20;
-  font-weight: 400;
-  font-size: 14px;
+  color: #212529;
+  font-weight: 600;
+  font-size: 13px;
   line-height: 16px;
+  text-align: center;
 }
 
 .job__source {

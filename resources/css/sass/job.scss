@@ -38,10 +38,11 @@
     font-size: 14px;
 }
 .job__company {
-    color: $appRed;
-    font-weight: 400;
-    font-size: 14px;
+    color: $appBlack;
+    font-weight: 600;
+    font-size: 13px;
     line-height: 16px;
+    text-align: center;
 }
 
 .job__source {

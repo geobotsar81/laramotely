@@ -35,8 +35,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .pagination {
+    display: block;
+    text-align: center;
+
     .page-item {
         margin: 0px 2px;
+        display: inline-block;
 
         &.active {
             .page-link {
