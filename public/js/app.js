@@ -24681,10 +24681,44 @@ __webpack_require__.r(__webpack_exports__);
     AppJob: _Shared_AppJob__WEBPACK_IMPORTED_MODULE_4__["default"],
     Pagination: _Shared_AppPagination__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
+  mounted: function mounted() {
+    this.getJobs();
+  },
+  data: function data() {
+    return {
+      jobs: null,
+      links: null,
+      currentPage: 1,
+      search: null
+    };
+  },
   layout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-  computed: {
-    jobs: function jobs() {
-      return this.$page.props.jobs;
+  methods: {
+    searchJobs: function searchJobs() {
+      this.currentPage = 1;
+      this.getJobs();
+    },
+    getJobs: function getJobs() {
+      var _this = this;
+
+      axios({
+        method: "post",
+        url: "/get-jobs",
+        data: {
+          page: this.currentPage,
+          search: this.search
+        }
+      }).then(function (response) {
+        //Show button after generating report
+        //console.log("Response:" + response.data);
+        _this.jobs = response.data.data;
+        _this.links = response.data.links;
+      })["catch"](function (error) {});
+    }
+  },
+  watch: {
+    currentPage: function currentPage(newData, oldData) {
+      this.getJobs();
     }
   }
 });
@@ -25595,13 +25629,17 @@ __webpack_require__.r(__webpack_exports__);
     InertiaLink: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.InertiaLink
   },
   props: {
-    links: Array
+    links: Array,
+    currentPage: Number
   },
   methods: {
     printLabel: function printLabel(label) {
       label = label.replace("Next", "");
       label = label.replace("Previous", "");
       return label;
+    },
+    selectPage: function selectPage(url) {
+      this.$emit("update:modelValue", url);
     }
   }
 });
@@ -28422,6 +28460,17 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
+var _hoisted_4 = {
+  "class": "row"
+};
+var _hoisted_5 = {
+  "class": "col-12"
+};
+var _hoisted_6 = {
+  key: 0,
+  "class": "mt-4"
+};
+
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -28443,7 +28492,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "main"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, _hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.jobs.data, function (job, index) {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        onChange: _cache[0] || (_cache[0] = function () {
+          return $options.searchJobs && $options.searchJobs.apply($options, arguments);
+        }),
+        type: "text",
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return $data.search = $event;
+        }),
+        "class": "form-control",
+        placeholder: "Search Laravel Jobs"
+      }, null, 544
+      /* HYDRATE_EVENTS, NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.search]])])]), $data.jobs ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.jobs, function (job, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           key: index
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_job, {
@@ -28454,10 +28515,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }), 128
       /* KEYED_FRAGMENT */
       )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_pagination, {
-        links: $options.jobs.links
+        currentPage: $data.currentPage,
+        links: $data.links,
+        modelValue: $data.currentPage,
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return $data.currentPage = $event;
+        })
       }, null, 8
       /* PROPS */
-      , ["links"])])];
+      , ["currentPage", "links", "modelValue"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])];
     }),
     _: 1
     /* STABLE */
@@ -30606,16 +30672,15 @@ var _hoisted_5 = {
   "class": "pagination justify-content-center"
 };
 var _hoisted_6 = ["innerHTML"];
+var _hoisted_7 = ["onClick", "innerHTML"];
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_inertia_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("inertia-link");
-
   return $props.links.length > 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.links, function (link, key) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["page-item", {
-        active: link.active
+        active: key == $props.currentPage
       }]),
       key: key
     }, [link.url === null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
@@ -30624,15 +30689,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       innerHTML: $options.printLabel(link.label)
     }, null, 8
     /* PROPS */
-    , _hoisted_6)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
+    , _hoisted_6)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
       key: 1,
+      href: "#",
       "class": "page-link",
-      href: link.url,
+      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        return $options.selectPage(key);
+      }, ["prevent"]),
       innerHTML: $options.printLabel(link.label),
       "preserve-scroll": ""
     }, null, 8
     /* PROPS */
-    , ["href", "innerHTML"]))], 2
+    , _hoisted_7))], 2
     /* CLASS */
     );
   }), 128

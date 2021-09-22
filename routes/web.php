@@ -22,7 +22,7 @@ use App\Http\Controllers\ScraperController;
 Route::get('/', [PageController::class,'showHome'])->name("home.show");
 
 Route::get('/job/{id}', [JobController::class,'show'])->name("job.show");
-Route::get('/jobs', [JobController::class,'show'])->name("job.index");
+Route::post('/get-jobs', [JobController::class,'index'])->name("job.index");
 
 Route::get('/contact', [ContactController::class,'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class,'sendMail'])->name('send-mail');

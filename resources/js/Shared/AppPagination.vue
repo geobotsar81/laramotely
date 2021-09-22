@@ -4,9 +4,9 @@
             <div class="col-12">
                 <nav aria-label="navigation">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item" :class="{ active: link.active }" v-for="(link, key) in links" :key="key">
+                        <li class="page-item" :class="{ active: key == currentPage }" v-for="(link, key) in links" :key="key">
                             <div v-if="link.url === null" class="page-link" v-html="printLabel(link.label)" />
-                            <inertia-link v-else class="page-link" :href="link.url" v-html="printLabel(link.label)" preserve-scroll />
+                            <a href="#" v-else class="page-link" @click.prevent="selectPage(key)" v-html="printLabel(link.label)" preserve-scroll />
                         </li>
                     </ul>
                 </nav>
@@ -23,12 +23,16 @@ export default {
     },
     props: {
         links: Array,
+        currentPage: Number,
     },
     methods: {
         printLabel(label) {
             label = label.replace("Next", "");
             label = label.replace("Previous", "");
             return label;
+        },
+        selectPage(url) {
+            this.$emit("update:modelValue", url);
         },
     },
 };

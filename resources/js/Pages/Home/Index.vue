@@ -9,10 +9,18 @@
             <div class="row text-center mb-5">
                 <div class="col-12"><h2>for the remote Laravel developer</h2></div>
             </div>
-            <div v-for="(job, index) in jobs.data" :key="index">
-                <app-job :job="job"></app-job>
+            <div class="row">
+                <div class="col-12">
+                    <input @change="searchJobs" type="text" v-model="search" class="form-control" placeholder="Search Laravel Jobs" />
+                </div>
             </div>
-            <pagination :links="jobs.links" />
+            <div class="mt-4" v-if="jobs">
+                <div v-for="(job, index) in jobs" :key="index">
+                    <app-job :job="job"></app-job>
+                </div>
+
+                <pagination :currentPage="currentPage" :links="links" v-model="currentPage" />
+            </div>
         </div>
     </the-main>
 </template>
@@ -34,10 +42,44 @@ export default {
         AppJob,
         Pagination,
     },
+    mounted() {
+        this.getJobs();
+    },
+    data() {
+        return {
+            jobs: null,
+            links: null,
+            currentPage: 1,
+            search: null,
+        };
+    },
     layout: AppLayout,
-    computed: {
-        jobs: function () {
-            return this.$page.props.jobs;
+    methods: {
+        searchJobs() {
+            this.currentPage = 1;
+            this.getJobs();
+        },
+        getJobs() {
+            axios({
+                method: "post",
+                url: "/get-jobs",
+                data: {
+                    page: this.currentPage,
+                    search: this.search,
+                },
+            })
+                .then((response) => {
+                    //Show button after generating report
+                    //console.log("Response:" + response.data);
+                    this.jobs = response.data.data;
+                    this.links = response.data.links;
+                })
+                .catch((error) => {});
+        },
+    },
+    watch: {
+        currentPage(newData, oldData) {
+            this.getJobs();
         },
     },
 };
