@@ -32,16 +32,18 @@
     font-size: 24px;
     font-weight: 700;
     padding-top: 20px;
+    overflow: hidden;
 }
 
 .job__date {
     font-size: 14px;
 }
 .job__company {
-    color: $appRed;
-    font-weight: 400;
-    font-size: 14px;
+    color: $appBlack;
+    font-weight: 600;
+    font-size: 13px;
     line-height: 16px;
+    text-align: center;
 }
 
 .job__source {
@@ -76,4 +78,39 @@
     font-size: 12px;
     border-radius: 4px;
     display: inline-block;
+}
+
+@media (max-width: 1400.98px) {
+    .job__logoAlternative {
+        width: 67px;
+        height: 67px;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .job__logoAlternative {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .job__logoAlternative {
+        width: 89px;
+        height: 89px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .job__logoAlternative {
+        width: 100%;
+        height: 90px;
+    }
+}
+
+@media (max-width: 450px) {
+    .job__logoAlternative {
+        width: 100%;
+        height: 70px;
+    }
 }

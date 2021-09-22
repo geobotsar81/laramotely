@@ -20,4 +20,18 @@ class JobController extends Controller
 
         return Inertia::render('Jobs/Show',$data);
     }
+
+    /**
+     * Show the job
+     * 
+     * @return void
+     */
+    public function index(Request $request){
+        $page=$request['page'];
+        $search=$request['search'];
+        
+        $jobs=Job::where('title', 'LIKE', "%{$search}%")->orderBy('posted_date','desc')->paginate(8);
+       
+         return response()->json($jobs);
+     }
 }

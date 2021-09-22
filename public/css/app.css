@@ -11290,6 +11290,14 @@ h2, .h2 {
   color: #212529;
 }
 
+.form-control {
+  height: 50px;
+}
+.form-control:hover, .form-control:focus {
+  box-shadow: none;
+  border-color: #ff2d20;
+}
+
 .job {
   border: solid 1px #cfdee8;
   border-radius: 4px;
@@ -11321,6 +11329,7 @@ h2, .h2 {
   font-size: 24px;
   font-weight: 700;
   padding-top: 20px;
+  overflow: hidden;
 }
 
 .job__date {
@@ -11328,10 +11337,11 @@ h2, .h2 {
 }
 
 .job__company {
-  color: #ff2d20;
-  font-weight: 400;
-  font-size: 14px;
+  color: #212529;
+  font-weight: 600;
+  font-size: 13px;
   line-height: 16px;
+  text-align: center;
 }
 
 .job__source {
@@ -11366,6 +11376,36 @@ h2, .h2 {
   display: inline-block;
 }
 
+@media (max-width: 1400.98px) {
+  .job__logoAlternative {
+    width: 67px;
+    height: 67px;
+  }
+}
+@media (max-width: 1199.98px) {
+  .job__logoAlternative {
+    width: 52px;
+    height: 52px;
+  }
+}
+@media (max-width: 991.98px) {
+  .job__logoAlternative {
+    width: 89px;
+    height: 89px;
+  }
+}
+@media (max-width: 575.98px) {
+  .job__logoAlternative {
+    width: 100%;
+    height: 90px;
+  }
+}
+@media (max-width: 450px) {
+  .job__logoAlternative {
+    width: 100%;
+    height: 70px;
+  }
+}
 /*!
  * Hamburgers
  * @description Tasty CSS-animated hamburgers

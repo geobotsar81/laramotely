@@ -4,9 +4,9 @@
             <div class="col-3 col-md-2 col-lg-1">
                 <img v-if="job.company_logo && job.source != 'linkedin.com'" :src="storageUrl + 'companies/' + job.company_logo" class="img-fluid job__logo" />
                 <div v-else class="job__logoAlternative">{{ job.company }}</div>
-                <!--<div class="row mt-2">
+                <div class="row mt-2">
                     <div class="col-12 job__company">{{ job.company }}</div>
-                </div>-->
+                </div>
             </div>
             <div class="col-9 col-md-7 col-lg-8 mb-2">
                 <div class="row">
@@ -18,7 +18,11 @@
                     </div>
                 </div>
                 <div class="row" v-if="job.location">
-                    <div class="col-12 job__source"><i class="far fa-globe-americas"></i> {{ job.formated_location }}</div>
+                    <div class="col-12 job__source">
+                        <i v-if="job.location.includes('Remote') || job.location.includes('Anywhere')" class="far fa-globe-americas"></i>
+                        <i v-else class="far fa-map-marker-alt"></i>
+                        {{ job.formated_location }}
+                    </div>
                 </div>
                 <div class="row mt-2" v-if="job.formated_tags">
                     <div class="col-12">
@@ -31,8 +35,8 @@
                 </div>-->
             </div>
             <div class="col-md-3 text-center text-md-end">
-                <app-button type="external" v-if="job.source == 'larajobs.com'" class="buttonRed" :link="job.url"><i class="fas fa-external-link-square-alt"></i> VIEW</app-button>
-                <app-button v-else class="buttonRed" :link="route('job.show', job.id)">VIEW</app-button>
+                <app-button type="external" v-if="!job.description" class="buttonRed" :link="job.url"><i class="fas fa-external-link-square-alt"></i> VIEW</app-button>
+                <app-button v-else class="buttonRed" :link="route('job.show', job.id)">READ MORE</app-button>
             </div>
         </div>
     </div>
