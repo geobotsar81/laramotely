@@ -18,7 +18,11 @@
                     </div>
                 </div>
                 <div class="row" v-if="job.location">
-                    <div class="col-12 job__source"><i class="far fa-globe-americas"></i> {{ job.formated_location }}</div>
+                    <div class="col-12 job__source">
+                        <i v-if="job.location.includes('Remote') || job.location.includes('Anywhere')" class="far fa-globe-americas"></i>
+                        <i v-else class="far fa-map-marker-alt"></i>
+                        {{ job.formated_location }}
+                    </div>
                 </div>
                 <div class="row mt-2" v-if="job.formated_tags">
                     <div class="col-12">
