@@ -31,7 +31,7 @@
                 </div>-->
             </div>
             <div class="col-md-3 text-center text-md-end">
-                <app-button type="external" v-if="job.source == 'larajobs.com'" class="buttonRed" :link="job.url"><i class="fas fa-external-link-square-alt"></i> VIEW</app-button>
+                <app-button type="external" v-if="!job.description" class="buttonRed" :link="job.url"><i class="fas fa-external-link-square-alt"></i> VIEW</app-button>
                 <app-button v-else class="buttonRed" :link="route('job.show', job.id)">VIEW</app-button>
             </div>
         </div>
