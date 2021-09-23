@@ -7,6 +7,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ScraperController;
+use App\Http\Controllers\SitemapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
+Route::get('/sitemap.xml', [SitemapController::class,'index']);
+//Route::get('sitemap.xml', ['as' => 'sitemap.index', 'uses' => 'SitemapController@index']);
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
