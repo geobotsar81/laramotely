@@ -24689,7 +24689,8 @@ __webpack_require__.r(__webpack_exports__);
       jobs: null,
       links: null,
       currentPage: 1,
-      search: null
+      search: null,
+      onlyRemote: false
     };
   },
   layout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -24706,7 +24707,8 @@ __webpack_require__.r(__webpack_exports__);
         url: "/get-jobs",
         data: {
           page: this.currentPage,
-          search: this.search
+          search: this.search,
+          onlyRemote: this.onlyRemote
         }
       }).then(function (response) {
         //Show button after generating report
@@ -28261,7 +28263,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "row mt-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-12 text-center"
-}, "Feel free to contact us through the below form")], -1
+}, "Have a new source of remote laravel jobs, want to post a new job or any other questions? Send us an email!")], -1
 /* HOISTED */
 );
 
@@ -28453,20 +28455,48 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "row text-center mb-5"
+  "class": "row text-center mb-2"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-12"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "for the remote Laravel developer")])], -1
 /* HOISTED */
 );
 
-var _hoisted_4 = {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "row text-center mb-5"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "col-12"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "We search the web for the best remote Laravel jobs, and bring to you a curated list of backend and frontend Laravel jobs.")])], -1
+/* HOISTED */
+);
+
+var _hoisted_5 = {
   "class": "row"
 };
-var _hoisted_5 = {
-  "class": "col-12"
-};
 var _hoisted_6 = {
+  "class": "col-xl-8 col-lg-7 col-md-5 mb-4"
+};
+var _hoisted_7 = {
+  "class": "col-xl-2 col-lg-3 col-md-4 col-6"
+};
+var _hoisted_8 = {
+  "class": "form-check form-switch mt-2"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "form-check-label",
+  "for": "onlyRemote"
+}, "only remote jobs", -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
+  "class": "col-6 col-md-3 col-lg-2 text-end"
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("SEARCH");
+
+var _hoisted_12 = {
   key: 0,
   "class": "mt-4"
 };
@@ -28475,6 +28505,8 @@ var _hoisted_6 = {
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_the_head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("the-head");
+
+  var _component_app_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-button");
 
   var _component_app_job = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-job");
 
@@ -28492,7 +28524,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "main"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, _hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         onChange: _cache[0] || (_cache[0] = function () {
           return $options.searchJobs && $options.searchJobs.apply($options, arguments);
         }),
@@ -28504,7 +28536,29 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         placeholder: "Search Laravel Jobs"
       }, null, 544
       /* HYDRATE_EVENTS, NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.search]])])]), $data.jobs ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.jobs, function (job, index) {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.search]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "checkbox",
+        "class": "form-check-input",
+        id: "onlyRemote",
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return $data.onlyRemote = $event;
+        })
+      }, null, 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.onlyRemote]]), _hoisted_9])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_button, {
+        "class": "buttonBlack",
+        type: "submit",
+        onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.searchJobs, ["prevent"])
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_11];
+        }),
+        _: 1
+        /* STABLE */
+
+      }, 8
+      /* PROPS */
+      , ["onClick"])])]), $data.jobs ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.jobs, function (job, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           key: index
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_app_job, {
@@ -28518,7 +28572,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         currentPage: $data.currentPage,
         links: $data.links,
         modelValue: $data.currentPage,
-        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+        "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return $data.currentPage = $event;
         })
       }, null, 8
@@ -30324,18 +30378,28 @@ var _hoisted_18 = {
   "class": "col-12"
 };
 var _hoisted_19 = {
+  key: 2,
+  "class": "row mt-2"
+};
+var _hoisted_20 = {
+  "class": "col-12"
+};
+var _hoisted_21 = {
+  "class": "job__tag"
+};
+var _hoisted_22 = {
   "class": "col-md-3 text-center text-md-end"
 };
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fas fa-external-link-square-alt"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" VIEW");
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" VIEW");
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("READ MORE");
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("READ MORE");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -30358,7 +30422,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )])]), $props.job.location ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [$props.job.location.includes('Remote') || $props.job.location.includes('Anywhere') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("i", _hoisted_15)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("i", _hoisted_16)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.job.formated_location), 1
   /* TEXT */
-  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.job.formated_tags ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.job.formated_tags, function (tag, index) {
+  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.job.formated_tags && $props.job.source != 'remotive.io' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.job.formated_tags, function (tag, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       "class": "job__tag",
       key: index
@@ -30367,14 +30431,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     );
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<div class=\"row\">\n                    <div class=\"col-12 job__source\">{{ job.source }}</div>\n                </div>")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [!$props.job.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_app_button, {
+  ))])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.job.formated_tags), 1
+  /* TEXT */
+  )])])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<div class=\"row\">\n                    <div class=\"col-12 job__source\">{{ job.source }}</div>\n                </div>")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [!$props.job.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_app_button, {
     key: 0,
     type: "external",
     "class": "buttonRed",
     link: $props.job.url
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_20, _hoisted_21];
+      return [_hoisted_23, _hoisted_24];
     }),
     _: 1
     /* STABLE */
@@ -30387,7 +30453,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     link: _ctx.route('job.show', $props.job.id)
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_22];
+      return [_hoisted_25];
     }),
     _: 1
     /* STABLE */
@@ -36769,7 +36835,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "h2[data-v-f311f62a] {\n  color: #ff2d20;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "h2[data-v-f311f62a] {\n  color: #ff2d20;\n}\n.form-check-input[data-v-f311f62a]:checked {\n  background-color: #ff2d20;\n  border-color: #ff2d20;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36817,7 +36883,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".buttonRed[data-v-c672d8f2] {\n  display: inline-block;\n  background-color: #ff2d20;\n  font-weight: 700;\n  font-style: normal;\n  font-size: 14px;\n  color: #fff;\n  border-radius: 4px;\n  padding: 12px 40px;\n  transition: all 0.4s ease-out;\n  text-decoration: none;\n  border: none;\n  border: 0px solid #ff2d20;\n}\n.buttonRed[data-v-c672d8f2]:hover, .buttonRed[data-v-c672d8f2]:focus {\n  color: #fff;\n  border: 0px solid #212529;\n  background-color: #212529;\n  text-decoration: none;\n  outline: none;\n  box-shadow: none;\n}\n.buttonRed[data-v-c672d8f2] i {\n  font-size: 12px;\n  padding: 0px 5px;\n}\n.buttonRed.disabled[data-v-c672d8f2] {\n  background-color: #a4b3ca;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n.buttonWhite[data-v-c672d8f2] {\n  display: inline-block;\n  font-weight: 700;\n  font-style: normal;\n  font-size: 14px;\n  color: #007fe8;\n  border-radius: 3px;\n  padding: 15px 40px;\n  transition: all 0.4s ease-out;\n  background-color: #fff;\n  text-decoration: none;\n  border: none;\n  border: 1px solid #007fe8;\n}\n.buttonWhite[data-v-c672d8f2]:hover, .buttonWhite[data-v-c672d8f2]:focus {\n  color: #007fe8;\n  background-color: #d0ddec;\n  text-decoration: none;\n  outline: none;\n  box-shadow: none;\n}\n.buttonWhite i[data-v-c672d8f2] {\n  font-size: 12px;\n  padding: 0px 5px;\n}\n.buttonTransparent[data-v-c672d8f2] {\n  display: inline-block;\n  font-weight: 700;\n  font-style: normal;\n  font-size: 14px;\n  color: #007fe8;\n  border-radius: 3px;\n  padding: 15px 40px;\n  transition: all 0.4s ease-out;\n  background-color: transparent;\n  text-decoration: none;\n  border: none;\n  border: 1px solid #a4b3ca;\n}\n.buttonTransparent[data-v-c672d8f2]:hover, .buttonTransparent[data-v-c672d8f2]:focus {\n  color: #007fe8;\n  border: 1px solid #007fe8;\n  background-color: transparent;\n  text-decoration: none;\n  outline: none;\n  box-shadow: none;\n}\n.buttonTransparent i[data-v-c672d8f2] {\n  font-size: 12px;\n  padding: 0px 5px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".buttonRed[data-v-c672d8f2] {\n  display: inline-block;\n  background-color: #ff2d20;\n  font-weight: 700;\n  font-style: normal;\n  font-size: 14px;\n  color: #fff;\n  border-radius: 4px;\n  padding: 12px 40px;\n  transition: all 0.4s ease-out;\n  text-decoration: none;\n  border: none;\n  border: 0px solid #ff2d20;\n}\n.buttonRed[data-v-c672d8f2]:hover, .buttonRed[data-v-c672d8f2]:focus {\n  color: #fff;\n  border: 0px solid #212529;\n  background-color: #212529;\n  text-decoration: none;\n  outline: none;\n  box-shadow: none;\n}\n.buttonRed[data-v-c672d8f2] i {\n  font-size: 12px;\n  padding: 0px 5px;\n}\n.buttonRed.disabled[data-v-c672d8f2] {\n  background-color: #a4b3ca;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n.buttonBlack[data-v-c672d8f2] {\n  display: inline-block;\n  font-weight: 700;\n  font-style: normal;\n  font-size: 14px;\n  color: #fff;\n  border-radius: 4px;\n  padding: 15px 40px;\n  transition: all 0.4s ease-out;\n  background-color: #212529;\n  text-decoration: none;\n  border: none;\n}\n.buttonBlack[data-v-c672d8f2]:hover, .buttonBlack[data-v-c672d8f2]:focus {\n  color: #ffffff;\n  background-color: #ff2d20;\n  text-decoration: none;\n  outline: none;\n  box-shadow: none;\n}\n.buttonBlack i[data-v-c672d8f2] {\n  font-size: 12px;\n  padding: 0px 5px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -6,13 +6,23 @@
             <div class="row text-center">
                 <div class="col-12"><h1>Remote Laravel Jobs</h1></div>
             </div>
-            <div class="row text-center mb-5">
+            <div class="row text-center mb-2">
                 <div class="col-12"><h2>for the remote Laravel developer</h2></div>
             </div>
+            <div class="row text-center mb-5">
+                <div class="col-12"><p>We search the web for the best remote Laravel jobs, and bring to you a curated list of backend and frontend Laravel jobs.</p></div>
+            </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-xl-8 col-lg-7 col-md-5 mb-4">
                     <input @change="searchJobs" type="text" v-model="search" class="form-control" placeholder="Search Laravel Jobs" />
                 </div>
+                <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                    <div class="form-check form-switch mt-2">
+                        <input type="checkbox" class="form-check-input" id="onlyRemote" v-model="onlyRemote" />
+                        <label class="form-check-label" for="onlyRemote">only remote jobs</label>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2 text-end"><app-button class="buttonBlack" type="submit" @click.prevent="searchJobs">SEARCH</app-button></div>
             </div>
             <div class="mt-4" v-if="jobs">
                 <div v-for="(job, index) in jobs" :key="index">
@@ -51,6 +61,7 @@ export default {
             links: null,
             currentPage: 1,
             search: null,
+            onlyRemote: false,
         };
     },
     layout: AppLayout,
@@ -66,6 +77,7 @@ export default {
                 data: {
                     page: this.currentPage,
                     search: this.search,
+                    onlyRemote: this.onlyRemote,
                 },
             })
                 .then((response) => {
@@ -87,5 +99,9 @@ export default {
 <style lang="scss" scoped>
 h2 {
     color: $appRed;
+}
+.form-check-input:checked {
+    background-color: $appRed;
+    border-color: $appRed;
 }
 </style>

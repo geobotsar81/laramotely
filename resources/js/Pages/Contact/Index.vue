@@ -10,7 +10,7 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-12 text-center">Feel free to contact us through the below form</div>
+                <div class="col-12 text-center">Have a new source of remote laravel jobs, want to post a new job or any other questions? Send us an email!</div>
             </div>
 
             <div class="row mt-5">

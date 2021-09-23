@@ -69,54 +69,23 @@ export default {
     }
 }
 
-.buttonWhite {
+.buttonBlack {
     display: inline-block;
     font-weight: 700;
     font-style: normal;
     font-size: 14px;
-    color: $appBlue;
-    border-radius: 3px;
+    color: #fff;
+    border-radius: 4px;
     padding: 15px 40px;
     transition: all 0.4s ease-out;
-    background-color: #fff;
+    background-color: $appBlack;
     text-decoration: none;
     border: none;
-    border: 1px solid $appBlue;
 
     &:hover,
     &:focus {
-        color: $appBlue;
-        background-color: #d0ddec;
-        text-decoration: none;
-        outline: none;
-        box-shadow: none;
-    }
-
-    i {
-        font-size: 12px;
-        padding: 0px 5px;
-    }
-}
-
-.buttonTransparent {
-    display: inline-block;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 14px;
-    color: $appBlue;
-    border-radius: 3px;
-    padding: 15px 40px;
-    transition: all 0.4s ease-out;
-    background-color: transparent;
-    text-decoration: none;
-    border: none;
-    border: 1px solid $appGrey;
-
-    &:hover,
-    &:focus {
-        color: $appBlue;
-        border: 1px solid $appBlue;
-        background-color: transparent;
+        color: #ffffff;
+        background-color: $appRed;
         text-decoration: none;
         outline: none;
         box-shadow: none;

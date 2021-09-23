@@ -29,8 +29,33 @@ class JobController extends Controller
     public function index(Request $request){
         $page=$request['page'];
         $search=$request['search'];
+        $onlyRemote=$request['onlyRemote'];
+
         
-        $jobs=Job::where('title', 'LIKE', "%{$search}%")->orderBy('posted_date','desc')->paginate(8);
+        if($onlyRemote){
+            $jobs=Job:: where(function ($query) {
+                $search="remote";
+                $query->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('description', 'LIKE', "%{$search}%")
+                ->orWhere('location', 'LIKE', "%{$search}%");
+            })
+            ->where(function ($query) {
+                $query->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('description', 'LIKE', "%{$search}%")
+                ->orWhere('location', 'LIKE', "%{$search}%")
+                ->orWhere('tags', 'LIKE', "%{$search}%")
+                ->orWhere('company', 'LIKE', "%{$search}%");
+            })
+            ->orderBy('posted_date','desc')->paginate(8);
+        }else{
+            $jobs=Job::where('title', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->orWhere('location', 'LIKE', "%{$search}%")
+            ->orWhere('tags', 'LIKE', "%{$search}%")
+            ->orWhere('company', 'LIKE', "%{$search}%")
+            ->orderBy('posted_date','desc')->paginate(8);
+        }
+        
        
          return response()->json($jobs);
      }
