@@ -12,12 +12,6 @@
         <changefreq>daily</changefreq>
         <priority>0.6</priority>
     </url>
-    <url>
-        <loc>https://www.laramotely.com/job/{{$job->id}}</loc>
-        <lastmod>{{ gmdate('Y-m-d\TH:i:s\Z',strtotime($job->created_at)) }}</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.6</priority>
-    </url>
     @foreach ($jobs as $job)
     <url>
         <loc>https://www.laramotely.com/job/{{$job->id}}</loc>
