@@ -34,12 +34,20 @@ class JobController extends Controller
         
         if($onlyRemote){
             $jobs=Job:: where(function ($query) {
-                $search="remote";
-                $query->where('title', 'LIKE', "%{$search}%")
-                ->orWhere('description', 'LIKE', "%{$search}%")
-                ->orWhere('location', 'LIKE', "%{$search}%");
+                $remoteSearch="remote";
+                $anywhereSearch="anywhere";
+                $query->where('title', 'LIKE', "%{$remoteSearch}%")
+                ->orWhere('description', 'LIKE', "%{$remoteSearch}%")
+                ->orWhere('location', 'LIKE', "%{$remoteSearch}%")
+                ->orWhere('tags', 'LIKE', "%{$remoteSearch}%")
+                ->orWhere('company', 'LIKE', "%{$remoteSearch}%")
+                ->orWhere('title', 'LIKE', "%{$anywhereSearch}%")
+                ->orWhere('description', 'LIKE', "%{$anywhereSearch}%")
+                ->orWhere('location', 'LIKE', "%{$anywhereSearch}%")
+                ->orWhere('tags', 'LIKE', "%{$anywhereSearch}%")
+                ->orWhere('company', 'LIKE', "%{$anywhereSearch}%");
             })
-            ->where(function ($query) {
+            ->where(function ($query) use ($search) {
                 $query->where('title', 'LIKE', "%{$search}%")
                 ->orWhere('description', 'LIKE', "%{$search}%")
                 ->orWhere('location', 'LIKE', "%{$search}%")
