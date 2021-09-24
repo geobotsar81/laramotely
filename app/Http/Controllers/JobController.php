@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use Inertia\Inertia;
+use App\Mail\JobMail;
 use Illuminate\Http\Request;
 use TCG\Voyager\Models\Page;
 use Illuminate\Support\Facades\Cache;
@@ -84,7 +85,7 @@ class JobController extends Controller
         });
 
 
-        return Inertia::render('Job/Post',
+        return Inertia::render('Jobs/Post',
         [
             "page" => $page,
         ])
@@ -92,25 +93,33 @@ class JobController extends Controller
     }
 
     
-    public function sendMail(Request $request){
+    public function sendJob(Request $request){
 
         $validated = $request->validate([
-            'contactName' => 'required',
-            'contactEmail' => 'email:rfc,dns',
-            'contactMessage' => 'required',
+            'jobTitle' => 'required',
+            'jobEmail' => 'email:rfc,dns',
+            'jobCompany' => 'required',
+            'jobUrl' => 'required',
+            'jobTags' => 'required',
+            'jobDescription' => 'required',
+            'jobLocation' => 'required',
             'honeypot' => 'present|max:0',
         ]);
 
-        $contact = [
-            'fullname' => $request['contactName'], 
-            'email' => $request['contactEmail'],
-            'subject' => "Contact Form email",
-            'message' => $request['contactMessage'],
+        $job = [
+            'subject' => "Post a Job",
+            'jobTitle' => $request['jobTitle'], 
+            'jobEmail' => $request['jobEmail'],
+            'jobCompany' => $request['jobCompany'],
+            'jobUrl' => $request['jobUrl'],
+            'jobTags' => $request['jobTags'],
+            'jobDescription' => $request['jobDescription'],
+            'jobLocation' => $request['jobLocation'],
         ];
 
     
-        Mail::to('info@laramotely.com')->send(new ContactFormMail($contact));
+        Mail::to('info@laramotely.com')->send(new JobMail($job));
         
-        return redirect()->route('contact.show')->with('status', 'Your message has been sent');
+        return redirect()->route('job.post')->with('status', 'Your job has been submited!');
     }
 }

@@ -10,7 +10,9 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-12 text-center">Fill in the job details below, and once reviewed, it will be posted to our website.</div>
+                <div class="col-12 text-center">
+                    Reach thousands of Laravel developers by posting your job opening below. <br />Fill in the job details, and once reviewed, it will be posted to our website.
+                </div>
             </div>
 
             <div class="row mt-5">
@@ -23,23 +25,53 @@
 
                         <div class="row">
                             <div class="col-sm-6 mb-4">
-                                <input placeholder="Name" name="contactName" type="text" class="form-control" v-model="form.contactName" />
-                                <div v-if="form.errors.contactName" class="formError">
-                                    {{ form.errors.contactName }}
+                                <input placeholder="Job Title" name="jobTitle" type="text" class="form-control" v-model="form.jobTitle" />
+                                <div v-if="form.errors.jobTitle" class="formError">
+                                    {{ form.errors.jobTitle }}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 mb-4">
+                                <input placeholder="Job Location" name="jobLocation" type="text" class="form-control" v-model="form.jobLocation" />
+                                <div v-if="form.errors.jobLocation" class="formError">
+                                    {{ form.errors.jobLocation }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 mb-4">
+                                <input placeholder="Company Name" name="jobCompany" type="text" class="form-control" v-model="form.jobCompany" />
+                                <div v-if="form.errors.jobCompany" class="formError">
+                                    {{ form.errors.jobCompany }}
                                 </div>
                             </div>
                             <div class="col-sm-6 mb-4">
-                                <input placeholder="Email" name="contactEmail" type="text" class="form-control" v-model="form.contactEmail" />
-                                <div v-if="form.errors.contactEmail" class="formError">
-                                    {{ form.errors.contactEmail }}
+                                <input placeholder="Company Email" name="jobEmail" type="text" class="form-control" v-model="form.jobEmail" />
+                                <div v-if="form.errors.jobEmail" class="formError">
+                                    {{ form.errors.jobEmail }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 mb-4">
+                                <input placeholder="Job Url" name="jobUrl" type="text" class="form-control" v-model="form.jobUrl" />
+                                <div v-if="form.errors.jobUrl" class="formError">
+                                    {{ form.errors.jobUrl }}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 mb-4">
+                                <input placeholder="Job Tags" name="jobTags" type="text" class="form-control" v-model="form.jobTags" />
+                                <div v-if="form.errors.jobTags" class="formError">
+                                    {{ form.errors.jobTags }}
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <textarea placeholder="Message" class="form-control" name="contactMessage" v-model="form.contactMessage"></textarea>
-                                <div v-if="form.errors.contactMessage" class="formError">
-                                    {{ form.errors.contactMessage }}
+                                <textarea placeholder="Job Description" class="form-control" name="jobDescription" v-model="form.jobDescription"></textarea>
+                                <div v-if="form.errors.jobDescription" class="formError">
+                                    {{ form.errors.jobDescription }}
                                 </div>
                             </div>
                         </div>
@@ -51,7 +83,7 @@
                         </div>
                         <div class="row mt-4" v-if="formSuccess">
                             <div class="col-sm-12">
-                                <div class="alert alert-success">Your message has been successfully sent!</div>
+                                <div class="alert alert-success">Your job has been successfully submited!</div>
                             </div>
                         </div>
                     </form>
@@ -71,9 +103,13 @@ import { useForm } from "@inertiajs/inertia-vue3";
 export default {
     setup() {
         const form = useForm({
-            contactName: null,
-            contactEmail: null,
-            contactMessage: null,
+            jobTitle: null,
+            jobEmail: null,
+            jobCompany: null,
+            jobLocation: null,
+            jobUrl: null,
+            jobTags: null,
+            jobDescription: null,
             honeypot: null,
         });
 
@@ -96,12 +132,16 @@ export default {
     methods: {
         submitForm() {
             this.formSuccess = false;
-            this.form.submit("post", "/contact", {
+            this.form.submit("post", route("job.send"), {
                 preserveScroll: true,
                 onSuccess: () => {
-                    this.form.reset("contactName");
-                    this.form.reset("contactEmail");
-                    this.form.reset("contactMessage");
+                    this.form.reset("jobTitle");
+                    this.form.reset("jobEmail");
+                    this.form.reset("jobCompany");
+                    this.form.reset("jobLocation");
+                    this.form.reset("jobUrl");
+                    this.form.reset("jobTags");
+                    this.form.reset("jobDescription");
                     this.formSuccess = true;
                 },
             });
@@ -145,7 +185,7 @@ label {
     &:focus {
         box-shadow: none;
         outline: none;
-        border-color: $appBlue;
+        border-color: $appGrey2;
     }
 }
 
