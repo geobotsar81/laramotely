@@ -96,4 +96,32 @@ export default {
         padding: 0px 5px;
     }
 }
+
+.buttonPostAJob {
+    display: inline-block;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    color: $appBlack;
+    border-radius: 4px;
+    padding: 5px 20px;
+    transition: all 0.4s ease-out;
+    background-color: #ffffff;
+    text-decoration: none;
+    border: solid 1px $appBlack;
+
+    &:hover,
+    &:focus {
+        color: #ffffff;
+        background-color: $appBlack;
+        text-decoration: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+    i {
+        font-size: 12px;
+        padding: 0px 5px;
+    }
+}
 </style>

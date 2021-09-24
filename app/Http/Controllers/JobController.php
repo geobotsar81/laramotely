@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use TCG\Voyager\Models\Page;
+use Illuminate\Support\Facades\Cache;
 
 class JobController extends Controller
 {
@@ -67,4 +69,48 @@ class JobController extends Controller
        
          return response()->json($jobs);
      }
+
+     /**
+     * Post a Job
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function postJob(String $slug = "post-a-job")
+    {
+        $cacheDuration=env("CACHE_DURATION");
+        $page = Cache::remember('page.slug.'.$slug, $cacheDuration, function () use($slug){
+            return Page::where(['slug' => $slug, 'status' => 'ACTIVE'])->firstOrFail();
+        });
+
+
+        return Inertia::render('Job/Post',
+        [
+            "page" => $page,
+        ])
+        ->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => $page->slug]);
+    }
+
+    
+    public function sendMail(Request $request){
+
+        $validated = $request->validate([
+            'contactName' => 'required',
+            'contactEmail' => 'email:rfc,dns',
+            'contactMessage' => 'required',
+            'honeypot' => 'present|max:0',
+        ]);
+
+        $contact = [
+            'fullname' => $request['contactName'], 
+            'email' => $request['contactEmail'],
+            'subject' => "Contact Form email",
+            'message' => $request['contactMessage'],
+        ];
+
+    
+        Mail::to('info@laramotely.com')->send(new ContactFormMail($contact));
+        
+        return redirect()->route('contact.show')->with('status', 'Your message has been sent');
+    }
 }

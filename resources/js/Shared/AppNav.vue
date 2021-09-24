@@ -6,18 +6,22 @@
             <inertia-link v-else class="nav-link" :class="isUrl(menuItem.url) ? 'active' : ''" :href="menuItem.url">
                 <i v-if="menuItem.icon_class" :class="menuItem.icon_class"></i>{{ menuItem.title }}
             </inertia-link>
+
+            <app-button :href="route('job.post')" type="link" class="buttonPostAJob">POST A FREE JOB</app-button>
         </div>
     </nav>
 </template>
 
 <script>
 import AppDropdown from "@/Shared/AppDropdown";
+import AppButton from "@/Shared/AppButton";
 import { InertiaLink } from "@inertiajs/inertia-vue3";
 
 export default {
     components: {
         AppDropdown,
         InertiaLink,
+        AppButton,
     },
     props: {
         menu: Object,

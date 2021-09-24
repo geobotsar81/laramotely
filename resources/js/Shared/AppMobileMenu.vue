@@ -16,6 +16,7 @@
 
                 <inertia-link v-else class="" :href="menuItem.url">{{ menuItem.title }}</inertia-link>
             </li>
+            <li><inertia-link :href="route('job.post')">Post a Free Job</inertia-link></li>
         </ul>
     </div>
 </template>

@@ -24,6 +24,7 @@ Route::get('/', [PageController::class,'showHome'])->name("home.show");
 
 Route::get('/job/{id}', [JobController::class,'show'])->name("job.show");
 Route::post('/get-jobs', [JobController::class,'index'])->name("job.index");
+Route::get('/post-a-job', [JobController::class,'postJob'])->name("job.post");
 
 Route::get('/contact', [ContactController::class,'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class,'sendMail'])->name('send-mail');
