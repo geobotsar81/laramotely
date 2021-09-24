@@ -20,9 +20,12 @@ mix.js("resources/js/app.js", "public/js")
     .options({
         processCssUrls: false,
     })
-    .browserSync({
-        proxy: "laramotely.test",
-    })
     .webpackConfig(require("./webpack.config"));
 
 mix.version();
+
+/*
+mix.browserSync({
+    proxy: "laramotely.test",
+});
+*/

@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ScraperController;
@@ -37,7 +38,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/sitemap.xml', [SitemapController::class,'index']);
-//Route::get('sitemap.xml', ['as' => 'sitemap.index', 'uses' => 'SitemapController@index']);
+Route::get('/feed', [FeedController::class,'index']);
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
