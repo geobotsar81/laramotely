@@ -8,8 +8,8 @@
     <updated>{{ $jobs->first()->updated_at->format('D, d M Y H:i:s +0000') }}</updated>
     @foreach ($jobs as $job)
     <entry>
-        <title><![CDATA[@php echo $job->company." is looking for a ".$job->title.". Location: ".$job->location.". Read more at ".route('job.show',$job->id); @endphp]]></title>
-        <link rel="alternate" href="{{ $job->url }}" />
+        <title><![CDATA[@php echo $job->company." is looking for a ".$job->title.". Location: ".$job->location.". Read more at ".$job->url; @endphp]]></title>
+        <link rel="alternate" href="{{ route('job.show',$job->id) }}" />
         <id>{{ route('job.show',$job->id) }}</id>
         <author>
             <name> <![CDATA[laramotely.com]]></name>
