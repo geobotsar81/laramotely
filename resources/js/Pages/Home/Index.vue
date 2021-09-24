@@ -18,13 +18,16 @@
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                     <div class="form-check form-switch mt-2">
-                        <input type="checkbox" class="form-check-input" id="onlyRemote" v-model="onlyRemote" />
+                        <input @change="searchJobs" type="checkbox" class="form-check-input" id="onlyRemote" v-model="onlyRemote" />
                         <label class="form-check-label" for="onlyRemote">only remote jobs</label>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 text-end"><app-button class="buttonBlack" type="submit" @click.prevent="searchJobs">SEARCH</app-button></div>
             </div>
-            <div class="mt-4" v-if="jobs">
+
+            <img src="img/LoaderIcon.gif" v-if="searhing" />
+
+            <div class="mt-4" v-if="jobs && !searching">
                 <div v-for="(job, index) in jobs" :key="index">
                     <app-job :job="job"></app-job>
                 </div>
@@ -62,6 +65,7 @@ export default {
             currentPage: 1,
             search: null,
             onlyRemote: false,
+            searching: false,
         };
     },
     layout: AppLayout,
@@ -71,6 +75,7 @@ export default {
             this.getJobs();
         },
         getJobs() {
+            this.searching = true;
             axios({
                 method: "post",
                 url: "/get-jobs",
@@ -85,8 +90,11 @@ export default {
                     //console.log("Response:" + response.data);
                     this.jobs = response.data.data;
                     this.links = response.data.links;
+                    this.searching = false;
                 })
-                .catch((error) => {});
+                .catch((error) => {
+                    this.searching = false;
+                });
         },
     },
     watch: {

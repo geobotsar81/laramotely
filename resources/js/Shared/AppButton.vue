@@ -74,18 +74,18 @@ export default {
     font-weight: 700;
     font-style: normal;
     font-size: 14px;
-    color: #fff;
+    color: $appBlack;
     border-radius: 4px;
     padding: 15px 40px;
     transition: all 0.4s ease-out;
-    background-color: $appBlack;
+    background-color: #ffffff;
     text-decoration: none;
-    border: none;
+    border: solid 1px $appBlack;
 
     &:hover,
     &:focus {
         color: #ffffff;
-        background-color: $appRed;
+        background-color: $appBlack;
         text-decoration: none;
         outline: none;
         box-shadow: none;
