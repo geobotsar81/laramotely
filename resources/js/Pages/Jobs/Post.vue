@@ -78,7 +78,7 @@
                         <div class="row mt-4">
                             <div class="col-sm-12">
                                 <app-button type="submit" class="buttonRed" v-if="!form.processing"> SEND </app-button>
-                                <img src="images/LoaderIcon.gif" v-if="form.processing" />
+                                <img src="img/LoaderIcon.gif" v-if="form.processing" />
                             </div>
                         </div>
                         <div class="row mt-4" v-if="formSuccess">

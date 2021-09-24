@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Mail\JobMail;
 use Illuminate\Http\Request;
 use TCG\Voyager\Models\Page;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 
 class JobController extends Controller
