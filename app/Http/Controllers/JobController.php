@@ -22,7 +22,8 @@ class JobController extends Controller
 
        $data=['job' => $job];
 
-        return Inertia::render('Jobs/Show',$data)->withViewData(['title' => $job->title,'description' => $job->company." is looking for a ".$job->title,'url' => route('job.show',$job->id)]);
+        $description=$job->company." is looking for a '".$job->title."'. Location: ".$job->location.". Read more at ".$job->url;
+        return Inertia::render('Jobs/Show',$data)->withViewData(['title' => $job->title,'description' => $description,'url' => route('job.show',$job->id)]);
     }
 
     /**
