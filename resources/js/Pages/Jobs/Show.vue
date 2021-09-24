@@ -10,6 +10,26 @@
             </div>
             <div class="row mt-2">
                 <div class="col-sm-12 col-lg-9">
+                    <div class="row mb-4" v-if="!job.description">
+                        <div class="col-12 col-lg-4">
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-6 col-sm-12">
+                                        <img
+                                            v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'"
+                                            :src="storageUrl + 'companies/' + job.company_logo"
+                                            class="img-fluid job__logo"
+                                        />
+                                        <div v-else class="job__logoAlternative">{{ job.company }}</div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2 text-start">
+                                    <div class="col-12">{{ job.company }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-12 job__date">{{ job.formated_date }}</div>
                     </div>
@@ -29,15 +49,19 @@
 
                     <div class="row mt-4">
                         <div class="col-12">
-                            <app-button type="external" class="buttonRed" :link="job.url">APPLY</app-button>
+                            <app-button type="external" class="buttonRed" :link="job.url">READ MORE & APPLY</app-button>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-none d-lg-block">
+                <div class="col-lg-3 d-none d-lg-block" v-if="job.description">
                     <div class="job__companyCell">
                         <div class="row">
                             <div class="col-12">
-                                <img v-if="job.company_logo && job.source != 'linkedin.com'" :src="storageUrl + 'companies/' + job.company_logo" class="img-fluid job__logo" />
+                                <img
+                                    v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'"
+                                    :src="storageUrl + 'companies/' + job.company_logo"
+                                    class="img-fluid job__logo"
+                                />
                                 <div v-else class="job__logoAlternative">{{ job.company }}</div>
                             </div>
                         </div>
