@@ -25,7 +25,7 @@
                 <div class="col-6 col-md-3 col-lg-2 text-end"><app-button class="buttonBlack" type="submit" @click.prevent="searchJobs">SEARCH</app-button></div>
             </div>
 
-            <img src="img/LoaderIcon.gif" v-if="searhing" />
+            <img src="img/LoaderIcon.gif" v-if="searching" />
 
             <div class="mt-4" v-if="jobs && !searching">
                 <div v-for="(job, index) in jobs" :key="index">
@@ -107,6 +107,13 @@ export default {
 <style lang="scss" scoped>
 h2 {
     color: $appRed;
+}
+
+.form-check-input {
+    &:hover,
+    &:focus {
+        box-shadow: none;
+    }
 }
 .form-check-input:checked {
     background-color: $appRed;

@@ -1,14 +1,7 @@
 <template>
     <nav class="nav">
-        <div v-for="(menuItem, index) in menu" :key="index">
-            <app-dropdown v-if="menuItem.children" :item="menuItem"></app-dropdown>
-
-            <inertia-link v-else class="nav-link" :class="isUrl(menuItem.url) ? 'active' : ''" :href="menuItem.url">
-                <i v-if="menuItem.icon_class" :class="menuItem.icon_class"></i>{{ menuItem.title }}
-            </inertia-link>
-
-            <app-button :href="route('job.post')" type="link" class="buttonPostAJob">POST A FREE JOB</app-button>
-        </div>
+        <inertia-link class="nav-link" :class="isUrl('contact') ? 'active' : ''" :href="route('contact.show')"> Contact </inertia-link>
+        <app-button :href="route('job.post')" type="link" class="buttonPostAJob">POST A FREE JOB</app-button>
     </nav>
 </template>
 

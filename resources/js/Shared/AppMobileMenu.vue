@@ -4,18 +4,7 @@
 
         <div class="mobileMenu__content"></div>
         <ul class="mobileMenu__primary">
-            <li v-for="menuItem in menu" :key="menuItem.id">
-                <a v-if="menuItem.children" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" class="dropdown-toggle">{{
-                    menuItem.title
-                }}</a>
-                <ul v-if="menuItem.children" class="collapse mobileMenu__submenu" id="collapseExample">
-                    <li v-for="submenuItem in menuItem.children" :key="submenuItem.id">
-                        <inertia-link :href="submenuItem.url">{{ submenuItem.title }}</inertia-link>
-                    </li>
-                </ul>
-
-                <inertia-link v-else class="" :href="menuItem.url">{{ menuItem.title }}</inertia-link>
-            </li>
+            <li><inertia-link :href="route('contact.show')">Contact</inertia-link></li>
             <li><inertia-link :href="route('job.post')">Post a Free Job</inertia-link></li>
         </ul>
     </div>
