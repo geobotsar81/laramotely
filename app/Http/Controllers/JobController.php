@@ -22,7 +22,7 @@ class JobController extends Controller
 
        $data=['job' => $job];
 
-        return Inertia::render('Jobs/Show',$data);
+        return Inertia::render('Jobs/Show',$data)->withViewData(['title' => $job->title,'description' => $job->company." is looking for a ".$job->title,'url' => route('job.show',$job->id)]);
     }
 
     /**
@@ -90,7 +90,7 @@ class JobController extends Controller
         [
             "page" => $page,
         ])
-        ->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => $page->slug]);
+        ->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => route('job.post')]);
     }
 
     

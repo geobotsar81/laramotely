@@ -32,7 +32,7 @@ class PageController extends Controller
         }
 
         $data['jobs']=$jobs;
-        return Inertia::render('Home/Index',$data);
+        return Inertia::render('Home/Index',$data)->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => route('home.show')]);
     }
 
 
@@ -48,7 +48,7 @@ class PageController extends Controller
         if(!empty($page)){
             $meta=['title' => $page->title,'description' => $page->meta_description,'url' =>route('contact.show')];
         }
-        return Inertia::render('GetHelp',$meta);
+        return Inertia::render('GetHelp',$meta)->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => route('contact.show')]);
     }
 
     /**

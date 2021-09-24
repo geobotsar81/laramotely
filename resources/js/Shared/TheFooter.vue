@@ -24,9 +24,9 @@
                     </div>
                     <div class="row mt-4">
                         <div class="col-12 footer__social">
-                            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/laramotely" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <!--<a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>-->
+                            <a href="https://www.facebook.com/laramotely" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         </div>
                     </div>
                 </div>

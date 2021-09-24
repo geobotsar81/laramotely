@@ -13,6 +13,17 @@
         <meta name="msapplication-config" content="{{ asset('img/favicons/browserconfig.xml') }}" />
         <meta name="theme-color" content="#ffffff" />
 
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content=" {{ !empty($title) ? setting('site.title').' - '.$title  : setting('site.title').' - Full Stack Web Developer' }}" />
+        <meta property="og:url" content="{{ $url }}" />
+        <meta property="og:site_name" content="{{ config('name') }}" />
+        <meta property="og:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
+        <meta property="og:image" content="{{ asset('images/ogImage.jpg') }}" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content=" {{ !empty($title) ? setting('site.title').' - '.$title  : setting('site.title').' - Full Stack Web Developer' }}" />
+        <meta name="twitter:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
+        <meta name="twitter:image:src" content="{{ asset('images/ogImage.jpg') }}" />
+
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-XDNT4JLJD4"></script>
         <script>
