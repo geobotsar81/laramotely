@@ -1,6 +1,6 @@
 <?php
 namespace App\Services;
-use Goutte\Client;
+use GuzzleHttp\Client;
 use App\Services\Scraper;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\HttpClient;
@@ -11,10 +11,14 @@ class ZipRecruiterScraperService extends Scraper{
     public function scrape(){
 
         $url="https://www.ziprecruiter.co.uk/Jobs/Laravel";
-        $client = new Client(HttpClient::create(['timeout' => 60]));
-        //$client->setHeader('User-Agent', "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36");
-        $client->setServerParameter('HTTP_USER_AGENT', "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36");
-        $crawler = $client->request('GET', $url);
+
+        //$client = new Client(HttpClient::create(['timeout' => 60]));
+        //$client->setServerParameter('HTTP_USER_AGENT', "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36");
+        //$crawler = $client->request('GET', $url);
+
+        $client = new \GuzzleHttp\Client();
+        $crawler = $client->request('GET', $url);  
+        dd( $crawler->getStatusCode()); // 200
 
         $nodes = $crawler->filter('.job-listing');
         dd($nodes);
