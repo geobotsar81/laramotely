@@ -21,9 +21,17 @@ class JobController extends Controller
        $job=Job::where('id',$id)->firstOrFail();
 
        $data=['job' => $job];
+       $tagsString="";
 
-        $description=$job->company." is looking for a '".$job->title."'. Location: ".$job->location.". Read more at ".$job->url;
-        return Inertia::render('Jobs/Show',$data)->withViewData(['title' => $job->title,'description' => $description,'url' => route('job.show',$job->id)]);
+       $tags=$job->tags;
+        if(!empty($tags)){
+            $tags=json_decode($tags);
+            $tagsString=" - ".implode(",", $tags);
+        }
+        
+        $description=$job->company." is looking for a '".$job->title."'. Location: ".$job->location.$tagsString.". Read more at ".$job->url;
+        
+        return Inertia::render('Jobs/Show',$data)->withViewData(['title' => $job->title.' at '.$job->company.$tagsString,'description' => $description,'url' => route('job.show',$job->id)]);
     }
 
     /**

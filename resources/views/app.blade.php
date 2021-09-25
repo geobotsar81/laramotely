@@ -14,13 +14,13 @@
         <meta name="theme-color" content="#ffffff" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:title" content=" {{ !empty($title) ? setting('site.title').' - '.$title  : setting('site.title').' - Full Stack Web Developer' }}" />
+        <meta property="og:title" content=" {{ !empty($title) ? $title : setting('site.title') }}" />
         <meta property="og:url" content="{{ $url }}" />
         <meta property="og:site_name" content="{{ config('name') }}" />
         <meta property="og:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
         <meta property="og:image" content="{{ asset('img/ogImage.png') }}" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content=" {{ !empty($title) ? setting('site.title').' - '.$title  : setting('site.title').' - Full Stack Web Developer' }}" />
+        <meta name="twitter:title" content=" {{ !empty($title) ? $title : setting('site.title') }}" />
         <meta name="twitter:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
         <meta name="twitter:image:src" content="{{ asset('img/ogImage.png') }}" />
 
