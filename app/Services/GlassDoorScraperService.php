@@ -80,12 +80,11 @@ class GlassDoorScraperService extends Scraper{
                 'tags' => $tags
             ];
             
-            //Break from the loop if the current url already exists in the database
             if($this->jobsRepo->urlInDB($url)){
                 echo "Found:".implode(",",$job)."<br><br>";
                 //break;
             }else{
-                if(!$this->titleInDb->urlInDB($title,$company)){
+                if(!$this->jobsRepo->titleInDb($title,$company)){
                     $this->jobsRepo->save($job);
                 }else{
                     echo "Found:".implode(",",$job)."<br><br>";

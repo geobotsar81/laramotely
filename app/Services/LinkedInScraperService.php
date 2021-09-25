@@ -72,7 +72,7 @@ class LinkedInScraperService extends Scraper{
                             echo "Found:".implode(",",$job)."<br><br>";
                             //break;
                         }else{
-                            if(!$this->titleInDb->urlInDB($title,$company)){
+                            if(!$this->jobsRepo->titleInDb($title,$company)){
                                 $this->jobsRepo->save($job);
                             }else{
                                 echo "Found:".implode(",",$job)."<br><br>";
