@@ -10,8 +10,8 @@
     <item>
         <title><![CDATA[@php echo $job->company." is looking for a ".$job->title.". Location: ".$job->location; @endphp]]></title>
         <link>{{ route('job.show',$job->id) }}</link>
-        <id>{{$job->id }}</id>
-        <date>{{ $job->posted_date }}</date>
+        <guid>{{ route('job.show',$job->id) }}</guid>
+        <pubDate>@php echo date('r', strtotime($job0>posted_date))</pubDate>
     </item>
     @endforeach
 </channel>
