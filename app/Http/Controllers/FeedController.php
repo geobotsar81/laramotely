@@ -9,7 +9,7 @@ class FeedController extends Controller
 {
     public function index()
     {
-        $jobs = Job::orderBy('created_at','desc')->get();
+        $jobs = Job::orderBy('date','desc')->get();
 
         return response()->view('feed', [
             'jobs' => $jobs,
