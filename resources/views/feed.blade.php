@@ -11,9 +11,6 @@
         <title><![CDATA[@php echo $job->company." is looking for a ".$job->title.". Location: ".$job->location; @endphp]]></title>
         <link>{{ route('job.show',$job->id) }}</link>
         <id>{{$job->id }}</id>
-        <author>
-            <name> <![CDATA[laramotely.com]]></name>
-        </author>
         <date>{{ $job->posted_date }}</date>
     </entry>
     @endforeach
