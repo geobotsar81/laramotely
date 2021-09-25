@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-sm-12 col-lg-9">
+                <div class="col-sm-12 col-lg-8 mb-4">
                     <div class="row mb-4">
                         <div class="col-8 col-sm-3 col-md-3 col-lg-3 col-xl-2">
                             <div class="">
@@ -60,20 +60,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-none d-lg-block" v-if="false">
-                    <div class="job__companyCell">
-                        <div class="row">
-                            <div class="col-12">
-                                <img
-                                    v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'"
-                                    :src="storageUrl + 'companies/' + job.company_logo"
-                                    class="img-fluid job__logo"
-                                />
-                                <div v-else class="job__logoAlternative">{{ job.company }}</div>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-12 job__company">{{ job.company }}</div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-12"><h3>Latest Laravel Jobs</h3></div>
+                    </div>
+                    <div class="mt-4" v-if="otherJobs">
+                        <div v-for="(job, index) in otherJobs" :key="index">
+                            <app-job-compact :job="job"></app-job-compact>
                         </div>
                     </div>
                 </div>
@@ -87,7 +80,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import TheHead from "@/Shared/TheHead";
 import TheMain from "@/Shared/TheMain";
 import AppButton from "@/Shared/AppButton";
-import AppJob from "@/Shared/AppJob";
+import AppJobCompact from "@/Shared/AppJobCompact";
 import { InertiaLink } from "@inertiajs/inertia-vue3";
 
 export default {
@@ -96,7 +89,7 @@ export default {
         TheHead,
         TheMain,
         AppButton,
-        AppJob,
+        AppJobCompact,
         InertiaLink,
     },
     layout: AppLayout,
@@ -108,6 +101,9 @@ export default {
     computed: {
         job: function () {
             return this.$page.props.job;
+        },
+        otherJobs: function () {
+            return this.$page.props.otherJobs;
         },
         meta_title: function () {
             return this.$page.props.meta_title;

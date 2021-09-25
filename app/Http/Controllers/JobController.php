@@ -19,8 +19,12 @@ class JobController extends Controller
      */
     public function show($id){
        $job=Job::where('id',$id)->firstOrFail();
+       
+       $otherJobs=Job::where('id','!=',$id)->orderBy('posted_date','DESC')->take(5)->get();
 
        $data=['job' => $job];
+       $data['otherJobs']= $otherJobs;
+
        $tagsString="";
 
        $tags=$job->tags;
