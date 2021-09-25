@@ -1,5 +1,5 @@
 <template>
-    <the-head :title="job.title" :description="job.description" :url="route('job.show', job.url)"></the-head>
+    <the-head :title="meta_title" :description="meta_description" :url="route('job.show', job.url)"></the-head>
     <header></header>
     <the-main id="main">
         <div class="container">
@@ -108,6 +108,12 @@ export default {
     computed: {
         job: function () {
             return this.$page.props.job;
+        },
+        meta_title: function () {
+            return this.$page.props.meta_title;
+        },
+        meta_description: function () {
+            return this.$page.props.meta_description;
         },
     },
 };

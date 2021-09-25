@@ -24,7 +24,7 @@ class JobController extends Controller
        $tagsString="";
 
        $tags=$job->tags;
-        if(!empty($tags)){
+        if(!empty($tags) && $tags!='""'){
             $tags=json_decode($tags);
             if(is_array($tags)){
                 $tagsString=" - ".implode(",", $tags);
@@ -35,8 +35,10 @@ class JobController extends Controller
         }
 
         $description=$job->company." is looking for a ".$job->title.". Location: ".$job->location.$tagsString.". Read more at ".$job->url;
-        
-        return Inertia::render('Jobs/Show',$data)->withViewData(['title' => $job->title.' at '.$job->company.$tagsString,'description' => $description,'url' => route('job.show',$job->id)]);
+        $title=$job->title.' at '.$job->company.$tagsString;
+        $data['meta_title']=$title;
+        $data['meta_description']=$description;
+        return Inertia::render('Jobs/Show',$data)->withViewData(['title' => $title,'description' => $description,'url' => route('job.show',$job->id)]);
     }
 
     /**

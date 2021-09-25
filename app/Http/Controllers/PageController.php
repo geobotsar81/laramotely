@@ -28,7 +28,7 @@ class PageController extends Controller
         $jobs=Job::orderBy('posted_date','desc')->paginate(8);
 
         if(!empty($page)){
-            $data=['title' => $page->title,'description' => $page->meta_description,'url' =>route('home.show')];
+            $data=['title' => $page->title." - Laramotely",'description' => $page->meta_description,'url' =>route('home.show')];
         }
 
         $data['jobs']=$jobs;
@@ -46,7 +46,7 @@ class PageController extends Controller
         $meta=[];
 
         if(!empty($page)){
-            $meta=['title' => $page->title,'description' => $page->meta_description,'url' =>route('contact.show')];
+            $meta=['title' => $page->title." - Laramotely",'description' => $page->meta_description,'url' =>route('contact.show')];
         }
         return Inertia::render('GetHelp',$meta)->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => route('contact.show')]);
     }

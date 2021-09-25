@@ -1,6 +1,6 @@
 <template>
     <Head>
-        <title>{{ pageTitle() }}</title>
+        <title head-key="title">{{ pageTitle() }}</title>
         <meta head-key="description" type="description" :content="pageDescription()" />
         <meta head-key="twitter:title" name="twitter:title" :content="pageTitle()" />
         <meta head-key="twitter:description" name="twitter:description" :content="pageDescription()" />
@@ -35,8 +35,8 @@ export default {
     },
     methods: {
         pageTitle() {
-            let title = this.title ? this.title + " - " : "";
-            return title + this.$page.props.meta.title;
+            let title = this.title ? this.title : this.$page.props.meta.title;
+            return title;
         },
         pageDescription() {
             let description = this.description ? this.description : this.$page.props.meta.description;
