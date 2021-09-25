@@ -20,7 +20,7 @@
         <meta property="og:url" content="{{ $url }}" />
         <meta property="og:site_name" content="{{ config('name') }}" />
         <meta property="og:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
-        <meta property="og:image" content="{{ asset('img/ogImage.png') }}" />
+        <meta property="og:image" content="{{ asset('img/og.png') }}" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content=" {{ !empty($title) ? $title : setting('site.title') }}" />
         <meta name="twitter:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
