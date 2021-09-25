@@ -28,15 +28,14 @@ class JobController extends Controller
        $tagsString="";
 
        $tags=$job->tags;
-        if(!empty($tags) && $tags!='""'){
+        if(!empty($tags) && $tags!='""' && $tags!='[]'){
             $tags=json_decode($tags);
             if(is_array($tags)){
                 $tagsString=" - ".implode(",", $tags);
             }else{
                 $tagsString=" - ".$tags;
             }
-            
-        }
+        }else{$tagsString="";}
 
         $description=$job->company." is looking for a ".$job->title.". Location: ".$job->location.$tagsString.". Read more at ".$job->url;
         $title=$job->title.' at '.$job->company.$tagsString;
