@@ -23,7 +23,7 @@ class GlassDoorScraperService extends Scraper{
             $url=$node->filter('.jobLink')->first()->attr("href");
             $title = strip_tags($node->filter('.jobLink span')->first()->text());
 
-            dd($title);
+            dd($url);
             $company = $node->filter('.company div:nth-child(2)')->first()->text();
             $location = $node->filter('.hyccSk')->first()->text();
             $description = $node->filter('.hidden')->first()->html();
