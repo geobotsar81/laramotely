@@ -66,15 +66,17 @@ class LinkedInScraperService extends Scraper{
                         'tags' => $tags
                     ];
 
-                    print_r($job);
-
                     if(strpos(strtolower($title),"laravel") !== FALSE){
                         //Break from the loop if the current url already exists in the database
                         if($this->jobsRepo->urlInDB($url)){
-                            echo "Found:"; print_r($job);
-                            break;
+                            echo "Found:".implode(",",$job)."<br><br>";
+                            //break;
                         }else{
-                            $this->jobsRepo->save($job);
+                            if(!$this->titleInDb->urlInDB($title,$company)){
+                                $this->jobsRepo->save($job);
+                            }else{
+                                echo "Found:".implode(",",$job)."<br><br>";
+                            }
                         }
                     }
                     

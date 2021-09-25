@@ -27,7 +27,7 @@ class JobsRepository{
         $job->is_scraped= 0;
         $job->tags= json_encode($data["tags"]);
 
-       echo $data["title"].",".$data["source"]."<br>";
+       echo "Not Found:".$data["title"].",".$data["source"]."<br><br>";
 
         $job->save();
     }
@@ -42,6 +42,19 @@ class JobsRepository{
     public function urlInDB(string $url):bool{
 
         $job=Job::where('url',$url)->first();
+
+        return (!empty($job)) ? true : false;
+    }
+
+    /**
+     * Find if a title for a job exists in database 
+     *
+     * @param string $url
+     * @return boolean
+     */
+    public function titleInDb(string $title,string $company):bool{
+
+        $job=Job::where('title',$title)->where('company',$company)->first();
 
         return (!empty($job)) ? true : false;
     }

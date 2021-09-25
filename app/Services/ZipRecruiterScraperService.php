@@ -1,6 +1,6 @@
 <?php
 namespace App\Services;
-use GuzzleHttp\Client;
+use Goutte\Client;
 use App\Services\Scraper;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\HttpClient;
@@ -11,12 +11,8 @@ class ZipRecruiterScraperService extends Scraper{
     public function scrape(){
 
         $url="https://www.ziprecruiter.co.uk/Jobs/Laravel";
-         //$client = new Client(HttpClient::create(['timeout' => 5]));
-        //$crawler = $client->request('GET', $url);
-
-        $client = new \GuzzleHttp\Client();
-        $res = $client->request('GET', $url, ['allow_redirects' => true]);
-        dd($res->getStatusCode());
+        $client = new Client(HttpClient::create(['timeout' => 5]));
+        $crawler = $client->request('GET', $url);
 
         $nodes = $crawler->filter('.job-listing');
       
@@ -26,6 +22,7 @@ class ZipRecruiterScraperService extends Scraper{
             $tags=[];
             $logo="";
             $url=$node->filter('.jobList-title')->first()->attr("href");
+            
             $title = $node->filter('.jobList-title strong')->first()->text();
             $company = strip_tags($node->filter('.jobList-introMeta li:nth-child(1)')->first()->text());
             $location = strip_tags($node->filter('.jobList-introMeta li:nth-child(2)')->first()->text());
@@ -57,7 +54,7 @@ class ZipRecruiterScraperService extends Scraper{
 
 
             //Break from the loop if the current url already exists in the database
-            if($this->jobsRepo->urlInDB($url)){
+            if($this->jobsRepo->titleInDb($title,$company)){
                 echo "Found:"; print_r($job);
                 //break;
             }else{
