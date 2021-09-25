@@ -82,11 +82,11 @@ class JobScraperService extends Scraper{
                         $job->save();
                     }
 
-                    if($source == 'larajobs.com'){
+                    if(($source == 'larajobs.com') || ($source == 'ziprecruiter.co')){
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
-                        echo "Is larajobs<br>-------------";
+                        echo "Is $source<br>-------------";
 
                         
                         if(!empty($crawler->filterXpath('//meta[@name="description"]')->count() > 0)){

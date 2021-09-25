@@ -11,6 +11,7 @@ use App\Services\LarajobsScraperService;
 use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
+use App\Services\ZipRecruiterScraperService;
 use Symfony\Component\HttpClient\HttpClient;
 use App\Services\StackOverflowScraperService;
 use App\Services\WorkingNomadsScraperService;
@@ -68,6 +69,11 @@ class ScraperController extends Controller
         if($type == 8){
             $workingNomadsScraper=new WorkingNomadsScraperService();
             $workingNomadsScraper->scrape();
+        }
+
+        if($type == 9){
+            $zipRecruiterScraper=new ZipRecruiterScraperService();
+            $zipRecruiterScraper->scrape();
         }
         
     }

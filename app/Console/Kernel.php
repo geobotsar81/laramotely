@@ -9,6 +9,7 @@ use App\Services\LarajobsScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use Illuminate\Console\Scheduling\Schedule;
+use App\Services\ZipRecruiterScraperService;
 use App\Services\StackOverflowScraperService;
 use App\Services\WorkingNomadsScraperService;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -57,6 +58,12 @@ class Kernel extends ConsoleKernel
             $wwrScraper->scrape();
         })
         ->hourlyAt(15);
+
+        $schedule->call(function () {
+            $zipRecruiterScraper=new ZipRecruiterScraperService();
+            $zipRecruiterScraper->scrape();
+        })
+        ->hourlyAt(20);
 
         $schedule->call(function () {
             $soScraper=new StackOverflowScraperService();
