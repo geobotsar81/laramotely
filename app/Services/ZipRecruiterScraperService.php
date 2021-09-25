@@ -11,23 +11,15 @@ class ZipRecruiterScraperService extends Scraper{
     public function scrape(){
 
         $url="https://www.ziprecruiter.co.uk/Jobs/Laravel";
-
-        //$client = new Client(HttpClient::create(['timeout' => 60]));
-        //$client->setServerParameter('HTTP_USER_AGENT', "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36");
+         //$client = new Client(HttpClient::create(['timeout' => 5]));
         //$crawler = $client->request('GET', $url);
 
         $client = new \GuzzleHttp\Client();
-        $request = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $promise = $client->sendAsync($request)->then(function ($response) {
-            echo 'I completed! ' . $response->getBody();
-        });
-        
-        $promise->wait();
-
-        dd( $crawler->getStatusCode()); // 200
+        $res = $client->request('GET', $url, ['allow_redirects' => true]);
+        dd($res->getStatusCode());
 
         $nodes = $crawler->filter('.job-listing');
-        dd($nodes);
+      
         foreach ($nodes as $node) {
             $node = new Crawler($node);
 
