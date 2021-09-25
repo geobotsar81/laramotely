@@ -7,7 +7,7 @@
 <language>en-us</language>  
     @foreach ($jobs as $job)
     <item>
-        <title><![CDATA[@php echo $job->company." is looking for a ".$job->title.". Location: ".$job->location; @endphp]]></title>
+        <title>@php echo $job->company." is looking for a ".$job->title.". Location: ".$job->location; @endphp</title>
         <link>{{ route('job.show',$job->id) }}</link>
         <guid isPermaLink="false">{{ route('job.show',$job->id) }}</guid>
         <pubDate>@php echo date('r', strtotime($job->posted_date)); @endphp</pubDate>
