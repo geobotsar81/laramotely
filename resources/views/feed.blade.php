@@ -10,7 +10,7 @@
     <entry>
         <title><![CDATA[@php echo $job->company." is looking for a ".$job->title.". Location: ".$job->location.". Read more at ".$job->url; @endphp]]></title>
         <link href="{{ route('job.show',$job->id) }}" />
-        <id>{{$job->id</id>
+        <id>{{$job->id }}</id>
         <author>
             <name> <![CDATA[laramotely.com]]></name>
         </author>
