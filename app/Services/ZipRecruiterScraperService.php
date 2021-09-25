@@ -12,6 +12,8 @@ class ZipRecruiterScraperService extends Scraper{
 
         $url="https://www.ziprecruiter.co.uk/Jobs/Laravel";
         $client = new Client(HttpClient::create(['timeout' => 5]));
+        //$client->setHeader('User-Agent', "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36");
+        $client->setServerParameter('HTTP_USER_AGENT', "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36");
         $crawler = $client->request('GET', $url);
 
         $nodes = $crawler->filter('.job-listing');
