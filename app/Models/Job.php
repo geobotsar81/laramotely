@@ -46,8 +46,6 @@ class Job extends Model
     public function scopeNotother($query)
     {
         return $query->where('title', 'NOT LIKE', "%wordpress%")
-                ->where('description', 'NOT LIKE', "%wordpress%")
-                ->where('location', 'NOT LIKE', "%wordpress%")
-                ->where('tags', 'NOT LIKE', "%wordpress%");
+                ->where('description', 'NOT LIKE', "%wordpress%");
     }
 }
