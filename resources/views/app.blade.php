@@ -4,8 +4,8 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{{ $title }}</title>
-        <meta name="description" content="{{ !empty($description) ? $description : setting('site.description') }}">
-        
+        <meta name="description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
+
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/favicons/apple-touch-icon.png') }}" />
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicons/favicon-32x32.png') }}" />
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicons/favicon-16x16.png') }}" />
@@ -24,7 +24,7 @@
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content=" {{ !empty($title) ? $title : setting('site.title') }}" />
         <meta name="twitter:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
-        <meta name="twitter:image:src" content="{{ asset('img/ogImage.png') }}" />
+        <meta name="twitter:image:src" content="{{ asset('img/og.png') }}" />
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-XDNT4JLJD4"></script>
