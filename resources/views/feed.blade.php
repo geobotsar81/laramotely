@@ -9,7 +9,7 @@
     <item>
         <title>@php echo $job->company." is looking for a ".$job->title.". Location: ".$job->location; @endphp</title>
         <link>{{ route('job.show',$job->id) }}</link>
-        <guid isPermaLink="false">{{ route('job.show',$job->id) }}</guid>
+        <guid>{{ route('job.show',$job->id) }}</guid>
         <pubDate>@php echo date('r', strtotime($job->posted_date)); @endphp</pubDate>
     </item>
     @endforeach
