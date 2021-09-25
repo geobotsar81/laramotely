@@ -32,7 +32,7 @@ class PageController extends Controller
         }
 
         $data['jobs']=$jobs;
-        return Inertia::render('Home/Index',$data)->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => route('home.show')]);
+        return Inertia::render('Home/Index',$data)->withViewData(['title' => 'Laramotely - '.$page->title,'description' => $page->meta_description,'url' => route('home.show')]);
     }
 
 

@@ -25,8 +25,8 @@ class JobController extends Controller
 
        $tags=$job->tags;
         if(!empty($tags)){
+            $tags=json_decode($tags);
             if(is_array($tags)){
-                $tags=json_decode($tags);
                 $tagsString=" - ".implode(",", $tags);
             }else{
                 $tagsString=" - ".$tags;
