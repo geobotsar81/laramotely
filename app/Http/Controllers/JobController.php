@@ -34,7 +34,7 @@ class JobController extends Controller
             
         }
 
-        $description=$job->company." is looking for a '".$job->title."'. Location: ".$job->location.$tagsString.". Read more at ".$job->url;
+        $description=$job->company." is looking for a ".$job->title.". Location: ".$job->location.$tagsString.". Read more at ".$job->url;
         
         return Inertia::render('Jobs/Show',$data)->withViewData(['title' => $job->title.' at '.$job->company.$tagsString,'description' => $description,'url' => route('job.show',$job->id)]);
     }
