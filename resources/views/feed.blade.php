@@ -9,12 +9,12 @@
     @foreach ($jobs as $job)
     <entry>
         <title><![CDATA[@php echo $job->company." is looking for a ".$job->title.". Location: ".$job->location.". Read more at ".$job->url; @endphp]]></title>
-        <link rel="alternate" href="{{ route('job.show',$job->id) }}" />
-        <id>{{ route('job.show',$job->id) }}</id>
+        <link href="{{ route('job.show',$job->id) }}" />
+        <id>{{$job->id</id>
         <author>
             <name> <![CDATA[laramotely.com]]></name>
         </author>
-        <updated>{{ $job->posted_date }}</updated>
+        <date>{{ $job->posted_date }}</date>
     </entry>
     @endforeach
 </feed>
