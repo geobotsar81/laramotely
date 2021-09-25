@@ -1,6 +1,6 @@
 <template>
     <the-head :title="job.title" :description="job.description" :url="route('job.show', job.url)"></the-head>
-
+    <header></header>
     <the-main id="main">
         <div class="container">
             <div class="row">
@@ -56,7 +56,7 @@
 
                     <div class="row mt-4">
                         <div class="col-12">
-                            <app-button type="external" class="buttonRed" :link="job.url">READ MORE & APPLY</app-button>
+                            <app-button type="external" class="buttonRed" :link="job.url">LEARN MORE & APPLY</app-button>
                         </div>
                     </div>
                 </div>
@@ -113,10 +113,20 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+main {
+    padding-top: 40px;
+}
 h1 {
     font-weight: 700;
 }
 
+header {
+    background-image: url("/img/headerImage.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    margin-top: 70px;
+}
 .job__description {
     :deep(h2) {
         padding-top: 10px;

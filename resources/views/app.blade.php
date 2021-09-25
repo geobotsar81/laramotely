@@ -20,11 +20,11 @@
         <meta property="og:url" content="{{ $url }}" />
         <meta property="og:site_name" content="{{ config('name') }}" />
         <meta property="og:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
-        <meta property="og:image" content="{{ asset('img/og.png') }}" />
+        <meta property="og:image" content="{{ asset('img/ogimage.jpg') }}" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content=" {{ !empty($title) ? $title : setting('site.title') }}" />
         <meta name="twitter:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
-        <meta name="twitter:image:src" content="{{ asset('img/og.png') }}" />
+        <meta name="twitter:image:src" content="{{ asset('img/ogimage.jpg') }}" />
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-XDNT4JLJD4"></script>
