@@ -13,6 +13,7 @@ use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use Symfony\Component\HttpClient\HttpClient;
 use App\Services\StackOverflowScraperService;
+use App\Services\WorkingNomadsScraperService;
 
 class ScraperController extends Controller
 {
@@ -62,6 +63,11 @@ class ScraperController extends Controller
         if($type == 7){
             $linkedInScraper=new LinkedInScraperService();
             $linkedInScraper->scrape();
+        }
+
+        if($type == 8){
+            $workingNomadsScraper=new WorkingNomadsScraperService();
+            $workingNomadsScraper->scrape();
         }
         
     }

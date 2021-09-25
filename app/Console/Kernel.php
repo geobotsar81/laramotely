@@ -10,6 +10,7 @@ use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Services\StackOverflowScraperService;
+use App\Services\WorkingNomadsScraperService;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -43,6 +44,12 @@ class Kernel extends ConsoleKernel
             $larajobsScraper->scrape();
         })
         ->hourlyAt(5);
+
+        $schedule->call(function () {
+            $workingNomadsScraper=new WorkingNomadsScraperService();
+            $workingNomadsScraper->scrape();
+        })
+        ->hourlyAt(10);
 
 
         $schedule->call(function () {

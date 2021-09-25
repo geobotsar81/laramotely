@@ -28,6 +28,9 @@ class Job extends Model
 
     public function getFormatedTagsAttribute()
     {  
-        return json_decode($this->tags);
+        $tags=$this->tags;
+        $tags=json_decode($this->tags);
+        if(!is_array($tags)){$tags=explode(',',$tags);}
+        return  $tags;
     }
 }
