@@ -8,6 +8,7 @@ use App\Services\WwrScraperService;
 use App\Services\LarajobsScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
+use App\Services\GlassDoorScraperService;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Services\ZipRecruiterScraperService;
 use App\Services\StackOverflowScraperService;
@@ -70,6 +71,12 @@ class Kernel extends ConsoleKernel
             $soScraper->scrape();
         })
         ->hourlyAt(25);
+
+        $schedule->call(function () {
+            $glassDoorScraper=new GlassDoorScraperService();
+            $glassDoorScraper->scrape();
+        })
+        ->hourlyAt(30);
 
         $schedule->call(function () {
             $remoteokScraper=new RemoteokScraperService();

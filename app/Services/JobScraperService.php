@@ -96,6 +96,20 @@ class JobScraperService extends Scraper{
                         $job->is_scraped=1;
                         $job->save();
                     }
+
+                    if($source == 'glassdoor.com'){
+                        $client = new Client(HttpClient::create(['timeout' => 120]));
+                        $crawler = $client->request('GET', $url);
+
+                        echo "Is glassdoorv<br>-------------";
+
+                        if(!empty($crawler->filter('.desc')->count() > 0)){
+                            $description = $crawler->filter('.desc')->first()->html();
+                        }
+                        $job->description=$description;
+                        $job->is_scraped=1;
+                        $job->save();
+                    }
                    
                 }
             }

@@ -9,7 +9,7 @@ class FeedController extends Controller
 {
     public function index()
     {
-        $jobs = Job::orderBy('posted_date','desc')->get();
+        $jobs = Job::laravel()->notother()->orderBy('posted_date','desc')->get();
 
         return response()->view('feed', [
             'jobs' => $jobs,

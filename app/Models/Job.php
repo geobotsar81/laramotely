@@ -33,4 +33,21 @@ class Job extends Model
         if(!is_array($tags)){$tags=explode(',',$tags);}
         return  $tags;
     }
+
+    //Scope
+    public function scopeLaravel($query)
+    {
+        return $query->where('title', 'LIKE', "%laravel%")
+                ->orWhere('description', 'LIKE', "%laravel%")
+                ->orWhere('location', 'LIKE', "%laravel%")
+                ->orWhere('tags', 'LIKE', "%laravel%");
+    }
+
+    public function scopeNotother($query)
+    {
+        return $query->where('title', 'NOT LIKE', "%wordpress%")
+                ->where('description', 'NOT LIKE', "%wordpress%")
+                ->where('location', 'NOT LIKE', "%wordpress%")
+                ->where('tags', 'NOT LIKE', "%wordpress%");
+    }
 }

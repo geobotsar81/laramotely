@@ -10,7 +10,7 @@ function getJobsCount(){
     $cacheDuration=env("CACHE_DURATION");
 
     $jobscount = Cache::remember('jobscount', $cacheDuration, function (){
-        return $jobs=Job::get()->count();
+        return $jobs=Job::laravel()->notother()->get()->count();
     });
 
     return $jobscount;
