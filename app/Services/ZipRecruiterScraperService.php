@@ -17,7 +17,13 @@ class ZipRecruiterScraperService extends Scraper{
         //$crawler = $client->request('GET', $url);
 
         $client = new \GuzzleHttp\Client();
-        $crawler = $client->request('GET', $url);  
+        $request = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $promise = $client->sendAsync($request)->then(function ($response) {
+            echo 'I completed! ' . $response->getBody();
+        });
+        
+        $promise->wait();
+
         dd( $crawler->getStatusCode()); // 200
 
         $nodes = $crawler->filter('.job-listing');
