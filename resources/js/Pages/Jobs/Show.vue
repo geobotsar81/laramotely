@@ -11,7 +11,7 @@
             <div class="row mt-4">
                 <div class="col-sm-12 col-lg-9">
                     <div class="row mb-4">
-                        <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+                        <div class="col-8 col-sm-3 col-md-3 col-lg-3 col-xl-2">
                             <div class="">
                                 <div class="row">
                                     <div class="col-6 col-sm-12">
@@ -124,7 +124,7 @@ header {
     background-image: url("/img/headerImage.jpg");
     background-size: cover;
     background-position: center;
-    height: 500px;
+    height: 450px;
     margin-top: 70px;
 }
 .job__description {
@@ -157,6 +157,23 @@ header {
     }
     :deep(.timestamp-wrapper) {
         display: none;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    header {
+        height: 400px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    header {
+        height: 300px;
+    }
+}
+@media (max-width: 767.98px) {
+    header {
+        height: 200px;
     }
 }
 </style>
