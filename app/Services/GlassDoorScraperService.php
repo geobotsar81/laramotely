@@ -20,10 +20,10 @@ class GlassDoorScraperService extends Scraper{
 
             $tags=[];
             $logo="";
-            $url=$node->filter('.jobLink')->first()->attr("href");
-            $title = strip_tags($node->filter('.jobLink span')->first()->text());
+            $url='https://www.glassdoor.com/'.$node->filter('.job-search-key-1rd3saf')->first()->attr("href");
+            $title = $node->filter('.job-search-key-1rd3saf')->first()->text();
 
-            dd($url);
+            dd($title);
             $company = $node->filter('.company div:nth-child(2)')->first()->text();
             $location = $node->filter('.hyccSk')->first()->text();
             $description = $node->filter('.hidden')->first()->html();
