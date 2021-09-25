@@ -29,7 +29,7 @@ class JobController extends Controller
                 $tags=json_decode($tags);
                 $tagsString=" - ".implode(",", $tags);
             }else{
-                $tagsString=" - "$tags;
+                $tagsString=" - ".$tags;
             }
             
         }
