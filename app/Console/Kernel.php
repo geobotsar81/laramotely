@@ -33,8 +33,8 @@ class Kernel extends ConsoleKernel
     {
 
         $schedule->call(function () {
-            $larajobsScraper=new JobScraperService();
-            $larajobsScraper->scrape();
+            $jobsScraper=new JobScraperService();
+            $jobsScraper->scrape();
         })
         ->everyFiveMinutes();
 

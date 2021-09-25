@@ -13,11 +13,11 @@ class JobScraperService extends Scraper{
 
     public function scrape(){
 
-        $jobs=Job::where('is_scraped',0)->where('source' ,'!=', 'remotive.io')->where('source' ,'!=', 'larajobs.com')->where('source' ,'!=', 'remoteok.io')->take(2)->get();
+        $jobs=Job::where('is_scraped',0)->where('source' ,'!=', 'remotive.io')->where('source' ,'!=', 'remoteok.io')->orderBy('posted_date','DESC')->take(2)->get();
 
         if(!empty($jobs)){
             foreach($jobs as $job){
-                echo $job->source."<br>";
+                echo $job->source.':'.$job->id.':'.$job->title."<br>";
                 $url=$job->url;
                 $source=$job->source;
                 $description="";
@@ -76,6 +76,21 @@ class JobScraperService extends Scraper{
 
                         if(!empty($crawler->filter('.description')->count() > 0)){
                             $description = $crawler->filter('.description')->first()->html();
+                        }
+                        $job->description=$description;
+                        $job->is_scraped=1;
+                        $job->save();
+                    }
+
+                    if($source == 'larajobs.com'){
+                        $client = new Client(HttpClient::create(['timeout' => 120]));
+                        $crawler = $client->request('GET', $url);
+
+                        echo "Is larajobs<br>-------------";
+
+                        
+                        if(!empty($crawler->filterXpath('//meta[@name="description"]')->count() > 0)){
+                            $description =$crawler->filterXpath('//meta[@name="description"]')->attr('content');
                         }
                         $job->description=$description;
                         $job->is_scraped=1;

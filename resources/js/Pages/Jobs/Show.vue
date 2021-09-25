@@ -8,10 +8,10 @@
                     <inertia-link :href="route('home.show')"><i class="far fa-chevron-square-left"></i> Back to jobs</inertia-link>
                 </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-4">
                 <div class="col-sm-12 col-lg-9">
-                    <div class="row mb-4" v-if="!job.description">
-                        <div class="col-12 col-lg-4">
+                    <div class="row mb-4">
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-3">
                             <div class="">
                                 <div class="row">
                                     <div class="col-6 col-sm-12">
@@ -23,8 +23,8 @@
                                         <div v-else class="job__logoAlternative">{{ job.company }}</div>
                                     </div>
                                 </div>
-                                <div class="row mt-2 text-start">
-                                    <div class="col-12">{{ job.company }}</div>
+                                <div class="row mt-2 text-start text-sm-center">
+                                    <div class="col-12 job__companyDetail">{{ job.company }}</div>
                                 </div>
                             </div>
                         </div>
@@ -38,9 +38,16 @@
                             <h1>{{ job.title }}</h1>
                         </div>
                     </div>
-                    <div class="row mb-4" v-if="job.location">
+                    <div class="row mb-2" v-if="job.location">
                         <div class="col-12 job__source"><i class="far fa-globe-americas"></i> {{ job.formated_location }}</div>
                     </div>
+
+                    <div class="row mb-4" v-if="job.formated_tags && job.source != 'remotive.io'">
+                        <div class="col-12">
+                            <span class="job__tag" v-for="(tag, index) in job.formated_tags" :key="index">{{ tag }}</span>
+                        </div>
+                    </div>
+
                     <div class="row mb-5" v-if="job.description">
                         <div class="col-12 job__description">
                             <span v-html="job.description"></span>
@@ -53,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 d-none d-lg-block" v-if="job.description">
+                <div class="col-lg-3 d-none d-lg-block" v-if="false">
                     <div class="job__companyCell">
                         <div class="row">
                             <div class="col-12">
