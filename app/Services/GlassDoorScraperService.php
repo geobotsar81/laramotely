@@ -93,7 +93,7 @@ class GlassDoorScraperService extends Scraper{
             }
 
 
-        };
+        }
 
     }
 }
