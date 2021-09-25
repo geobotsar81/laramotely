@@ -11,7 +11,7 @@
             <div class="row mt-4">
                 <div class="col-sm-12 col-lg-9">
                     <div class="row mb-4">
-                        <div class="col-12 col-sm-4 col-md-4 col-lg-3">
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2">
                             <div class="">
                                 <div class="row">
                                     <div class="col-6 col-sm-12">
