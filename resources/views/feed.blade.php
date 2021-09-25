@@ -14,7 +14,7 @@
         <author>
             <name> <![CDATA[laramotely.com]]></name>
         </author>
-        <updated>{{ $job->updated_at->format('D, d M Y H:i:s +0000') }}</updated>
+        <updated>{{ $job->posted_date->format('D, d M Y H:i:s +0000') }}</updated>
     </entry>
     @endforeach
 </feed>
