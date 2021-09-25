@@ -12,7 +12,7 @@
         <link>{{ route('job.show',$job->id) }}</link>
         <id>{{$job->id }}</id>
         <author>
-            <name> laramotely.com]</name>
+            <name> laramotely.com</name>
         </author>
         <date>{{ $job->posted_date }}</date>
     </entry>
