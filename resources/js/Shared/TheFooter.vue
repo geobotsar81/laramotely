@@ -20,7 +20,7 @@
                 <div class="col-md-6 col-lg-7 text-center text-md-end">
                     <div class="row">
                         <div class="col-12 footer__count">{{ jobsCount }}</div>
-                        <div class="col-12">remote laravel jobs added</div>
+                        <div class="col-12">laravel jobs added</div>
                     </div>
                     <div class="row mt-4">
                         <div class="col-12 footer__social">
