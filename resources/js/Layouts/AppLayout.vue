@@ -1,8 +1,8 @@
 <template>
     <div>
         <app-preloader v-if="loading"></app-preloader>
-        <app-mobile-menu :menuClass="showMobileMenu ? 'is-active' : ''"></app-mobile-menu>
-        <the-header @toggle-mobile-menu="burgerIsClicked"></the-header>
+        <app-mobile-menu @close-mobile-menu="closeMenu" :menuClass="showMobileMenu ? 'is-active' : ''"></app-mobile-menu>
+        <the-header @toggle-mobile-menu="burgerIsClicked" :headerIsActive="showMobileMenu"></the-header>
         <slot />
         <the-footer></the-footer>
     </div>
@@ -33,6 +33,9 @@ export default {
     methods: {
         burgerIsClicked(menuIsOpen) {
             this.showMobileMenu = menuIsOpen;
+        },
+        closeMenu() {
+            this.showMobileMenu = false;
         },
     },
 };

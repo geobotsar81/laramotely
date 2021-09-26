@@ -10,12 +10,18 @@ class Job extends Model
 {
     use HasFactory;
 
-    public $appends = ['formated_date','formated_location','formated_tags'];
+    public $appends = ['formated_date','formated_created','formated_location','formated_tags'];
 
 
     public function getFormatedDateAttribute()
     {
         $formated_date=\Carbon\Carbon::createFromTimeStamp(strtotime($this->posted_date))->diffForHumans(); 
+        return $formated_date;
+    }
+
+    public function getFormatedCreatedAttribute()
+    {
+        $formated_date=\Carbon\Carbon::createFromTimeStamp(strtotime($this->created_at))->diffForHumans(); 
         return $formated_date;
     }
 

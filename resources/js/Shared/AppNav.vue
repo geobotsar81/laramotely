@@ -19,6 +19,7 @@ export default {
     props: {
         menu: Object,
     },
+
     methods: {
         isUrl(...urls) {
             let currentUrl = this.$page.url.substr(1);

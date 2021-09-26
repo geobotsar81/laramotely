@@ -4,8 +4,8 @@
 
         <div class="mobileMenu__content"></div>
         <ul class="mobileMenu__primary">
-            <li><inertia-link :href="route('contact.show')">Contact</inertia-link></li>
-            <li><inertia-link :href="route('job.post')">Post a Free Job</inertia-link></li>
+            <li><inertia-link @click="closeMobileMenu" :href="route('contact.show')">Contact</inertia-link></li>
+            <li><inertia-link @click="closeMobileMenu" :href="route('job.post')">Post a Free Job</inertia-link></li>
         </ul>
     </div>
 </template>
@@ -25,6 +25,12 @@ export default {
     },
     props: {
         menuClass: String,
+    },
+    emits: ["closeMobileMenu"],
+    methods: {
+        closeMobileMenu() {
+            this.$emit("closeMobileMenu");
+        },
     },
 };
 </script>
