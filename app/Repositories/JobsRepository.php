@@ -27,9 +27,15 @@ class JobsRepository{
         $job->is_scraped= 0;
         $job->tags= json_encode($data["tags"]);
 
-       echo "Not Found:".$data["title"].",".$data["source"]."<br><br>";
+        if($this->urlInDB($data["url"]) || $this->titleInDb($data["title"],$data["company"])){
+            echo "Already in db<br><br>";
+        }else{
+            echo "Not Found:".$data["title"].",".$data["source"]."<br><br>";
+            $job->save();
+        }
+      
 
-        $job->save();
+       
     }
 
 

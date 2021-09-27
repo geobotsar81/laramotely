@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Services\ArcScraperService;
 use App\Services\JobScraperService;
 use App\Services\WwrScraperService;
+use App\Services\SimplyHiredService;
 use App\Services\LarajobsScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
@@ -83,6 +84,12 @@ class Kernel extends ConsoleKernel
             $remoteokScraper->scrape();
         })
         ->hourlyAt(35);
+
+        $schedule->call(function () {
+            $simplyHiredScraper=new SimplyHiredService();
+            $simplyHiredScraper->scrape();
+        })
+        ->hourlyAt(40);
 
         $schedule->call(function () {
             $remotiveScraper=new RemotiveScraperService();

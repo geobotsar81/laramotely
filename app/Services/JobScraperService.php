@@ -13,7 +13,7 @@ class JobScraperService extends Scraper{
 
     public function scrape(){
 
-        $jobs=Job::where('is_scraped',0)->where('source' ,'!=', 'workingnomads.co')->where('source' ,'!=', 'remotive.io')->where('source' ,'!=', 'remoteok.io')->orderBy('posted_date','DESC')->take(2)->get();
+        $jobs=Job::where('is_scraped',0)->where('source' ,'!=', 'linkedin.com')->where('source' ,'!=', 'ziprecruiter.co.uk')->where('source' ,'!=', 'workingnomads.co')->where('source' ,'!=', 'remotive.io')->where('source' ,'!=', 'remoteok.io')->orderBy('posted_date','DESC')->take(2)->get();
 
         if(!empty($jobs)){
             foreach($jobs as $job){
@@ -105,6 +105,20 @@ class JobScraperService extends Scraper{
 
                         if(!empty($crawler->filter('.desc')->count() > 0)){
                             $description = $crawler->filter('.desc')->first()->html();
+                        }
+                        $job->description=$description;
+                        $job->is_scraped=1;
+                        $job->save();
+                    }
+
+                    if($source == 'simplyhired.com'){
+                        $client = new Client(HttpClient::create(['timeout' => 120]));
+                        $crawler = $client->request('GET', $url);
+
+                        echo "Is simplyhired<br>-------------";
+
+                        if(!empty($crawler->filter('.viewjob-jobDescription')->count() > 0)){
+                            $description = $crawler->filter('.viewjob-jobDescription')->first()->html();
                         }
                         $job->description=$description;
                         $job->is_scraped=1;

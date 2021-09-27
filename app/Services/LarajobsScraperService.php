@@ -76,6 +76,12 @@ class LarajobsScraperService extends Scraper{
                         elseif(strpos($date,"w") !== FALSE){
                                 $date=str_replace("w","",$date);
                                 $date = date('Y-m-d', strtotime('-'.($date*14).' days', strtotime(now())));
+                        } elseif(strpos($date,"mos") !== FALSE){
+                            $date=str_replace("mos","",$date);
+                            $date = date('Y-m-d', strtotime('-'.($date*31).' days', strtotime(now())));
+                        }elseif(strpos($date,"mo") !== FALSE){
+                            $date=str_replace("mo","",$date);
+                            $date = date('Y-m-d', strtotime('-'.(31).' days', strtotime(now())));
                         }else{$doNotSave=true;}
                     }else{$doNotSave=true;}
                 }
@@ -93,19 +99,12 @@ class LarajobsScraperService extends Scraper{
                 'tags' => $tags
             ];
            
-            //Break from the loop if the current url already exists in the database
-            if($this->jobsRepo->urlInDB($url)){
-                echo "Found:$title<BR>"; 
-                //break;
-            }else{
                 if(!$doNotSave){
-                    echo "NOT Found:$title<BR>"; 
-                $this->jobsRepo->save($job);
+                    $this->jobsRepo->save($job);
                 }
-            }
+               
 
-
-        };
+        }
 
     }
 }

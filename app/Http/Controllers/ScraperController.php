@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\ArcScraperService;
 use App\Services\JobScraperService;
 use App\Services\WwrScraperService;
+use App\Services\SimplyHiredService;
 use App\Services\LarajobsScraperService;
 use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
@@ -73,7 +74,10 @@ class ScraperController extends Controller
             $glassDoorScraper->scrape();
         }
 
-        
+        if($type == 9){
+            $simplyHiredScraper=new SimplyHiredService();
+            $simplyHiredScraper->scrape();
+        }
 
         if($type == 'local'){
             $zipRecruiterScraper=new ZipRecruiterScraperService();

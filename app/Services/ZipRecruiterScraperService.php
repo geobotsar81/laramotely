@@ -44,25 +44,14 @@ class ZipRecruiterScraperService extends Scraper{
                 'location' => $location,
                 'company' => $company,
                 'company_logo' => "",
-                'source' => 'https://www.ziprecruiter.co.uk/',
+                'source' => 'ziprecruiter.co.uk',
                 'tags' => $tags
             ];
         
-            //print_r($job);
-
-            //echo "<br><br>-----------------------------------<br><br>";
-
-
-            //Break from the loop if the current url already exists in the database
-            if($this->jobsRepo->titleInDb($title,$company)){
-                echo "Found:"; print_r($job);
-                //break;
-            }else{
+           
                 $this->jobsRepo->save($job);
-            } 
 
-
-        };
+        }
 
     }
 }

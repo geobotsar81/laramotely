@@ -80,23 +80,10 @@ class GlassDoorScraperService extends Scraper{
                 'tags' => $tags
             ];
             
-            if($this->jobsRepo->urlInDB($url)){
-                echo "Found:";
-                print_r($job);
-                echo "<br><br>";
-                //break;
-            }else{
-                if(!$this->jobsRepo->titleInDb($title,$company)){
+          
                     $this->jobsRepo->save($job);
-                }else{
-                    echo "Found:";
-                    print_r($job);
-                    echo "<br><br>";
-                }
-            }
-
-
+           
         }
-
     }
+
 }
