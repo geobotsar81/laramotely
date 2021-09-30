@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use Inertia\Inertia;
+use App\Models\Email;
 use App\Models\Country;
 use App\Models\Question;
 use App\Mail\ContactForm;
@@ -28,13 +29,26 @@ class PageController extends Controller
         $jobs=Job::orderBy('posted_date','desc')->paginate(8);
 
         if(!empty($page)){
-            $data=['title' => $page->title,'description' => $page->meta_description,'url' =>route('home.show')];
+            $data=['title' => $page->title." - Laramotely",'description' => $page->meta_description,'url' =>route('home.show')];
         }
 
         $data['jobs']=$jobs;
-        return Inertia::render('Home/Index',$data);
+        return Inertia::render('Home/Index',$data)->withViewData(['title' => 'Laramotely - '.$page->title,'description' => $page->meta_description,'url' => route('home.show')]);
     }
 
+    public function subscribe(Request $request){
+
+        $validated = $request->validate([
+            'email' => 'required|string|email|max:255|unique:emails',
+            'honeypot' => 'present|max:0',
+        ]);
+
+        $subscribe=new Email();
+        $subscribe->email= $request["email"];
+        $subscribe->save();
+
+        return redirect()->route('home.show')->with('status', 'You have successfully subscribed');
+    }
 
     /**
      * Show Get Help page
@@ -46,9 +60,9 @@ class PageController extends Controller
         $meta=[];
 
         if(!empty($page)){
-            $meta=['title' => $page->title,'description' => $page->meta_description,'url' =>route('contact.show')];
+            $meta=['title' => $page->title." - Laramotely",'description' => $page->meta_description,'url' =>route('contact.show')];
         }
-        return Inertia::render('GetHelp',$meta);
+        return Inertia::render('GetHelp',$meta)->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => route('contact.show')]);
     }
 
     /**

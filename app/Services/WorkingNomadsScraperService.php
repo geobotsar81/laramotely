@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpClient\HttpClient;
 
 
-class RemoteokScraperService extends Scraper{
+class WorkingNomadsScraperService extends Scraper{
 
 
     public function scrape(){
 
-        $url="https://remoteok.io/api";
+        $url="https://www.workingnomads.co/api/exposed_jobs/";
         $response = Http::get($url);
 
         $counter=0;
@@ -24,13 +24,13 @@ class RemoteokScraperService extends Scraper{
             foreach($jobs as $job){
             
                 if($counter!=0){
-                    $title=$job['position'];
+                    $title=$job['title'];
                     $url=$job['url'];
-                    $company=$job['company'];
+                    $company=$job['company_name'];
                     $tags=$job['tags'];
-                    $date=date('Y-m-d H:i:s',strtotime($job['date']));
+                    $date=date('Y-m-d H:i:s',strtotime($job['pub_date']));
                     $description=$job['description'];
-                    $company_logo=$job['company_logo'];
+                    $company_logo='';
                     $location=$job['location'];
 
                     if ((strpos(strtolower($title), 'laravel') !== false) || (strpos(strtolower($description), 'laravel') !== false)){
@@ -53,13 +53,12 @@ class RemoteokScraperService extends Scraper{
                             'location' => $location,
                             'company' => $company,
                             'company_logo' => $company_logo,
-                            'source' => 'remoteok.io',
+                            'source' => 'workingnomads.co',
                             'tags' => $tags
                         ];
                     
                        
                             $this->jobsRepo->save($job);
-                       
                     }
                 }
                 

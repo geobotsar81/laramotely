@@ -69,24 +69,23 @@ export default {
     }
 }
 
-.buttonWhite {
+.buttonBlack {
     display: inline-block;
     font-weight: 700;
     font-style: normal;
     font-size: 14px;
-    color: $appBlue;
-    border-radius: 3px;
+    color: $appBlack;
+    border-radius: 4px;
     padding: 15px 40px;
     transition: all 0.4s ease-out;
-    background-color: #fff;
+    background-color: #ffffff;
     text-decoration: none;
-    border: none;
-    border: 1px solid $appBlue;
+    border: solid 1px $appBlack;
 
     &:hover,
     &:focus {
-        color: $appBlue;
-        background-color: #d0ddec;
+        color: #ffffff;
+        background-color: $appBlack;
         text-decoration: none;
         outline: none;
         box-shadow: none;
@@ -98,25 +97,23 @@ export default {
     }
 }
 
-.buttonTransparent {
+.buttonPostAJob {
     display: inline-block;
     font-weight: 700;
     font-style: normal;
     font-size: 14px;
-    color: $appBlue;
-    border-radius: 3px;
-    padding: 15px 40px;
+    color: $appBlack;
+    border-radius: 4px;
+    padding: 5px 20px;
     transition: all 0.4s ease-out;
-    background-color: transparent;
+    background-color: #ffffff;
     text-decoration: none;
-    border: none;
-    border: 1px solid $appGrey;
+    border: solid 1px $appBlack;
 
     &:hover,
     &:focus {
-        color: $appBlue;
-        border: 1px solid $appBlue;
-        background-color: transparent;
+        color: #ffffff;
+        background-color: $appBlack;
         text-decoration: none;
         outline: none;
         box-shadow: none;

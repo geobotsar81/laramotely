@@ -1,15 +1,15 @@
 <template>
-    <header class="header" :class="isActiveBurger ? 'is-active' : ''">
+    <header class="header" :class="headerIsActive ? 'is-active' : ''">
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-10 col-lg-4">
-                    <inertia-link href="/">
+                    <inertia-link href="/" @click="closeMenu">
                         <app-logo class="header__logo img-fluid"></app-logo>
                     </inertia-link>
                 </div>
                 <div class="col-2 col-lg-8 text-end mt-2 mt-md-0">
                     <app-nav v-if="mainMenu" :menu="mainMenu" class="d-none d-lg-inline-block"> </app-nav>
-                    <div class="hamburger hamburger--spring mt-2 mt-sm-0" :class="isActiveBurger ? 'is-active' : ''" @click="toggleBurger">
+                    <div class="hamburger hamburger--spring mt-2 mt-sm-0" :class="headerIsActive ? 'is-active' : ''" @click="toggleBurger">
                         <div class="hamburger-box">
                             <div class="hamburger-inner"></div>
                         </div>
@@ -35,7 +35,7 @@ export default {
     data() {
         return {
             mainMenu: this.$page.props.menus.main["items"],
-            isActiveBurger: false,
+            isActiveBurger: this.headerIsActive,
         };
     },
     emits: ["toggleMobileMenu"],
@@ -44,6 +44,14 @@ export default {
             this.isActiveBurger = !this.isActiveBurger;
             this.$emit("toggleMobileMenu", this.isActiveBurger);
         },
+        closeMenu() {
+            console.log("close menu");
+            this.isActiveBurger = false;
+            this.$emit("toggleMobileMenu", this.isActiveBurger);
+        },
+    },
+    props: {
+        headerIsActive: Boolean,
     },
 };
 </script>
@@ -178,6 +186,8 @@ export default {
     }
 
     .header {
+        padding: 5px 0px;
+
         :deep(.button--large) {
             padding: 5px 10px;
             margin-top: 7px;

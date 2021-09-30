@@ -64,15 +64,8 @@ class WwrScraperService extends Scraper{
                         'tags' => $tags
                     ];
                    
-                    //Break from the loop if the current url already exists in the database
-                    if($this->jobsRepo->urlInDB($url)){
-                        echo "Found:"; print_r($job);
-                        //break;
-                    }else{
-                        $this->jobsRepo->save($job);
-                    }
-                    
                    
+                        $this->jobsRepo->save($job);
                 }
             }
 

@@ -7,12 +7,16 @@ use Illuminate\Http\Request;
 use App\Services\ArcScraperService;
 use App\Services\JobScraperService;
 use App\Services\WwrScraperService;
+use App\Services\SimplyHiredService;
 use App\Services\LarajobsScraperService;
 use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
+use App\Services\GlassDoorScraperService;
+use App\Services\ZipRecruiterScraperService;
 use Symfony\Component\HttpClient\HttpClient;
 use App\Services\StackOverflowScraperService;
+use App\Services\WorkingNomadsScraperService;
 
 class ScraperController extends Controller
 {
@@ -59,7 +63,26 @@ class ScraperController extends Controller
             $arcScraper->scrape();
         }
 
+
         if($type == 7){
+            $workingNomadsScraper=new WorkingNomadsScraperService();
+            $workingNomadsScraper->scrape();
+        }
+
+        if($type == 8){
+            $glassDoorScraper=new GlassDoorScraperService();
+            $glassDoorScraper->scrape();
+        }
+
+        if($type == 9){
+            $simplyHiredScraper=new SimplyHiredService();
+            $simplyHiredScraper->scrape();
+        }
+
+        if($type == 'local'){
+            $zipRecruiterScraper=new ZipRecruiterScraperService();
+            $zipRecruiterScraper->scrape();
+
             $linkedInScraper=new LinkedInScraperService();
             $linkedInScraper->scrape();
         }
