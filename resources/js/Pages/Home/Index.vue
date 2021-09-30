@@ -9,8 +9,48 @@
             <div class="row text-center mb-2">
                 <div class="col-12"><h2>for the remote Laravel developer</h2></div>
             </div>
-            <div class="row text-center mb-5">
+            <div class="row text-center mb-3">
                 <div class="col-12"><p>We search the web for the best remote Laravel jobs, and bring to you a curated list of backend and frontend Laravel jobs.</p></div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="newsletter">
+                        <form name="contacForm" @submit.prevent="submitForm">
+                            <input type="hidden" name="honeypot" v-model="form.honeypot" />
+                            <div v-if="form.errors.honeypot" class="formError">
+                                {{ form.errors.honeypot }}
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-8 col-sm-8">
+                                    Get email notifications for new jobs
+                                    <input type="text" class="form-control mt-1" placeholder="Your email address" v-model="form.email" />
+                                    <div v-if="form.errors.email" class="formError">
+                                        {{ form.errors.email }}
+                                    </div>
+                                    <div class="row" v-if="formSuccess">
+                                        <div class="col-sm-12">
+                                            <div class="formSuccess">You have successfully subscribed</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-4 mt-1">
+                                    <img src="img/LoaderIcon.gif" v-if="form.processing" class="mt-2 mt-md-4" />
+                                    <app-button v-if="!form.processing" type="submit" class="buttonRed mt-2 mt-md-4">Subscribe</app-button>
+                                </div>
+                                <div class="col-lg-2 text-end d-none d-lg-block">
+                                    Or follow us:
+                                    <div class="row mt-2">
+                                        <div class="col-12 newsletter__social">
+                                            <a href="https://twitter.com/laramotely" target="_blank"><i class="fab fa-twitter"></i></a>
+                                            <a href="https://www.facebook.com/laramotely" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-xl-8 col-lg-7 col-md-5 mb-4">
@@ -45,6 +85,7 @@ import TheMain from "@/Shared/TheMain";
 import AppButton from "@/Shared/AppButton";
 import AppJob from "@/Shared/AppJob";
 import Pagination from "@/Shared/AppPagination";
+import { useForm } from "@inertiajs/inertia-vue3";
 
 export default {
     components: {
@@ -54,6 +95,14 @@ export default {
         AppButton,
         AppJob,
         Pagination,
+    },
+    setup() {
+        const form = useForm({
+            email: null,
+            honeypot: null,
+        });
+
+        return { form };
     },
     mounted() {
         this.getJobs();
@@ -70,6 +119,16 @@ export default {
     },
     layout: AppLayout,
     methods: {
+        submitForm() {
+            this.formSuccess = false;
+            this.form.submit("post", route("subscribe"), {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.form.reset("email");
+                    this.formSuccess = true;
+                },
+            });
+        },
         searchJobs() {
             this.currentPage = 1;
             this.getJobs();
@@ -109,6 +168,16 @@ h2 {
     color: $appRed;
 }
 
+.formError {
+    color: $appRed;
+    padding-top: 5px;
+}
+
+.formSuccess {
+    color: $appGreen;
+    padding-top: 5px;
+}
+
 .form-check-input {
     &:hover,
     &:focus {
@@ -118,5 +187,44 @@ h2 {
 .form-check-input:checked {
     background-color: $appRed;
     border-color: $appRed;
+}
+
+.newsletter {
+    border-radius: 4px;
+    background-color: $appBlack;
+    padding: 15px 20px;
+    color: #ffffff;
+
+    :deep(.buttonRed) {
+        width: 100%;
+    }
+}
+
+.newsletter__social {
+    text-align: right;
+    a {
+        display: inline-block;
+        margin: 0px 10px;
+        border-radius: 50%;
+        width: 34px;
+        height: 34px;
+        background-color: $appRed;
+        text-align: center;
+        padding-top: 6px;
+        transition: $appTransition;
+
+        &:hover,
+        &:focus {
+            background-color: #fff;
+            i {
+                color: $appRed;
+            }
+        }
+
+        i {
+            font-size: 22px;
+            color: #fff;
+        }
+    }
 }
 </style>

@@ -16,6 +16,7 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('tags');
             $table->smallInteger('is_scraped')->default(0);
             $table->string('url')->unique();
             $table->text('description')->nullable();
