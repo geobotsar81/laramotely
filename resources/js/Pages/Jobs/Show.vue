@@ -18,7 +18,7 @@
                                         <img
                                             v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'"
                                             :src="storageUrl + 'companies/' + job.company_logo"
-                                            class="img-fluid job__logo"
+                                            class="img-fluid"
                                         />
                                         <div v-else class="job__logoAlternative">{{ job.company }}</div>
                                     </div>
