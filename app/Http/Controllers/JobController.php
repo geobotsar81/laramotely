@@ -12,6 +12,26 @@ use Illuminate\Support\Facades\Cache;
 
 class JobController extends Controller
 {
+
+    /**
+     * Show the jobs page
+     *
+     * @return void
+     */
+    public function all(){
+        $page=getPageFromSlug("jobs");
+        $data=[];
+
+        $jobs=Job::orderBy('posted_date','desc')->get();
+
+        if(!empty($page)){
+            $data=['title' => $page->title." - Laramotely",'description' => $page->meta_description,'url' =>route('home.show')];
+        }
+
+        $data['jobs']=$jobs;
+        return Inertia::render('Jobs/Index',$data)->withViewData(['title' => 'Laramotely - '.$page->title,'description' => $page->meta_description,'url' => route('home.show')]);
+    }
+    
     /**
      * Show the job
      * 

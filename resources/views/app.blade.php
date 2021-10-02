@@ -13,19 +13,19 @@
         <meta name="msapplication-config" content="{{ asset('img/favicons/browserconfig.xml') }}" />
         <meta name="theme-color" content="#ffffff" />
 
-        <title>{{ $title }}</title>
-        <meta name="description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
+        <title inertia="title">{{ $title }}</title>
+        <meta inertia="description" name="description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
 
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content=" {{ !empty($title) ? $title : setting('site.title') }}" />
-        <meta property="og:url" content="{{ $url }}" />
-        <meta property="og:site_name" content="{{ config('name') }}" />
-        <meta property="og:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
-        <meta property="og:image" content="{{ asset('img/ogimage.jpg') }}" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content=" {{ !empty($title) ? $title : setting('site.title') }}" />
-        <meta name="twitter:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
-        <meta name="twitter:image:src" content="{{ asset('img/ogimage.jpg') }}" />
+        <meta inertia="title" property="og:type" content="website" />
+        <meta inertia="og:title" property="og:title" content=" {{ !empty($title) ? $title : setting('site.title') }}" />
+        <meta inertia="og:url" property="og:url" content="{{ $url }}" />
+        <meta inertia="og:site_name" property="og:site_name" content="{{ config('name') }}" />
+        <meta inertia="og:description" property="og:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
+        <meta inertia="og:image" property="og:image" content="{{ asset('img/ogimage.jpg') }}" />
+        <meta inertia="twitter:card" name="twitter:card" content="summary" />
+        <meta inertia="twitter:title" name="twitter:title" content=" {{ !empty($title) ? $title : setting('site.title') }}" />
+        <meta inertia="twitter:description" name="twitter:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
+        <meta inertia="twitter:image" name="twitter:image:src" content="{{ asset('img/ogimage.jpg') }}" />
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-XDNT4JLJD4"></script>

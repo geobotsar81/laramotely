@@ -24,6 +24,9 @@
                         {{ job.formated_location }}
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12 job__date">added {{ job.formated_created }}</div>
+                </div>
                 <div class="row mt-2" v-if="job.formated_tags && job.source != 'remotive.io'">
                     <div class="col-12">
                         <span class="job__tag" v-for="(tag, index) in job.formated_tags" :key="index">{{ tag }}</span>

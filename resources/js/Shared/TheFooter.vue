@@ -16,6 +16,9 @@
                             work remotely, this is the place for you.
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12 mt-4 footer__jobs"><app-button class="buttonRed" :href="route('jobs.show')">view all jobs</app-button></div>
+                    </div>
                 </div>
                 <div class="col-md-6 col-lg-7 text-center text-md-end">
                     <div class="row">
@@ -43,11 +46,13 @@
 </template>
 <script>
 import AppLogoFooter from "@/Shared/AppLogoFooter";
+import AppButton from "@/Shared/AppButton";
 
 export default {
     emits: ["initialised"],
     components: {
         AppLogoFooter,
+        AppButton,
     },
     data() {
         return {
@@ -59,7 +64,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .footer {
-    padding: 40px 0px;
+    padding: 40px 0px 20px 0px;
     color: #fff;
     background-color: $appBlack;
 

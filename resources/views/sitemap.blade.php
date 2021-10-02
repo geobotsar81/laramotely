@@ -7,6 +7,12 @@
         <priority>0.6</priority>
     </url>
     <url>
+        <loc>https://www.laramotely.com/jobs</loc>
+        <lastmod>2021-10-02T06:05:08Z</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
         <loc>https://www.laramotely.com/contact</loc>
         <lastmod>2021-09-19T06:05:08Z</lastmod>
         <changefreq>daily</changefreq>

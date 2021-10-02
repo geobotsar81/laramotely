@@ -79,7 +79,7 @@ class ScraperController extends Controller
             $simplyHiredScraper->scrape();
         }
 
-        if($type == 'local'){
+        if($type == 10){
             $zipRecruiterScraper=new ZipRecruiterScraperService();
             $zipRecruiterScraper->scrape();
 

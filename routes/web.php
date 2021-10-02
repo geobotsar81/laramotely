@@ -24,6 +24,7 @@ use App\Http\Controllers\SitemapController;
 Route::get('/', [PageController::class,'showHome'])->name("home.show");
 Route::post('/subscribe-newsletter', [PageController::class,'subscribe'])->name('subscribe');
 
+Route::get('/jobs', [JobController::class,'all'])->name("jobs.show");
 Route::get('/job/{id}', [JobController::class,'show'])->name("job.show");
 Route::post('/get-jobs', [JobController::class,'index'])->name("job.index");
 Route::get('/post-a-job', [JobController::class,'postJob'])->name("job.post");
