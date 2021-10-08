@@ -17,7 +17,7 @@
                         <h3>{{ job.title }}</h3>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" v-if="$page.props.title == 'Jobs - Laramotely'">
                     <div class="col-12 mb-1">
                         {{ job.source }}
                     </div>
