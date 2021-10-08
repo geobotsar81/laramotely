@@ -22,6 +22,9 @@
                         {{ job.source }}
                     </div>
                 </div>
+                <div class="row" v-if="$page.props.title == 'Jobs - Laramotely'">
+                    <div class="col-12 job__date">{{ job.formated_created }}</div>
+                </div>
                 <div class="row" v-if="job.location">
                     <div class="col-12 job__source">
                         <i v-if="job.location.includes('Remote') || job.location.includes('Anywhere')" class="far fa-globe-americas"></i>
