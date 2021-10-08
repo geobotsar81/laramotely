@@ -17,15 +17,17 @@
                         <h3>{{ job.title }}</h3>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12 mb-1">
+                        {{ job.source }}
+                    </div>
+                </div>
                 <div class="row" v-if="job.location">
                     <div class="col-12 job__source">
                         <i v-if="job.location.includes('Remote') || job.location.includes('Anywhere')" class="far fa-globe-americas"></i>
                         <i v-else class="far fa-map-marker-alt"></i>
                         {{ job.formated_location }}
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 job__date">added {{ job.formated_created }}</div>
                 </div>
                 <div class="row mt-2" v-if="job.formated_tags && job.source != 'remotive.io'">
                     <div class="col-12">
