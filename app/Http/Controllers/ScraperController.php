@@ -82,7 +82,9 @@ class ScraperController extends Controller
         if($type == 10){
             $zipRecruiterScraper=new ZipRecruiterScraperService();
             $zipRecruiterScraper->scrape();
+        }
 
+        if($type == 11){
             $linkedInScraper=new LinkedInScraperService();
             $linkedInScraper->scrape();
         }

@@ -30,6 +30,7 @@ class JobsRepository{
         
         if($this->urlInDB($data["url"]) || $this->titleInDb($data["title"],$data["company"])){
             echo "Already in db<br><br>";
+            echo $data["title"].":".$data["url"]."<br><br>";
         }else{
             echo "Not Found:".$data["title"].",".$data["source"]."<br><br>";
             $job->save();
