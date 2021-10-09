@@ -101,6 +101,7 @@ class JobController extends Controller
                 ->orWhere('tags', 'LIKE', "%{$search}%")
                 ->orWhere('company', 'LIKE', "%{$search}%");
             })
+            ->published()
             ->laravel()
             ->notother()
             ->orderBy('posted_date','desc')->paginate(8);
@@ -110,6 +111,7 @@ class JobController extends Controller
             ->orWhere('location', 'LIKE', "%{$search}%")
             ->orWhere('tags', 'LIKE', "%{$search}%")
             ->orWhere('company', 'LIKE', "%{$search}%")
+            ->published()
             ->laravel()
             ->notother()
             ->orderBy('posted_date','desc')->paginate(8);

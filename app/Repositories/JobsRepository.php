@@ -25,8 +25,9 @@ class JobsRepository{
         $job->company_logo= $data["company_logo"];
         $job->source= $data["source"];
         $job->is_scraped= 0;
+        $job->is_published= 1;
         $job->tags= json_encode($data["tags"]);
-
+        
         if($this->urlInDB($data["url"]) || $this->titleInDb($data["title"],$data["company"])){
             echo "Already in db<br><br>";
         }else{
