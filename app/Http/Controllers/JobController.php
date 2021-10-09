@@ -38,6 +38,10 @@ class JobController extends Controller
      * @return void
      */
     public function show($id){
+
+        $number=($id%5);
+        $ogImage="ogimage$number.jpg";
+
        $job=Job::where('id',$id)->firstOrFail();
        
        $otherJobs=Job::where('id','!=',$id)->orderBy('posted_date','DESC')->take(5)->get();
@@ -61,7 +65,7 @@ class JobController extends Controller
         $title=$job->title.' at '.$job->company.$tagsString;
         $data['meta_title']=$title;
         $data['meta_description']=$description;
-        return Inertia::render('Jobs/Show',$data)->withViewData(['title' => $title,'description' => $description,'url' => route('job.show',$job->id)]);
+        return Inertia::render('Jobs/Show',$data)->withViewData(['ogImage' => $ogImage,'title' => $title,'description' => $description,'url' => route('job.show',$job->id)]);
     }
 
     /**
