@@ -56,7 +56,9 @@ class Job extends Model
                 ->where('title', 'NOT LIKE', "%WordPress%")
                 ->where('description', 'NOT LIKE', "%WordPress%")
                 ->where('title', 'NOT LIKE', "%.Net%")
-                ->where('description', 'NOT LIKE', "%.Net%");
+                ->where('description', 'NOT LIKE', "%.Net%")
+                ->where('title', 'NOT LIKE', "%Drupal%")
+                ->where('description', 'NOT LIKE', "%Drupal%");
     }
 
     public function scopePublished($query)
