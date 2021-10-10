@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="row" v-if="$page.props.title == 'Jobs - Laramotely'">
-                    <div class="col-12 mb-1">
+                    <div class="col-12 mb-1 job__website">
                         {{ job.source }}
                     </div>
                 </div>
@@ -75,6 +75,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.job__website {
+    display: none;
+}
 @media (max-width: 767.98px) {
     :deep(.buttonRed) {
         padding: 5px 20px;

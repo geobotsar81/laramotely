@@ -13,7 +13,7 @@ class JobScraperService extends Scraper{
 
     public function scrape(){
 
-        $jobs=Job::where('is_scraped',0)->where('source' ,'!=', 'ziprecruiter.co.uk')->where('source' ,'!=', 'workingnomads.co')->where('source' ,'!=', 'remotive.io')->where('source' ,'!=', 'remoteok.io')->orderBy('posted_date','DESC')->take(4)->get();
+        $jobs=Job::where('is_scraped',0)->where('source' ,'!=', 'workingnomads.co')->where('source' ,'!=', 'remotive.io')->where('source' ,'!=', 'remoteok.io')->orderBy('posted_date','DESC')->take(4)->get();
 
         if(!empty($jobs)){
             foreach($jobs as $job){
@@ -26,6 +26,9 @@ class JobScraperService extends Scraper{
                 if(!empty($url)){
                     
                     if($source == 'linkedin.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
@@ -41,6 +44,9 @@ class JobScraperService extends Scraper{
                     }
 
                     if($source == 'stackoverflow.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
@@ -55,6 +61,9 @@ class JobScraperService extends Scraper{
                     }
 
                     if($source == 'weworkremotely.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
@@ -69,6 +78,9 @@ class JobScraperService extends Scraper{
                     }
 
                     if($source == 'arc.dev'){
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
@@ -82,7 +94,11 @@ class JobScraperService extends Scraper{
                         $job->save();
                     }
 
-                    if(($source == 'larajobs.com') || ($source == 'ziprecruiter.co')){
+                    if(($source == 'larajobs.com') || ($source == 'ziprecruiter.co.uk')){
+                        
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
@@ -98,6 +114,9 @@ class JobScraperService extends Scraper{
                     }
 
                     if($source == 'glassdoor.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
@@ -112,6 +131,9 @@ class JobScraperService extends Scraper{
                     }
 
                     if($source == 'simplyhired.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 

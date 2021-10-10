@@ -28,7 +28,7 @@ class JobsRepository{
         $job->is_published= 1;
         $job->tags= json_encode($data["tags"]);
         
-        if($this->urlInDB($data["url"]) || $this->titleInDb($data["title"],$data["company"])){
+        if($this->urlInDB($data["url"]) || $this->titleInDb($data["title"],$data["company"],$data["date"])){
             echo "Already in db<br><br>";
             echo $data["title"].":".$data["url"]."<br><br>";
         }else{
@@ -60,9 +60,9 @@ class JobsRepository{
      * @param string $url
      * @return boolean
      */
-    public function titleInDb(string $title,string $company):bool{
+    public function titleInDb(string $title,string $company,string $date):bool{
 
-        $job=Job::where('title',$title)->where('company',$company)->first();
+        $job=Job::where('title',$title)->where('company',$company)->where('posted_date',$date)->first();
 
         return (!empty($job)) ? true : false;
     }
