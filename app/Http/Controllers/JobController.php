@@ -22,7 +22,11 @@ class JobController extends Controller
         $page=getPageFromSlug("jobs");
         $data=[];
 
-        $jobs=Job::orderBy('created_at','desc')->get();
+        $jobs=Job::orderBy('created_at','desc')
+        ->published()
+        ->laravel()
+        ->notother()
+        ->get();
 
         if(!empty($page)){
             $data=['title' => $page->title." - Laramotely",'description' => $page->meta_description,'url' =>route('home.show')];

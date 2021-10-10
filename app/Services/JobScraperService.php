@@ -13,7 +13,7 @@ class JobScraperService extends Scraper{
 
     public function scrape(){
 
-        $jobs=Job::where('is_scraped',0)->where('source' ,'!=', 'linkedin.com')->where('source' ,'!=', 'ziprecruiter.co.uk')->where('source' ,'!=', 'workingnomads.co')->where('source' ,'!=', 'remotive.io')->where('source' ,'!=', 'remoteok.io')->orderBy('posted_date','DESC')->take(4)->get();
+        $jobs=Job::where('is_scraped',0)->where('source' ,'!=', 'ziprecruiter.co.uk')->where('source' ,'!=', 'workingnomads.co')->where('source' ,'!=', 'remotive.io')->where('source' ,'!=', 'remoteok.io')->orderBy('posted_date','DESC')->take(4)->get();
 
         if(!empty($jobs)){
             foreach($jobs as $job){
