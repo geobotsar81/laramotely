@@ -63,7 +63,8 @@ class JobsRepository{
     public function titleInDb(string $title,string $company,string $date):bool{
 
         
-        $job=Job::where('title',$title)->where('company',$company)->where('posted_date',$date)->first();
+        //$job=Job::where('title',$title)->where('company',$company)->where('posted_date',$date)->first();
+        $job=Job::where('title',$title)->where('company',$company)->first();
         $found=(!empty($job)) ? true : false;
         echo "Title in DB:".$found.",".$title.",".$company.",".$date."<br>";
         return $found;
