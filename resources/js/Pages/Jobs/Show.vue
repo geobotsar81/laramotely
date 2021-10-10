@@ -20,7 +20,7 @@
                         <div class="col-8 col-sm-3 col-md-3 col-lg-3 col-xl-2">
                             <div class="">
                                 <div class="row">
-                                    <div class="col-6 col-sm-12">
+                                    <div class="col-8 col-sm-12">
                                         <img
                                             v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'"
                                             :src="storageUrl + 'companies/' + job.company_logo"
@@ -29,8 +29,8 @@
                                         <div v-else class="job__logoAlternative">{{ job.company }}</div>
                                     </div>
                                 </div>
-                                <div class="row mt-2 text-start text-sm-center">
-                                    <div class="col-12 job__companyDetail">{{ job.company }}</div>
+                                <div class="row mt-2 text-start text-sm-center" v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'">
+                                    <div class="col-12">{{ job.company }}</div>
                                 </div>
                             </div>
                         </div>
@@ -229,6 +229,9 @@ h1 {
 }
 @media (max-width: 767.98px) {
     .hero {
+        background-attachment: initial;
+    }
+    .hero {
         height: 250px;
     }
     .hero__content {
@@ -247,6 +250,19 @@ h1 {
 @media (max-width: 575.98px) {
     .hero__content {
         padding-top: 50px;
+    }
+
+    .hero__content__text {
+        font-size: 24px;
+        line-height: 28px;
+    }
+
+    .job__logoAlternative {
+        width: 120px;
+        height: 120px;
+        display: table-cell;
+        vertical-align: middle;
+        padding-top: 0px;
     }
 }
 </style>
