@@ -7,6 +7,7 @@ use App\Services\JobScraperService;
 use App\Services\WwrScraperService;
 use App\Services\SimplyHiredService;
 use App\Services\LarajobsScraperService;
+use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use App\Services\GlassDoorScraperService;
@@ -96,6 +97,12 @@ class Kernel extends ConsoleKernel
             $remotiveScraper->scrape();
         })
         ->hourlyAt(45);
+
+        $schedule->call(function () {
+            $linkedInScraper=new LinkedInScraperService();
+            $linkedInScraper->scrape();
+        })
+        ->hourlyAt(50);
 
         $schedule->call(function () {
             $arcScraper=new ArcScraperService();
