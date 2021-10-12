@@ -1,5 +1,5 @@
 <template>
-    <div class="job">
+    <div class="job" :class="calculateClass()">
         <div class="row align-items-center">
             <div class="col-3 col-md-2 col-lg-1">
                 <img v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'" :src="storageUrl + 'companies/' + job.company_logo" class="img-fluid job__logo" />
@@ -66,11 +66,20 @@ export default {
             type: Object,
             required: true,
         },
+        count: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
             storageUrl: this.$page.props.storageUrl + "/",
         };
+    },
+    methods: {
+        calculateClass() {
+            return this.count % 2 == 0 ? "odd" : "even";
+        },
     },
 };
 </script>
@@ -78,9 +87,7 @@ export default {
 .job__website {
     display: none;
 }
-.job__company {
-    text-align: left;
-}
+
 @media (max-width: 767.98px) {
     :deep(.buttonRed) {
         padding: 5px 20px;

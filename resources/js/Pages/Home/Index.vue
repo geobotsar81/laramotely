@@ -69,7 +69,7 @@
 
             <div class="mt-4" v-if="jobs && !searching">
                 <div v-for="(job, index) in jobs" :key="index">
-                    <app-job :job="job"></app-job>
+                    <app-job :job="job" :count="index"></app-job>
                 </div>
 
                 <pagination :currentPage="currentPage" :links="links" v-model="currentPage" />
