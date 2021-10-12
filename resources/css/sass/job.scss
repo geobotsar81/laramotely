@@ -112,9 +112,24 @@
 }
 
 @media (max-width: 575.98px) {
+    .job {
+        padding: 10px;
+    }
     .job__logoAlternative {
         width: 100%;
         height: 90px;
+    }
+    .job__tag {
+        padding: 0px;
+        color: $appBlack !important;
+        background-color: transparent;
+        margin: 0px 5px;
+        font-size: 12px;
+        display: inline-block;
+
+        &:after {
+            content: ",";
+        }
     }
 }
 

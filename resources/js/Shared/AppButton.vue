@@ -124,4 +124,10 @@ export default {
         padding: 0px 5px;
     }
 }
+
+@media (max-width: 991.98px) {
+    .buttonRed {
+        padding: 12px 25px;
+    }
+}
 </style>
