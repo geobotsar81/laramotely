@@ -1,11 +1,11 @@
 <template>
     <div class="job" :class="calculateClass()">
         <div class="row align-items-center">
-            <div class="col-3 col-md-2 col-lg-1">
+            <div class="col-md-2 col-lg-1 job__logoContainer">
                 <img v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'" :src="storageUrl + 'companies/' + job.company_logo" class="img-fluid job__logo" />
                 <div v-else class="job__logoAlternative">{{ job.company }}</div>
             </div>
-            <div class="col-9 col-md-7 col-lg-8 mb-2">
+            <div class="col-md-7 col-lg-8 mb-2">
                 <div class="row">
                     <div class="col-12 job__date">{{ job.formated_date }}</div>
                 </div>
@@ -95,6 +95,32 @@ export default {
 
     .job h3 {
         font-size: 20px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .job {
+        position: relative;
+        padding-right: 80px;
+    }
+
+    .job__logoContainer {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: 70px;
+        height: 70px;
+        padding: 0px;
+    }
+
+    .job__logo {
+        width: 70px;
+        height: auto;
+    }
+
+    .job__logoAlternative {
+        width: 70px;
+        height: 70px;
     }
 }
 </style>
