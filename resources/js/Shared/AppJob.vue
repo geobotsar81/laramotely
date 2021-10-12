@@ -29,7 +29,7 @@
                         {{ job.formated_location }}
                     </div>
                 </div>
-                <div class="row mt-2">
+                <div class="row mt-1 mt-sm-2">
                     <div class="col-12 job__company">by {{ job.company }}</div>
                 </div>
                 <div class="row" v-if="job.formated_tags && job.source != 'remotive.io'">
