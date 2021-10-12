@@ -4,13 +4,13 @@
     <the-main id="main">
         <div class="container">
             <div class="row text-center">
-                <div class="col-12"><h1>Remote Laravel Jobs</h1></div>
+                <div class="col-12"><h1>Remote & on-site Laravel Jobs</h1></div>
             </div>
             <div class="row text-center mb-sm-2">
-                <div class="col-12"><h2>for the remote Laravel developer</h2></div>
+                <div class="col-12"><h2>for the Laravel developer</h2></div>
             </div>
             <div class="row text-center mb-1 mb-sm-3">
-                <div class="col-12"><p>We search the web for the best remote Laravel jobs, and bring to you a curated list of backend and frontend Laravel jobs.</p></div>
+                <div class="col-12"><p>We search the web for the best remote and on-site Laravel jobs, and bring to you a curated list of backend and full-stack Laravel jobs.</p></div>
             </div>
             <div class="row mb-3 mb-sm-5">
                 <div class="col-12">

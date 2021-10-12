@@ -12,8 +12,8 @@
                     </div>
                     <div class="row">
                         <div class="col-12 footer__text">
-                            We bring to you a curated list of the best Laravel remote jobs, sourced from all over the web. If you are a Full Stack, Frontend or Backend Laravel developer, looking to
-                            work remotely, this is the place for you.
+                            We bring to you a curated list of the best Laravel remote and on-site jobs, sourced from all over the web. If you are a Full Stack, Frontend or Backend Laravel developer,
+                            looking for Laravel jobs, this is the place for you.
                         </div>
                     </div>
                     <div class="row">

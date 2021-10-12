@@ -4,7 +4,7 @@
         <div class="hero__overlay"></div>
         <div class="hero__content">
             <div class="hero__content__title">lara<span>motely</span></div>
-            <div class="hero__content__text">remote jobs for the Laravel developer</div>
+            <div class="hero__content__text">remote and on-site jobs for the Laravel developer</div>
         </div>
     </div>
     <the-main id="main">
