@@ -37,6 +37,7 @@ class Job extends Model
         $tags=$this->tags;
         $tags=json_decode($this->tags);
         if(!is_array($tags)){$tags=explode(',',$tags);}
+        else{$tags=$this->tags;}
         return  $tags;
     }
 
