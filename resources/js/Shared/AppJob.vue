@@ -32,14 +32,9 @@
                 <div class="row mt-1 mt-sm-2">
                     <div class="col-12 job__company">by {{ job.company }}</div>
                 </div>
-                <div class="row" v-if="job.formated_tags && job.source != 'remotive.io'">
+                <div class="row" v-if="job.formated_tags">
                     <div class="col-12 mt-sm-2" v-if="job.formated_tags != ''">
                         <span class="job__tag" v-for="(tag, index) in job.formated_tags" :key="index">{{ tag }}</span>
-                    </div>
-                </div>
-                <div class="row mt-sm-2" v-else>
-                    <div class="col-12">
-                        <span class="job__tag">{{ job.formated_tags }}</span>
                     </div>
                 </div>
 
