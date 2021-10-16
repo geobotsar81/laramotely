@@ -6,6 +6,10 @@
 
 <h2>{{ $job->title }}</h2>
 
+@component('mail::button', ['url' => 'https://www.laramotely.com/job/'.$job->id]) 
+View Job 
+@endcomponent 
+
 @endforeach
 
 {{ config("app.name") }}
