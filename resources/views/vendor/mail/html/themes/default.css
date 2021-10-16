@@ -56,7 +56,6 @@ a img {
     font-size: 14px;
 }
 .job__company {
-    color: #212529;
     font-weight: 600;
     font-size: 13px;
     line-height: 16px;
@@ -289,7 +288,7 @@ img {
 
 .panel {
     border-left: #2d3748 solid 4px;
-    margin: 21px 0;
+    margin: 21px 0 0 0;
 }
 
 .panel-content {
