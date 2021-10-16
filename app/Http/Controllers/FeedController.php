@@ -10,9 +10,9 @@ class FeedController extends Controller
 {
     public function index()
     {
-        $jobs = Job::laravel()->notother()->whereDate('posted_date',Carbon::today())->orderBy('created_at','desc')->take(20)->get();
+        $jobs = Job::laravel()->notother()->whereDate('posted_date','>=',Carbon::today())->orderBy('created_at','desc')->take(20)->get();
         if(empty($jobs)){
-            $jobs = Job::laravel()->notother()->whereDate('posted_date',Carbon::yesterday())->orderBy('created_at','desc')->take(20)->get();
+            $jobs = Job::laravel()->notother()->whereDate('posted_date','>=',Carbon::yesterday())->orderBy('created_at','desc')->take(20)->get();
         }
         return response()->view('feed', [
             'jobs' => $jobs,
