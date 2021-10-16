@@ -10,9 +10,6 @@
 
 <div class="job__location">{{ $job->formated_location }}</div>
 <div class="job__company">by {{ $job->company }}</div>
-@component('mail::button', ['url' => 'https://www.laramotely.com/job/'.$job->id]) 
-View Job 
-@endcomponent 
 @endcomponent
 
 @endforeach
