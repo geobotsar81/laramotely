@@ -4,11 +4,13 @@
 
 @foreach($jobs as $job)
 
+@component('mail::panel')
 <h2>{{ $job->title }}</h2>
 
 @component('mail::button', ['url' => 'https://www.laramotely.com/job/'.$job->id]) 
 View Job 
 @endcomponent 
+@endcomponent
 
 @endforeach
 
