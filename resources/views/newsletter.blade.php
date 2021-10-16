@@ -1,21 +1,17 @@
 @component('mail::message')
 
-<h1>Check out today's jobs on laramotely.com</h1>
+    <h1>Check out today's jobs on laramotely.com</h1>
 
-@foreach($jobs as $job)
+    @foreach($jobs as $job)
 
-    @component('mail::panel')
-    <h2>{{ $job->title }}</h2>
-    {{ $job->location }}
+        <h2>{{ $job->title }}</h2>
+        {{ $job->location }}
 
-        @component('mail::button', ['url' => 'https://www.laramotely.com/job/'.$job->id]) 
-        View Job 
-        @endcomponent 
+            @component('mail::button', ['url' => 'https://www.laramotely.com/job/'.$job->id]) 
+            View Job 
+            @endcomponent 
 
-    @endcomponent
-
-
-@endforeach
+    @endforeach
 
 {{ config("app.name") }}
 @endcomponent
