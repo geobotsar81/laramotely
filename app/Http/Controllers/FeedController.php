@@ -12,16 +12,15 @@ class FeedController extends Controller
     public function index()
     {
 
-        DB::enableQueryLog();
+        //DB::enableQueryLog();
 
         $jobs = Job::laravel()->notother()->whereDate('posted_date','>=',Carbon::today())->orderBy('created_at','desc')->take(20)->get();
         if(empty($jobs) || $jobs->count() == 0){
             $jobs = Job::laravel()->notother()->whereDate('posted_date','>=',Carbon::yesterday())->orderBy('created_at','desc')->take(20)->get();
         }
-        dd($jobs);
-       
+        //dd($jobs);
 
-        dd(DB::getQueryLog());
+        //dd(DB::getQueryLog());
         
         return response()->view('feed', [
             'jobs' => $jobs,
