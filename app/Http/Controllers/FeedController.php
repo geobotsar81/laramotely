@@ -14,10 +14,9 @@ class FeedController extends Controller
 
         DB::enableQueryLog();
 
-        $jobs = Job::laravel()->notother()->whereDate('posted_date','>=',Carbon::today())->orderBy('created_at','desc')->take(20)->get();
-        if(empty($jobs)){
+        
             $jobs = Job::laravel()->notother()->whereDate('posted_date','>=',Carbon::yesterday())->orderBy('created_at','desc')->take(20)->get();
-        }
+      
 
         dd(DB::getQueryLog());
         
