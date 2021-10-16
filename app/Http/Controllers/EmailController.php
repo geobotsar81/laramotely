@@ -66,13 +66,22 @@ class EmailController extends Controller
     public function subscribe(Request $request){
 
         $validated = $request->validate([
-            'email' => 'required|string|email|max:255|unique:emails',
+            'email' => 'required|string|email|max:255',
             'honeypot' => 'present|max:0',
         ]);
 
-        $subscribe=new Email();
-        $subscribe->email= $request["email"];
-        $subscribe->save();
+        $email=Email::where('email',$request["email"])->first();
+
+        if(!empty($email)){
+            $email->is_subscribed=1;
+            $email->save();
+        }else{
+            $subscribe=new Email();
+            $subscribe->email= $request["email"];
+            $subscribe->save();
+        }
+
+        
 
         return redirect()->route('home.show')->with('status', 'You have successfully subscribed');
     }

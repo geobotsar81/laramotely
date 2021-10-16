@@ -7,7 +7,7 @@
                 <div class="col-12"><h1>Unsubscribe from Newsletter</h1></div>
             </div>
             <div class="row text-center mt-4">
-                <div class="col-12" :class="$page.props.messageCode ? 'formSuccess' : 'formError'">{{ $page.props.message }}</div>
+                <div class="col-12" :class="$page.props.messageCode == 1 ? 'formSuccess' : 'formError'">{{ $page.props.message }}</div>
             </div>
         </div>
     </the-main>
