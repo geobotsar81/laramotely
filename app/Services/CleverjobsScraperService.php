@@ -77,7 +77,7 @@ class CleverjobsScraperService extends Scraper{
                     'location' => $location,
                     'company' => $company,
                     'company_logo' => $company_logo,
-                    'source' => 'stackoverflow.com',
+                    'source' => 'cleverjobs.com',
                     'tags' => $tags
                 ];
             

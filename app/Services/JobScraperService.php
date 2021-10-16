@@ -77,6 +77,23 @@ class JobScraperService extends Scraper{
                         $job->save();
                     }
 
+                    if($source == 'cleverjobs.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
+                        $client = new Client(HttpClient::create(['timeout' => 120]));
+                        $crawler = $client->request('GET', $url);
+
+                        echo "Is cleverjobs<br>-------------";
+
+                        if(!empty($crawler->filter('#main section .content.box.has-text-left')->count() > 0)){
+                            $description = $crawler->filter('#main section .content.box.has-text-left')->first()->html();
+                        }
+                        $job->description=$description;
+                        $job->is_scraped=1;
+                        $job->save();
+                    }
+
                     if($source == 'arc.dev'){
                         $job->is_scraped=1;
                         $job->save();
