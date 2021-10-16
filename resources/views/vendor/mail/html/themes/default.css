@@ -76,10 +76,15 @@ a img {
     color: #212529;
 }
 
+.job h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
 /* Typography */
 
 h1 {
-    color: #212529;
+    color: #3d4852;
     font-size: 18px;
     font-weight: bold;
     margin-top: 0;
@@ -90,7 +95,7 @@ h2 {
     font-size: 16px;
     font-weight: bold;
     margin-top: 0;
-    margin-bottom: 5px;
+
     text-align: left;
 }
 
@@ -145,7 +150,7 @@ img {
 }
 
 .header a {
-    color: #212529;
+    color: #3d4852;
     font-size: 19px;
     font-weight: bold;
     text-decoration: none;
@@ -302,12 +307,12 @@ img {
 /* Panels */
 
 .panel {
-    border-left: #4f5267 solid 4px;
+    border-left: #2d3748 solid 4px;
     margin: 21px 0 0 0;
 }
 
 .panel-content {
-    background-color: #f5f5f5;
+    background-color: #edf2f7;
     color: #718096;
     padding: 16px;
 }
