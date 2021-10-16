@@ -3,7 +3,8 @@
 body,
 body *:not(html):not(style):not(br):not(tr):not(code) {
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     position: relative;
 }
 
@@ -32,20 +33,6 @@ a {
 
 a img {
     border: none;
-}
-
-.logo {
-    font-size: 40px;
-    font-weight: 700;
-    color: #212529;
-}
-
-.logo span {
-    color: #ff2d20;
-}
-
-.logo i {
-    font-size: 26px;
 }
 
 /* Typography */
