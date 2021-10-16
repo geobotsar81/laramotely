@@ -48,6 +48,20 @@ a img {
     font-size: 26px;
 }
 
+.job__location {
+    font-style: italic;
+}
+
+.job__date {
+    font-size: 14px;
+}
+.job__company {
+    color: #212529;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+}
+
 /* Typography */
 
 h1 {
@@ -62,6 +76,7 @@ h2 {
     font-size: 16px;
     font-weight: bold;
     margin-top: 0;
+    margin-bottom: 5px;
     text-align: left;
 }
 
