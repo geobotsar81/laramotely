@@ -36,7 +36,7 @@ Route::post('/contact', [ContactController::class,'sendMail'])->name('send-mail'
 
 //Route::get('/scrape/{type}', [ScraperController::class,'scrape'])->name("scraper.scrape");
 Route::get('/email', [EmailController::class,'sendTodaysEmails'])->name("newsletter.send");
-Route::get('/unsubscribe', [EmailController::class,'sendTodaysEmails'])->name("newsletter.unsubscribe");
+Route::get('/unsubscribe/{userID}', [EmailController::class,'sendTodaysEmails'])->name("newsletter.unsubscribe");
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
