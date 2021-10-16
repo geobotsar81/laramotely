@@ -20,6 +20,7 @@ class NewsletterService{
             if(!empty($contacts)){
                 foreach($contacts as $contact){
                     Mail::to($contact->email)->send(new NewsletterMail($jobs,$contact));
+                    echo $contact->email;
                     echo $jobs->count()." jobs";
                     echo $contacts->count()." contacts";
                 }
