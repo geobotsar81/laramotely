@@ -23,7 +23,7 @@ use App\Http\Controllers\SitemapController;
 */
 
 Route::get('/', [PageController::class,'showHome'])->name("home.show");
-Route::post('/subscribe-newsletter', [PageController::class,'subscribe'])->name('subscribe');
+
 
 Route::get('/jobs', [JobController::class,'all'])->name("jobs.show");
 Route::get('/job/{id}', [JobController::class,'show'])->name("job.show");
@@ -35,6 +35,7 @@ Route::get('/contact', [ContactController::class,'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class,'sendMail'])->name('send-mail');
 
 //Route::get('/scrape/{type}', [ScraperController::class,'scrape'])->name("scraper.scrape");
+Route::post('/subscribe-newsletter', [EmailController::class,'subscribe'])->name('subscribe');
 Route::get('/email', [EmailController::class,'sendTodaysEmails'])->name("newsletter.send");
 Route::get('/unsubscribe/{userID}', [EmailController::class,'unsubscribe'])->name("newsletter.unsubscribe");
 

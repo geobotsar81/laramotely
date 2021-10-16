@@ -36,19 +36,7 @@ class PageController extends Controller
         return Inertia::render('Home/Index',$data)->withViewData(['title' => 'Laramotely - '.$page->title,'description' => $page->meta_description,'url' => route('home.show')]);
     }
 
-    public function subscribe(Request $request){
-
-        $validated = $request->validate([
-            'email' => 'required|string|email|max:255|unique:emails',
-            'honeypot' => 'present|max:0',
-        ]);
-
-        $subscribe=new Email();
-        $subscribe->email= $request["email"];
-        $subscribe->save();
-
-        return redirect()->route('home.show')->with('status', 'You have successfully subscribed');
-    }
+   
 
     /**
      * Show Get Help page

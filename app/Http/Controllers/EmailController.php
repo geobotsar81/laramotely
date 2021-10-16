@@ -16,7 +16,6 @@ class EmailController extends Controller
 {
     public function sendTodaysEmails()
     {
-
         $jobs = Job::laravel()->notother()->whereDate('created_at','>=',Carbon::yesterday())->whereDate('posted_date','>=',Carbon::yesterday())->orderBy('posted_date','desc')->take(10)->get();
         $contacts=Email::where('is_subscribed',1)->where('email','geobotsar@hotmail.com')->get();
 
@@ -41,7 +40,7 @@ class EmailController extends Controller
         $userID=Crypt::decryptString($encodedID);
 
         if(!empty($userID)){
-            $email=Email::where('id',$userID)->get();
+            $email=Email::where('id',$userID)->first();
             if(!empty($email)){
                 $email->is_subscribed=0;
                 $email->save();
@@ -60,5 +59,19 @@ class EmailController extends Controller
         $meta['message']=$message;
 
         return Inertia::render('Newsletter/Unsubscribe',$meta)->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => route('newsletter.unsubscribe')]);
+    }
+
+    public function subscribe(Request $request){
+
+        $validated = $request->validate([
+            'email' => 'required|string|email|max:255|unique:emails',
+            'honeypot' => 'present|max:0',
+        ]);
+
+        $subscribe=new Email();
+        $subscribe->email= $request["email"];
+        $subscribe->save();
+
+        return redirect()->route('home.show')->with('status', 'You have successfully subscribed');
     }
 }
