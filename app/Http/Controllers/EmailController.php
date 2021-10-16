@@ -15,7 +15,7 @@ class EmailController extends Controller
     public function sendTodaysEmails()
     {
 
-        $jobs = Job::laravel()->notother()->whereDate('created_at','=',Carbon::today())->whereDate('posted_date','>=',Carbon::yesterday())->orderBy('posted_date','desc')->take(10)->get();
+        $jobs = Job::laravel()->notother()->whereDate('created_at','>=',Carbon::yesterday())->whereDate('posted_date','>=',Carbon::yesterday())->orderBy('posted_date','desc')->take(10)->get();
         //$contacts=Email::get();
 
         if(!empty($jobs)){

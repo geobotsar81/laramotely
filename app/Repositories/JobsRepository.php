@@ -37,6 +37,7 @@ class JobsRepository{
 
             $foundJob=($foundUrl['job']) ? $foundUrl['job'] : $foundTitle['job'];
             $foundJob->posted_date=$data["date"];
+            $foundJob->created_at=$data["date"];
             $foundJob->save();
 
         }else{
