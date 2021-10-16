@@ -6,7 +6,6 @@
 
     @component('mail::panel')
     <h2>{{ $job->title }}</h2>
-    {{ $job->location }}
 
         @component('mail::button', ['url' => 'https://www.laramotely.com/job/'.$job->id]) 
         View Job 
