@@ -4,19 +4,20 @@ namespace App\Console;
 
 use App\Services\ArcScraperService;
 use App\Services\JobScraperService;
+use App\Services\NewsletterService;
 use App\Services\WwrScraperService;
 use App\Services\SimplyHiredService;
 use App\Services\LarajobsScraperService;
 use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
+use App\Http\Controllers\EmailController;
 use App\Services\GlassDoorScraperService;
 use App\Services\CleverjobsScraperService;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Services\ZipRecruiterScraperService;
 use App\Services\StackOverflowScraperService;
 use App\Services\WorkingNomadsScraperService;
-use App\Http\Controllers\EmailController;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -39,7 +40,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-        $schedule->call('App\Http\Controllers\EmailController@sendTodaysEmails')->everyMinute();
+        $schedule->call(function () {
+            $newsletter=new NewsletterService();
+            $newsletter->sendEmails();
+        })
+        ->everyFiveMinutes();
 
         $schedule->call(function () {
             $jobsScraper=new JobScraperService();

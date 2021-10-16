@@ -14,20 +14,6 @@ use Illuminate\Support\Facades\Crypt;
 
 class EmailController extends Controller
 {
-    public function sendTodaysEmails()
-    {
-        $jobs = Job::laravel()->notother()->whereDate('created_at','>=',Carbon::yesterday())->whereDate('posted_date','>=',Carbon::yesterday())->orderBy('posted_date','desc')->take(10)->get();
-        $contacts=Email::where('is_subscribed',1)->where('email','geobotsar@hotmail.com')->get();
-
-        if(!empty($jobs)){
-            if(!empty($contacts)){
-                foreach($contacts as $contact){
-                    Mail::to($contact->email)->send(new NewsletterMail($jobs,$contact));
-                }
-            }
-        }
-        
-    }
 
     /**
      * Unsubscribe a user from the email list
