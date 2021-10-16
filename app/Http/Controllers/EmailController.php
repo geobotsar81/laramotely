@@ -54,7 +54,7 @@ class EmailController extends Controller
         $meta=[];
 
         if(!empty($page)){
-            $meta=['title' => $page->title." - Laramotely",'description' => $page->meta_description,'url' =>route('contact.show')];
+            $meta=['title' => $page->title." - Laramotely",'description' => $page->meta_description,'url' =>route('newsletter.unsubscribe')];
         }
 
         $meta['message']=$message;
