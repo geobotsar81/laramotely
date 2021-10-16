@@ -37,6 +37,7 @@ class EmailController extends Controller
      */
     public function unsubscribe(String $encodedID)
     {
+        $meta=[];
         $userID=Crypt::decryptString($encodedID);
 
         if(!empty($userID)){
@@ -45,20 +46,21 @@ class EmailController extends Controller
                 $email->is_subscribed=0;
                 $email->save();
                 $message="User unsubscribed successfully.";
-            }else{$message="Could not unsubscribe user";}
-        }else{$message="Could not unsubscribe user";}
+                $meta['messageCode']=1;
+            }else{$message="Could not unsubscribe user. Please contact us to remove your email from our list.";$meta['messageCode']=0;}
+        }else{$message="Could not unsubscribe user. Please contact us to remove your email from our list.";$meta['messageCode']=0;}
 
 
         $page=getPageFromSlug("unsubscribe");
-        $meta=[];
+        
 
         if(!empty($page)){
-            $meta=['title' => $page->title." - Laramotely",'description' => $page->meta_description,'url' =>route('newsletter.unsubscribe')];
+            $meta=['title' => $page->title." - Laramotely",'description' => $page->meta_description,'url' =>route('newsletter.unsubscribe',$encodedID)];
         }
 
         $meta['message']=$message;
 
-        return Inertia::render('Newsletter/Unsubscribe',$meta)->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => route('newsletter.unsubscribe')]);
+        return Inertia::render('Newsletter/Unsubscribe',$meta)->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => route('newsletter.unsubscribe',$encodedID)]);
     }
 
     public function subscribe(Request $request){
