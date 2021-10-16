@@ -16,6 +16,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use App\Services\ZipRecruiterScraperService;
 use App\Services\StackOverflowScraperService;
 use App\Services\WorkingNomadsScraperService;
+use App\Http\Controllers\EmailController;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
