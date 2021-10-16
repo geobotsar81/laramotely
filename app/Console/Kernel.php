@@ -11,6 +11,7 @@ use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use App\Services\GlassDoorScraperService;
+use App\Services\CleverjobsScraperService;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Services\ZipRecruiterScraperService;
 use App\Services\StackOverflowScraperService;
@@ -99,6 +100,9 @@ class Kernel extends ConsoleKernel
         ->hourlyAt(45);
 
         $schedule->call(function () {
+            $cleverjobsScraper=new CleverjobsScraperService();
+            $cleverjobsScraper->scrape();
+            
             $linkedInScraper=new LinkedInScraperService();
             $linkedInScraper->scrape();
         })
