@@ -1,17 +1,6 @@
-@component('mail::message') # Title: {{ $jobTitle }}
-
-# Company: {{ $jobCompany }}
-
-# Url: {{ $jobUrl }}
-
-# Email:{{ $jobEmail }}
-
-# Location: {{ $jobLocation }}
-
-# Tags: {{ $jobTags }}
-
-# Descriptioon:
-{{ $jobDescription }}
+@component('mail::message') @foreach($jobs as $job)
+{{ $job->title }}
+@endforeach
 
 {{ config("app.name") }}
 @endcomponent
