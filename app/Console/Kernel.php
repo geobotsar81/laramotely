@@ -38,6 +38,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
+        $schedule->call('App\Http\Controllers\EmailController@sendTodaysEmails')->everyMinute();
+
+        $schedule->call(function () {
+            $jobsScraper=new JobScraperService();
+            $jobsScraper->scrape();
+        })
+        ->everyFiveMinutes();
+
         $schedule->call(function () {
             $jobsScraper=new JobScraperService();
             $jobsScraper->scrape();
