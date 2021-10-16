@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ScraperController;
 use App\Http\Controllers\SitemapController;
@@ -33,7 +34,8 @@ Route::post('/post-job', [JobController::class,'sendJob'])->name('job.send');
 Route::get('/contact', [ContactController::class,'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class,'sendMail'])->name('send-mail');
 
-Route::get('/scrape/{type}', [ScraperController::class,'scrape'])->name("scraper.scrape");
+//Route::get('/scrape/{type}', [ScraperController::class,'scrape'])->name("scraper.scrape");
+Route::get('/email', [EmailController::class,'sendTodaysEmails'])->name("newsletter.send");
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
