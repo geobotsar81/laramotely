@@ -19,5 +19,5 @@ View Job
 
 @endforeach
 
-{{ config("app.name") }}
+<div class="unsubscribe"><a href="{{route('newsletter.unsubscribe',$contactLink)}}">Unsubscribe</a></div>
 @endcomponent

@@ -16,12 +16,14 @@ class EmailController extends Controller
     {
 
         $jobs = Job::laravel()->notother()->whereDate('created_at','>=',Carbon::yesterday())->whereDate('posted_date','>=',Carbon::yesterday())->orderBy('posted_date','desc')->take(10)->get();
-        //$contacts=Email::get();
+        $contacts=Email::where('email','geobotsar@hotmail.com')->get();
 
         if(!empty($jobs)){
-            Mail::to('geobotsar@hotmail.com')->send(new NewsletterMail($jobs));
-        }else{
-            dd("No jobs found");
+            if(!empty($contacts)){
+                foreach($contacts as $contact){
+                Mail::to($contact->email)->send(new NewsletterMail($jobs,$contact));
+                }
+            }
         }
         
     }

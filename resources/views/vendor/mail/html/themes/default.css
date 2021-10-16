@@ -66,6 +66,15 @@ a img {
     margin-bottom: 0px;
 }
 
+.job__unsubscribe {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.job__unsubscribe a {
+    text-decoration: underline;
+}
+
 /* Typography */
 
 h1 {

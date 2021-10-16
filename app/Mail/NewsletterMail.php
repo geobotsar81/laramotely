@@ -3,9 +3,10 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class NewsletterMail extends Mailable
 {
@@ -16,9 +17,10 @@ class NewsletterMail extends Mailable
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data,$contact)
     {
         $this->jobs = $data;
+        $this->contactLink = Crypt::encryptString($contact->id);
     }
 
     /**
@@ -33,6 +35,7 @@ class NewsletterMail extends Mailable
                 ->subject('Latest jobs on laramotely.com')
                 ->with([
                         'jobs' => $this->jobs,
+                        'contactLink' => $this->contactLink,
                     ]);
     }
 }
