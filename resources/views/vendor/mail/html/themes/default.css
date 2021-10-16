@@ -82,6 +82,13 @@ a img {
     margin-bottom: 5px;
 }
 
+.job__reminder {
+    color: #212529;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 12px;
+}
+
 /* Typography */
 
 h1 {
