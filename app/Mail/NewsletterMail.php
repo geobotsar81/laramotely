@@ -30,6 +30,7 @@ class NewsletterMail extends Mailable
      */
     public function build()
     {
+        echo "sending...";
         return $this->from('info@laramotely.com')
                 ->markdown('newsletter')
                 ->subject('Latest jobs on laramotely.com')
