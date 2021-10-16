@@ -30,8 +30,8 @@ class NewsletterMail extends Mailable
     {
         return $this->from('info@laramotely.com')
                 ->markdown('newsletter')
+                ->subject('Latest jobs on laramotely.com')
                 ->with([
-                        'subject' => 'Todays Jobs from laramotely.com',
                         'jobs' => $this->jobs,
                     ]);
     }
