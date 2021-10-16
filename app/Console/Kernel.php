@@ -41,6 +41,7 @@ class Kernel extends ConsoleKernel
     {
 
         $schedule->call(function () {
+            echo 'Running newsletter';
             $newsletter=new NewsletterService();
             $newsletter->sendEmails();
         })
