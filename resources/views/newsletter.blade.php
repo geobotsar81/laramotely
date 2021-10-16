@@ -5,7 +5,7 @@
     @foreach($jobs as $job)
 
         @component('mail::panel')
-            <h2>{{ $job->title }}</h2>
+           {{ $job->title }}
             {{ $job->location }}
         @endcomponent
 
