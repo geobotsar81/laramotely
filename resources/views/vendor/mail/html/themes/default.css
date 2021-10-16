@@ -61,6 +61,10 @@ a img {
     line-height: 16px;
 }
 
+.job .action {
+    margin-bottom: 10px;
+}
+
 /* Typography */
 
 h1 {
