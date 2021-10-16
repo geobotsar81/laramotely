@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use Inertia\Inertia;
 use App\Models\Email;
 use App\Mail\NewsletterMail;
 use Illuminate\Http\Request;
