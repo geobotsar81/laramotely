@@ -13,7 +13,7 @@ class NewsletterService{
     {
         echo 'Got newsletter';
         $jobs = Job::laravel()->notother()->whereDate('created_at','>=',Carbon::yesterday())->whereDate('posted_date','>=',Carbon::yesterday())->orderBy('posted_date','desc')->take(10)->get();
-        $contacts=Email::where('is_subscribed',1)->where('email','geobotsar@gmail.com')->get();
+        $contacts=Email::where('is_subscribed',1)->where('email','geobotsar@hotmail.com')->get();
        
 
         if(!empty($jobs)){
