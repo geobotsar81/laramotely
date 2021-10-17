@@ -1,6 +1,6 @@
 @component('mail::message')
 
-<h1>Check out today's jobs on laramotely.com</h1>
+<h1>Check out our latest jobs on laramotely.com</h1>
 
 @foreach($jobs as $job) @component('mail::panel')
 <div class="job">
