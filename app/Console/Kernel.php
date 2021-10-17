@@ -41,11 +41,10 @@ class Kernel extends ConsoleKernel
     {
 
         $schedule->call(function () {
-            echo 'Running newsletter';
             $newsletter=new NewsletterService();
             $newsletter->sendEmails();
         })
-        ->everyMinute();
+        ->dailyAt('08:56');
 
         $schedule->call(function () {
             $jobsScraper=new JobScraperService();

@@ -23,9 +23,6 @@ use App\Http\Controllers\SitemapController;
 |
 */
 
-Route::get('/time',function (Request $request) {
-   echo date('d/m/Y H:i:s');
-});
 
 Route::get('/', [PageController::class,'showHome'])->name("home.show");
 
