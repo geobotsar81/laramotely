@@ -48,7 +48,7 @@ class JobController extends Controller
 
        $job=Job::where('id',$id)->firstOrFail();
        
-       $otherJobs=Job::where('id','!=',$id)->orderBy('posted_date','DESC')->take(5)->get();
+       $otherJobs=Job::where('id','!=',$id)->published()->orderBy('posted_date','DESC')->take(5)->get();
 
        $data=['job' => $job];
        $data['otherJobs']= $otherJobs;
