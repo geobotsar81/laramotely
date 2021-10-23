@@ -2,7 +2,8 @@
     <div class="job" :class="calculateClass()">
         <div class="row align-items-center">
             <div class="col-md-2 col-lg-1 job__logoContainer">
-                <img v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'" :src="storageUrl + 'companies/' + job.company_logo" class="img-fluid job__logo" />
+                <img v-if="job.company_logo && job.source != 'laramotely.com'" :src="storageUrl + job.company_logo" class="img-fluid job__logo" />
+                <img v-else-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'" :src="storageUrl + 'companies/' + job.company_logo" class="img-fluid job__logo" />
                 <div v-else class="job__logoAlternative">{{ job.company }}</div>
             </div>
             <div class="col-md-7 col-lg-8 mb-2">
