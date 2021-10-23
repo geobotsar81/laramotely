@@ -21,8 +21,9 @@
                             <div class="">
                                 <div class="row">
                                     <div class="col-8 col-sm-12">
+                                        <img v-if="job.company_logo && job.source == 'laramotely.com'" :src="storageUrl + job.company_logo" class="img-fluid job__logo" />
                                         <img
-                                            v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'"
+                                            v-else-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'"
                                             :src="storageUrl + 'companies/' + job.company_logo"
                                             class="img-fluid"
                                         />
