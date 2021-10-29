@@ -36,7 +36,7 @@ Route::post('/post-job', [JobController::class,'sendJob'])->name('job.send');
 Route::get('/contact', [ContactController::class,'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class,'sendMail'])->name('send-mail');
 
-//Route::get('/scrape/{type}', [ScraperController::class,'scrape'])->name("scraper.scrape");
+Route::get('/scrape/{type}', [ScraperController::class,'scrape'])->name("scraper.scrape");
 Route::post('/subscribe-newsletter', [EmailController::class,'subscribe'])->name('subscribe');
 //Route::get('/email', [NewsletterService::class,'sendEmails'])->name("newsletter.send");
 Route::get('/unsubscribe/{userID}', [EmailController::class,'unsubscribe'])->name("newsletter.unsubscribe");

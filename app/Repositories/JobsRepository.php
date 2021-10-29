@@ -35,10 +35,12 @@ class JobsRepository{
             echo "Already in db<br><br>";
             echo $data["title"].":".$data["url"]."<br><br>";
 
+            /*
             $foundJob=($foundUrl['job']) ? $foundUrl['job'] : $foundTitle['job'];
             $foundJob->posted_date=$data["date"];
             $foundJob->created_at=$data["date"];
             $foundJob->save();
+            */
 
         }else{
             echo "Not Found:".$data["title"].",".$data["source"]."<br><br>";
