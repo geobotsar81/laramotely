@@ -89,6 +89,14 @@ import TheMain from "@/Shared/TheMain";
 import AppButton from "@/Shared/AppButton";
 import AppJobCompact from "@/Shared/AppJobCompact";
 import { InertiaLink } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
+
+Inertia.on("navigate", (event) => {
+    gtag("event", "page_view", {
+        page_location: event.detail.page.url,
+    });
+    console.log(`Navigated to ${event.detail.page.url}`);
+});
 
 export default {
     components: {

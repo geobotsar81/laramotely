@@ -86,6 +86,14 @@ import AppButton from "@/Shared/AppButton";
 import AppJob from "@/Shared/AppJob";
 import Pagination from "@/Shared/AppPagination";
 import { useForm } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
+
+Inertia.on("navigate", (event) => {
+    gtag("event", "page_view", {
+        page_location: event.detail.page.url,
+    });
+    console.log(`Navigated to ${event.detail.page.url}`);
+});
 
 export default {
     components: {

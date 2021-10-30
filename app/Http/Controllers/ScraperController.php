@@ -8,6 +8,7 @@ use App\Services\ArcScraperService;
 use App\Services\JobScraperService;
 use App\Services\WwrScraperService;
 use App\Services\SimplyHiredService;
+use App\Services\UkLaravelJobsService;
 use App\Services\LarajobsScraperService;
 use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
@@ -93,6 +94,11 @@ class ScraperController extends Controller
         if($type == 12){
             $cleverjobsScraper=new CleverjobsScraperService();
             $cleverjobsScraper->scrape();
+        }
+
+        if($type == 14){
+            $uklaraveljobsScraper=new UkLaravelJobsService();
+            $uklaraveljobsScraper->scrape();
         }
         
     }

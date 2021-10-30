@@ -94,6 +94,24 @@ class JobScraperService extends Scraper{
                         $job->save();
                     }
 
+                    if($source == 'uklaraveljobs.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
+                        $client = new Client(HttpClient::create(['timeout' => 120]));
+                        $crawler = $client->request('GET', $url);
+
+                        echo "Is uklaraveljobs<br>-------------";
+
+                        if(!empty($crawler->filter('.lead')->count() > 0)){
+                            $description = $crawler->filter('.lead')->first()->html();
+                            $description=strip_tags($description,'<br><p>');
+                        }
+                        $job->description=$description;
+                        $job->is_scraped=1;
+                        $job->save();
+                    }
+
                     if($source == 'arc.dev'){
                         $job->is_scraped=1;
                         $job->save();
