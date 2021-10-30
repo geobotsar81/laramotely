@@ -107,6 +107,12 @@ class JobScraperService extends Scraper{
                             $description = $crawler->filter('.lead')->first()->html();
                             $description=strip_tags($description,'<br><p>');
                         }
+
+                        if(!empty($crawler->filter('.card-body.map-container .btn-primary')->count() > 0)){
+                            $url = $crawler->filter('.card-body.map-container .btn-primary')->first()->attr('href');
+                            $job->url=$url;
+                            echo  "Url:".$url;
+                        }
                         $job->description=$description;
                         $job->is_scraped=1;
                         $job->save();

@@ -7,6 +7,7 @@ use App\Services\JobScraperService;
 use App\Services\NewsletterService;
 use App\Services\WwrScraperService;
 use App\Services\SimplyHiredService;
+use App\Services\UkLaravelJobsService;
 use App\Services\LarajobsScraperService;
 use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
@@ -110,6 +111,9 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             $remotiveScraper=new RemotiveScraperService();
             $remotiveScraper->scrape();
+
+            $uklaraveljobsScraper=new UkLaravelJobsService();
+            $uklaraveljobsScraper->scrape();
         })
         ->hourlyAt(45);
 

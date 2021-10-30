@@ -4,7 +4,7 @@
             <div class="col-md-2 col-lg-1 job__logoContainer">
                 <img v-if="job.company_logo && job.source == 'laramotely.com'" :src="storageUrl + job.company_logo" class="img-fluid job__logo" />
                 <img v-else-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'" :src="storageUrl + 'companies/' + job.company_logo" class="img-fluid job__logo" />
-                <div v-else class="job__logoAlternative">{{ job.company }}</div>
+                <div v-else-if="job.company" class="job__logoAlternative">{{ job.company }}</div>
             </div>
             <div class="col-md-7 col-lg-8 mb-2">
                 <div class="row">
@@ -30,7 +30,7 @@
                         {{ job.formated_location }}
                     </div>
                 </div>
-                <div class="row mt-1 mt-sm-2">
+                <div class="row mt-1 mt-sm-2" v-if="job.company">
                     <div class="col-12 job__company">by {{ job.company }}</div>
                 </div>
                 <div class="row" v-if="job.formated_tags">

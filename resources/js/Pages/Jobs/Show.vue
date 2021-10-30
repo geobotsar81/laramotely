@@ -27,7 +27,7 @@
                                             :src="storageUrl + 'companies/' + job.company_logo"
                                             class="img-fluid"
                                         />
-                                        <div v-else class="job__logoAlternative">{{ job.company }}</div>
+                                        <div v-else-if="job.company" class="job__logoAlternative">{{ job.company }}</div>
                                     </div>
                                 </div>
                                 <div class="row mt-2 text-start text-sm-center" v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'">
