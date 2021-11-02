@@ -65,8 +65,13 @@ class JobController extends Controller
             }
         }else{$tagsString="";}
 
-        $description=$job->company." is looking for a ".$job->title.". Location: ".$job->location.$tagsString.". Read more at ".$job->url;
+        if(!empty($job->company)){
         $title=$job->title.' at '.$job->company.$tagsString;
+        $description=$job->company." is looking for a ".$job->title.". Location: ".$job->location.$tagsString.". Read more at ".$job->url;
+        }else{
+            $title=$job->title.$tagsString;
+            $description=$job->title."needed. Location: ".$job->location.$tagsString.". Read more at ".$job->url;
+        }
         $data['meta_title']=$title;
         $data['meta_description']=$description;
         return Inertia::render('Jobs/Show',$data)->withViewData(['ogImage' => $ogImage,'title' => $title,'description' => $description,'url' => route('job.show',$job->id)]);
