@@ -5,6 +5,7 @@
                 <img v-if="job.company_logo && job.source == 'laramotely.com'" :src="storageUrl + job.company_logo" class="img-fluid job__logo" />
                 <img v-else-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'" :src="storageUrl + 'companies/' + job.company_logo" class="img-fluid job__logo" />
                 <div v-else-if="job.company" class="job__logoAlternative">{{ job.company }}</div>
+                <div v-else class="job__logoAlternative">N/A</div>
             </div>
             <div class="col-md-7 col-lg-8 mb-2">
                 <div class="row">
