@@ -10,7 +10,7 @@
         @if($job->company)
         <title><![CDATA[@php echo $job->company." is looking for a ".$job->title.". Location: ".$job->location; @endphp]]></title>
         @else
-        <title><![CDATA[@php echo $job->title."needed. Location: ".$job->location; @endphp]]></title>
+        <title><![CDATA[@php echo $job->title." needed. Location: ".$job->location; @endphp]]></title>
         @endif
         <link>{{ route('job.show',$job->id) }}</link>
         <guid>{{ route('job.show',$job->id) }}</guid>

@@ -70,7 +70,7 @@ class JobController extends Controller
         $description=$job->company." is looking for a ".$job->title.". Location: ".$job->location.$tagsString.". Read more at ".$job->url;
         }else{
             $title=$job->title.$tagsString;
-            $description=$job->title."needed. Location: ".$job->location.$tagsString.". Read more at ".$job->url;
+            $description=$job->title." needed. Location: ".$job->location.$tagsString.". Read more at ".$job->url;
         }
         $data['meta_title']=$title;
         $data['meta_description']=$description;
