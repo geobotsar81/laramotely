@@ -45,7 +45,7 @@ class Kernel extends ConsoleKernel
             $newsletter=new NewsletterService();
             $newsletter->sendEmails();
         })
-        ->dailyAt('15:00');
+        ->dailyAt('15:30');
 
         $schedule->call(function () {
             $jobsScraper=new JobScraperService();
