@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-8 col-sm-8">
+                                <div class="col-lg-7 col-sm-8">
                                     Get email notifications for new jobs
                                     <input type="text" class="form-control mt-1" placeholder="Your email address" v-model="form.email" />
                                     <div v-if="form.errors.email" class="formError">
@@ -35,10 +35,10 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-sm-4 mt-1">
-                                    <img src="img/LoaderIcon.gif" v-if="form.processing" class="mt-2 mt-md-4" />
+                                    <img src="img/LoaderIcon.gif" v-if="form.processing" class="mt-2 mt-sm-4" />
                                     <app-button v-if="!form.processing" type="submit" class="buttonRed mt-2 mt-md-4">Subscribe</app-button>
                                 </div>
-                                <div class="col-lg-2 text-end d-none d-lg-block">
+                                <div class="col-lg-3 text-end d-none d-lg-block">
                                     Or follow us:
                                     <div class="row mt-2">
                                         <div class="col-12 newsletter__social">
