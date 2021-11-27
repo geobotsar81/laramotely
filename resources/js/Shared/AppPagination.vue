@@ -4,9 +4,9 @@
             <div class="col-12">
                 <nav aria-label="navigation">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item" :class="key == pageNumber ? 'active' : ''" v-for="(link, key) in links" :key="key">
+                        <li class="page-item" :class="link.label == pageNumber ? 'active' : ''" v-for="(link, key) in links" :key="key">
                             <div v-if="link.url === null" class="page-link" v-html="printLabel(link.label)" />
-                            <a href="#" v-else class="page-link" @click.prevent="selectPage(key)" v-html="printLabel(link.label)" preserve-scroll />
+                            <a href="#" v-else class="page-link" @click.prevent="selectPage(link.label)" v-html="printLabel(link.label)" preserve-scroll />
                         </li>
                     </ul>
                 </nav>
@@ -37,10 +37,17 @@ export default {
             return label;
         },
         selectPage(key) {
+            //alert(key);
+            if (key == "Next &raquo;") {
+                key = this.pageNumber + 1;
+            }
+            if (key == "&laquo; Previous") {
+                key = this.pageNumber - 1;
+            }
             let currentPageNumber = parseInt(key);
             this.$emit("update:modelValue", currentPageNumber);
             this.pageNumber = currentPageNumber;
-            //console.log("Emiting Page:" + currentPageNumber);
+            //alert("Emiting Page:" + currentPageNumber);
         },
     },
 };
