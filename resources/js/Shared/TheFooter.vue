@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 mt-4 footer__jobs"><app-button class="buttonRed" :href="route('jobs.show')">view all jobs</app-button></div>
+                        <!--<div class="col-12 mt-4 footer__jobs"><app-button class="buttonRed" :href="route('jobs.show')">view all jobs</app-button></div>-->
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-7 text-center text-md-end">
