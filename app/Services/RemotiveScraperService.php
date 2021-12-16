@@ -35,7 +35,7 @@ class RemotiveScraperService extends Scraper{
                         if($contents){
                         $company_logo = basename($company_logo);
                         $company_logo=str_replace("logo","logo".strtotime(now()),$company_logo);
-                        echo $company_logo."<br><br>";
+                        //echo $company_logo."<br><br>";
                         Storage::disk('local')->put('public/companies/'.$company_logo, $contents);
                         
                         }else{$company_logo="";}

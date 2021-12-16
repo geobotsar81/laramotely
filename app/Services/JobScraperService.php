@@ -13,7 +13,7 @@ class JobScraperService extends Scraper{
 
     public function scrape(){
 
-        $jobs=Job::where('is_scraped',0)->where('source' ,'!=', 'linkedin.com')->where('source' ,'!=', 'ziprecruiter.co.uk')->where('source' ,'!=', 'workingnomads.co')->where('source' ,'!=', 'remotive.io')->where('source' ,'!=', 'remoteok.io')->orderBy('posted_date','DESC')->take(2)->get();
+        $jobs=Job::where('is_scraped',0)->where('source' ,'!=', 'workingnomads.co')->where('source' ,'!=', 'remotive.io')->where('source' ,'!=', 'remoteok.io')->orderBy('posted_date','DESC')->take(4)->get();
 
         if(!empty($jobs)){
             foreach($jobs as $job){
@@ -26,6 +26,9 @@ class JobScraperService extends Scraper{
                 if(!empty($url)){
                     
                     if($source == 'linkedin.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
@@ -41,6 +44,9 @@ class JobScraperService extends Scraper{
                     }
 
                     if($source == 'stackoverflow.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
@@ -55,6 +61,9 @@ class JobScraperService extends Scraper{
                     }
 
                     if($source == 'weworkremotely.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
@@ -68,7 +77,51 @@ class JobScraperService extends Scraper{
                         $job->save();
                     }
 
+                    if($source == 'cleverjobs.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
+                        $client = new Client(HttpClient::create(['timeout' => 120]));
+                        $crawler = $client->request('GET', $url);
+
+                        echo "Is cleverjobs<br>-------------";
+
+                        if(!empty($crawler->filter('#main section .content.box.has-text-left')->count() > 0)){
+                            $description = $crawler->filter('#main section .content.box.has-text-left')->first()->html();
+                        }
+                        $job->description=$description;
+                        $job->is_scraped=1;
+                        $job->save();
+                    }
+
+                    if($source == 'uklaraveljobs.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
+                        $client = new Client(HttpClient::create(['timeout' => 120]));
+                        $crawler = $client->request('GET', $url);
+
+                        echo "Is uklaraveljobs<br>-------------";
+
+                        if(!empty($crawler->filter('.lead')->count() > 0)){
+                            $description = $crawler->filter('.lead')->first()->html();
+                            $description=strip_tags($description,'<br><p>');
+                        }
+
+                        if(!empty($crawler->filter('.card-body.map-container .btn-primary')->count() > 0)){
+                            $url = $crawler->filter('.card-body.map-container .btn-primary')->first()->attr('href');
+                            $job->url=$url;
+                            echo  "Url:".$url;
+                        }
+                        $job->description=$description;
+                        $job->is_scraped=1;
+                        $job->save();
+                    }
+
                     if($source == 'arc.dev'){
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
@@ -82,7 +135,11 @@ class JobScraperService extends Scraper{
                         $job->save();
                     }
 
-                    if(($source == 'larajobs.com') || ($source == 'ziprecruiter.co')){
+                    if(($source == 'larajobs.com') || ($source == 'ziprecruiter.co.uk')){
+                        
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
@@ -98,6 +155,9 @@ class JobScraperService extends Scraper{
                     }
 
                     if($source == 'glassdoor.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 
@@ -112,6 +172,9 @@ class JobScraperService extends Scraper{
                     }
 
                     if($source == 'simplyhired.com'){
+                        $job->is_scraped=1;
+                        $job->save();
+
                         $client = new Client(HttpClient::create(['timeout' => 120]));
                         $crawler = $client->request('GET', $url);
 

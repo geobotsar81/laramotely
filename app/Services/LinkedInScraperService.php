@@ -13,6 +13,7 @@ class LinkedInScraperService extends Scraper{
     public function scrape(){
 
         $url="https://www.linkedin.com/jobs/remote-laravel-jobs";
+        //$url='https://www.linkedin.com/jobs/search/?f_TPR=r604800&f_WT=2&geoId=92000000&keywords=laravel&location=Worldwide';
         $client = new Client(HttpClient::create(['timeout' => 60]));
         $crawler = $client->request('GET', $url);
         
@@ -66,12 +67,8 @@ class LinkedInScraperService extends Scraper{
                         'tags' => $tags
                     ];
 
-                    if(strpos(strtolower($title),"laravel") !== FALSE){
-                        //Break from the loop if the current url already exists in the database
-                     
+                   
                                 $this->jobsRepo->save($job);
-                         
-                    }
                     
                    
                 }

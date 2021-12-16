@@ -44,7 +44,7 @@ class GlassDoorScraperService extends Scraper{
             if(!empty($date)){
                 if(strpos($date,"h") !== FALSE){
                     $date=str_replace("h","",$date);
-                    $date = date('Y-m-d H:i:s', strtotime('-'.$date.' hours', strtotime(now())));
+                    $date = date('Y-m-d H', strtotime('-'.$date.' hours', strtotime(now())));
                 }
                 elseif(strpos($date,"d") !== FALSE){
                     $date=str_replace("d","",$date);

@@ -8,11 +8,13 @@ use App\Services\ArcScraperService;
 use App\Services\JobScraperService;
 use App\Services\WwrScraperService;
 use App\Services\SimplyHiredService;
+use App\Services\UkLaravelJobsService;
 use App\Services\LarajobsScraperService;
 use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use App\Services\GlassDoorScraperService;
+use App\Services\CleverjobsScraperService;
 use App\Services\ZipRecruiterScraperService;
 use Symfony\Component\HttpClient\HttpClient;
 use App\Services\StackOverflowScraperService;
@@ -82,9 +84,21 @@ class ScraperController extends Controller
         if($type == 10){
             $zipRecruiterScraper=new ZipRecruiterScraperService();
             $zipRecruiterScraper->scrape();
+        }
 
+        if($type == 11){
             $linkedInScraper=new LinkedInScraperService();
             $linkedInScraper->scrape();
+        }
+
+        if($type == 12){
+            $cleverjobsScraper=new CleverjobsScraperService();
+            $cleverjobsScraper->scrape();
+        }
+
+        if($type == 14){
+            $uklaraveljobsScraper=new UkLaravelJobsService();
+            $uklaraveljobsScraper->scrape();
         }
         
     }

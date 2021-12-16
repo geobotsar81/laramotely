@@ -41,12 +41,12 @@ class WwrScraperService extends Scraper{
                         $company_logo = $node->filter('.flag-logo')->first()->attr("style");
                         if(strpos($company_logo,"?") !== FALSE){
                         $company_logo = substr($company_logo, 21, strpos($company_logo, '?') - 21);}
-                        echo $company_logo."<br>";
+                        //echo $company_logo."<br>";
                         $contents = @file_get_contents($company_logo);
                         if($contents){
                         $company_logo = basename($company_logo);
                         $company_logo=str_replace("logo","logo".strtotime(now()),$company_logo);
-                        echo $company_logo."<br><br>";
+                        //echo $company_logo."<br><br>";
                         Storage::disk('local')->put('public/companies/'.$company_logo, $contents);
                         
                         }else{$company_logo="";}

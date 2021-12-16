@@ -37,6 +37,7 @@ class Job extends Model
         $tags=$this->tags;
         $tags=json_decode($this->tags);
         if(!is_array($tags)){$tags=explode(',',$tags);}
+       
         return  $tags;
     }
 
@@ -54,6 +55,17 @@ class Job extends Model
         return $query->where('title', 'NOT LIKE', "%wordpress%")
                 ->where('description', 'NOT LIKE', "%wordpress%")
                 ->where('title', 'NOT LIKE', "%WordPress%")
-                ->where('description', 'NOT LIKE', "%WordPress%");
+                ->where('description', 'NOT LIKE', "%WordPress%")
+                ->where('title', 'NOT LIKE', "%.Net%")
+                ->where('description', 'NOT LIKE', "%.Net%")
+                ->where('title', 'NOT LIKE', "%Drupal%")
+                ->where('description', 'NOT LIKE', "%Drupal%")
+                ->where('title', 'NOT LIKE', "%Magento%")
+                ->where('description', 'NOT LIKE', "%Magento%");
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', 1);
     }
 }

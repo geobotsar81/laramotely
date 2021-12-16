@@ -21,11 +21,11 @@
         <meta inertia="og:url" property="og:url" content="{{ $url }}" />
         <meta inertia="og:site_name" property="og:site_name" content="{{ config('name') }}" />
         <meta inertia="og:description" property="og:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
-        <meta inertia="og:image" property="og:image" content="{{ asset('img/ogimage.jpg') }}" />
+        <meta inertia="og:image" property="og:image" content="{{ !empty($ogImage) ? asset('img/'.$ogImage) : asset('img/ogimage.jpg') }}" />
         <meta inertia="twitter:card" name="twitter:card" content="summary" />
         <meta inertia="twitter:title" name="twitter:title" content=" {{ !empty($title) ? $title : setting('site.title') }}" />
         <meta inertia="twitter:description" name="twitter:description" content="{{ !empty($description) ? $description : setting('site.description') }}" />
-        <meta inertia="twitter:image" name="twitter:image:src" content="{{ asset('img/ogimage.jpg') }}" />
+        <meta inertia="twitter:image" name="twitter:image:src" content="{{ !empty($ogImage) ? asset('img/'.$ogImage) : asset('img/ogimage.jpg') }}" />
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-XDNT4JLJD4"></script>

@@ -4,13 +4,13 @@
     <the-main id="main">
         <div class="container">
             <div class="row text-center">
-                <div class="col-12"><h1>Remote Laravel Jobs</h1></div>
+                <div class="col-12"><h1>Remote & on-site Laravel Jobs</h1></div>
             </div>
             <div class="row text-center mb-sm-2">
-                <div class="col-12"><h2>for the remote Laravel developer</h2></div>
+                <div class="col-12"><h2>for the Laravel developer</h2></div>
             </div>
             <div class="row text-center mb-1 mb-sm-3">
-                <div class="col-12"><p>We search the web for the best remote Laravel jobs, and bring to you a curated list of backend and frontend Laravel jobs.</p></div>
+                <div class="col-12"><p>We search the web for the best remote and on-site Laravel jobs, and bring to you a curated list of backend and full-stack Laravel jobs.</p></div>
             </div>
             <div class="row mb-3 mb-sm-5">
                 <div class="col-12">
@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-8 col-sm-8">
+                                <div class="col-lg-7 col-sm-8">
                                     Get email notifications for new jobs
                                     <input type="text" class="form-control mt-1" placeholder="Your email address" v-model="form.email" />
                                     <div v-if="form.errors.email" class="formError">
@@ -35,14 +35,17 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-sm-4 mt-1">
-                                    <img src="img/LoaderIcon.gif" v-if="form.processing" class="mt-2 mt-md-4" />
+                                    <img src="img/LoaderIcon.gif" v-if="form.processing" class="mt-2 mt-sm-4" />
                                     <app-button v-if="!form.processing" type="submit" class="buttonRed mt-2 mt-md-4">Subscribe</app-button>
                                 </div>
-                                <div class="col-lg-2 text-end d-none d-lg-block">
+                                <div class="col-lg-3 text-end d-none d-lg-block">
                                     Or follow us:
                                     <div class="row mt-2">
                                         <div class="col-12 newsletter__social">
                                             <a href="https://twitter.com/laramotely" target="_blank"><i class="fab fa-twitter"></i></a>
+                                            <a href="https://www.linkedin.com/in/laramotely-remote-laravel-jobs-750906221/detail/recent-activity/" target="_blank"
+                                                ><i class="fab fa-linkedin-in"></i
+                                            ></a>
                                             <a href="https://www.facebook.com/laramotely" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                         </div>
                                     </div>
@@ -69,7 +72,7 @@
 
             <div class="mt-4" v-if="jobs && !searching">
                 <div v-for="(job, index) in jobs" :key="index">
-                    <app-job :job="job"></app-job>
+                    <app-job :job="job" :count="index"></app-job>
                 </div>
 
                 <pagination :currentPage="currentPage" :links="links" v-model="currentPage" />
@@ -86,6 +89,14 @@ import AppButton from "@/Shared/AppButton";
 import AppJob from "@/Shared/AppJob";
 import Pagination from "@/Shared/AppPagination";
 import { useForm } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
+
+Inertia.on("navigate", (event) => {
+    gtag("event", "page_view", {
+        page_location: event.detail.page.url,
+    });
+    //console.log(`Navigated to ${event.detail.page.url}`);
+});
 
 export default {
     components: {

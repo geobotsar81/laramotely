@@ -22,7 +22,11 @@ class JobController extends Controller
         $page=getPageFromSlug("jobs");
         $data=[];
 
-        $jobs=Job::orderBy('posted_date','desc')->get();
+        $jobs=Job::orderBy('created_at','desc')
+        ->published()
+        ->laravel()
+        ->notother()
+        ->get();
 
         if(!empty($page)){
             $data=['title' => $page->title." - Laramotely",'description' => $page->meta_description,'url' =>route('home.show')];
@@ -38,9 +42,13 @@ class JobController extends Controller
      * @return void
      */
     public function show($id){
+
+        $number=($id%5);
+        $ogImage="ogimage$number.jpg";
+
        $job=Job::where('id',$id)->firstOrFail();
        
-       $otherJobs=Job::where('id','!=',$id)->orderBy('posted_date','DESC')->take(5)->get();
+       $otherJobs=Job::where('id','!=',$id)->published()->orderBy('posted_date','DESC')->take(5)->get();
 
        $data=['job' => $job];
        $data['otherJobs']= $otherJobs;
@@ -57,11 +65,16 @@ class JobController extends Controller
             }
         }else{$tagsString="";}
 
-        $description=$job->company." is looking for a ".$job->title.". Location: ".$job->location.$tagsString.". Read more at ".$job->url;
+        if(!empty($job->company)){
         $title=$job->title.' at '.$job->company.$tagsString;
+        $description=$job->company." is looking for a ".$job->title.". Location: ".$job->location.$tagsString.". Read more at ".$job->url;
+        }else{
+            $title=$job->title.$tagsString;
+            $description=$job->title." needed. Location: ".$job->location.$tagsString.". Read more at ".$job->url;
+        }
         $data['meta_title']=$title;
         $data['meta_description']=$description;
-        return Inertia::render('Jobs/Show',$data)->withViewData(['title' => $title,'description' => $description,'url' => route('job.show',$job->id)]);
+        return Inertia::render('Jobs/Show',$data)->withViewData(['ogImage' => $ogImage,'title' => $title,'description' => $description,'url' => route('job.show',$job->id)]);
     }
 
     /**
@@ -97,6 +110,7 @@ class JobController extends Controller
                 ->orWhere('tags', 'LIKE', "%{$search}%")
                 ->orWhere('company', 'LIKE', "%{$search}%");
             })
+            ->published()
             ->laravel()
             ->notother()
             ->orderBy('posted_date','desc')->paginate(8);
@@ -106,6 +120,7 @@ class JobController extends Controller
             ->orWhere('location', 'LIKE', "%{$search}%")
             ->orWhere('tags', 'LIKE', "%{$search}%")
             ->orWhere('company', 'LIKE', "%{$search}%")
+            ->published()
             ->laravel()
             ->notother()
             ->orderBy('posted_date','desc')->paginate(8);

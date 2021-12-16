@@ -12,12 +12,12 @@
                     </div>
                     <div class="row">
                         <div class="col-12 footer__text">
-                            We bring to you a curated list of the best Laravel remote jobs, sourced from all over the web. If you are a Full Stack, Frontend or Backend Laravel developer, looking to
-                            work remotely, this is the place for you.
+                            We bring to you a curated list of the best Laravel remote and on-site jobs, sourced from all over the web. If you are a Full Stack, Frontend or Backend Laravel developer,
+                            looking for Laravel jobs, this is the place for you.
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 mt-4 footer__jobs"><app-button class="buttonRed" :href="route('jobs.show')">view all jobs</app-button></div>
+                        <!--<div class="col-12 mt-4 footer__jobs"><app-button class="buttonRed" :href="route('jobs.show')">view all jobs</app-button></div>-->
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-7 text-center text-md-end">
@@ -28,7 +28,7 @@
                     <div class="row mt-4">
                         <div class="col-12 footer__social">
                             <a href="https://twitter.com/laramotely" target="_blank"><i class="fab fa-twitter"></i></a>
-                            <!--<a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>-->
+                            <a href="https://www.linkedin.com/in/laramotely-remote-laravel-jobs-750906221/detail/recent-activity/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                             <a href="https://www.facebook.com/laramotely" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         </div>
                     </div>

@@ -1,6 +1,12 @@
 <template>
     <the-head :title="meta_title" :description="meta_description" :url="route('job.show', job.url)"></the-head>
-    <header></header>
+    <div class="hero" :style="getBackgroundImage">
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <div class="hero__content__title">lara<span>motely</span></div>
+            <div class="hero__content__text">remote and on-site jobs for the Laravel developer</div>
+        </div>
+    </div>
     <the-main id="main">
         <div class="container">
             <div class="row">
@@ -14,17 +20,18 @@
                         <div class="col-8 col-sm-3 col-md-3 col-lg-3 col-xl-2">
                             <div class="">
                                 <div class="row">
-                                    <div class="col-6 col-sm-12">
+                                    <div class="col-8 col-sm-12">
+                                        <img v-if="job.company_logo && job.source == 'laramotely.com'" :src="storageUrl + job.company_logo" class="img-fluid job__logo" />
                                         <img
-                                            v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'"
+                                            v-else-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'"
                                             :src="storageUrl + 'companies/' + job.company_logo"
                                             class="img-fluid"
                                         />
-                                        <div v-else class="job__logoAlternative">{{ job.company }}</div>
+                                        <div v-else-if="job.company" class="job__logoAlternative">{{ job.company }}</div>
                                     </div>
                                 </div>
-                                <div class="row mt-2 text-start text-sm-center">
-                                    <div class="col-12 job__companyDetail">{{ job.company }}</div>
+                                <div class="row mt-2 text-start text-sm-center" v-if="job.company_logo && job.company_logo != 'nologo.svg' && job.source != 'linkedin.com'">
+                                    <div class="col-12">{{ job.company }}</div>
                                 </div>
                             </div>
                         </div>
@@ -82,6 +89,14 @@ import TheMain from "@/Shared/TheMain";
 import AppButton from "@/Shared/AppButton";
 import AppJobCompact from "@/Shared/AppJobCompact";
 import { InertiaLink } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
+
+Inertia.on("navigate", (event) => {
+    gtag("event", "page_view", {
+        page_location: event.detail.page.url,
+    });
+    console.log(`Navigated to ${event.detail.page.url}`);
+});
 
 export default {
     components: {
@@ -96,6 +111,7 @@ export default {
     data() {
         return {
             storageUrl: this.$page.props.storageUrl + "/",
+            publicUrl: this.$page.props.publicUrl + "/",
         };
     },
     computed: {
@@ -111,6 +127,10 @@ export default {
         meta_description: function () {
             return this.$page.props.meta_description;
         },
+        getBackgroundImage() {
+            let imageNumber = this.job.id % 5;
+            return "background-image:url('" + this.publicUrl + "img/headerImage" + imageNumber + ".jpg')";
+        },
     },
 };
 </script>
@@ -122,12 +142,49 @@ h1 {
     font-weight: 700;
 }
 
-header {
+.hero {
     background-image: url("/img/headerImage.jpg");
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     height: 450px;
     margin-top: 70px;
+    position: relative;
+}
+
+.hero__overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero__content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    padding-top: 140px;
+}
+
+.hero__content__title {
+    font-size: 80px;
+    line-height: 80px;
+    font-weight: 700;
+    color: #fff;
+    span {
+        color: $appRed;
+    }
+}
+
+.hero__content__text {
+    font-size: 40px;
+    line-height: 44px;
+    font-weight: 400;
+    color: #fff;
 }
 .job__description {
     :deep(h2) {
@@ -163,19 +220,58 @@ header {
 }
 
 @media (max-width: 1199.98px) {
-    header {
+    .hero {
         height: 400px;
+    }
+    .hero__content {
+        padding-top: 110px;
     }
 }
 
 @media (max-width: 991.98px) {
-    header {
-        height: 300px;
+    .hero {
+        height: 350px;
+    }
+    .hero__content {
+        padding-top: 90px;
     }
 }
 @media (max-width: 767.98px) {
-    header {
-        height: 200px;
+    .hero {
+        background-attachment: initial;
+    }
+    .hero {
+        height: 250px;
+    }
+    .hero__content {
+        padding-top: 70px;
+    }
+
+    .hero__content__title {
+        font-size: 60px;
+    }
+    .hero__content__text {
+        font-size: 30px;
+        line-height: 34px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero__content {
+        padding-top: 50px;
+    }
+
+    .hero__content__text {
+        font-size: 24px;
+        line-height: 28px;
+    }
+
+    .job__logoAlternative {
+        width: 120px;
+        height: 120px;
+        display: table-cell;
+        vertical-align: middle;
+        padding-top: 0px;
     }
 }
 </style>

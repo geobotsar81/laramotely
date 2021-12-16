@@ -4,12 +4,17 @@ namespace App\Console;
 
 use App\Services\ArcScraperService;
 use App\Services\JobScraperService;
+use App\Services\NewsletterService;
 use App\Services\WwrScraperService;
 use App\Services\SimplyHiredService;
+use App\Services\UkLaravelJobsService;
 use App\Services\LarajobsScraperService;
+use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
+use App\Http\Controllers\EmailController;
 use App\Services\GlassDoorScraperService;
+use App\Services\CleverjobsScraperService;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Services\ZipRecruiterScraperService;
 use App\Services\StackOverflowScraperService;
@@ -35,6 +40,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+
+        $schedule->call(function () {
+            $newsletter=new NewsletterService();
+            $newsletter->sendEmails();
+        })
+        ->dailyAt('15:00');
+
+        $schedule->call(function () {
+            $jobsScraper=new JobScraperService();
+            $jobsScraper->scrape();
+        })
+        ->everyFiveMinutes();
 
         $schedule->call(function () {
             $jobsScraper=new JobScraperService();
@@ -94,8 +111,20 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             $remotiveScraper=new RemotiveScraperService();
             $remotiveScraper->scrape();
+
+            $uklaraveljobsScraper=new UkLaravelJobsService();
+            $uklaraveljobsScraper->scrape();
         })
         ->hourlyAt(45);
+
+        $schedule->call(function () {
+            $cleverjobsScraper=new CleverjobsScraperService();
+            $cleverjobsScraper->scrape();
+            
+            $linkedInScraper=new LinkedInScraperService();
+            $linkedInScraper->scrape();
+        })
+        ->hourlyAt(50);
 
         $schedule->call(function () {
             $arcScraper=new ArcScraperService();

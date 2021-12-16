@@ -7,7 +7,11 @@
 <language>en-us</language>  
     @foreach ($jobs as $job)
     <item>
+        @if($job->company)
         <title><![CDATA[@php echo $job->company." is looking for a ".$job->title.". Location: ".$job->location; @endphp]]></title>
+        @else
+        <title><![CDATA[@php echo $job->title." needed. Location: ".$job->location; @endphp]]></title>
+        @endif
         <link>{{ route('job.show',$job->id) }}</link>
         <guid>{{ route('job.show',$job->id) }}</guid>
         <pubDate>@php echo date('r', strtotime($job->posted_date)); @endphp</pubDate>
