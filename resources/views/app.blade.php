@@ -39,6 +39,7 @@
             gtag("config", "G-XDNT4JLJD4");
         </script>
 
+        <!-- Adsense -->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973975964782893" crossorigin="anonymous"></script>
 
         <!-- Fonts -->
