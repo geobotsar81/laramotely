@@ -69,6 +69,19 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="row">
+                        <div class="col-12">
+                            <!-- Laramotely Ad Square Sidebar -->
+                            <ins
+                                class="adsbygoogle"
+                                style="display: block"
+                                data-ad-client="ca-pub-1973975964782893"
+                                data-ad-slot="1689405511"
+                                data-ad-format="auto"
+                                data-full-width-responsive="true"
+                            ></ins>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-12"><h3>Latest Laravel Jobs</h3></div>
                     </div>
                     <div class="mt-4" v-if="otherJobs">
@@ -107,6 +120,18 @@ export default {
         InertiaLink,
     },
     layout: AppLayout,
+    mounted() {
+        this.adsenseAddLoad();
+    },
+
+    methods: {
+        adsenseAddLoad() {
+            let inlineScript = document.createElement("script");
+            inlineScript.type = "text/javascript";
+            inlineScript.text = "(adsbygoogle = window.adsbygoogle || []).push({});";
+            document.getElementsByTagName("body")[0].appendChild(inlineScript);
+        },
+    },
     data() {
         return {
             storageUrl: this.$page.props.storageUrl + "/",
