@@ -4,7 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Job;
 
-class JobsRepository{
+class JobsRepository
+{
 
 
     /**
@@ -13,8 +14,8 @@ class JobsRepository{
      * @param Array $data
      * @return void
      */
-    public function save(Array $data):void{
-
+    public function save(array $data):void
+    {
         $job=new Job();
         $job->title= $data["title"];
         $job->url= $data["url"];
@@ -29,35 +30,27 @@ class JobsRepository{
         $job->tags= json_encode($data["tags"]);
         
         $foundUrl=$this->urlInDB($data["url"]);
-        $foundTitle=$this->titleInDb($data["title"],$data["company"]);
+        $foundTitle=$this->titleInDb($data["title"], $data["company"]);
 
-        if( $foundUrl['found'] || $foundTitle['found']){
-            echo "Already in db<br><br>";
-            echo $data["title"].":".$data["url"]."<br><br>";
-
-            /*
-            $foundJob=($foundUrl['job']) ? $foundUrl['job'] : $foundTitle['job'];
-            $foundJob->posted_date=$data["date"];
-            $foundJob->created_at=$data["date"];
-            $foundJob->save();
-            */
-
-        }else{
-            echo "Not Found:".$data["title"].",".$data["source"]."<br><br>";
+        if ($foundUrl['found'] || $foundTitle['found']) {
+            //echo "Already in db<br><br>";
+            //echo $data["title"].":".$data["url"]."<br><br>";
+        } else {
+            //echo "Not Found:".$data["title"].",".$data["source"]."<br><br>";
             $job->save();
         }
-       
     }
 
 
     /**
-     * Find if a url for a job exists in database 
+     * Find if a url for a job exists in database
      *
      * @param string $url
-     * @return boolean
+     * @return array
      */
-    public function urlInDB(string $url):Array{
-        $job=Job::where('url',$url)->first();
+    public function urlInDB(string $url):array
+    {
+        $job=Job::where('url', $url)->first();
         $found=(!empty($job)) ? true : false;
         $id=(!empty($job)) ? $job->id : null;
         echo "Url in DB:".$found.",".$url."<br>";
@@ -68,14 +61,15 @@ class JobsRepository{
     }
 
     /**
-     * Find if a title for a job exists in database 
+     * Find if a title for a job exists in database
      *
      * @param string $url
-     * @return boolean
+     * @return array
      */
-    public function titleInDb(string $title,string $company):Array{
+    public function titleInDb(string $title, string $company):array
+    {
         //$job=Job::where('title',$title)->where('company',$company)->where('posted_date',$date)->first();
-        $job=Job::where('title',$title)->where('company',$company)->first();
+        $job=Job::where('title', $title)->where('company', $company)->first();
         $found=(!empty($job)) ? true : false;
         $id=(!empty($job)) ? $job->id : null;
         echo "Title in DB:".$found.",".$title.",".$company."<br>";

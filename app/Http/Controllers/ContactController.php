@@ -3,39 +3,48 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use Inertia\Response;
 use Illuminate\Http\Request;
 use TCG\Voyager\Models\Page;
 use App\Mail\ContactFormMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
 
 class ContactController extends Controller
 {
     
     /**
-     * Display the specified resource.
+     * Display the contact page
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param string $slug
+     * @return Response
      */
-    public function show(String $slug = "contact")
+    public function show(String $slug = "contact"):Response
     {
         $cacheDuration=env("CACHE_DURATION");
-        $page = Cache::remember('page.slug.'.$slug, $cacheDuration, function () use($slug){
+        $page = Cache::remember('page.slug.'.$slug, $cacheDuration, function () use ($slug) {
             return Page::where(['slug' => $slug, 'status' => 'ACTIVE'])->firstOrFail();
         });
 
 
-        return Inertia::render('Contact/Index',
-        [
+        return Inertia::render(
+            'Contact/Index',
+            [
             "page" => $page,
-        ])
+        ]
+        )
         ->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => $page->slug]);
     }
 
-    
-    public function sendMail(Request $request){
-
+    /**
+     * Validate the contact form and send the email
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function sendMail(Request $request):RedirectResponse
+    {
         $validated = $request->validate([
             'contactName' => 'required',
             'contactEmail' => 'email:rfc,dns',
@@ -44,7 +53,7 @@ class ContactController extends Controller
         ]);
 
         $contact = [
-            'fullname' => $request['contactName'], 
+            'fullname' => $request['contactName'],
             'email' => $request['contactEmail'],
             'subject' => "Contact Form email",
             'message' => $request['contactMessage'],
@@ -52,8 +61,6 @@ class ContactController extends Controller
 
     
         Mail::to('info@laramotely.com')->send(new ContactFormMail($contact));
-        
         return redirect()->route('contact.show')->with('status', 'Your message has been sent');
     }
-
 }
