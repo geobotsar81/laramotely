@@ -23,83 +23,82 @@ use App\Services\WorkingNomadsScraperService;
 class ScraperController extends Controller
 {
     /**
-     * Scrape
+     * Test the scrapers
      *
      * @return void
      */
-    public function scrape($type){
-
-        if($type == 0){
+    public function scrape($type)
+    {
+        if ($type == 0) {
             $larajobsScraper=new JobScraperService();
             $larajobsScraper->scrape();
         }
 
-        if($type == 1){
+        if ($type == 1) {
             $larajobsScraper=new LarajobsScraperService();
             $larajobsScraper->scrape();
         }
 
-        if($type == 2){
+        if ($type == 2) {
             $remoteokScraper=new RemoteokScraperService();
             $remoteokScraper->scrape();
         }
 
-        if($type == 3){
+        if ($type == 3) {
             $remotiveScraper=new RemotiveScraperService();
             $remotiveScraper->scrape();
         }
 
-        if($type == 4){
+        if ($type == 4) {
             $soScraper=new StackOverflowScraperService();
             //$soScraper->scrape("https://stackoverflow.com/jobs?q=laravel&sort=p");
             $soScraper->scrape();
         }
 
-        if($type == 5){
+        if ($type == 5) {
             $wwrScraper=new WwrScraperService();
             $wwrScraper->scrape();
         }
 
-        if($type == 6){
+        if ($type == 6) {
             $arcScraper=new ArcScraperService();
             $arcScraper->scrape();
         }
 
 
-        if($type == 7){
+        if ($type == 7) {
             $workingNomadsScraper=new WorkingNomadsScraperService();
             $workingNomadsScraper->scrape();
         }
 
-        if($type == 8){
+        if ($type == 8) {
             $glassDoorScraper=new GlassDoorScraperService();
             $glassDoorScraper->scrape();
         }
 
-        if($type == 9){
+        if ($type == 9) {
             $simplyHiredScraper=new SimplyHiredService();
             $simplyHiredScraper->scrape();
         }
 
-        if($type == 10){
+        if ($type == 10) {
             $zipRecruiterScraper=new ZipRecruiterScraperService();
             $zipRecruiterScraper->scrape();
         }
 
-        if($type == 11){
+        if ($type == 11) {
             $linkedInScraper=new LinkedInScraperService();
             $linkedInScraper->scrape();
         }
 
-        if($type == 12){
+        if ($type == 12) {
             $cleverjobsScraper=new CleverjobsScraperService();
             $cleverjobsScraper->scrape();
         }
 
-        if($type == 14){
+        if ($type == 14) {
             $uklaraveljobsScraper=new UkLaravelJobsService();
             $uklaraveljobsScraper->scrape();
         }
-        
     }
 }
