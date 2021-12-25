@@ -81,7 +81,6 @@
         </div>
     </the-main>
 </template>
-
 <script>
 import AppLayout from "@/Layouts/AppLayout";
 import TheHead from "@/Shared/TheHead";
