@@ -76,6 +76,6 @@ class EmailController extends Controller
             $subscribe->save();
         }
 
-        return redirect()->route('home.show')->with('status', 'You have successfully subscribed');
+        return redirect()->route('job.home')->with('status', 'You have successfully subscribed');
     }
 }
