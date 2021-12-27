@@ -19,11 +19,13 @@ use App\Http\Controllers\SitemapController;
 */
 
 
-Route::get('/', [JobController::class,'showHome'])->name("job.home");
-Route::get('/job/{id}', [JobController::class,'show'])->name("job.show");
-Route::post('/get-jobs', [JobController::class,'index'])->name("job.index");
-Route::get('/post-a-job', [JobController::class,'postJob'])->name("job.post");
-Route::post('/post-job', [JobController::class,'sendJob'])->name('job.send');
+Route::prefix('/batch-screening')->middleware(['hasRights:hasBatchTool'])->name('job.')->group(function () {
+    Route::get('/', [JobController::class,'showHome'])->name("home");
+    Route::get('/job/{id}', [JobController::class,'show'])->name("show");
+    Route::post('/get-jobs', [JobController::class,'index'])->name("index");
+    Route::get('/post-a-job', [JobController::class,'postJob'])->name("post");
+    Route::post('/post-job', [JobController::class,'sendJob'])->name('send');
+});
 
 Route::get('/contact', [ContactController::class,'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class,'sendMail'])->name('send-mail');
