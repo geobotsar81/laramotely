@@ -95,7 +95,6 @@ Inertia.on("navigate", (event) => {
     gtag("event", "page_view", {
         page_location: event.detail.page.url,
     });
-    //console.log(`Navigated to ${event.detail.page.url}`);
 });
 
 export default {
@@ -156,8 +155,6 @@ export default {
                 },
             })
                 .then((response) => {
-                    //Show button after generating report
-                    //console.log("Response:" + response.data);
                     this.jobs = response.data.data;
                     this.links = response.data.links;
                     this.searching = false;

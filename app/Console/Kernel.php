@@ -12,7 +12,7 @@ use App\Services\LarajobsScraperService;
 use App\Services\LinkedInScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
-use App\Http\Controllers\EmailController;
+use App\Http\Controllers\NewsletterController;
 use App\Services\GlassDoorScraperService;
 use App\Services\CleverjobsScraperService;
 use Illuminate\Console\Scheduling\Schedule;

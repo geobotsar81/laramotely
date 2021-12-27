@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Crypt;
 
-class EmailController extends Controller
+class NewsletterController extends Controller
 {
 
     /**

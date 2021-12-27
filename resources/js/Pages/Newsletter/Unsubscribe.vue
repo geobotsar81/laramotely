@@ -20,7 +20,6 @@ import TheMain from "@/Shared/TheMain";
 import AppButton from "@/Shared/AppButton";
 import AppJob from "@/Shared/AppJob";
 import Pagination from "@/Shared/AppPagination";
-import { useForm } from "@inertiajs/inertia-vue3";
 
 export default {
     components: {
