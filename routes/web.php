@@ -19,7 +19,7 @@ use App\Http\Controllers\SitemapController;
 */
 
 
-Route::prefix('/batch-screening')->middleware(['hasRights:hasBatchTool'])->name('job.')->group(function () {
+Route::name('job.')->group(function () {
     Route::get('/', [JobController::class,'showHome'])->name("home");
     Route::get('/job/{id}', [JobController::class,'show'])->name("show");
     Route::post('/get-jobs', [JobController::class,'index'])->name("index");

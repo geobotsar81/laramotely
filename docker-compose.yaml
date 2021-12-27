@@ -1,0 +1,98 @@
+version: "3.8"
+
+networks:
+    mynetwork:
+        ipam:
+            config:
+                - subnet: 172.20.0.0/24
+
+services:
+    nginx:
+        container_name: nginx
+        build:
+            context: .
+            dockerfile: docker/nginx.dockerfile
+        ports:
+            - 3001:80
+        volumes:
+            - .:/var/www/html
+        depends_on:
+            - mysql
+            - php
+            - redis
+        networks:
+            mynetwork:
+                ipv4_address: 172.20.0.6
+    mysql:
+        container_name: db
+        image: mysql:8.0
+        tty: true
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_DATABASE: laramotely
+            MYSQL_USER: laravel
+            MYSQL_PASSWORD: secret
+            MYSQL_ROOT_PASSWORD: secret
+            SERVICE_NAME: mysql
+        volumes:
+            - ./docker/mysql:/var/lib/mysql
+        networks:
+            mynetwork:
+                ipv4_address: 172.20.0.7
+    php:
+        container_name: php8
+        build:
+            context: .
+            dockerfile: docker/php.dockerfile
+        volumes:
+            - .:/var/www/html
+        networks:
+            mynetwork:
+                ipv4_address: 172.20.0.8
+    redis:
+        container_name: redis
+        image: redis
+        ports:
+            - 6382:6379
+        networks:
+            mynetwork:
+                ipv4_address: 172.20.0.9
+    composer:
+        container_name: composer
+        build:
+            context: .
+            dockerfile: docker/php.dockerfile
+        volumes:
+            - .:/var/www/html
+        working_dir: /var/www/html
+        depends_on:
+            - mysql
+        entrypoint: ["composer"]
+        networks:
+            mynetwork:
+                ipv4_address: 172.20.0.10
+    npm:
+        container_name: npm
+        image: node:current-alpine
+        volumes:
+            - .:/var/www/html
+        entrypoint: ["npm"]
+        working_dir: /var/www/html
+        networks:
+            mynetwork:
+                ipv4_address: 172.20.0.11
+    artisan:
+        container_name: artisan
+        build:
+            context: .
+            dockerfile: docker/php.dockerfile
+        volumes:
+            - .:/var/www/html
+        working_dir: /var/www/html
+        depends_on:
+            - mysql
+        entrypoint: ["php", "/var/www/html/artisan"]
+        networks:
+            mynetwork:
+                ipv4_address: 172.20.0.12
