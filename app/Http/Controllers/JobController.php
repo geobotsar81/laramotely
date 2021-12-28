@@ -15,6 +15,25 @@ use Illuminate\Support\Facades\Cache;
 
 class JobController extends Controller
 {
+    /**
+     * Display the home page with the jpbs
+     *
+     * @return Response
+     */
+    public function showHome():Response
+    {
+        $page=getPageFromSlug("/");
+        $data=[];
+
+        $jobs=Job::orderBy('posted_date', 'desc')->paginate(8);
+
+        if (!empty($page)) {
+            $data=['title' => $page->title." - Laramotely",'description' => $page->meta_description,'url' =>route('job.home')];
+        }
+
+        $data['jobs']=$jobs;
+        return Inertia::render('Home/Index', $data)->withViewData(['title' => 'Laramotely - '.$page->title,'description' => $page->meta_description,'url' => route('job.home')]);
+    }
 
     /**
      * Display the selected job

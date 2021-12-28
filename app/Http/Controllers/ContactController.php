@@ -38,7 +38,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Validate the contact form and send the email
+     * Validate the contact form and send the contact email
      *
      * @param Request $request
      * @return RedirectResponse

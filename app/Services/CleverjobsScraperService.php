@@ -1,23 +1,26 @@
 <?php
 namespace App\Services;
+
 use Goutte\Client;
 use App\Services\Scraper;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\HttpClient;
 
+class CleverjobsScraperService extends Scraper
+{
 
-class CleverjobsScraperService extends Scraper{
 
-
-    public function scrape(){
-
+    /**
+     * Scrape jobs from cleverjobs.net
+     *
+     * @return void
+     */
+    public function scrape():void
+    {
         $url="https://cleverjobs.net/tags/laravel";
         $client = new Client(HttpClient::create(['timeout' => 60]));
         $crawler = $client->request('GET', $url);
-
         $nodes = $crawler->filter('#main .column.is-four-fifths-fullhd');
-
         
         foreach ($nodes as $node) {
             $node = new Crawler($node);
@@ -26,10 +29,10 @@ class CleverjobsScraperService extends Scraper{
             $company_logo="";
             $location="";
 
-            if(!empty($node->filter('h4')->count() > 0)){
+            if (!empty($node->filter('h4')->count() > 0)) {
                 $url=$node->filter('a')->first()->attr('href');
-                if(strpos($url,"?") !== FALSE){
-                    $url=substr($url,0,strpos($url,"?"));
+                if (strpos($url, "?") !== false) {
+                    $url=substr($url, 0, strpos($url, "?"));
                 }
                 $title = $node->filter('h4')->first()->text();
                 $title=strip_tags($title);
@@ -41,33 +44,30 @@ class CleverjobsScraperService extends Scraper{
 
                 $date=$node->filter('.tags .tag:nth-child(1)')->first()->text();
 
-                if(!empty($date)){
+                if (!empty($date)) {
                     $date=strip_tags($date);
                     
-                    if(strpos($date,"hours ago") !== FALSE){
-                        $date=str_replace(" hours ago","",$date);
+                    if (strpos($date, "hours ago") !== false) {
+                        $date=str_replace(" hours ago", "", $date);
                         $date = date('Y-m-d H:i:s', strtotime('-'.$date.' hours', strtotime(now())));
-                    }
-                    elseif(strpos($date,"days ago") !== FALSE){
-                        $date=str_replace(" days ago","",$date);
+                    } elseif (strpos($date, "days ago") !== false) {
+                        $date=str_replace(" days ago", "", $date);
                         $date = date('Y-m-d', strtotime('-'.$date.' days', strtotime(now())));
-                    }
-                    elseif(strpos($date,"week ago") !== FALSE){
-                        $date=str_replace(" week ago","",$date);
+                    } elseif (strpos($date, "week ago") !== false) {
+                        $date=str_replace(" week ago", "", $date);
                         $date = date('Y-m-d', strtotime('-7 days', strtotime(now())));
-                    }
-                    elseif(strpos($date,"weeks ago") !== FALSE){
-                        $date=str_replace(" weeks ago","",$date);
+                    } elseif (strpos($date, "weeks ago") !== false) {
+                        $date=str_replace(" weeks ago", "", $date);
                         $date = date('Y-m-d', strtotime('-'.($date*7).' days', strtotime(now())));
-                    }elseif(strpos($date,"months ago") !== FALSE){
-                        $date=str_replace(" months ago","",$date);
+                    } elseif (strpos($date, "months ago") !== false) {
+                        $date=str_replace(" months ago", "", $date);
                         $date = date('Y-m-d', strtotime('-'.($date*31).' days', strtotime(now())));
-                    }elseif(strpos($date,"a month ago") !== FALSE){
+                    } elseif (strpos($date, "a month ago") !== false) {
                         $date = date('Y-m-d', strtotime('-'.(31).' days', strtotime(now())));
-                    }else{$date=now();}
+                    } else {
+                        $date=now();
+                    }
                 }
-
-                //$location = $node->filter('.horizontal-list li:nth-child(2)')->first()->text();
 
                 $job=[
                     'title' => $title,
@@ -81,13 +81,8 @@ class CleverjobsScraperService extends Scraper{
                     'tags' => $tags
                 ];
             
-                //print_r($job);
-                //echo "<br><br>----------<br><br>";
-
-                    $this->jobsRepo->save($job);
+                $this->jobsRepo->save($job);
             }
-
         }
-
     }
 }

@@ -1,15 +1,21 @@
 <?php
 namespace App\Services;
+
 use Goutte\Client;
 use App\Services\Scraper;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\HttpClient;
 
+class ZipRecruiterScraperService extends Scraper
+{
 
-class ZipRecruiterScraperService extends Scraper{
-
-    public function scrape(){
-
+    /**
+     * Scrape jobs from ziprecruiter.co.uk
+     *
+     * @return void
+     */
+    public function scrape():void
+    {
         $url="https://www.ziprecruiter.co.uk/Jobs/Laravel";
         $client = new Client(HttpClient::create(['timeout' => 5]));
         $crawler = $client->request('GET', $url);
@@ -29,12 +35,11 @@ class ZipRecruiterScraperService extends Scraper{
             $description = $node->filter('.jobList-description')->first()->html();
             $date=$node->filter('.jobList-date')->first()->text();
 
-            if(!empty($date)){
-                $date=date('Y-m-d',strtotime($date.' 2021'));
+            if (!empty($date)) {
+                $date=date('Y-m-d', strtotime($date.' 2021'));
             }
 
             $tags='';
-
 
             $job=[
                 'title' => $title,
@@ -47,11 +52,8 @@ class ZipRecruiterScraperService extends Scraper{
                 'source' => 'ziprecruiter.co.uk',
                 'tags' => $tags
             ];
-        
            
-                $this->jobsRepo->save($job);
-
+            $this->jobsRepo->save($job);
         }
-
     }
 }

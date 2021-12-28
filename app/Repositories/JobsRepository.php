@@ -32,11 +32,7 @@ class JobsRepository
         $foundUrl=$this->urlInDB($data["url"]);
         $foundTitle=$this->titleInDb($data["title"], $data["company"]);
 
-        if ($foundUrl['found'] || $foundTitle['found']) {
-            //echo "Already in db<br><br>";
-            //echo $data["title"].":".$data["url"]."<br><br>";
-        } else {
-            //echo "Not Found:".$data["title"].",".$data["source"]."<br><br>";
+        if (!$foundUrl['found'] && !$foundTitle['found']) {
             $job->save();
         }
     }

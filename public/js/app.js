@@ -24682,7 +24682,7 @@ __webpack_require__.r(__webpack_exports__);
 _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia.on("navigate", function (event) {
   gtag("event", "page_view", {
     page_location: event.detail.page.url
-  }); //console.log(`Navigated to ${event.detail.page.url}`);
+  });
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -24747,8 +24747,6 @@ _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia.on("navigate", function 
           onlyRemote: this.onlyRemote
         }
       }).then(function (response) {
-        //Show button after generating report
-        //console.log("Response:" + response.data);
         _this2.jobs = response.data.data;
         _this2.links = response.data.links;
         _this2.searching = false;
@@ -25007,8 +25005,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_AppButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Shared/AppButton */ "./resources/js/Shared/AppButton.vue");
 /* harmony import */ var _Shared_AppJob__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/AppJob */ "./resources/js/Shared/AppJob.vue");
 /* harmony import */ var _Shared_AppPagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Shared/AppPagination */ "./resources/js/Shared/AppPagination.vue");
-/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
-
 
 
 
@@ -29603,7 +29599,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
-        href: _ctx.route('home.show')
+        href: _ctx.route('job.home')
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_7, _hoisted_8];

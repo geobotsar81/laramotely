@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Crypt;
 
-class EmailController extends Controller
+class NewsletterController extends Controller
 {
 
     /**
@@ -76,6 +76,6 @@ class EmailController extends Controller
             $subscribe->save();
         }
 
-        return redirect()->route('home.show')->with('status', 'You have successfully subscribed');
+        return redirect()->route('job.home')->with('status', 'You have successfully subscribed');
     }
 }

@@ -1,17 +1,20 @@
 <?php
 namespace App\Services;
+
 use Goutte\Client;
 use App\Services\Scraper;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\HttpClient;
 
-
-class SimplyHiredService extends Scraper{
-
-
-    public function scrape(){
-
+class SimplyHiredService extends Scraper
+{
+    /**
+     * Scrape jobs from simplyhired.com
+     *
+     * @return void
+     */
+    public function scrape():void
+    {
         $url="https://www.simplyhired.com/search?q=laravel&l=Remote&job=5MerubYdbK2fzdV33D7QK3wenlFexivbFjy1d9wNW-RRGovm-B1ohQ";
         $client = new Client(HttpClient::create(['timeout' => 60]));
         $crawler = $client->request('GET', $url);
@@ -28,9 +31,8 @@ class SimplyHiredService extends Scraper{
             $company = $node->filter('.jobposting-company')->first()->text();
             $location = $node->filter('.jobposting-location')->first()->text();
             $description = $node->filter('.jobposting-snippet')->first()->text();
-
             
-            $date=date('Y-m-d H:i:s',strtotime($node->filter('time')->first()->attr('datetime')));
+            $date=date('Y-m-d H:i:s', strtotime($node->filter('time')->first()->attr('datetime')));
 
             $job=[
                 'title' => $title,
@@ -44,10 +46,7 @@ class SimplyHiredService extends Scraper{
                 'tags' => $tags
             ];
            
-                $this->jobsRepo->save($job);
-                
-
+            $this->jobsRepo->save($job);
         }
-
     }
 }

@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <inertia-link :href="route('home.show')"><i class="far fa-chevron-square-left"></i> Back to jobs</inertia-link>
+                    <inertia-link :href="route('job.home')"><i class="far fa-chevron-square-left"></i> Back to jobs</inertia-link>
                 </div>
             </div>
             <div class="row mt-4">

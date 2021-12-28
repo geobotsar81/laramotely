@@ -1,23 +1,24 @@
 <?php
 namespace App\Services;
+
 use Goutte\Client;
 use App\Services\Scraper;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\HttpClient;
 
+class LinkedInScraperService extends Scraper
+{
 
-class LinkedInScraperService extends Scraper{
-
-
-    public function scrape(){
-
+    /**
+     * Scrape jobs from linkedin.com
+     *
+     * @return void
+     */
+    public function scrape():void
+    {
         $url="https://www.linkedin.com/jobs/remote-laravel-jobs";
-        //$url='https://www.linkedin.com/jobs/search/?f_TPR=r604800&f_WT=2&geoId=92000000&keywords=laravel&location=Worldwide';
         $client = new Client(HttpClient::create(['timeout' => 60]));
         $crawler = $client->request('GET', $url);
-        
-
         $nodes = $crawler->filter('.base-card');
 
         foreach ($nodes as $node) {
@@ -29,30 +30,30 @@ class LinkedInScraperService extends Scraper{
             $location="";
             
             
-            if(!empty($node)){
-                if($node->filter('.base-search-card__title')->count() > 0){
-
+            if (!empty($node)) {
+                if ($node->filter('.base-search-card__title')->count() > 0) {
                     $title = $node->filter('.base-search-card__title')->first()->text();
                     $url=$node->filter('.base-card__full-link')->first()->attr("href");
-                    if(strpos($url,"?") !== FALSE){
-                        $url=substr($url,0,strpos($url,"?"));
+                    if (strpos($url, "?") !== false) {
+                        $url=substr($url, 0, strpos($url, "?"));
                     }
 
-                    if($node->filter('time')->count() > 0){
-                    $company = $node->filter('.hidden-nested-link')->first()->text();
+                    if ($node->filter('time')->count() > 0) {
+                        $company = $node->filter('.hidden-nested-link')->first()->text();
                     }
-                    if($node->filter('time')->count() > 0){
-                    $location = $node->filter('.job-search-card__location')->first()->text();
+                    if ($node->filter('time')->count() > 0) {
+                        $location = $node->filter('.job-search-card__location')->first()->text();
                     }
 
-                    if($node->filter('time')->count() > 0){
-                    $date = $node->filter('time')->first()->attr("datetime");
-                    $date=date('Y-m-d',strtotime($date));
-                    }else{$date=now();}
+                    if ($node->filter('time')->count() > 0) {
+                        $date = $node->filter('time')->first()->attr("datetime");
+                        $date=date('Y-m-d', strtotime($date));
+                    } else {
+                        $date=now();
+                    }
 
-                    if(!empty($node->filter('.artdeco-entity-image')->count() > 0)){
+                    if (!empty($node->filter('.artdeco-entity-image')->count() > 0)) {
                         $company_logo = $node->filter('.artdeco-entity-image')->first()->attr("data-ghost-url");
-                        //echo $company_logo."<br>";
                     }
 
                     $job=[
@@ -68,14 +69,9 @@ class LinkedInScraperService extends Scraper{
                     ];
 
                    
-                                $this->jobsRepo->save($job);
-                    
-                   
+                    $this->jobsRepo->save($job);
                 }
             }
-
-
         };
-
     }
 }

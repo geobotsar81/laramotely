@@ -1,17 +1,22 @@
 <?php
 namespace App\Services;
+
 use Goutte\Client;
 use App\Services\Scraper;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\HttpClient;
 
+class StackOverflowScraperService extends Scraper
+{
 
-class StackOverflowScraperService extends Scraper{
-
-
-    public function scrape(){
-
+    /**
+     * Scrape jobs from stackoverflow.com
+     *
+     * @return void
+     */
+    public function scrape():void
+    {
         $url="https://stackoverflow.com/jobs/developer-jobs-using-laravel";
         $client = new Client(HttpClient::create(['timeout' => 60]));
         $crawler = $client->request('GET', $url);
@@ -23,26 +28,29 @@ class StackOverflowScraperService extends Scraper{
             $company_logo="";
             $location="";
             $url="https://stackoverflow.com".$node->filter('.s-link')->first()->attr('href');
-            if(strpos($url,"?") !== FALSE){
-                $url=substr($url,0,strpos($url,"?"));
+            if (strpos($url, "?") !== false) {
+                $url=substr($url, 0, strpos($url, "?"));
             }
             $title = $node->filter('.s-link')->first()->text();
             $company = $node->filter('h3 span')->first()->text();
 
-            if(!empty($node->filter('.s-avatar--image')->count() > 0)){
+            if (!empty($node->filter('.s-avatar--image')->count() > 0)) {
                 $company_logo = $node->filter('.s-avatar--image')->first()->attr("src");
-                if(strpos($company_logo,"?") !== FALSE){
-                    $company_logo = substr($company_logo, 0, strpos($company_logo, '?'));}
+                if (strpos($company_logo, "?") !== false) {
+                    $company_logo = substr($company_logo, 0, strpos($company_logo, '?'));
+                }
                 $contents = @file_get_contents($company_logo);
-                if($contents){
-                Storage::disk('local')->put('public/companies/'.basename($company_logo), $contents);
-                $company_logo = basename($company_logo);
-                }else{$company_logo="";}
+                if ($contents) {
+                    Storage::disk('local')->put('public/companies/'.basename($company_logo), $contents);
+                    $company_logo = basename($company_logo);
+                } else {
+                    $company_logo="";
+                }
             }
 
-            if(!empty($node->filter('.s-tag')->count() > 0)){
-                $tags=$node->filter('.s-tag')->each(function ($node) use($tags){
-                    if(!empty($node)){
+            if (!empty($node->filter('.s-tag')->count() > 0)) {
+                $tags=$node->filter('.s-tag')->each(function ($node) use ($tags) {
+                    if (!empty($node)) {
                         $tag=$node->text();
                         array_push($tags, $tag);
                     }
@@ -52,17 +60,16 @@ class StackOverflowScraperService extends Scraper{
 
             $date=$node->filter('.horizontal-list li:first-child span')->first()->text();
 
-            if(!empty($date)){
-                if(strpos($date,"yesterday") !== FALSE){
+            if (!empty($date)) {
+                if (strpos($date, "yesterday") !== false) {
                     $date = date('Y-m-d', strtotime('-1 days', strtotime(now())));
-                }
-                elseif(strpos($date,"d ago") !== FALSE){
-                    $date=str_replace("d ago","",$date);
+                } elseif (strpos($date, "d ago") !== false) {
+                    $date=str_replace("d ago", "", $date);
                     $date = date('Y-m-d', strtotime('-'.($date*1).' days', strtotime(now())));
-                }else{$date=now();}
+                } else {
+                    $date=now();
+                }
             }
-
-            //$location = $node->filter('.horizontal-list li:nth-child(2)')->first()->text();
 
             $job=[
                 'title' => $title,
@@ -75,13 +82,10 @@ class StackOverflowScraperService extends Scraper{
                 'source' => 'stackoverflow.com',
                 'tags' => $tags
             ];
-           
             
-                if(in_array("laravel",$tags)){
+            if (in_array("laravel", $tags)) {
                 $this->jobsRepo->save($job);
-                }
-
+            }
         }
-
     }
 }
