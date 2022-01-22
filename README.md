@@ -2,9 +2,9 @@
 
 ## Project Summary
 
-A job directory, build with Laravel 8, Vuejs 3, InertiaJs, Bootstrap 5, and Voyager CMS for the backend.
+A jobs board, built with Laravel 8, Vuejs 3, InertiaJs, Bootstrap 5, and Voyager CMS for the backend.
 
-The purpose of this project, was through a series of scrapers, to create a Laravel jobs board, that would work without the need of any mannual work or administration, and to have in one place all Laravel jobs from various job boards.
+The purpose of this project was, through a series of scrapers, to create a Laravel jobs board, that would work without the need of any manual work or administration, and to have in one place all Laravel jobs from various job boards.
 
 View the actual website at <a href="http://www.laramotely.com/" target="_blank">http://www.laramotely.com/</a>.
 
