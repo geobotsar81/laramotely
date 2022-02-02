@@ -11,17 +11,16 @@ class Job extends Model
 {
     use HasFactory;
 
-    public $appends = ['formated_date','formated_created','formated_location','formated_tags'];
-
+    public $appends = ["formated_date", "formated_created", "formated_location", "formated_tags"];
 
     /**
      * Generate a new attribute for a formated post date
      *
      * @return string
      */
-    public function getFormatedDateAttribute():string
+    public function getFormatedDateAttribute(): string
     {
-        $formated_date=\Carbon\Carbon::createFromTimeStamp(strtotime($this->posted_date))->diffForHumans();
+        $formated_date = \Carbon\Carbon::createFromTimeStamp(strtotime($this->posted_date))->diffForHumans();
         return $formated_date;
     }
 
@@ -30,9 +29,9 @@ class Job extends Model
      *
      * @return string
      */
-    public function getFormatedCreatedAttribute():string
+    public function getFormatedCreatedAttribute(): string
     {
-        $formated_date=\Carbon\Carbon::createFromTimeStamp(strtotime($this->created_at))->diffForHumans();
+        $formated_date = \Carbon\Carbon::createFromTimeStamp(strtotime($this->created_at))->diffForHumans();
         return $formated_date;
     }
 
@@ -41,10 +40,10 @@ class Job extends Model
      *
      * @return string
      */
-    public function getFormatedLocationAttribute():string
+    public function getFormatedLocationAttribute(): string
     {
-        $location=strip_tags($this->location);
-        $location=str_replace("🌎", "", $location);
+        $location = strip_tags($this->location);
+        $location = str_replace("🌎", "", $location);
         return $location;
     }
 
@@ -53,15 +52,15 @@ class Job extends Model
      *
      * @return string
      */
-    public function getFormatedTagsAttribute():array
+    public function getFormatedTagsAttribute(): array
     {
-        $tags=$this->tags;
-        $tags=json_decode($this->tags);
+        $tags = $this->tags;
+        $tags = json_decode($this->tags);
         if (!is_array($tags)) {
-            $tags=explode(',', $tags);
+            $tags = explode(",", $tags);
         }
-       
-        return  $tags;
+
+        return $tags;
     }
 
     /**
@@ -70,12 +69,13 @@ class Job extends Model
      * @param [type] $query
      * @return Builder
      */
-    public function scopeLaravel($query):Builder
+    public function scopeLaravel($query): Builder
     {
-        return $query->where('title', 'LIKE', "%laravel%")
-                ->orWhere('description', 'LIKE', "%laravel%")
-                ->orWhere('location', 'LIKE', "%laravel%")
-                ->orWhere('tags', 'LIKE', "%laravel%");
+        return $query
+            ->where("title", "LIKE", "%laravel%")
+            ->orWhere("description", "LIKE", "%laravel%")
+            ->orWhere("location", "LIKE", "%laravel%")
+            ->orWhere("tags", "LIKE", "%laravel%");
     }
 
     /**
@@ -84,18 +84,19 @@ class Job extends Model
      * @param [type] $query
      * @return Builder
      */
-    public function scopeNotother($query):Builder
+    public function scopeNotother($query): Builder
     {
-        return $query->where('title', 'NOT LIKE', "%wordpress%")
-                ->where('description', 'NOT LIKE', "%wordpress%")
-                ->where('title', 'NOT LIKE', "%WordPress%")
-                ->where('description', 'NOT LIKE', "%WordPress%")
-                ->where('title', 'NOT LIKE', "%.Net%")
-                ->where('description', 'NOT LIKE', "%.Net%")
-                ->where('title', 'NOT LIKE', "%Drupal%")
-                ->where('description', 'NOT LIKE', "%Drupal%")
-                ->where('title', 'NOT LIKE', "%Magento%")
-                ->where('description', 'NOT LIKE', "%Magento%");
+        return $query
+            ->where("title", "NOT LIKE", "%wordpress%")
+            ->where("description", "NOT LIKE", "%wordpress%")
+            ->where("title", "NOT LIKE", "%WordPress%")
+            ->where("description", "NOT LIKE", "%WordPress%")
+            ->where("title", "NOT LIKE", "%.Net%")
+            ->where("description", "NOT LIKE", "%.Net%")
+            ->where("title", "NOT LIKE", "%Drupal%")
+            ->where("description", "NOT LIKE", "%Drupal%")
+            ->where("title", "NOT LIKE", "%Magento%")
+            ->where("description", "NOT LIKE", "%Magento%");
     }
 
     /**
@@ -104,8 +105,8 @@ class Job extends Model
      * @param [type] $query
      * @return Builder
      */
-    public function scopePublished($query):Builder
+    public function scopePublished($query): Builder
     {
-        return $query->where('is_published', 1);
+        return $query->where("is_published", 1);
     }
 }

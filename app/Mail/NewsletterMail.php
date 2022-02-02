@@ -17,7 +17,7 @@ class NewsletterMail extends Mailable
      *
      * @return void
      */
-    public function __construct($data,$contact)
+    public function __construct($data, $contact)
     {
         $this->jobs = $data;
         $this->contactLink = Crypt::encryptString($contact->id);
@@ -31,12 +31,12 @@ class NewsletterMail extends Mailable
     public function build()
     {
         echo "sending...";
-        return $this->from('info@laramotely.com')
-                ->markdown('newsletter')
-                ->subject('Latest jobs on laramotely.com')
-                ->with([
-                        'jobs' => $this->jobs,
-                        'contactLink' => $this->contactLink,
-                    ]);
+        return $this->from("info@laramotely.com")
+            ->markdown("newsletter")
+            ->subject("Latest jobs on laramotely.com")
+            ->with([
+                "jobs" => $this->jobs,
+                "contactLink" => $this->contactLink,
+            ]);
     }
 }

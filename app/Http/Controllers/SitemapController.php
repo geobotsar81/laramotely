@@ -13,12 +13,14 @@ class SitemapController extends Controller
      *
      * @return Response
      */
-    public function index():Response
+    public function index(): Response
     {
-        $jobs = Job::orderBy('created_at', 'desc')->get();
+        $jobs = Job::orderBy("created_at", "desc")->get();
 
-        return response()->view('sitemap', [
-            'jobs' => $jobs,
-        ])->header('Content-Type', 'text/xml');
+        return response()
+            ->view("sitemap", [
+                "jobs" => $jobs,
+            ])
+            ->header("Content-Type", "text/xml");
     }
 }

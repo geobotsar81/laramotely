@@ -13,28 +13,22 @@ use Illuminate\Support\Facades\Cache;
 
 class ContactController extends Controller
 {
-    
     /**
      * Display the contact page
      *
      * @param string $slug
      * @return Response
      */
-    public function show(String $slug = "contact"):Response
+    public function show(string $slug = "contact"): Response
     {
-        $cacheDuration=env("CACHE_DURATION");
-        $page = Cache::remember('page.slug.'.$slug, $cacheDuration, function () use ($slug) {
-            return Page::where(['slug' => $slug, 'status' => 'ACTIVE'])->firstOrFail();
+        $cacheDuration = env("CACHE_DURATION");
+        $page = Cache::remember("page.slug." . $slug, $cacheDuration, function () use ($slug) {
+            return Page::where(["slug" => $slug, "status" => "ACTIVE"])->firstOrFail();
         });
 
-
-        return Inertia::render(
-            'Contact/Index',
-            [
+        return Inertia::render("Contact/Index", [
             "page" => $page,
-        ]
-        )
-        ->withViewData(['title' => $page->title,'description' => $page->meta_description,'url' => $page->slug]);
+        ])->withViewData(["title" => $page->title, "description" => $page->meta_description, "url" => $page->slug]);
     }
 
     /**
@@ -43,24 +37,25 @@ class ContactController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function sendMail(Request $request):RedirectResponse
+    public function sendMail(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'contactName' => 'required',
-            'contactEmail' => 'email:rfc,dns',
-            'contactMessage' => 'required',
-            'honeypot' => 'present|max:0',
+            "contactName" => "required",
+            "contactEmail" => "email:rfc,dns",
+            "contactMessage" => "required",
+            "honeypot" => "present|max:0",
         ]);
 
         $contact = [
-            'fullname' => $request['contactName'],
-            'email' => $request['contactEmail'],
-            'subject' => "Contact Form email",
-            'message' => $request['contactMessage'],
+            "fullname" => $request["contactName"],
+            "email" => $request["contactEmail"],
+            "subject" => "Contact Form email",
+            "message" => $request["contactMessage"],
         ];
 
-    
-        Mail::to('info@laramotely.com')->send(new ContactFormMail($contact));
-        return redirect()->route('contact.show')->with('status', 'Your message has been sent');
+        Mail::to("info@laramotely.com")->send(new ContactFormMail($contact));
+        return redirect()
+            ->route("contact.show")
+            ->with("status", "Your message has been sent");
     }
 }
