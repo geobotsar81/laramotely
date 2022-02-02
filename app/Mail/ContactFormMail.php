@@ -28,13 +28,13 @@ class ContactFormMail extends Mailable
      */
     public function build()
     {
-        return $this->from('info@laramotely.com')
-                ->markdown('contactform')
-                ->with([
-                        'subject' => $this->form['subject'],
-                        'message' => $this->form['message'],
-                        'email' => $this->form['email'],
-                        'fullname' => $this->form['fullname'],
-                    ]);
+        return $this->from("info@laramotely.com")
+            ->markdown("contactform")
+            ->with([
+                "subject" => $this->form["subject"],
+                "message" => $this->form["message"],
+                "email" => $this->form["email"],
+                "fullname" => $this->form["fullname"],
+            ]);
     }
 }

@@ -30,73 +30,72 @@ class ScraperController extends Controller
     public function scrape($type)
     {
         if ($type == 0) {
-            $larajobsScraper=new JobScraperService();
+            $larajobsScraper = new JobScraperService();
             $larajobsScraper->scrape();
         }
 
         if ($type == 1) {
-            $larajobsScraper=new LarajobsScraperService();
+            $larajobsScraper = new LarajobsScraperService();
             $larajobsScraper->scrape();
         }
 
         if ($type == 2) {
-            $remoteokScraper=new RemoteokScraperService();
+            $remoteokScraper = new RemoteokScraperService();
             $remoteokScraper->scrape();
         }
 
         if ($type == 3) {
-            $remotiveScraper=new RemotiveScraperService();
+            $remotiveScraper = new RemotiveScraperService();
             $remotiveScraper->scrape();
         }
 
         if ($type == 4) {
-            $soScraper=new StackOverflowScraperService();
+            $soScraper = new StackOverflowScraperService();
             $soScraper->scrape();
         }
 
         if ($type == 5) {
-            $wwrScraper=new WwrScraperService();
+            $wwrScraper = new WwrScraperService();
             $wwrScraper->scrape();
         }
 
         if ($type == 6) {
-            $arcScraper=new ArcScraperService();
+            $arcScraper = new ArcScraperService();
             $arcScraper->scrape();
         }
 
-
         if ($type == 7) {
-            $workingNomadsScraper=new WorkingNomadsScraperService();
+            $workingNomadsScraper = new WorkingNomadsScraperService();
             $workingNomadsScraper->scrape();
         }
 
         if ($type == 8) {
-            $glassDoorScraper=new GlassDoorScraperService();
+            $glassDoorScraper = new GlassDoorScraperService();
             $glassDoorScraper->scrape();
         }
 
         if ($type == 9) {
-            $simplyHiredScraper=new SimplyHiredService();
+            $simplyHiredScraper = new SimplyHiredService();
             $simplyHiredScraper->scrape();
         }
 
         if ($type == 10) {
-            $zipRecruiterScraper=new ZipRecruiterScraperService();
+            $zipRecruiterScraper = new ZipRecruiterScraperService();
             $zipRecruiterScraper->scrape();
         }
 
         if ($type == 11) {
-            $linkedInScraper=new LinkedInScraperService();
+            $linkedInScraper = new LinkedInScraperService();
             $linkedInScraper->scrape();
         }
 
         if ($type == 12) {
-            $cleverjobsScraper=new CleverjobsScraperService();
+            $cleverjobsScraper = new CleverjobsScraperService();
             $cleverjobsScraper->scrape();
         }
 
         if ($type == 14) {
-            $uklaraveljobsScraper=new UkLaravelJobsService();
+            $uklaraveljobsScraper = new UkLaravelJobsService();
             $uklaraveljobsScraper->scrape();
         }
     }
