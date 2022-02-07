@@ -52,7 +52,7 @@ class Job extends Model
      *
      * @return string
      */
-    public function getFormatedTagsAttribute(): array
+    public function getFormatedTagsAttribute(): ?array
     {
         $tags = $this->tags;
         $tags = json_decode($this->tags);
