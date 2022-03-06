@@ -55,6 +55,26 @@
                         </div>
                     </div>
 
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <div class="commandpost">
+                                <a href="https://commandpost.dev/" target="_blank">
+                                    <div class="row">
+                                        <div class="col-12"><img :src="publicUrl + '/img/commandpost2.jpg'" class="img-fluid" /></div>
+                                    </div>
+                                    <div class="commandpost__content">
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <h2><i class="far fa-code"></i> commadpost.dev</h2>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2"><div class="col-12">A place for web devs to store their commands and organise them into collections</div></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row mb-5" v-if="job.description">
                         <div class="col-12 job__description">
                             <span v-html="job.description"></span>
@@ -183,6 +203,46 @@ h1 {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.commandpost {
+    border: solid 1px $appGrey;
+    border-radius: $appBorderRadius;
+    overflow: hidden;
+
+    img {
+        transition: $appTransition;
+    }
+
+    &:hover,
+    &:focus {
+        img {
+            transform: scale(101%);
+        }
+
+        .commandpost__content {
+            background-color: $appLightGrey;
+
+            h2 {
+                color: $appRed;
+            }
+        }
+    }
+}
+
+.commandpost__content {
+    padding: 10px;
+    color: $appBlack;
+    font-size: 18px;
+    transition: $appTransition;
+
+    h2 {
+        margin: 0px;
+        padding: 0px;
+        font-size: 20px;
+        font-weight: 700;
+        transition: $appTransition;
+    }
 }
 
 .hero__content {
