@@ -55,7 +55,7 @@
                         </div>
                     </div>
 
-                    <div class="row mb-5">
+                    <!--<div class="row mb-5">
                         <div class="col-12">
                             <div class="commandpost">
                                 <a href="https://commandpost.dev/" target="_blank">
@@ -73,7 +73,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="row mb-5" v-if="job.description">
                         <div class="col-12 job__description">
@@ -88,7 +88,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="row">
+                    <div class="row" v-if="job.description">
                         <div class="col-12">
                             <!-- Laramotely Ad Square Sidebar -->
                             <ins
