@@ -110,6 +110,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <a href="https://www.free-online-tools.com/" target="_blank"><img class="img-fluid freeOnlineTools" :src="publicUrl + '/img/freeonlinetools.png'" /></a>
+                    </div>
+                </div>
             </div>
         </div>
     </the-main>
@@ -205,7 +210,8 @@ h1 {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.commandpost {
+.commandpost,
+.freeOnlineTools {
     border: solid 1px $appGrey;
     border-radius: $appBorderRadius;
     overflow: hidden;
