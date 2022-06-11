@@ -16,9 +16,6 @@
                             looking for Laravel jobs, this is the place for you.
                         </div>
                     </div>
-                    <div class="row">
-                        <!--<div class="col-12 mt-4 footer__jobs"><app-button class="buttonRed" :href="route('jobs.show')">view all jobs</app-button></div>-->
-                    </div>
                 </div>
                 <div class="col-md-6 col-lg-7 text-center text-md-end">
                     <div class="row">
@@ -30,6 +27,17 @@
                             <a href="https://twitter.com/laramotely" target="_blank"><i class="fab fa-twitter"></i></a>
                             <a href="https://www.linkedin.com/in/laramotely-remote-laravel-jobs-750906221/detail/recent-activity/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                             <a href="https://www.facebook.com/laramotely" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 footer__text">
+                        <div class="row">
+                            <div class="col-12">
+                                <strong>Partner websites:</strong>
+                                <a href="https://www.free-online-tools.com/" target="_blank">free-online-tools.com</a>
+                                | <a href="https://commandpost.dev/" target="_blank">commandpost.dev</a> | <a href="https://captainbrew.com/" target="_blank">captainbrew.com</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,6 +93,16 @@ export default {
 
 .footer__text {
     opacity: 0.8;
+
+    a {
+        color: #ffffff;
+        padding: 0px 5px;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
 }
 
 .footer__count {
