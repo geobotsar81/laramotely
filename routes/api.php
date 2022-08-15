@@ -19,6 +19,6 @@ Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(["auth:sanctum", "throttle:10,1"])->group(function () {
+Route::middleware(["throttle:10,1"])->group(function () {
     Route::post("/v1/get-jobs", [ApiController::class, "getJobs"])->name("api.jobs.get");
 });
