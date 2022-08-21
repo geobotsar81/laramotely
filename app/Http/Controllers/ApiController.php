@@ -48,7 +48,7 @@ class ApiController extends Controller
                 ->laravel()
                 ->notother()
                 ->orderBy("posted_date", "desc")
-                ->paginate(50);
+                ->paginate(25);
         } else {
             $jobs = Job::where("title", "LIKE", "%{$search}%")
                 ->orWhere("description", "LIKE", "%{$search}%")
@@ -59,7 +59,7 @@ class ApiController extends Controller
                 ->laravel()
                 ->notother()
                 ->orderBy("posted_date", "desc")
-                ->paginate(50);
+                ->paginate(25);
         }
 
         return response()->json($jobs);
