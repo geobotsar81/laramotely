@@ -11,7 +11,7 @@ class Job extends Model
 {
     use HasFactory;
 
-    public $appends = ["formated_date", "formated_created", "formated_location", "formated_tags"];
+    public $appends = ["formated_date", "formated_created", "formated_location", "formated_tags", "formated_image"];
 
     /**
      * Generate a new attribute for a formated post date
@@ -61,6 +61,19 @@ class Job extends Model
         }
 
         return $tags;
+    }
+
+    /**
+     * Generate a new attribute for images that exist
+     *
+     * @return string
+     */
+    public function getFormatedImageAttribute()
+    {
+        $image = $this->company_logo;
+        $file = public_path("storage/companies/" . $image);
+
+        return file_exists($file) ? $image : "";
     }
 
     /**
