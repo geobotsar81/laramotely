@@ -16,10 +16,12 @@ class ZipRecruiterScraperService extends Scraper
     public function scrape(): void
     {
         $url = "https://www.ziprecruiter.co.uk/Jobs/Laravel";
-        $client = new Client(HttpClient::create(["timeout" => 5]));
+        $client = new Client(HttpClient::create(["timeout" => 120]));
         $crawler = $client->request("GET", $url);
 
         $nodes = $crawler->filter(".job-listing");
+
+        dd($nodes);
 
         foreach ($nodes as $node) {
             $node = new Crawler($node);
@@ -73,6 +75,7 @@ class ZipRecruiterScraperService extends Scraper
                 "source" => "ziprecruiter.co.uk",
                 "tags" => $tags,
             ];
+            dd($job);
 
             $this->jobsRepo->save($job);
         }

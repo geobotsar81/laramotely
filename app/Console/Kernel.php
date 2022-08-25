@@ -89,12 +89,12 @@ class Kernel extends ConsoleKernel
             })
             ->hourlyAt(20);
 
-        $schedule
+        /*$schedule
             ->call(function () {
                 $soScraper = new StackOverflowScraperService();
                 $soScraper->scrape();
             })
-            ->hourlyAt(25);
+            ->hourlyAt(25);*/
 
         $schedule
             ->call(function () {
