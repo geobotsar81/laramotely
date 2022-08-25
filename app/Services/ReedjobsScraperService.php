@@ -86,7 +86,10 @@ class ReedjobsScraperService extends Scraper
 
                 $date = str_replace(" by", "", $date);
                 if (!empty($date)) {
-                    if (strpos($date, "yesterday") !== false) {
+                    if (strpos($date, "hours") !== false) {
+                        $date = str_replace("hours", "", $date);
+                        $date = date("Y-m-d H:i:s", strtotime("-" . $date . " hours", strtotime(now())));
+                    } elseif (strpos($date, "yesterday") !== false) {
                         $date = date("Y-m-d", strtotime("-1 days", strtotime(now())));
                     } elseif (strpos($date, "day ago") !== false) {
                         $date = str_replace("day ago", "", $date);
