@@ -11,9 +11,11 @@ use App\Services\SimplyHiredService;
 use App\Services\UkLaravelJobsService;
 use App\Services\LarajobsScraperService;
 use App\Services\LinkedInScraperService;
+use App\Services\ReedjobsScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use App\Services\GlassDoorScraperService;
+use App\Services\TotaljobsScraperService;
 use App\Services\CleverjobsScraperService;
 use App\Services\ZipRecruiterScraperService;
 use Symfony\Component\HttpClient\HttpClient;
@@ -97,6 +99,11 @@ class ScraperController extends Controller
         if ($type == 14) {
             $uklaraveljobsScraper = new UkLaravelJobsService();
             $uklaraveljobsScraper->scrape();
+        }
+
+        if ($type == 15) {
+            $reedjobsScraper = new ReedjobsScraperService();
+            $reedjobsScraper->scrape();
         }
     }
 }
