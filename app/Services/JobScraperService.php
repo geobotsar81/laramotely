@@ -221,6 +221,26 @@ class JobScraperService extends Scraper
                         $job->is_scraped = 1;
                         $job->save();
                     }
+
+                    if ($source == "www.reed.co.uk") {
+                        $job->is_scraped = 1;
+                        $job->save();
+
+                        $client = new Client(HttpClient::create(["timeout" => 120]));
+                        $crawler = $client->request("GET", $url);
+
+                        echo "Is reed<br>-------------";
+
+                        if (!empty($crawler->filter(".description")->count() > 0)) {
+                            $description = $crawler
+                                ->filter(".description")
+                                ->first()
+                                ->html();
+                        }
+                        $job->description = $description;
+                        $job->is_scraped = 1;
+                        $job->save();
+                    }
                 }
             }
         }

@@ -46,7 +46,7 @@ class JobsRepository
         $job = Job::where("url", $url)->first();
         $found = !empty($job) ? true : false;
         $id = !empty($job) ? $job->id : null;
-        echo "Url in DB:" . $found . "," . $url . "<br>";
+        //echo "Url in DB:" . $found . "," . $url . "<br>";
         return [
             "found" => $found,
             "job" => $job,
@@ -67,7 +67,7 @@ class JobsRepository
             ->first();
         $found = !empty($job) ? true : false;
         $id = !empty($job) ? $job->id : null;
-        echo "Title in DB:" . $found . "," . $title . "," . $company . "<br>";
+        //echo "Title in DB:" . $found . "," . $title . "," . $company . "<br>";
         return [
             "found" => $found,
             "job" => $job,

@@ -10,15 +10,16 @@ use App\Services\SimplyHiredService;
 use App\Services\UkLaravelJobsService;
 use App\Services\LarajobsScraperService;
 use App\Services\LinkedInScraperService;
+use App\Services\ReedjobsScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
-use App\Http\Controllers\NewsletterController;
 use App\Services\GlassDoorScraperService;
 use App\Services\CleverjobsScraperService;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Services\ZipRecruiterScraperService;
 use App\Services\StackOverflowScraperService;
 use App\Services\WorkingNomadsScraperService;
+use App\Http\Controllers\NewsletterController;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -121,8 +122,8 @@ class Kernel extends ConsoleKernel
                 $remotiveScraper = new RemotiveScraperService();
                 $remotiveScraper->scrape();
 
-                /* $uklaraveljobsScraper=new UkLaravelJobsService();
-                 $uklaraveljobsScraper->scrape();*/
+                $reedjobsScraper = new ReedjobsScraperService();
+                $reedjobsScraper->scrape();
             })
             ->hourlyAt(45);
 
