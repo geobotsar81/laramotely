@@ -16,7 +16,7 @@ class GlassDoorScraperService extends Scraper
      */
     public function scrape(): void
     {
-        $url = "https://www.glassdoor.com/Job/laravel-developer-remote-jobs-SRCH_KO0,24.htm?fromAge=7";
+        $url = "https://www.glassdoor.com/Job/laravel-jobs-SRCH_KO0,7.htm?fromAge=14";
         $client = new Client(HttpClient::create(["timeout" => 60]));
         $crawler = $client->request("GET", $url);
 
