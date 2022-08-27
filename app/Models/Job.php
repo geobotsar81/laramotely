@@ -122,4 +122,44 @@ class Job extends Model
     {
         return $query->where("is_published", 1);
     }
+
+    /**
+     * Scope for jobs with the Vue keyword
+     *
+     * @param [type] $query
+     * @return Builder
+     */
+    public function scopeVue($query, $withDescription = true): Builder
+    {
+        $newQuery = $query
+        ->where("title", "LIKE", "%vue%")
+        ->orWhere("location", "LIKE", "%vue%")
+        ->orWhere("tags", "LIKE", "%vue%");
+
+        if($withDescription) {
+            $newQuery->orWhere("description", "LIKE", "%vue%");
+        }
+
+        return $newQuery
+    }
+
+    /**
+     * Scope for jobs with the React keyword
+     *
+     * @param [type] $query
+     * @return Builder
+     */
+    public function scopeReact($query, $withDescription = true): Builder
+    {
+        $newQuery = $query
+        ->where("title", "LIKE", "%react%")
+        ->orWhere("location", "LIKE", "%react%")
+        ->orWhere("tags", "LIKE", "%react%");
+
+        if($withDescription) {
+            $newQuery->orWhere("description", "LIKE", "%react%");
+        }
+
+        return $newQuery
+    }
 }
