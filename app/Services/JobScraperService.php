@@ -34,7 +34,7 @@ class JobScraperService extends Scraper
                 $tags = "";
 
                 if (!empty($url)) {
-                    if ($source == "www.linkedin.com") {
+                    if ($source == "linkedin.com") {
                         $job->is_scraped = 1;
                         $job->save();
 
@@ -224,7 +224,7 @@ class JobScraperService extends Scraper
                         $job->save();
                     }
 
-                    if ($source == "www.reed.co.uk") {
+                    if ($source == "reed.co.uk") {
                         $job->is_scraped = 1;
                         $job->save();
 
