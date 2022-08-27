@@ -31,6 +31,9 @@ class JobsRepository
         $job->is_published = 1;
         $job->tags = json_encode($data["tags"]);
 
+        $job->country = $data["country"] ?? "";
+        $job->salary = $data["salary"] ?? "";
+
         $foundUrl = $this->urlInDB($data["url"]);
         $foundTitle = $this->titleInDb($data["title"], $data["company"]);
 

@@ -74,8 +74,8 @@ class ZipRecruiterScraperService extends Scraper
                 "company_logo" => "",
                 "source" => "ziprecruiter.co.uk",
                 "tags" => $tags,
+                "country" => "UK",
             ];
-            dd($job);
 
             $this->jobsRepo->save($job);
         }
