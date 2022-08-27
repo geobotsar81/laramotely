@@ -112,6 +112,7 @@ class ReedjobsScraperService extends Scraper
                     "company" => $company,
                     "company_logo" => $company_logo,
                     "source" => "reed.co.uk",
+                    "country" => "UK",
                     "tags" => $tags,
                 ];
 
