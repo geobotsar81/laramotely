@@ -3,11 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+use App\Repositories\JobsRepository;
+use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
 {
+    protected $jobsRepo;
+
+    public function __construct()
+    {
+        $this->jobsRepo = new JobsRepository();
+    }
+
     /**
      * Return all the jobs for the home page based on the search criteria
      *
@@ -88,5 +99,38 @@ class ApiController extends Controller
         }
 
         return response()->json($jobs);
+    }
+
+    /**
+     * Post all the jobs
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function postJobs(Request $request)
+    {
+        $jobs = $request->json();
+
+        if (!empty($jobs)) {
+            foreach ($jobs as $job) {
+                Log::info($job);
+                $contents = @file_get_contents($job["company_logo"]);
+                Log::info($job["company_logo"]);
+                if ($contents) {
+                    Log::info("Image Content");
+                    $extension = "jpg";
+                    $filename = $job["company"] ? Str::slug($job["company"], "-") : basename($job["company_logo"]);
+                    Storage::disk("local")->put("public/companies/" . $filename . "." . $extension, $contents);
+                    $job["company_logo"] = $filename . "." . $extension;
+                } else {
+                    Log::info("No Image Content");
+                }
+
+                $job["date"] = $job["date"] ?? now();
+                $this->jobsRepo->save($job);
+            }
+        }
+
+        return response(["message" => "Success"], 200);
     }
 }
