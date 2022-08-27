@@ -9,6 +9,7 @@ use App\Services\JobScraperService;
 use App\Services\WwrScraperService;
 use App\Services\SimplyHiredService;
 use App\Services\UkLaravelJobsService;
+use App\Services\GermanTechJobsScraper;
 use App\Services\LarajobsScraperService;
 use App\Services\LinkedInScraperService;
 use App\Services\ReedjobsScraperService;
@@ -103,6 +104,11 @@ class ScraperController extends Controller
 
         if ($type == 15) {
             $reedjobsScraper = new ReedjobsScraperService();
+            $reedjobsScraper->scrape();
+        }
+
+        if ($type == 16) {
+            $reedjobsScraper = new GermanTechJobsScraper();
             $reedjobsScraper->scrape();
         }
     }
