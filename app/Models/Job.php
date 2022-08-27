@@ -132,15 +132,15 @@ class Job extends Model
     public function scopeVue($query, $withDescription = true): Builder
     {
         $newQuery = $query
-        ->where("title", "LIKE", "%vue%")
-        ->orWhere("location", "LIKE", "%vue%")
-        ->orWhere("tags", "LIKE", "%vue%");
+            ->where("title", "LIKE", "%vue%")
+            ->orWhere("location", "LIKE", "%vue%")
+            ->orWhere("tags", "LIKE", "%vue%");
 
-        if($withDescription) {
+        if ($withDescription) {
             $newQuery->orWhere("description", "LIKE", "%vue%");
         }
 
-        return $newQuery
+        return $newQuery;
     }
 
     /**
@@ -152,14 +152,14 @@ class Job extends Model
     public function scopeReact($query, $withDescription = true): Builder
     {
         $newQuery = $query
-        ->where("title", "LIKE", "%react%")
-        ->orWhere("location", "LIKE", "%react%")
-        ->orWhere("tags", "LIKE", "%react%");
+            ->where("title", "LIKE", "%react%")
+            ->orWhere("location", "LIKE", "%react%")
+            ->orWhere("tags", "LIKE", "%react%");
 
-        if($withDescription) {
+        if ($withDescription) {
             $newQuery->orWhere("description", "LIKE", "%react%");
         }
 
-        return $newQuery
+        return $newQuery;
     }
 }
