@@ -55,12 +55,18 @@ class ApiController extends Controller
                 })
                 ->published()
                 ->laravel()
-                ->notother()
-                ->orderBy("posted_date", "desc")
-                ->paginate(25);
+                ->notother();
+
+            if ($withVue) {
+                $jobs = $jobs->vue(!$strictSearch);
+            }
+            if ($withReact) {
+                $jobs = $jobs->react(!$strictSearch);
+            }
+
+            $jobs = $jobs->orderBy("posted_date", "desc")->paginate(25);
         } else {
             $jobs = Job::where("title", "LIKE", "%{$search}%")
-                ->orWhere("description", "LIKE", "%{$search}%")
                 ->orWhere("location", "LIKE", "%{$search}%")
                 ->orWhere("tags", "LIKE", "%{$search}%")
                 ->orWhere("company", "LIKE", "%{$search}%")
@@ -70,6 +76,12 @@ class ApiController extends Controller
 
             if (!$strictSearch) {
                 $jobs = $jobs->orWhere("description", "LIKE", "%{$search}%");
+            }
+            if ($withVue) {
+                $jobs = $jobs->vue(!$strictSearch);
+            }
+            if ($withReact) {
+                $jobs = $jobs->react(!$strictSearch);
             }
 
             $jobs = $jobs->orderBy("posted_date", "desc")->paginate(25);
