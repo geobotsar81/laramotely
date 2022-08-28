@@ -26,6 +26,7 @@ class SimplyHiredService extends Scraper
             $tags = [];
             $company_logo = "";
             $location = "";
+            $salary = "";
             $url =
                 "https://www.simplyhired.com" .
                 $node
@@ -73,6 +74,15 @@ class SimplyHiredService extends Scraper
                 );
             }
 
+            if (!empty($node->filter(".jobposting-salary")->count() > 0)) {
+                $salary = $node
+                    ->filter(".jobposting-salary")
+                    ->first()
+                    ->text();
+
+                $salary = trim(str_replace("Estimated:", "", $salary));
+            }
+
             $job = [
                 "title" => $title,
                 "url" => $url,
@@ -84,6 +94,7 @@ class SimplyHiredService extends Scraper
                 "source" => "simplyhired.com",
                 "tags" => $tags,
                 "country" => "USA",
+                "salary" => $salary,
             ];
 
             $this->jobsRepo->save($job);

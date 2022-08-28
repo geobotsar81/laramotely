@@ -31,6 +31,11 @@
                         {{ job.formated_location }}
                     </div>
                 </div>
+                <div class="row job__company" v-if="job.salary">
+                    <div class="col-12">
+                        {{ job.salary }}
+                    </div>
+                </div>
                 <div class="row mt-1 mt-sm-2" v-if="job.company">
                     <div class="col-12 job__company">by {{ job.company }}</div>
                 </div>

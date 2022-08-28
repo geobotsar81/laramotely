@@ -26,6 +26,7 @@ class CleverjobsScraperService extends Scraper
             $tags = [];
             $company_logo = "";
             $location = "";
+            $salary = "";
 
             if (!empty($node->filter("h4")->count() > 0)) {
                 $url = $node
@@ -82,6 +83,13 @@ class CleverjobsScraperService extends Scraper
                     }
                 }
 
+                if ($node->filter('span:contains("$")')->count() > 0) {
+                    $salary = $node
+                        ->filter('span:contains("$")')
+                        ->first()
+                        ->text();
+                }
+
                 $job = [
                     "title" => $title,
                     "url" => $url,
@@ -92,6 +100,8 @@ class CleverjobsScraperService extends Scraper
                     "company_logo" => $company_logo,
                     "source" => "cleverjobs.com",
                     "tags" => $tags,
+                    "country" => "USA",
+                    "salary" => $salary,
                 ];
 
                 $this->jobsRepo->save($job);

@@ -15,7 +15,7 @@ class WorkingNomadsScraperService extends Scraper
      */
     public function scrape(): void
     {
-        $url = "https://www.workingnomads.co/api/exposed_jobs/";
+        $url = "https://www.workingnomads.com/api/exposed_jobs/";
         $response = Http::get($url);
 
         $counter = 0;
