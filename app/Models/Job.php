@@ -25,8 +25,13 @@ class Job extends Model
             str_contains(strtolower($this->title), "anywhere") ||
             str_contains(strtolower($this->location), "remote") ||
             str_contains(strtolower($this->location), "anywhere") ||
+            str_contains(strtolower($this->company), "remote") ||
+            str_contains(strtolower($this->company), "anywhere") ||
+            str_contains(strtolower($this->tags), "remote") ||
+            str_contains(strtolower($this->tags), "anywhere") ||
             str_contains(strtolower($this->description), "remote") ||
             str_contains(strtolower($this->description), "anywhere");
+
         return $is_remote;
     }
 
@@ -175,6 +180,34 @@ class Job extends Model
 
         if ($withDescription) {
             $newQuery->orWhere("description", "LIKE", "%react%");
+        }
+
+        return $newQuery;
+    }
+
+    /**
+     * Scope for jobs with the remote
+     *
+     * @param [type] $query
+     * @return Builder
+     */
+    public function scopeRemote($query, $withDescription = true): Builder
+    {
+        $remoteSearch = "remote";
+        $anywhereSearch = "anywhere";
+
+        $newQuery = $query
+            ->where("title", "LIKE", "%{$remoteSearch}%")
+            ->orWhere("location", "LIKE", "%{$remoteSearch}%")
+            ->orWhere("tags", "LIKE", "%{$remoteSearch}%")
+            ->orWhere("company", "LIKE", "%{$remoteSearch}%")
+            ->orWhere("title", "LIKE", "%{$anywhereSearch}%")
+            ->orWhere("location", "LIKE", "%{$anywhereSearch}%")
+            ->orWhere("tags", "LIKE", "%{$anywhereSearch}%")
+            ->orWhere("company", "LIKE", "%{$anywhereSearch}%");
+
+        if ($withDescription) {
+            $newQuery->orWhere("description", "LIKE", "%{$remoteSearch}%")->orWhere("description", "LIKE", "%{$anywhereSearch}%");
         }
 
         return $newQuery;
