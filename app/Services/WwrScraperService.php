@@ -3,6 +3,7 @@ namespace App\Services;
 
 use Goutte\Client;
 use App\Services\Scraper;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpClient\HttpClient;
@@ -73,10 +74,10 @@ class WwrScraperService extends Scraper
                         //echo $company_logo."<br>";
                         $contents = @file_get_contents($company_logo);
                         if ($contents) {
-                            $company_logo = basename($company_logo);
-                            $company_logo = str_replace("logo", "logo" . strtotime(now()), $company_logo);
-                            //echo $company_logo."<br><br>";
-                            Storage::disk("local")->put("public/companies/" . $company_logo, $contents);
+                            $extension = pathinfo($company_logo, PATHINFO_EXTENSION);
+                            $filename = $company ? Str::slug($company, "-") : basename($company_logo);
+                            Storage::disk("local")->put("public/companies/" . $filename . "." . $extension, $contents);
+                            $company_logo = $filename . "." . $extension;
                         } else {
                             $company_logo = "";
                         }
@@ -92,6 +93,7 @@ class WwrScraperService extends Scraper
                         "company_logo" => $company_logo,
                         "source" => "weworkremotely.com",
                         "tags" => $tags,
+                        "country" => "USA",
                     ];
 
                     $this->jobsRepo->save($job);

@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Services\Scraper;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -40,8 +41,10 @@ class WorkingNomadsScraperService extends Scraper
                             }
                             $contents = @file_get_contents($company_logo);
                             if ($contents) {
-                                Storage::disk("local")->put("public/companies/" . basename($company_logo), $contents);
-                                $company_logo = basename($company_logo);
+                                $extension = pathinfo($company_logo, PATHINFO_EXTENSION);
+                                $filename = $company ? Str::slug($company, "-") : basename($company_logo);
+                                Storage::disk("local")->put("public/companies/" . $filename . "." . $extension, $contents);
+                                $company_logo = $filename . "." . $extension;
                             } else {
                                 $company_logo = "";
                             }
@@ -57,6 +60,7 @@ class WorkingNomadsScraperService extends Scraper
                             "company_logo" => $company_logo,
                             "source" => "workingnomads.co",
                             "tags" => $tags,
+                            "country" => "USA",
                         ];
 
                         $this->jobsRepo->save($job);

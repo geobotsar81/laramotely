@@ -3,6 +3,7 @@ namespace App\Services;
 
 use Goutte\Client;
 use App\Services\Scraper;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpClient\HttpClient;
@@ -16,7 +17,7 @@ class RemotiveScraperService extends Scraper
      */
     public function scrape(): void
     {
-        $url = "https://remotive.io/api/remote-jobs?search=laravel";
+        $url = "https://remotive.com/api/remote-jobs?search=laravel";
         $response = Http::get($url);
 
         if (!empty($response->json())) {
@@ -30,17 +31,17 @@ class RemotiveScraperService extends Scraper
                 $title = $job["title"];
                 $url = $job["url"];
                 $company = $job["company_name"];
-                if (!empty($job["company_logo_url"])) {
-                    $company_logo = $job["company_logo_url"];
+                if (!empty($job["company_logo"])) {
+                    $company_logo = $job["company_logo"];
                     if (strpos($company_logo, "?") !== false) {
                         $company_logo = substr($company_logo, 0, strpos($company_logo, "?"));
                     }
                     $contents = @file_get_contents($company_logo);
                     if ($contents) {
-                        $company_logo = basename($company_logo);
-                        $company_logo = str_replace("logo", "logo" . strtotime(now()), $company_logo);
-                        //echo $company_logo."<br><br>";
-                        Storage::disk("local")->put("public/companies/" . $company_logo, $contents);
+                        $extension = "png";
+                        $filename = $company ? Str::slug($company, "-") : basename($company_logo);
+                        Storage::disk("local")->put("public/companies/" . $filename . "." . $extension, $contents);
+                        $company_logo = $filename . "." . $extension;
                     } else {
                         $company_logo = "";
                     }

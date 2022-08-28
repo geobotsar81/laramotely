@@ -55,12 +55,6 @@ class Kernel extends ConsoleKernel
             })
             ->everyFiveMinutes();
 
-        /*$schedule->call(function () {
-            $jobsScraper=new JobScraperService();
-            $jobsScraper->scrape();
-        })
-        ->everyFiveMinutes();*/
-
         $schedule
             ->call(function () {
                 $larajobsScraper = new LarajobsScraperService();
@@ -82,12 +76,12 @@ class Kernel extends ConsoleKernel
             })
             ->hourlyAt(15);
 
-        $schedule
+        /*$schedule
             ->call(function () {
                 $zipRecruiterScraper = new ZipRecruiterScraperService();
                 $zipRecruiterScraper->scrape();
             })
-            ->hourlyAt(20);
+            ->hourlyAt(20);*/
 
         /*$schedule
             ->call(function () {
@@ -131,9 +125,6 @@ class Kernel extends ConsoleKernel
             ->call(function () {
                 $cleverjobsScraper = new CleverjobsScraperService();
                 $cleverjobsScraper->scrape();
-
-                $linkedInScraper = new LinkedInScraperService();
-                $linkedInScraper->scrape();
             })
             ->hourlyAt(50);
 

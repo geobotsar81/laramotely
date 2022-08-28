@@ -87,6 +87,7 @@ class ArcScraperService extends Scraper
                 "company_logo" => "",
                 "source" => "arc.dev",
                 "tags" => $tags,
+                "country" => "USA",
             ];
 
             $this->jobsRepo->save($job);
