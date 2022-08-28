@@ -9,14 +9,12 @@ use App\Services\JobScraperService;
 use App\Services\WwrScraperService;
 use App\Services\SimplyHiredService;
 use App\Services\UkLaravelJobsService;
-use App\Services\GermanTechJobsScraper;
 use App\Services\LarajobsScraperService;
 use App\Services\LinkedInScraperService;
 use App\Services\ReedjobsScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use App\Services\GlassDoorScraperService;
-use App\Services\TotaljobsScraperService;
 use App\Services\CleverjobsScraperService;
 use App\Services\ZipRecruiterScraperService;
 use Symfony\Component\HttpClient\HttpClient;
@@ -53,6 +51,7 @@ class ScraperController extends Controller
         }
 
         if ($type == 4) {
+            //Not working
             $soScraper = new StackOverflowScraperService();
             $soScraper->scrape();
         }
@@ -83,11 +82,13 @@ class ScraperController extends Controller
         }
 
         if ($type == 10) {
+            //WIth Puppeteer
             $zipRecruiterScraper = new ZipRecruiterScraperService();
             $zipRecruiterScraper->scrape();
         }
 
         if ($type == 11) {
+            //WIth Puppeteer
             $linkedInScraper = new LinkedInScraperService();
             $linkedInScraper->scrape();
         }
@@ -98,17 +99,13 @@ class ScraperController extends Controller
         }
 
         if ($type == 14) {
+            //Removed
             $uklaraveljobsScraper = new UkLaravelJobsService();
             $uklaraveljobsScraper->scrape();
         }
 
         if ($type == 15) {
             $reedjobsScraper = new ReedjobsScraperService();
-            $reedjobsScraper->scrape();
-        }
-
-        if ($type == 16) {
-            $reedjobsScraper = new GermanTechJobsScraper();
             $reedjobsScraper->scrape();
         }
     }

@@ -11,7 +11,24 @@ class Job extends Model
 {
     use HasFactory;
 
-    public $appends = ["formated_date", "formated_created", "formated_location", "formated_tags", "formated_image"];
+    public $appends = ["is_remote", "formated_date", "formated_created", "formated_location", "formated_tags", "formated_image"];
+
+    /**
+     * Generate a new attribute for is remote
+     *
+     * @return string
+     */
+    public function getIsRemoteAttribute(): string
+    {
+        $is_remote =
+            str_contains(strtolower($this->title), "remote") ||
+            str_contains(strtolower($this->title), "anywhere") ||
+            str_contains(strtolower($this->location), "remote") ||
+            str_contains(strtolower($this->location), "anywhere") ||
+            str_contains(strtolower($this->description), "remote") ||
+            str_contains(strtolower($this->description), "anywhere");
+        return $is_remote;
+    }
 
     /**
      * Generate a new attribute for a formated post date

@@ -21,8 +21,6 @@ class ZipRecruiterScraperService extends Scraper
 
         $nodes = $crawler->filter(".job-listing");
 
-        dd($nodes);
-
         foreach ($nodes as $node) {
             $node = new Crawler($node);
 
