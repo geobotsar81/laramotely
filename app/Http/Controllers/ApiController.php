@@ -53,7 +53,7 @@ class ApiController extends Controller
         }
 
         if ($onlyRemote) {
-            $jobs = $jobs->react(!$strictSearch);
+            $jobs = $jobs->remote(!$strictSearch);
         }
 
         $jobs = $jobs->orderBy("posted_date", "desc")->paginate(25);
