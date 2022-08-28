@@ -26,8 +26,8 @@
                 </div>
                 <div class="row" v-if="job.location">
                     <div class="col-12 job__source">
-                        <i v-if="job.location.includes('Remote') || job.location.includes('Anywhere')" class="far fa-globe-americas"></i>
-                        <i v-else class="far fa-map-marker-alt"></i>
+                        <span v-if="job.is_remote"><i class="far fa-globe-americas"></i> Remote/</span>
+                        <span v-else><i class="far fa-map-marker-alt"></i></span>
                         {{ job.formated_location }}
                     </div>
                 </div>

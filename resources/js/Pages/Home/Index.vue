@@ -56,13 +56,39 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-8 col-lg-7 col-md-5 mb-4">
+                <div class="col-xl-6 col-lg-5 col-md-4 mb-4">
                     <input @change="searchJobs" type="text" v-model="search" class="form-control" placeholder="Search Laravel Jobs" />
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                     <div class="form-check form-switch mt-2">
-                        <input @change="searchJobs" type="checkbox" class="form-check-input" id="onlyRemote" v-model="onlyRemote" />
-                        <label class="form-check-label" for="onlyRemote">only remote jobs</label>
+                        <div class="row">
+                            <div class="col-12">
+                                <input @change="searchJobs" type="checkbox" class="form-check-input" id="onlyRemote" v-model="onlyRemote" />
+                                <label class="form-check-label" for="onlyRemote">only remote jobs</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <input @change="searchJobs" type="checkbox" class="form-check-input" id="strictSearch" v-model="strictSearch" />
+                                <label class="form-check-label" for="strictSearch">strict search</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                    <div class="form-check form-switch mt-2">
+                        <div class="row">
+                            <div class="col-12">
+                                <input @change="searchJobs" type="checkbox" class="form-check-input" id="withVue" v-model="withVue" />
+                                <label class="form-check-label" for="withVue">with Vue</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <input @change="searchJobs" type="checkbox" class="form-check-input" id="withReact" v-model="withReact" />
+                                <label class="form-check-label" for="withReact">with React</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 text-end"><app-button class="buttonBlack" type="submit" @click.prevent="searchJobs">SEARCH</app-button></div>
@@ -124,6 +150,9 @@ export default {
             currentPage: 1,
             search: null,
             onlyRemote: false,
+            withVue: false,
+            withReact: false,
+            strictSearch: false,
             searching: false,
         };
     },
@@ -152,6 +181,9 @@ export default {
                     page: this.currentPage,
                     search: this.search,
                     onlyRemote: this.onlyRemote,
+                    withVue: this.withVue,
+                    withReact: this.withReact,
+                    strictSearch: this.strictSearch,
                 },
             })
                 .then((response) => {
