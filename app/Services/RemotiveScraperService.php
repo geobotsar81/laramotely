@@ -50,6 +50,7 @@ class RemotiveScraperService extends Scraper
                 $date = $job["publication_date"];
                 $description = $job["description"];
                 $location = $job["candidate_required_location"];
+                $salary = $job["salary"];
 
                 $job = [
                     "title" => $title,
@@ -61,6 +62,7 @@ class RemotiveScraperService extends Scraper
                     "company_logo" => $company_logo,
                     "source" => "remotive.io",
                     "tags" => $tags,
+                    "salary" => $salary,
                 ];
 
                 $this->jobsRepo->save($job);

@@ -33,6 +33,10 @@ class RemoteokScraperService extends Scraper
                     $description = $job["description"];
                     $company_logo = $job["company_logo"];
                     $location = $job["location"];
+                    $salary = "";
+                    if ($job["salary_min"] != 0 || $job["salary_max"] != 0) {
+                        $salary = "$" . $job["salary_min"] . " - " . "$" . $job["salary_max"];
+                    }
 
                     if (strpos(strtolower($title), "laravel") !== false || strpos(strtolower($description), "laravel") !== false) {
                         if (!empty($company_logo)) {
@@ -60,6 +64,7 @@ class RemoteokScraperService extends Scraper
                             "company_logo" => $company_logo,
                             "source" => "remoteok.io",
                             "tags" => $tags,
+                            "salary" => $salary,
                         ];
 
                         $this->jobsRepo->save($job);

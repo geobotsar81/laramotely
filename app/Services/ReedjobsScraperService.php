@@ -30,6 +30,7 @@ class ReedjobsScraperService extends Scraper
             $url = "";
             $title = "";
             $company = "";
+            $salary = "";
 
             if (!empty($node->filter("h3 a")->count() > 0)) {
                 $url =
@@ -104,6 +105,14 @@ class ReedjobsScraperService extends Scraper
                     }
                 }
             }
+
+            if (!empty($node->filter(".job-metadata__item--salary")->count() > 0)) {
+                $salary = $node
+                    ->filter(".job-metadata__item--salary")
+                    ->first()
+                    ->text();
+            }
+
             if ($url) {
                 $job = [
                     "title" => $title,
@@ -116,6 +125,7 @@ class ReedjobsScraperService extends Scraper
                     "source" => "reed.co.uk",
                     "country" => "UK",
                     "tags" => $tags,
+                    "salary" => $salary,
                 ];
 
                 $this->jobsRepo->save($job);
