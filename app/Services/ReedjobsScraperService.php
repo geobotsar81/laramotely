@@ -84,18 +84,20 @@ class ReedjobsScraperService extends Scraper
                     ->first()
                     ->text();
 
-                $date = str_replace(" by", "", $date);
+                $byPos = strpos($date, "by");
+                $date = substr($date, 0, $byPos - 1);
+
                 if (!empty($date)) {
                     if (strpos($date, "hours") !== false) {
-                        $date = str_replace("hours", "", $date);
+                        $date = str_replace(" hours", "", $date);
                         $date = date("Y-m-d H:i:s", strtotime("-" . $date . " hours", strtotime(now())));
                     } elseif (strpos($date, "yesterday") !== false) {
                         $date = date("Y-m-d", strtotime("-1 days", strtotime(now())));
                     } elseif (strpos($date, "day ago") !== false) {
-                        $date = str_replace("day ago", "", $date);
+                        $date = str_replace(" day ago", "", $date);
                         $date = date("Y-m-d", strtotime("-" . $date * 1 . " days", strtotime(now())));
                     } elseif (strpos($date, "days ago") !== false) {
-                        $date = str_replace("days ago", "", $date);
+                        $date = str_replace(" days ago", "", $date);
                         $date = date("Y-m-d", strtotime("-" . $date * 1 . " days", strtotime(now())));
                     } else {
                         $date = now();
