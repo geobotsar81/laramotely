@@ -44,6 +44,8 @@ Route::group(["prefix" => "admin"], function () {
 //Route to test the scrapers
 Route::get("/scrape/{type}", [ScraperController::class, "scrape"])->name("scraper.scrape");
 
+Route::get("/healthcheck", [ScraperController::class, "healthcheck"])->name("scraper.healthcheck");
+
 /*Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');*/

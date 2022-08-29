@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Goutte\Client;
+use App\Models\Job;
 use Illuminate\Http\Request;
 use App\Services\ArcScraperService;
 use App\Services\JobScraperService;
@@ -108,5 +109,61 @@ class ScraperController extends Controller
             $reedjobsScraper = new ReedjobsScraperService();
             $reedjobsScraper->scrape();
         }
+    }
+
+    public function healthcheck()
+    {
+        $checks = [];
+
+        $job = Job::where("source", "larajobs.com")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "Larajobs";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "remoteok.io")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "Remoteok";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "remotive.io")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "Remotive";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "weworkremotely.com")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "Weworkremotely";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "arc.dev")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "Arc.dev";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "workingnomads.co")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "Workingnomads";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "glassdoor.com")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "Glassdoor";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        dump($checks);
     }
 }
