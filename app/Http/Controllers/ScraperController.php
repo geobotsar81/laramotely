@@ -164,6 +164,66 @@ class ScraperController extends Controller
         $checks[]["lastJobDate"] = $job->posted_date ?? "";
         $checks[]["lastJob"] = $job->title ?? "";
 
+        $job = Job::where("source", "simplyhired.com")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "Simplyhired.com";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "ziprecruiter.co.uk")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "Ziprecruiter.co.uk";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "cleverjobs.com")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "Cleverjobs.com";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "reed.co.uk")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "Reed.co.uk";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "linkedin.com")
+            ->where("country", "USA")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "LinkedIn USA";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "linkedin.com")
+            ->where("country", "UK")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "LinkedIn UK";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "linkedin.com")
+            ->where("country", "DE")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "LinkedIn DE";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
+        $job = Job::where("source", "linkedin.com")
+            ->where("country", "IT")
+            ->orderBy("posted_date", "desc")
+            ->first();
+        $checks[]["type"] = "LinkedIn IT";
+        $checks[]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[]["lastJob"] = $job->title ?? "";
+
         dump($checks);
     }
 }

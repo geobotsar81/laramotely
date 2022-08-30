@@ -39,12 +39,12 @@ Route::get("/feed", [FeedController::class, "index"]);
 //Admin routes
 Route::group(["prefix" => "admin"], function () {
     Voyager::routes();
+    Route::get("/scrape/{type}", [ScraperController::class, "scrape"])->name("scraper.scrape");
+    Route::get("/healthcheck", [ScraperController::class, "healthcheck"])->name("scraper.healthcheck");
 });
 
 //Route to test the scrapers
-Route::get("/scrape/{type}", [ScraperController::class, "scrape"])->name("scraper.scrape");
-
-Route::get("/healthcheck", [ScraperController::class, "healthcheck"])->name("scraper.healthcheck");
+//
 
 /*Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
