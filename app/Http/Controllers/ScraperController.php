@@ -118,117 +118,123 @@ class ScraperController extends Controller
         $job = Job::where("source", "larajobs.com")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "Larajobs";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[0]["type"] = "Larajobs";
+        $checks[0]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[0]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "remoteok.io")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "Remoteok";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[1]["type"] = "Remoteok";
+        $checks[1]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[1]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "remotive.io")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "Remotive";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[2]["type"] = "Remotive";
+        $checks[2]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[2]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "weworkremotely.com")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "Weworkremotely";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[3]["type"] = "Weworkremotely";
+        $checks[3]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[3]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "arc.dev")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "Arc.dev";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[4]["type"] = "Arc.dev";
+        $checks[4]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[4]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "workingnomads.co")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "Workingnomads";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[5]["type"] = "Workingnomads";
+        $checks[5]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[5]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "glassdoor.com")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "Glassdoor";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[6]["type"] = "Glassdoor";
+        $checks[6]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[6]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "simplyhired.com")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "Simplyhired.com";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[7]["type"] = "Simplyhired.com";
+        $checks[7]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[7]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "ziprecruiter.co.uk")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "Ziprecruiter.co.uk";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[8]["type"] = "Ziprecruiter.co.uk";
+        $checks[8]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[8]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "cleverjobs.com")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "Cleverjobs.com";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[9]["type"] = "Cleverjobs.com";
+        $checks[9]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[9]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "reed.co.uk")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "Reed.co.uk";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[10]["type"] = "Reed.co.uk";
+        $checks[10]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[10]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "linkedin.com")
             ->where("country", "USA")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "LinkedIn USA";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[11]["type"] = "LinkedIn USA";
+        $checks[11]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[11]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "linkedin.com")
             ->where("country", "UK")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "LinkedIn UK";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[12]["type"] = "LinkedIn UK";
+        $checks[12]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[12]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "linkedin.com")
             ->where("country", "DE")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "LinkedIn DE";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[13]["type"] = "LinkedIn DE";
+        $checks[13]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[13]["lastJob"] = $job->title ?? "";
 
         $job = Job::where("source", "linkedin.com")
             ->where("country", "IT")
             ->orderBy("posted_date", "desc")
             ->first();
-        $checks[]["type"] = "LinkedIn IT";
-        $checks[]["lastJobDate"] = $job->posted_date ?? "";
-        $checks[]["lastJob"] = $job->title ?? "";
+        $checks[14]["type"] = "LinkedIn IT";
+        $checks[14]["lastJobDate"] = $job->posted_date ?? "";
+        $checks[14]["lastJob"] = $job->title ?? "";
 
         foreach ($checks as $check) {
             echo "****************";
-            echo $check["type"];
-            echo $check["lastJobDate"];
-            echo $check["lastJob"];
+            echo "</br>";
+            echo $check["type"] ?? "";
+            echo "</br> Last Date: ";
+            echo $check["lastJobDate"] ? date("d-m-Y H:i:s", strtotime($check["lastJobDate"])) : "";
+            echo "</br> Last Job:";
+            echo "</br>";
+            echo $check["lastJob"] ?? "";
+            echo "</br>";
+            echo "</br>";
         }
     }
 }
