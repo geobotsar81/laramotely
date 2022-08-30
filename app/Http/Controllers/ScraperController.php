@@ -224,6 +224,11 @@ class ScraperController extends Controller
         $checks[]["lastJobDate"] = $job->posted_date ?? "";
         $checks[]["lastJob"] = $job->title ?? "";
 
-        dump($checks);
+        foreach ($checks as $check) {
+            echo "****************";
+            echo $check["type"];
+            echo $check["lastJobDate"];
+            echo $check["lastJob"];
+        }
     }
 }
