@@ -212,4 +212,17 @@ class Job extends Model
 
         return $newQuery;
     }
+
+    /**
+     * Scope for jobs with countries
+     *
+     * @param [type] $query
+     * @return Builder
+     */
+    public function scopeInCountries($query, $countryArray): Builder
+    {
+        $newQuery = $query->whereIn("country", $countryArray);
+
+        return $newQuery;
+    }
 }

@@ -55,8 +55,21 @@
                     </div>
                 </div>
             </div>
+            <div class="row mb-2">
+                <div class="col-12">
+                    Show only from job boards in:
+                    <input @change="searchJobs" type="checkbox" class="form-check-input" id="inUSA" v-model="inUSA" />
+                    <label class="form-check-label pe-2 ps-2" for="inUSA"> in USA</label>,
+                    <input @change="searchJobs" type="checkbox" class="form-check-input" id="inUK" v-model="inUK" />
+                    <label class="form-check-label pe-2 ps-2" for="inUK"> in UK</label>,
+                    <input @change="searchJobs" type="checkbox" class="form-check-input" id="inDE" v-model="inDE" />
+                    <label class="form-check-label pe-2 ps-2" for="inDE"> in Germany</label>,
+                    <input @change="searchJobs" type="checkbox" class="form-check-input" id="inIT" v-model="inIT" />
+                    <label class="form-check-label pe-2 ps-2" for="inIT"> in Italy</label>
+                </div>
+            </div>
             <div class="row">
-                <div class="col-xl-6 col-lg-5 col-md-4 mb-4">
+                <div class="col-xl-6 col-lg-5 col-md-4 mb-4 mt-2">
                     <input @change="searchJobs" type="text" v-model="search" class="form-control" placeholder="Search Laravel Jobs" />
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-4 col-6">
@@ -154,9 +167,33 @@ export default {
             withReact: false,
             strictSearch: false,
             searching: false,
+            inUSA: false,
+            inUK: false,
+            inDE: false,
+            inIT: false,
         };
     },
     layout: AppLayout,
+    computed: {
+        countriesString() {
+            let countries = "";
+
+            if (this.inUSA) {
+                countries += "USA,";
+            }
+            if (this.inUK) {
+                countries += "UK,";
+            }
+            if (this.inDE) {
+                countries += "DE,";
+            }
+            if (this.inIT) {
+                countries += "IT,";
+            }
+
+            return countries.slice(0, -1);
+        },
+    },
     methods: {
         submitForm() {
             this.formSuccess = false;
@@ -184,6 +221,7 @@ export default {
                     withVue: this.withVue,
                     withReact: this.withReact,
                     strictSearch: this.strictSearch,
+                    inCountries: this.countriesString,
                 },
             })
                 .then((response) => {
