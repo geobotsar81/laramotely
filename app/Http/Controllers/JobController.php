@@ -97,6 +97,7 @@ class JobController extends Controller
         $withVue = $request["withVue"];
         $withReact = $request["withReact"];
         $strictSearch = $request["strictSearch"];
+        $inCountries = $request["inCountries"];
 
         $jobs = Job::where("title", "LIKE", "%{$search}%")
             ->orWhere("location", "LIKE", "%{$search}%")
@@ -118,6 +119,11 @@ class JobController extends Controller
 
         if ($onlyRemote) {
             $jobs = $jobs->remote(!$strictSearch);
+        }
+
+        if (!empty($inCountries)) {
+            $countriesArray = explode(",", $inCountries);
+            $jobs = $jobs->inCountries($countriesArray);
         }
 
         $jobs = $jobs->orderBy("posted_date", "desc")->paginate(25);
