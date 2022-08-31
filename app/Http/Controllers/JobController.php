@@ -126,7 +126,7 @@ class JobController extends Controller
             $jobs = $jobs->inCountries($countriesArray);
         }
 
-        $jobs = $jobs->orderBy("posted_date", "desc")->paginate(25);
+        $jobs = $jobs->orderBy("posted_date", "desc")->paginate(8);
 
         return response()->json($jobs);
     }
