@@ -66,14 +66,21 @@ class JobsRepository
      * @param string $url
      * @return array
      */
-    public function titleInDb(string $title, string $company): array
+    public function titleInDb(string $title, ?string $company): array
     {
         //$job=Job::where('title',$title)->where('company',$company)->where('posted_date',$date)->first();
-        $job = Job::where("title", $title)
-            ->where("company", $company)
-            ->first();
-        $found = !empty($job) ? true : false;
-        $id = !empty($job) ? $job->id : null;
+        $found = false;
+        $job = null;
+
+        if ($company) {
+            $job = Job::where("title", $title)
+                ->where("company", $company)
+                ->first();
+
+            $found = !empty($job) ? true : false;
+            $id = !empty($job) ? $job->id : null;
+        }
+
         //echo "Title in DB:" . $found . "," . $title . "," . $company . "<br>";
         return [
             "found" => $found,
