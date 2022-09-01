@@ -9,6 +9,7 @@ use App\Services\WwrScraperService;
 use App\Services\SimplyHiredService;
 use App\Services\UkLaravelJobsService;
 use App\Services\LarajobsScraperService;
+use App\Services\LaranewsScraperService;
 use App\Services\LinkedInScraperService;
 use App\Services\ReedjobsScraperService;
 use App\Services\RemoteokScraperService;
@@ -83,12 +84,12 @@ class Kernel extends ConsoleKernel
             })
             ->hourlyAt(20);*/
 
-        /*$schedule
+        $schedule
             ->call(function () {
-                $soScraper = new StackOverflowScraperService();
+                $soScraper = new LaranewsScraperService();
                 $soScraper->scrape();
             })
-            ->hourlyAt(25);*/
+            ->hourlyAt(25);
 
         $schedule
             ->call(function () {
