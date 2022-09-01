@@ -11,6 +11,7 @@ use App\Services\WwrScraperService;
 use App\Services\SimplyHiredService;
 use App\Services\UkLaravelJobsService;
 use App\Services\LarajobsScraperService;
+use App\Services\LaranewsScraperService;
 use App\Services\LinkedInScraperService;
 use App\Services\ReedjobsScraperService;
 use App\Services\RemoteokScraperService;
@@ -108,6 +109,11 @@ class ScraperController extends Controller
         if ($type == 15) {
             $reedjobsScraper = new ReedjobsScraperService();
             $reedjobsScraper->scrape();
+        }
+
+        if ($type == 16) {
+            $laranewsScraper = new LaranewsScraperService();
+            $laranewsScraper->scrape();
         }
     }
 

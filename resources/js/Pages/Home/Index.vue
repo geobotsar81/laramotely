@@ -59,13 +59,13 @@
                 <div class="col-12">
                     Show only from job boards in:
                     <input @change="searchJobs" type="checkbox" class="form-check-input" id="inUSA" v-model="inUSA" />
-                    <label class="form-check-label pe-2 ps-2" for="inUSA"> in USA</label>,
+                    <label class="form-check-label pe-2 ps-2" for="inUSA"> USA</label>,
                     <input @change="searchJobs" type="checkbox" class="form-check-input" id="inUK" v-model="inUK" />
-                    <label class="form-check-label pe-2 ps-2" for="inUK"> in UK</label>,
+                    <label class="form-check-label pe-2 ps-2" for="inUK"> UK</label>,
                     <input @change="searchJobs" type="checkbox" class="form-check-input" id="inDE" v-model="inDE" />
-                    <label class="form-check-label pe-2 ps-2" for="inDE"> in Germany</label>,
+                    <label class="form-check-label pe-2 ps-2" for="inDE"> Germany</label>,
                     <input @change="searchJobs" type="checkbox" class="form-check-input" id="inIT" v-model="inIT" />
-                    <label class="form-check-label pe-2 ps-2" for="inIT"> in Italy</label>
+                    <label class="form-check-label pe-2 ps-2" for="inIT"> Italy</label>
                 </div>
             </div>
             <div class="row">
