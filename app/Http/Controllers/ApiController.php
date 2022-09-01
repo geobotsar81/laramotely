@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use App\Repositories\JobsRepository;
+use Exception;
 use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
@@ -75,24 +76,31 @@ class ApiController extends Controller
      */
     public function postJobs(Request $request)
     {
-        $jobs = $request->json();
+        try {
+            $jobs = $request->json();
 
-        if (!empty($jobs)) {
-            foreach ($jobs as $job) {
-                $contents = @file_get_contents($job["company_logo"]);
+            //Log::info("Getting jobs for API");
 
-                if ($contents) {
-                    $extension = "jpg";
-                    $filename = $job["company"] ? Str::slug($job["company"], "-") : basename($job["company_logo"]);
-                    Storage::disk("local")->put("public/companies/" . $filename . "." . $extension, $contents);
-                    $job["company_logo"] = $filename . "." . $extension;
+            if (!empty($jobs)) {
+                foreach ($jobs as $job) {
+                    //Log::info($job);
+                    $contents = @file_get_contents($job["company_logo"]);
+
+                    if ($contents) {
+                        $extension = "jpg";
+                        $filename = $job["company"] ? Str::slug($job["company"], "-") : basename($job["company_logo"]);
+                        Storage::disk("local")->put("public/companies/" . $filename . "." . $extension, $contents);
+                        $job["company_logo"] = $filename . "." . $extension;
+                    }
+
+                    $job["date"] = $job["date"] ?? now();
+                    $this->jobsRepo->save($job);
                 }
-
-                $job["date"] = $job["date"] ?? now();
-                $this->jobsRepo->save($job);
             }
-        }
 
-        return response(["message" => "Success"], 200);
+            return response(["message" => "Success"], 200);
+        } catch (Exception $e) {
+            return response(["message" => $e->getMessage()], 404);
+        }
     }
 }
