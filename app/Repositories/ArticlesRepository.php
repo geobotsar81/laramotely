@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\article;
+use App\Models\Article;
 
 class ArticlesRepository
 {
@@ -14,9 +14,10 @@ class ArticlesRepository
      */
     public function save(array $data): void
     {
-        $article = new article();
+        $article = new Article();
         $article->title = $data["title"];
         $article->url = $data["url"];
+        $article->category = $data["category"];
         $article->description = $data["description"];
         $article->posted_date = $data["date"];
         $article->image = $data["image"];

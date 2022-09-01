@@ -30,6 +30,7 @@ class LaranewsScraperService extends Scraper
             $title = "";
             $date = "";
             $description = "";
+            $category = "";
 
             if (!empty($node->filter("a")->count() > 0)) {
                 $url = "https://laravel-news.com/" . $node->filter("a")->attr("href");
@@ -38,6 +39,18 @@ class LaranewsScraperService extends Scraper
             if (!empty($node->filter("h3 span")->count() > 0)) {
                 $title = $node
                     ->filter("h3 span")
+                    ->first()
+                    ->text();
+            } elseif (!empty($node->filter("h4 span")->count() > 0)) {
+                $title = $node
+                    ->filter("h4 span")
+                    ->first()
+                    ->text();
+            }
+
+            if (!empty($node->filter(".flex.items-center.mb-1 span")->count() > 0)) {
+                $category = $node
+                    ->filter(".flex.items-center.mb-1 span")
                     ->first()
                     ->text();
             }
@@ -80,12 +93,15 @@ class LaranewsScraperService extends Scraper
                 "title" => $title,
                 "url" => $url,
                 "description" => $description,
-                "date" => $date,
+                "category" => $category,
+                "date" => date("Y-m-d H:i:s", strtotime($date)),
                 "image" => $image,
                 "source" => "laravel-news.com",
             ];
 
-            $this->articlesRepo->save($news);
+            if (!empty($title) && $category != "Sponsor") {
+                $this->articlesRepo->save($news);
+            }
         }
     }
 }
