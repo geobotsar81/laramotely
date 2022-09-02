@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Job;
+use App\Models\Article;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use App\Repositories\JobsRepository;
-use Exception;
 use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
@@ -102,5 +103,20 @@ class ApiController extends Controller
         } catch (Exception $e) {
             return response(["message" => $e->getMessage()], 404);
         }
+    }
+
+    /**
+     * Return all the articles for the articles page based on the search criteria
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getArticles(Request $request): JsonResponse
+    {
+        $page = $request["page"];
+
+        $jobs = Article::orderBy("posted_date", "desc")->paginate(25);
+
+        return response()->json($jobs);
     }
 }
