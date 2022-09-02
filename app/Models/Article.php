@@ -42,7 +42,7 @@ class Article extends Model
      */
     public function getFormatedImageAttribute()
     {
-        $image = $this->company_logo;
+        $image = $this->image;
         $file = public_path("storage/news/" . $image);
 
         return file_exists($file) ? $image : "";
