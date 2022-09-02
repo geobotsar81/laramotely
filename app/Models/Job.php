@@ -104,13 +104,18 @@ class Job extends Model
      * @param [type] $query
      * @return Builder
      */
-    public function scopeLaravel($query): Builder
+    public function scopeLaravel($query, $withDescription = true): Builder
     {
-        return $query
+        $newQuery = $query
             ->where("title", "LIKE", "%laravel%")
-            ->orWhere("description", "LIKE", "%laravel%")
             ->orWhere("location", "LIKE", "%laravel%")
             ->orWhere("tags", "LIKE", "%laravel%");
+
+        if ($withDescription) {
+            $newQuery->orWhere("description", "LIKE", "%laravel%");
+        }
+
+        return $newQuery;
     }
 
     /**

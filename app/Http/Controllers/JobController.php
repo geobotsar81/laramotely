@@ -104,7 +104,7 @@ class JobController extends Controller
             ->orWhere("tags", "LIKE", "%{$search}%")
             ->orWhere("company", "LIKE", "%{$search}%")
             ->published()
-            ->laravel()
+            ->laravel(!$strictSearch)
             ->notother();
 
         if (!$strictSearch) {
