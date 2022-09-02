@@ -83,7 +83,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <input @change="searchJobs" type="checkbox" class="form-check-input" id="strictSearch" v-model="strictSearch" />
-                                <label class="form-check-label" for="strictSearch">strict search</label>
+                                <label class="form-check-label" for="strictSearch">strict search <i class="far fa-info-circle" title="Does not search in job description"></i></label>
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@ export default {
             links: null,
             currentPage: 1,
             search: null,
-            onlyRemote: false,
+            onlyRemote: true,
             withVue: false,
             withReact: false,
             strictSearch: false,
