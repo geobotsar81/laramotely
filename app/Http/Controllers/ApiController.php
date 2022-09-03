@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Job;
+use App\Mail\JobMail;
 use App\Models\Article;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use App\Repositories\JobsRepository;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
@@ -118,5 +121,39 @@ class ApiController extends Controller
         $jobs = Article::orderBy("posted_date", "desc")->paginate(25);
 
         return response()->json($jobs);
+    }
+
+    /**
+     * Post a job through the API
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function postJob(Request $request): Response
+    {
+        $validated = $request->validate([
+            "jobTitle" => "required",
+            "jobEmail" => "email:rfc,dns",
+            "jobCompany" => "required",
+            "jobUrl" => "required",
+            "jobTags" => "required",
+            "jobDescription" => "required",
+            "jobLocation" => "required",
+        ]);
+
+        $job = [
+            "subject" => "Post a Job",
+            "jobTitle" => $request["jobTitle"],
+            "jobEmail" => $request["jobEmail"],
+            "jobCompany" => $request["jobCompany"],
+            "jobUrl" => $request["jobUrl"],
+            "jobTags" => $request["jobTags"],
+            "jobDescription" => $request["jobDescription"],
+            "jobLocation" => $request["jobLocation"],
+        ];
+
+        Mail::to("info@laramotely.com")->send(new JobMail($job));
+
+        return response(["message" => "Success"], 200);
     }
 }
