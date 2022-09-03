@@ -154,6 +154,6 @@ class ApiController extends Controller
 
         Mail::to("info@laramotely.com")->send(new JobMail($job));
 
-        return response(["message" => "Success"], 200);
+        return response(["Your job opening was submited successfully and will be reviewed shortly." => "Success"], 200);
     }
 }
