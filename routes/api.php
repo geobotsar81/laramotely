@@ -23,5 +23,6 @@ Route::middleware(["throttle:10,1"])->group(function () {
     Route::post("/v1/get-jobs", [ApiController::class, "getJobs"])->name("api.jobs.get");
     Route::post("/v1/post-jobs", [ApiController::class, "postJobs"])->name("api.jobs.post");
     Route::post("/v1/post-a-job", [ApiController::class, "postJob"])->name("api.job.post");
+    Route::post("/v1/contact-us", [ApiController::class, "sendMail"])->name("api.contact");
     Route::post("/v1/get-articles", [ApiController::class, "getArticles"])->name("api.articles.get");
 });
