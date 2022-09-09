@@ -38,7 +38,9 @@ class JobsRepository
         $foundTitle = $this->titleInDb($data["title"], $data["company"]);
 
         if (!$foundUrl["found"] && !$foundTitle["found"]) {
-            $job->save();
+            if (strpos(strtolower($data["title"]), "wordpress") === false) {
+                $job->save();
+            }
         }
     }
 
