@@ -99,13 +99,17 @@ class JobController extends Controller
         $strictSearch = $request["strictSearch"];
         $inCountries = $request["inCountries"];
 
-        $jobs = Job::where("title", "LIKE", "%{$search}%")
-            ->orWhere("location", "LIKE", "%{$search}%")
-            ->orWhere("tags", "LIKE", "%{$search}%")
-            ->orWhere("company", "LIKE", "%{$search}%")
+        $jobs = Job::notother()
             ->published()
             ->laravel(!$strictSearch)
-            ->notother();
+            ->where(function ($query) use ($search) {
+                $query
+                    ->where("title", "LIKE", "%{$search}%")
+                    ->orWhere("description", "LIKE", "%{$search}%")
+                    ->orWhere("location", "LIKE", "%{$search}%")
+                    ->orWhere("tags", "LIKE", "%{$search}%")
+                    ->orWhere("company", "LIKE", "%{$search}%");
+            });
 
         if (!$strictSearch) {
             $jobs = $jobs->orWhere("description", "LIKE", "%{$search}%");
