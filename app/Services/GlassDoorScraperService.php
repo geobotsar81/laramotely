@@ -21,6 +21,8 @@ class GlassDoorScraperService extends Scraper
         $crawler = $client->request("GET", $url);
 
         $nodes = $crawler->filter(".react-job-listing");
+
+        dd($nodes);
         foreach ($nodes as $node) {
             $node = new Crawler($node);
 
