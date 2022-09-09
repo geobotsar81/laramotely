@@ -24,7 +24,7 @@ class JobsRepository
         $job->company_logo = $data["company_logo"];
         $job->source = $data["source"];
         $job->is_scraped = 0;
-        if ($data["source"] == "linkedin.com") {
+        if ($data["source"] == "linkedin.com" || $data["source"] == "glassdoor.com") {
             $job->is_scraped = 1;
         }
 
