@@ -97,12 +97,23 @@ class ApiController extends Controller
 
                     if ($contents) {
                         $extension = "jpg";
+
+                        if ($job["source"] == "glassdoor.com") {
+                            $extension = "png";
+                        }
                         $filename = $job["company"] ? Str::slug($job["company"], "-") : basename($job["company_logo"]);
                         Storage::disk("local")->put("public/companies/" . $filename . "." . $extension, $contents);
                         $job["company_logo"] = $filename . "." . $extension;
                     }
 
-                    $job["date"] = $job["date"] ?? now();
+                    if ($job["source"] == "glassdoor.com") {
+                        $job["date"] = $this->getDate($job["date"]);
+                    } else {
+                        $job["date"] = $job["date"] ?? now();
+                    }
+
+                    Log::info($job);
+
                     $this->jobsRepo->save($job);
                 }
             }
@@ -111,6 +122,30 @@ class ApiController extends Controller
         } catch (Exception $e) {
             return response(["message" => $e->getMessage()], 404);
         }
+    }
+
+    public function getDate($date)
+    {
+        if (strpos($date, "h") !== false) {
+            $date = str_replace("h", "", $date);
+            $date = date("Y-m-d H:i:s", strtotime("-" . $date . " hours", strtotime(now())));
+        } elseif (strpos($date, "d") !== false) {
+            $date = str_replace("d", "", $date);
+            $date = date("Y-m-d", strtotime("-" . $date * 1 . " days", strtotime(now())));
+        } elseif (strpos($date, "w") !== false) {
+            $date = str_replace("w", "", $date);
+            $date = date("Y-m-d", strtotime("-" . $date * 14 . " days", strtotime(now())));
+        } elseif (strpos($date, "mos") !== false) {
+            $date = str_replace("mos", "", $date);
+            $date = date("Y-m-d", strtotime("-" . $date * 31 . " days", strtotime(now())));
+        } elseif (strpos($date, "mo") !== false) {
+            $date = str_replace("mo", "", $date);
+            $date = date("Y-m-d", strtotime("-" . 31 . " days", strtotime(now())));
+        } else {
+            $date = now();
+        }
+
+        return $date;
     }
 
     /**
