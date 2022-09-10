@@ -18,6 +18,7 @@ use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use App\Services\GlassDoorScraperService;
 use App\Services\CleverjobsScraperService;
+use App\Services\LaravelLinkScraperService;
 use App\Services\ZipRecruiterScraperService;
 use Symfony\Component\HttpClient\HttpClient;
 use App\Services\StackOverflowScraperService;
@@ -113,6 +114,11 @@ class ScraperController extends Controller
 
         if ($type == 16) {
             $laranewsScraper = new LaranewsScraperService();
+            $laranewsScraper->scrape();
+        }
+
+        if ($type == 17) {
+            $laranewsScraper = new LaravelLinkScraperService();
             $laranewsScraper->scrape();
         }
     }
