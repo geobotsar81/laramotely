@@ -129,6 +129,7 @@ import AppJob from "@/Shared/AppJob";
 import Pagination from "@/Shared/AppPagination";
 import { useForm } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
+import { watch } from "vue";
 
 Inertia.on("navigate", (event) => {
     gtag("event", "page_view", {
@@ -145,6 +146,7 @@ export default {
         AppJob,
         Pagination,
     },
+
     setup() {
         const form = useForm({
             email: null,
@@ -154,6 +156,26 @@ export default {
         return { form };
     },
     mounted() {
+        if (localStorage.getItem("onlyRemote") === null) {
+            this.onlyRemote = true;
+        } else {
+            this.onlyRemote = localStorage.getItem("onlyRemote") === "true";
+        }
+
+        if (localStorage.getItem("strictSearch") === null) {
+            this.strictSearch = true;
+        } else {
+            this.strictSearch = localStorage.getItem("strictSearch") === "true";
+        }
+
+        this.withVue = localStorage.getItem("withVue") === "true";
+        this.withReact = localStorage.getItem("withReact") === "true";
+        this.inUSA = localStorage.getItem("inUSA") === "true";
+        this.inUK = localStorage.getItem("inUK") === "true";
+        this.inDE = localStorage.getItem("inDE") === "true";
+        this.inIT = localStorage.getItem("inIT") === "true";
+        this.search = localStorage.getItem("search");
+
         this.getJobs();
     },
     data() {
@@ -165,7 +187,7 @@ export default {
             onlyRemote: true,
             withVue: false,
             withReact: false,
-            strictSearch: false,
+            strictSearch: true,
             searching: false,
             inUSA: false,
             inUK: false,
@@ -237,6 +259,35 @@ export default {
     watch: {
         currentPage(newData, oldData) {
             this.getJobs();
+        },
+        onlyRemote(currentValue, oldValue) {
+            localStorage.setItem("onlyRemote", currentValue);
+        },
+        withVue(currentValue, oldValue) {
+            console.log("Current:" + currentValue);
+            console.log("oldValue:" + oldValue);
+            localStorage.setItem("withVue", currentValue);
+        },
+        withReact(currentValue, oldValue) {
+            localStorage.setItem("withReact", currentValue);
+        },
+        strictSearch(currentValue, oldValue) {
+            localStorage.setItem("strictSearch", currentValue);
+        },
+        inUSA(currentValue, oldValue) {
+            localStorage.setItem("inUSA", currentValue);
+        },
+        inUK(currentValue, oldValue) {
+            localStorage.setItem("inUK", currentValue);
+        },
+        inDE(currentValue, oldValue) {
+            localStorage.setItem("inDE", currentValue);
+        },
+        inIT(currentValue, oldValue) {
+            localStorage.setItem("inIT", currentValue);
+        },
+        search(currentValue, oldValue) {
+            localStorage.setItem("search", currentValue);
         },
     },
 };
