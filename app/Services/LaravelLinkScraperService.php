@@ -57,11 +57,17 @@ class LaravelLinkScraperService extends Scraper
                     ->text();
 
                 if (!empty($date)) {
-                    if (strpos($date, "days ago") !== false) {
+                    if (strpos($date, "day ago") !== false) {
+                        $date = str_replace(" day ago", "", $date);
+                        $date = date("Y-m-d", strtotime("-" . $date . " days", strtotime(now())));
+                    } elseif (strpos($date, "days ago") !== false) {
                         $date = str_replace(" days ago", "", $date);
                         $date = date("Y-m-d", strtotime("-" . $date . " days", strtotime(now())));
-                    } elseif (strpos($date, "+ weeks") !== false) {
-                        $date = str_replace("+ weeks", "", $date);
+                    } elseif (strpos($date, " week ago") !== false) {
+                        $date = str_replace(" week ago", "", $date);
+                        $date = date("Y-m-d", strtotime("-" . $date * 7 . " days", strtotime(now())));
+                    } elseif (strpos($date, " weeks ago") !== false) {
+                        $date = str_replace(" weeks ago", "", $date);
                         $date = date("Y-m-d", strtotime("-" . $date * 7 . " days", strtotime(now())));
                     } elseif (strpos($date, "months ago") !== false) {
                         $date = str_replace(" months ago", "", $date);
