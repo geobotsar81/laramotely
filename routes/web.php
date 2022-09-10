@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\ScraperController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\NewsletterController;
@@ -35,6 +36,8 @@ Route::get("/unsubscribe/{userID}", [NewsletterController::class, "unsubscribe"]
 
 Route::get("/sitemap.xml", [SitemapController::class, "index"]);
 Route::get("/feed", [FeedController::class, "index"]);
+
+Route::get("/privacy", [PrivacyController::class, "show"])->name("privacy.show");
 
 //Admin routes
 Route::group(["prefix" => "admin"], function () {
