@@ -16,7 +16,8 @@ class NewsletterService
      */
     public function sendEmails(): void
     {
-        $jobs = Job::laravel()
+        $jobs = Job::laravel(false)
+            ->remote(false)
             ->published()
             ->notother()
             ->whereDate("created_at", ">=", Carbon::yesterday())
