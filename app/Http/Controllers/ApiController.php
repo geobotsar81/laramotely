@@ -77,6 +77,14 @@ class ApiController extends Controller
         return response()->json($jobs);
     }
 
+    public function getFavourites(Request $request): JsonResponse
+    {
+        $favourites = $request["jobIds"];
+
+        $jobs = Job::whereIn("id", $favourites)->paginate(25);
+        return response()->json($jobs);
+    }
+
     /**
      * Post all the jobs
      *
