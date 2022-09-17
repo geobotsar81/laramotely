@@ -165,8 +165,16 @@ class ApiController extends Controller
     public function getArticles(Request $request): JsonResponse
     {
         $page = $request["page"];
+        $search = $request["search"];
 
-        $jobs = Article::orderBy("posted_date", "desc")->paginate(25);
+        $jobs = Article::where(function ($query) use ($search) {
+            $query
+                ->where("title", "LIKE", "%{$search}%")
+                ->orWhere("category", "LIKE", "%{$search}%")
+                ->orWhere("description", "LIKE", "%{$search}%");
+        })
+            ->orderBy("posted_date", "desc")
+            ->paginate(25);
 
         return response()->json($jobs);
     }
