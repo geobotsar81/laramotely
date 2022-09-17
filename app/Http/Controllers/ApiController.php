@@ -165,8 +165,8 @@ class ApiController extends Controller
     public function getArticles(Request $request): JsonResponse
     {
         $page = $request["page"];
-        $search = $request["search"];
-        $category = $request["category"];
+        $search = $request->get("search", "");
+        $category = $request->get("category", "");
 
         $articles = Article::where(function ($query) use ($search) {
             $query
@@ -175,8 +175,10 @@ class ApiController extends Controller
                 ->orWhere("description", "LIKE", "%{$search}%");
         });
 
-        if ($category != "all") {
-            $articles = $articles->where("category", $category);
+        if (!empty($category)) {
+            if ($category != "all") {
+                $articles = $articles->where("category", $category);
+            }
         }
 
         $articles = $articles->orderBy("posted_date", "desc")->paginate(25);
