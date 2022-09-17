@@ -166,17 +166,22 @@ class ApiController extends Controller
     {
         $page = $request["page"];
         $search = $request["search"];
+        $category = $request["category"];
 
-        $jobs = Article::where(function ($query) use ($search) {
+        $articles = Article::where(function ($query) use ($search) {
             $query
                 ->where("title", "LIKE", "%{$search}%")
                 ->orWhere("category", "LIKE", "%{$search}%")
                 ->orWhere("description", "LIKE", "%{$search}%");
-        })
-            ->orderBy("posted_date", "desc")
-            ->paginate(25);
+        });
 
-        return response()->json($jobs);
+        if ($category != "all") {
+            $articles = $articles->where("category", $category);
+        }
+
+        $articles = $articles->orderBy("posted_date", "desc")->paginate(25);
+
+        return response()->json($articles);
     }
 
     /**
