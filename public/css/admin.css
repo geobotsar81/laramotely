@@ -1,1 +1,1 @@
-.form-control::-moz-placeholder{color:#000}.form-control:-ms-input-placeholder{color:#000}.form-control,.form-control::placeholder,.table,label{color:#000}.btn-primary{background-color:#1556a1!important}
+.form-control::-webkit-input-placeholder{color:#000}.form-control::-moz-placeholder{color:#000}.form-control,.form-control::placeholder,.table,label{color:#000}.btn-primary{background-color:#1556a1!important}
