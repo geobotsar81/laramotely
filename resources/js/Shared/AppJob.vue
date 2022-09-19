@@ -7,7 +7,7 @@
                     v-else-if="job.company_logo && job.company_logo != 'nologo.svg'"
                     :src="storageUrl + 'companies/' + job.company_logo"
                     class="img-fluid job__logo"
-                    @error="this.style.display = 'none'"
+                    onerror="this.style.display = 'none'"
                 />
                 <div v-else-if="job.company" class="job__logoAlternative">{{ job.company }}</div>
                 <div v-else class="job__logoAlternative">N/A</div>
