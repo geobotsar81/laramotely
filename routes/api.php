@@ -19,7 +19,7 @@ Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(["throttle:10,1"])->group(function () {
+Route::middleware(["throttle:40,1"])->group(function () {
     Route::post("/v1/get-jobs", [ApiController::class, "getJobs"])->name("api.jobs.get");
     Route::post("/v1/update-job-views", [ApiController::class, "updateJobViews"])->name("api.jobs.update-views");
     Route::post("/v1/get-favourites", [ApiController::class, "getFavourites"])->name("api.favourites.get");
