@@ -47,6 +47,7 @@ class ApiController extends Controller
         $withReact = $request["withReact"];
         $strictSearch = $request["strictSearch"];
         $inCountries = $request["inCountries"];
+        $sortBy = $request["sortBy"];
 
         $jobs = Job::notother()
             ->published()
@@ -79,7 +80,13 @@ class ApiController extends Controller
             $jobs = $jobs->inCountries($countriesArray);
         }
 
-        $jobs = $jobs->orderBy("posted_date", "desc")->paginate(25);
+        if ($sortBy == "popular") {
+            $jobs = $jobs->orderBy("views", "desc");
+        } else {
+            $jobs = $jobs->orderBy("posted_date", "desc");
+        }
+
+        $jobs->paginate(25);
 
         return response()->json($jobs);
     }
