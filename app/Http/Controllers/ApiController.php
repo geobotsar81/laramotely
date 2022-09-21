@@ -86,7 +86,7 @@ class ApiController extends Controller
             $jobs = $jobs->orderBy("posted_date", "desc");
         }
 
-        $jobs->paginate(25);
+        $jobs = $jobs->paginate(25);
 
         return response()->json($jobs);
     }
