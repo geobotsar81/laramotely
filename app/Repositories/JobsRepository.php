@@ -89,4 +89,9 @@ class JobsRepository
             "job" => $job,
         ];
     }
+
+    public function updateViews(int $jobId)
+    {
+        Job::whereId($jobId)->increment("views");
+    }
 }
