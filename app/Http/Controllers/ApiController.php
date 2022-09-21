@@ -25,6 +25,13 @@ class ApiController extends Controller
         $this->jobsRepo = new JobsRepository();
     }
 
+    public function updateJobViews(Request $request)
+    {
+        $jobId = $request["jobId"];
+        $this->jobsRepo->updateViews($jobId);
+        return response(["message" => "Success"], 200);
+    }
+
     /**
      * Return all the jobs for the home page based on the search criteria
      *
