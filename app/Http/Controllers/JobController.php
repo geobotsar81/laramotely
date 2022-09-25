@@ -9,12 +9,20 @@ use Inertia\Response;
 use Illuminate\Http\Request;
 use TCG\Voyager\Models\Page;
 use Illuminate\Http\JsonResponse;
+use App\Repositories\JobsRepository;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
 
 class JobController extends Controller
 {
+    protected $jobsRepo;
+
+    public function __construct()
+    {
+        $this->jobsRepo = new JobsRepository();
+    }
+
     /**
      * Display the home page with the jpbs
      *
@@ -47,6 +55,8 @@ class JobController extends Controller
         $ogImage = "ogimage$number.jpg";
 
         $job = Job::where("id", $id)->firstOrFail();
+
+        $this->jobsRepo->updateViews($id);
 
         $otherJobs = Job::where("id", "!=", $id)
             ->published()
