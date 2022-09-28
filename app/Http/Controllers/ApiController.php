@@ -53,18 +53,18 @@ class ApiController extends Controller
         $jobs = Job::notother()
             ->published()
             ->laravel(!$strictSearch)
-            ->where(function ($query) use ($search) {
+            ->where(function ($query) use ($search, $strictSearch) {
                 $query
                     ->where("title", "LIKE", "%{$search}%")
-                    ->orWhere("description", "LIKE", "%{$search}%")
                     ->orWhere("location", "LIKE", "%{$search}%")
                     ->orWhere("tags", "LIKE", "%{$search}%")
                     ->orWhere("company", "LIKE", "%{$search}%");
+
+                if (!$strictSearch) {
+                    $query = $query->orWhere("description", "LIKE", "%{$search}%");
+                }
             });
 
-        if (!$strictSearch) {
-            $jobs = $jobs->orWhere("description", "LIKE", "%{$search}%");
-        }
         if ($withVue) {
             $jobs = $jobs->vue(!$strictSearch);
         }
@@ -99,7 +99,6 @@ class ApiController extends Controller
     public function getFavourites(Request $request): JsonResponse
     {
         $favourites = $request["jobIds"];
-
         $jobs = Job::whereIn("id", $favourites)->paginate(25);
         return response()->json($jobs);
     }
@@ -138,8 +137,6 @@ class ApiController extends Controller
                     } else {
                         $job["date"] = $job["date"] ?? now();
                     }
-
-                    Log::info($job);
 
                     $this->jobsRepo->save($job);
                 }
