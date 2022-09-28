@@ -47,6 +47,7 @@ class ApiController extends Controller
         $withReact = $request["withReact"];
         $strictSearch = $request["strictSearch"];
         $inCountries = $request["inCountries"];
+        $hiddenJobs = $request["hiddenJobs"];
         $sortBy = $request["sortBy"];
 
         $jobs = Job::notother()
@@ -73,6 +74,10 @@ class ApiController extends Controller
 
         if ($onlyRemote) {
             $jobs = $jobs->remote(!$strictSearch);
+        }
+
+        if (!empty($hiddenJobs)) {
+            $jobs = $jobs->whereNotIn("id", $hiddenJobs);
         }
 
         if (!empty($inCountries)) {
