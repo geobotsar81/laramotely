@@ -9,6 +9,7 @@ use App\Models\Article;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\ContactFormMail;
+use App\Repositories\AppMembersRepository;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
@@ -19,10 +20,12 @@ use Illuminate\Support\Facades\Storage;
 class ApiController extends Controller
 {
     protected $jobsRepo;
+    protected $appMembersRepo;
 
     public function __construct()
     {
         $this->jobsRepo = new JobsRepository();
+        $this->appMembersRepo = new AppMembersRepository();
     }
 
     public function updateJobViews(Request $request)
@@ -259,5 +262,19 @@ class ApiController extends Controller
 
         Mail::to("info@laramotely.com")->send(new ContactFormMail($contact));
         return response(["message" => "Your message has been sent."], 200);
+    }
+
+    public function setMemberToken(Request $request)
+    {
+        $appID = $request["appID"];
+        $appToken = $request["appToken"];
+        Log::info($appID . ", " . $appToken);
+
+        $data = [
+            "appID" => $appID,
+            "appToken" => $appToken,
+        ];
+
+        $this->appMembersRepo->setToken($data);
     }
 }
