@@ -9,5 +9,12 @@ class AppMember extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ["appID", "appToken"];
+
     public $appends = [];
 }
