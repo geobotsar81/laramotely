@@ -8,6 +8,7 @@ use App\Mail\JobMail;
 use Inertia\Response;
 use Illuminate\Http\Request;
 use TCG\Voyager\Models\Page;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\JsonResponse;
 use App\Repositories\JobsRepository;
 use Illuminate\Support\Facades\Mail;
@@ -204,18 +205,29 @@ class JobController extends Controller
 
     public function testNotification()
     {
-        $registrationIds = "dxBImPmFQl-G_TPXpgxfUl:APA91bFrwBih_xb7nj0GUJVUHhPONwaiFl5Cj_WWXkSbeP7_0oKgxLjvNHFu7oZ7UaxZim__KLm-UI6XZ1nofYwpSws7sVXFbhaG9_PWukFTCVe-lBErBFew4cyzeLeP9Ywo4NfOysdd";
+        $registrationIds = "e_MjGHChRf6pebGXBXz7lu:APA91bHONXd2fHVLhbS-F08J1-HvTYUXgHRl_EHctsoe7tdoPLEZBVNyXmpZyj_WROJqZ08HqBUEZYvcjMVFfakuZTzHfR0x7dIPlP9a4f1FPGUrlpTwdKTh4M72PLRiMRF-l3lF_ton";
         $deviceType = "Android";
 
-        $notification = [];
-        $notification["body"] = "test notification";
-        $notification["title"] = "test title";
-        $notification["sound"] = "default";
-        $notification["type"] = 1;
-        $notification["section"] = "job";
-        $notification["id"] = 4446;
-        $notification["notification_foreground"] = "true";
+        $current = Carbon::now();
 
-        $this->notificationsService->sendNotification($registrationIds, $notification, $deviceType);
+        $job = Job::laravel(false)
+            ->published()
+            ->notother()
+            ->whereDate("created_at", ">=", $current->subHours(24))
+            ->orderBy("views", "desc")
+            ->first();
+
+        if ($job) {
+            $notification = [];
+            $notification["body"] = $job->company . " is looking for a " . $job->title . ". Location: " . $job->location;
+            $notification["title"] = $job->title;
+            $notification["sound"] = "default";
+            $notification["type"] = 1;
+            $notification["section"] = "job";
+            $notification["id"] = $job->id;
+            $notification["notification_foreground"] = "true";
+
+            $this->notificationsService->sendNotification($registrationIds, $notification, $deviceType);
+        }
     }
 }

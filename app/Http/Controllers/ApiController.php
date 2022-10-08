@@ -287,7 +287,7 @@ class ApiController extends Controller
     {
         $id = $request["id"];
 
-        $job = Jobs::whereId($id)->firstOrFail();
+        $job = Job::whereId($id)->firstOrFail();
 
         return response()->json($job);
     }
