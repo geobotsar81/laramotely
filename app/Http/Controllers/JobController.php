@@ -13,14 +13,17 @@ use App\Repositories\JobsRepository;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
+use App\Services\FirebaseNotificationService;
 
 class JobController extends Controller
 {
     protected $jobsRepo;
+    protected $notificationsService;
 
     public function __construct()
     {
         $this->jobsRepo = new JobsRepository();
+        $this->notificationsService = new FirebaseNotificationService();
     }
 
     /**
@@ -197,5 +200,22 @@ class JobController extends Controller
         return redirect()
             ->route("job.post")
             ->with("status", "Your job has been submited!");
+    }
+
+    public function testNotification()
+    {
+        $registrationIds = "dxBImPmFQl-G_TPXpgxfUl:APA91bFrwBih_xb7nj0GUJVUHhPONwaiFl5Cj_WWXkSbeP7_0oKgxLjvNHFu7oZ7UaxZim__KLm-UI6XZ1nofYwpSws7sVXFbhaG9_PWukFTCVe-lBErBFew4cyzeLeP9Ywo4NfOysdd";
+        $deviceType = "Android";
+
+        $notification = [];
+        $notification["body"] = "test notification";
+        $notification["title"] = "test title";
+        $notification["sound"] = "default";
+        $notification["type"] = 1;
+        $notification["section"] = "job";
+        $notification["id"] = 4446;
+        $notification["notification_foreground"] = "true";
+
+        $this->notificationsService->sendNotification($registrationIds, $notification, $deviceType);
     }
 }

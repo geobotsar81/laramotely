@@ -268,7 +268,6 @@ class ApiController extends Controller
     {
         $appID = $request["appID"];
         $appToken = $request["appToken"];
-        Log::info($appID . ", " . $appToken);
 
         $data = [
             "appID" => $appID,
@@ -276,5 +275,20 @@ class ApiController extends Controller
         ];
 
         $this->appMembersRepo->setToken($data);
+    }
+
+    /**
+     * Get a Job
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function getJob(Request $request)
+    {
+        $id = $request["id"];
+
+        $job = Jobs::whereId($id)->firstOrFail();
+
+        return response()->json($job);
     }
 }
