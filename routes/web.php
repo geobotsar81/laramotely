@@ -44,6 +44,7 @@ Route::group(["prefix" => "admin"], function () {
     Voyager::routes();
     Route::get("/scrape/{type}", [ScraperController::class, "scrape"])->name("scraper.scrape");
     Route::get("/healthcheck", [ScraperController::class, "healthcheck"])->name("scraper.healthcheck");
+    Route::get("/test-notification", [JobController::class, "testNotification"])->name("job.testNotification");
 });
 
 //Route to test the scrapers
