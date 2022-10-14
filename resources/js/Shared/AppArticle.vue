@@ -3,6 +3,7 @@
         <div class="row align-items-center">
             <div class="article__imageContainer">
                 <a :href="article.url" target="_blank" v-if="article.formated_image"><img class="article__image" :src="'https://www.laramotely.com/storage/news/' + article.formated_image" /> </a>
+                <a :href="article.url" target="_blank" v-else><img class="article__image" :src="publicUrl + 'img/laravel-news.jpg'" /> </a>
             </div>
 
             <div v-if="article.category" class="article__category">{{ article.category }}</div>
@@ -40,13 +41,10 @@ export default {
     data() {
         return {
             storageUrl: this.$page.props.storageUrl + "/",
+            publicUrl: this.$page.props.publicUrl + "/",
         };
     },
-    methods: {
-        calculateClass() {
-            return this.count % 2 == 0 ? "odd" : "even";
-        },
-    },
+    methods: {},
 };
 </script>
 <style lang="scss" scoped>
