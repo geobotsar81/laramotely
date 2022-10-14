@@ -82,8 +82,10 @@ class LaranewsScraperService extends Scraper
                 $contents = @file_get_contents($image);
                 if ($contents) {
                     $filename = basename($image);
-                    Storage::disk("local")->put("public/news/" . $filename, $contents);
-                    $image = $filename;
+                    if (strlen($filename) < 50) {
+                        Storage::disk("local")->put("public/news/" . $filename, $contents);
+                        $image = $filename;
+                    }
                 } else {
                     $image = "";
                 }
