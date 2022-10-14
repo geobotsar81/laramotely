@@ -19,4 +19,13 @@ class AppMembersRepository
 
         AppMember::updateOrCreate(["appID" => $appID], ["appToken" => $appToken]);
     }
+
+    public function setSettings(array $data): void
+    {
+        $appToken = $data["appToken"];
+        $appID = $data["appID"];
+        $notificationsInterval = $data["notificationsInterval"];
+
+        AppMember::updateOrCreate(["appID" => $appID], ["appToken" => $appToken, "notificationsInterval" => $notificationsInterval]);
+    }
 }

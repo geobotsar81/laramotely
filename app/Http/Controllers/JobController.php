@@ -205,7 +205,7 @@ class JobController extends Controller
 
     public function testNotification()
     {
-        $registrationIds = "e_MjGHChRf6pebGXBXz7lu:APA91bHONXd2fHVLhbS-F08J1-HvTYUXgHRl_EHctsoe7tdoPLEZBVNyXmpZyj_WROJqZ08HqBUEZYvcjMVFfakuZTzHfR0x7dIPlP9a4f1FPGUrlpTwdKTh4M72PLRiMRF-l3lF_ton";
+        $registrationIds = "daM99Qt9SGGS4DjWQbD12-:APA91bFX54pvhNYsCKxm7V5ZtvKUbVadZ03qeip6fjVGMEmV_9Cazhnjxk8xewyeD4YTOW63ruDy8iS_rVG3sNbY0ZmJhcdsn748zJz9j_sKeY_Dx1bEPxJuuAYehFiA6i50dXqKrpEI";
         $deviceType = "Android";
 
         $current = Carbon::now();
@@ -213,7 +213,7 @@ class JobController extends Controller
         $job = Job::laravel(false)
             ->published()
             ->notother()
-            ->whereDate("created_at", ">=", $current->subHours(24))
+            ->whereDate("created_at", ">=", $current->subHours(48))
             ->orderBy("views", "desc")
             ->first();
 
@@ -226,6 +226,7 @@ class JobController extends Controller
             $notification["section"] = "job";
             $notification["id"] = $job->id;
             $notification["notification_foreground"] = "true";
+            $notification["icon"] = "notification_icon";
 
             $this->notificationsService->sendNotification($registrationIds, $notification, $deviceType);
         }
