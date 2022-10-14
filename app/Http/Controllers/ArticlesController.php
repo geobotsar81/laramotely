@@ -87,6 +87,11 @@ class ArticlesController extends Controller
 
         $data["meta_title"] = $title;
         $data["meta_description"] = "All the latest Laravel News";
-        return Inertia::render("News/Show", $data)->withViewData(["ogImage" => "newsOgImage.jpg", "title" => $title, "description" => $description, "url" => route("news.show-detail", $article->id)]);
+        return Inertia::render("News/Show", $data)->withViewData([
+            "ogImage" => "newsOgImage.jpg",
+            "title" => $title,
+            "description" => "All the latest Laravel News",
+            "url" => route("news.show-detail", $article->id),
+        ]);
     }
 }
