@@ -64,4 +64,30 @@ class ArticlesController extends Controller
 
         return response()->json($articles);
     }
+
+    /**
+     * Display the selected job
+     *
+     * @param integer $id
+     * @return Response
+     */
+    public function showDetails(int $id): Response
+    {
+        $article = Article::where("id", $id)->firstOrFail();
+
+        $otherArticles = Article::where("id", "!=", $id)
+            ->orderBy("posted_date", "DESC")
+            ->take(5)
+            ->get();
+
+        $data = ["article" => $article];
+        $data["otherArticles"] = $otherArticles;
+
+        $title = $article->title;
+        $description = $article->description;
+
+        $data["meta_title"] = $title;
+        $data["meta_description"] = $description;
+        return Inertia::render("News/Show", $data)->withViewData(["title" => $title, "description" => $description, "url" => route("news.show-detail", $article->id)]);
+    }
 }

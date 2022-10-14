@@ -31,7 +31,7 @@ Route::name("job.")->group(function () {
 
 Route::name("news.")->group(function () {
     Route::get("/laravel-news", [ArticlesController::class, "show"])->name("show");
-    Route::get("/news/{id}", [ArticlesController::class, "showDetails"])->name("show-detail");
+    Route::get("/laravel-news/{id}", [ArticlesController::class, "showDetails"])->name("show-detail");
     Route::post("/get-news", [ArticlesController::class, "index"])->name("index");
 });
 
