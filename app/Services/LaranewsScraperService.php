@@ -33,7 +33,7 @@ class LaranewsScraperService extends Scraper
             $category = "";
 
             if (!empty($node->filter("a")->count() > 0)) {
-                $url = "https://laravel-news.com/" . $node->filter("a")->attr("href");
+                $url = "https://laravel-news.com" . $node->filter("a")->attr("href");
             }
 
             if (!empty($node->filter("h3 span")->count() > 0)) {
