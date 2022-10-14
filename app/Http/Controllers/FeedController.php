@@ -47,7 +47,7 @@ class FeedController extends Controller
             ->get();
 
         return response()
-            ->view("feed", [
+            ->view("newsfeed", [
                 "news" => $news,
             ])
             ->header("Content-Type", "text/xml");
