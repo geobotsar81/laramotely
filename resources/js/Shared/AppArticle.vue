@@ -15,7 +15,7 @@
             <div class="article__date">{{ article.formated_date }}</div>
 
             <div class="mt-2" v-if="article && article.url">
-                <a :href="article.url"><i class="fas fa-external-link-square-alt"></i> Read more</a>
+                <a :href="article.url" target="_blank"><i class="fas fa-external-link-square-alt"></i> Read more</a>
             </div>
         </div>
     </div>
