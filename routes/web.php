@@ -42,6 +42,7 @@ Route::get("/unsubscribe/{userID}", [NewsletterController::class, "unsubscribe"]
 
 Route::get("/sitemap.xml", [SitemapController::class, "index"]);
 Route::get("/feed", [FeedController::class, "index"]);
+Route::get("/newsfeed", [FeedController::class, "news"]);
 
 Route::get("/privacy", [PrivacyController::class, "show"])->name("privacy.show");
 
