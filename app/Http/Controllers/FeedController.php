@@ -19,19 +19,9 @@ class FeedController extends Controller
         $jobs = Job::laravel(false)
             ->notother()
             ->remote(false)
-            ->whereDate("posted_date", ">=", Carbon::today())
             ->orderBy("created_at", "desc")
-            ->take(20)
+            ->take(50)
             ->get();
-        if (empty($jobs) || $jobs->count() == 0) {
-            $jobs = Job::laravel(false)
-                ->notother()
-                ->remote(false)
-                ->whereDate("posted_date", ">=", Carbon::yesterday())
-                ->orderBy("created_at", "desc")
-                ->take(20)
-                ->get();
-        }
 
         return response()
             ->view("feed", [
