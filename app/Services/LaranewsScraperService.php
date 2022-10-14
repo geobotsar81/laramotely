@@ -69,11 +69,11 @@ class LaranewsScraperService extends Scraper
                     ->text();
             }
 
-            if (!empty($node->filter("img")->count() > 0)) {
+            if (!empty($node->filter("source")->count() > 0)) {
                 $image = $node
-                    ->filter("img")
+                    ->filter("source")
                     ->first()
-                    ->attr("src");
+                    ->attr("data-srcset");
 
                 if (strpos($image, "?") !== false) {
                     $image = substr($image, 0, strpos($image, "?"));
@@ -82,10 +82,8 @@ class LaranewsScraperService extends Scraper
                 $contents = @file_get_contents($image);
                 if ($contents) {
                     $filename = basename($image);
-                    if (strlen($filename) < 50) {
-                        Storage::disk("local")->put("public/news/" . $filename, $contents);
-                        $image = $filename;
-                    }
+                    Storage::disk("local")->put("public/news/" . $filename, $contents);
+                    $image = $filename;
                 } else {
                     $image = "";
                 }
