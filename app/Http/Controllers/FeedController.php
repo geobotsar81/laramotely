@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\Article;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 
@@ -15,15 +16,17 @@ class FeedController extends Controller
      */
     public function index(): Response
     {
-        $jobs = Job::laravel()
+        $jobs = Job::laravel(false)
             ->notother()
+            ->remote(false)
             ->whereDate("posted_date", ">=", Carbon::today())
             ->orderBy("created_at", "desc")
             ->take(20)
             ->get();
         if (empty($jobs) || $jobs->count() == 0) {
-            $jobs = Job::laravel()
+            $jobs = Job::laravel(false)
                 ->notother()
+                ->remote(false)
                 ->whereDate("posted_date", ">=", Carbon::yesterday())
                 ->orderBy("created_at", "desc")
                 ->take(20)
@@ -33,6 +36,19 @@ class FeedController extends Controller
         return response()
             ->view("feed", [
                 "jobs" => $jobs,
+            ])
+            ->header("Content-Type", "text/xml");
+    }
+
+    public function news(): Response
+    {
+        $news = Article::orderBy("created_at", "desc")
+            ->take(20)
+            ->get();
+
+        return response()
+            ->view("feed", [
+                "news" => $news,
             ])
             ->header("Content-Type", "text/xml");
     }
