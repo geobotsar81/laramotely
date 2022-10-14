@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\ScraperController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\NewsletterController;
 
 /*
@@ -26,6 +27,11 @@ Route::name("job.")->group(function () {
     Route::post("/get-jobs", [JobController::class, "index"])->name("index");
     Route::get("/post-a-job", [JobController::class, "postJob"])->name("post");
     Route::post("/post-job", [JobController::class, "sendJob"])->name("send");
+});
+
+Route::name("news.")->group(function () {
+    Route::get("/laravel-news", [ArticlesController::class, "show"])->name("show");
+    Route::post("/get-news", [ArticlesController::class, "index"])->name("index");
 });
 
 Route::get("/contact", [ContactController::class, "show"])->name("contact.show");
