@@ -10,8 +10,8 @@
        
         <title><![CDATA[@php echo $article->title." - ".$article->category; @endphp]]></title>
        
-        <link>{{ route('article.show',$article->id) }}</link>
-        <guid>{{ route('article.show',$article->id) }}</guid>
+        <link>{{ route('news.show-detail',$article->id) }}</link>
+        <guid>{{ route('news.show-detail',$article->id) }}</guid>
         <pubDate>@php echo date('r', strtotime($article->posted_date)); @endphp</pubDate>
     </item>
     @endforeach
