@@ -19,7 +19,7 @@ class FeedController extends Controller
         $jobs = Job::laravel(false)
             ->notother()
             ->remote(false)
-            ->whereDate("posted_date", ">=", Carbon::today())
+            ->whereDate("posted_date", ">=", Carbon::now()->subDays(7))
             ->orderBy("created_at", "desc")
             ->take(20)
             ->get();
@@ -27,7 +27,7 @@ class FeedController extends Controller
             $jobs = Job::laravel(false)
                 ->notother()
                 ->remote(false)
-                ->whereDate("posted_date", ">=", Carbon::yesterday())
+                ->whereDate("posted_date", ">=", Carbon::now()->subDays(14))
                 ->orderBy("created_at", "desc")
                 ->take(20)
                 ->get();
