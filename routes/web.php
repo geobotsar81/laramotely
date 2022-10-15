@@ -8,6 +8,7 @@ use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\ScraperController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\ArticlesController;
+use App\Services\FirebaseNotificationService;
 use App\Http\Controllers\NewsletterController;
 
 /*
@@ -52,7 +53,7 @@ Route::group(["prefix" => "admin"], function () {
     Voyager::routes();
     Route::get("/scrape/{type}", [ScraperController::class, "scrape"])->name("scraper.scrape");
     Route::get("/healthcheck", [ScraperController::class, "healthcheck"])->name("scraper.healthcheck");
-    Route::get("/test-notification", [JobController::class, "testNotification"])->name("job.testNotification");
+    Route::get("/test-notification", [FirebaseNotificationService::class, "sendJobNotifications"])->name("job.testNotification");
 });
 
 //Route to test the scrapers
