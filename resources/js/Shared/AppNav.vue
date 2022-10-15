@@ -1,7 +1,7 @@
 <template>
     <nav class="nav">
-        <inertia-link class="nav-link" :class="isUrl('contact') ? 'active' : ''" :href="route('contact.show')"> Contact </inertia-link>
         <inertia-link class="nav-link" :class="isUrl('laravel-news') ? 'active' : ''" :href="route('news.show')"> News </inertia-link>
+        <inertia-link class="nav-link" :class="isUrl('contact') ? 'active' : ''" :href="route('contact.show')"> Contact </inertia-link>
         <app-button :href="route('job.post')" type="link" class="buttonPostAJob">POST A FREE JOB</app-button>
     </nav>
 </template>

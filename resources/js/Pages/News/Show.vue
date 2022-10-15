@@ -11,62 +11,22 @@
             <div class="row mt-4">
                 <div class="col-sm-12 col-lg-8 mb-4">
                     <div class="row">
-                        <div class="col-12 job__date">{{ article.formated_date }}</div>
+                        <div class="col-12"><app-article :article="article"></app-article></div>
                     </div>
+
                     <div class="row">
-                        <div class="col-12">
-                            <h1>{{ article.title }}</h1>
-                        </div>
+                        <div class="col-12"><h3>Latest Laravel News</h3></div>
                     </div>
-                    <div class="row mb-2" v-if="article.location">
-                        <div class="col-12 job__source"><i class="far fa-globe-americas"></i> {{ article.formated_location }}</div>
-                    </div>
-
-                    <div class="row mb-4" v-if="article.formated_tags && article.source != 'remotive.io'">
-                        <div class="col-12">
-                            <span class="job__tag" v-for="(tag, index) in article.formated_tags" :key="index">{{ tag }}</span>
-                        </div>
-                    </div>
-
-                    <!--<div class="row mb-5">
-                        <div class="col-12">
-                            <div class="commandpost">
-                                <a href="https://commandpost.dev/" target="_blank">
-                                    <div class="row">
-                                        <div class="col-12"><img :src="publicUrl + '/img/commandpost2.jpg'" class="img-fluid" /></div>
-                                    </div>
-                                    <div class="commandpost__content">
-                                        <div class="row mt-2">
-                                            <div class="col-12">
-                                                <h2><i class="far fa-code"></i> commadpost.dev</h2>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-2"><div class="col-12">A place for web devs to store their commands and organise them into collections</div></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>-->
-
-                    <div class="row mb-5" v-if="article.description">
-                        <div class="col-12 job__description">
-                            <span v-html="article.description"></span>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <app-button type="external" class="buttonRed" :link="article.url">READ MORE</app-button>
+                    <div class="row mt-4" v-if="otherArticles">
+                        <div class="col-md-4" v-for="(article, index) in otherArticles" :key="index">
+                            <app-article :article="article"></app-article>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="row">
-                        <div class="col-12"><h3>Latest Laravel News</h3></div>
-                    </div>
-                    <div class="mt-4" v-if="otherArticles">
-                        <div v-for="(article, index) in otherArticles" :key="index">
-                            <app-article :article="article"></app-article>
+                    <div class="mt-4" v-if="otherJobs">
+                        <div v-for="(job, index) in otherJobs" :key="index">
+                            <app-job-compact :job="job"></app-job-compact>
                         </div>
                     </div>
                 </div>
@@ -80,6 +40,7 @@ import TheHead from "@/Shared/TheHead";
 import TheMain from "@/Shared/TheMain";
 import AppButton from "@/Shared/AppButton";
 import AppArticle from "@/Shared/AppArticle";
+import AppJobCompact from "@/Shared/AppJobCompact";
 import { InertiaLink } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
 
@@ -97,6 +58,7 @@ export default {
         TheMain,
         AppButton,
         AppArticle,
+        AppJobCompact,
         InertiaLink,
     },
     layout: AppLayout,
@@ -116,15 +78,14 @@ export default {
         otherArticles: function () {
             return this.$page.props.otherArticles;
         },
+        otherJobs: function () {
+            return this.$page.props.otherJobs;
+        },
         meta_title: function () {
             return this.$page.props.meta_title;
         },
         meta_description: function () {
             return this.$page.props.meta_description;
-        },
-        getBackgroundImage() {
-            let imageNumber = this.job.id % 5;
-            return "background-image:url('" + this.publicUrl + "img/headerImage" + imageNumber + ".jpg')";
         },
     },
 };

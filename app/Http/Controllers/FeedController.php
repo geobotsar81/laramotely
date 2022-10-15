@@ -42,8 +42,8 @@ class FeedController extends Controller
 
     public function news(): Response
     {
-        $news = Article::orderBy("created_at", "desc")
-            ->take(20)
+        $news = Article::orderBy("posted_date", "desc")
+            ->take(50)
             ->get();
 
         return response()

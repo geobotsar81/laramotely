@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\Article;
@@ -82,6 +83,14 @@ class ArticlesController extends Controller
 
         $data = ["article" => $article];
         $data["otherArticles"] = $otherArticles;
+
+        $otherJobs = Job::where("id", "!=", $id)
+            ->published()
+            ->orderBy("posted_date", "DESC")
+            ->take(5)
+            ->get();
+
+        $data["otherJobs"] = $otherJobs;
 
         $title = $article->title;
 
