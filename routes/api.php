@@ -29,4 +29,5 @@ Route::middleware(["throttle:40,1"])->group(function () {
     Route::post("/v1/contact-us", [ApiController::class, "sendMail"])->name("api.contact");
     Route::post("/v1/get-articles", [ApiController::class, "getArticles"])->name("api.articles.get");
     Route::post("/v1/set-member-token", [ApiController::class, "setMemberToken"])->name("api.token.set");
+    Route::post("/v1/update-member-settings", [ApiController::class, "updateMemberSettings"])->name("api.settings.update");
 });
