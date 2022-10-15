@@ -281,10 +281,12 @@ class ApiController extends Controller
     {
         $appID = $request["appID"];
         $notificationsInterval = $request["notificationsInterval"];
+        $inCountries = $request["inCountries"];
 
         $data = [
             "appID" => $appID,
             "notificationsInterval" => $notificationsInterval,
+            "inCountries" => $inCountries,
         ];
 
         $this->appMembersRepo->updateSettings($data);
