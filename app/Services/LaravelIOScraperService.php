@@ -22,8 +22,9 @@ class LaravelIOScraperService extends Scraper
         $crawler = $client->request("GET", $url);
 
         $nodes = $crawler->filter("section.mt-8.mb-5 .h-full.rounded-lg");
-
+        $loop = 0;
         foreach ($nodes as $node) {
+            $loop++;
             $node = new Crawler($node);
             $image = "";
             $url = "";
@@ -70,7 +71,7 @@ class LaravelIOScraperService extends Scraper
 
                 $contents = @file_get_contents($image);
                 if ($contents) {
-                    $filename = "io-" . date("d-m-y-h-i-s", time()) . ".jpg";
+                    $filename = "io-" . date("d-m-y-h-i-s", time()) . "-" . $loop . ".jpg";
                     Storage::disk("local")->put("public/news/" . $filename, $contents);
                     $image = $filename;
                 } else {
