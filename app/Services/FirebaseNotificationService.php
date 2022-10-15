@@ -66,6 +66,7 @@ class FirebaseNotificationService
             foreach ($appMembers as $member) {
                 $appID = $member->appToken;
                 $notificationsInterval = $member->notificationsInterval;
+                $inCountries = $member->inCountries;
 
                 Log::info([
                     "appID" => $appID,
@@ -80,27 +81,36 @@ class FirebaseNotificationService
                         ->published()
                         ->notother()
                         ->whereDate("created_at", ">=", $current->subHours($notificationsInterval))
-                        ->whereDate("posted_date", ">=", Carbon::now()->subDays(7))
-                        ->orderBy("views", "desc")
-                        ->first();
+                        ->whereDate("posted_date", ">=", Carbon::now()->subDays(7));
 
-                    if ($job->count() == 0) {
+                    if (!empty($inCountries)) {
+                        $countriesArray = explode(",", $inCountries);
+                        $job = $job->inCountries($countriesArray);
+                    }
+
+                    $job = $job->orderBy("views", "desc")->first();
+
+                    if (empty($job)) {
                         //Get jobs that were created within this hour interval, but not older than 2 weeks
                         $job = Job::laravel(false)
                             ->published()
                             ->notother()
                             ->whereDate("created_at", ">=", $current->subHours($notificationsInterval))
-                            ->whereDate("posted_date", ">=", Carbon::now()->subDays(14))
-                            ->orderBy("views", "desc")
-                            ->first();
+                            ->whereDate("posted_date", ">=", Carbon::now()->subDays(14));
+
+                        if (!empty($inCountries)) {
+                            $countriesArray = explode(",", $inCountries);
+                            $job = $job->inCountries($countriesArray);
+                        }
+
+                        $job = $job->orderBy("views", "desc")->first();
                     }
 
                     Log::info([
-                        "jobs-count" => $job->count(),
                         "time-now" => $current->format("d-m-y H:i:s"),
                     ]);
 
-                    if ($job->count() > 0) {
+                    if (!empty($job)) {
                         Log::info([
                             "id" => $job->id,
                             "title" => $job->title,
