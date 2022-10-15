@@ -24,7 +24,7 @@ class AppMembersRepository
     {
         $appID = $data["appID"];
         $notificationsInterval = $data["notificationsInterval"];
-        $inCountries = $data["inCountries"];
+        $inCountries = $data["inCountries"] ?? null;
 
         $appMember = AppMember::where("appID", $appID)->firstOrFail();
         $appMember->notificationsInterval = $notificationsInterval;
