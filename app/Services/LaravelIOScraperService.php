@@ -82,7 +82,7 @@ class LaravelIOScraperService extends Scraper
                 "title" => $title,
                 "url" => $url,
                 "description" => $description,
-                "category" => "news",
+                "category" => "News",
                 "date" => date("Y-m-d H:i:s", strtotime($date)),
                 "image" => $image,
                 "source" => "laravel.io",
