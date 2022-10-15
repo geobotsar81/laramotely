@@ -151,6 +151,13 @@ class Kernel extends ConsoleKernel
                 $arcScraper->scrape();
             })
             ->hourlyAt(55);
+
+        $schedule
+            ->call(function () {
+                $appNotifications = new FirebaseNotificationService();
+                $appNotifications->sendJobNotifications();
+            })
+            ->hourlyAt(0);
     }
 
     /**
