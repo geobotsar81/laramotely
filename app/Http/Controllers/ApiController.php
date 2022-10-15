@@ -277,19 +277,17 @@ class ApiController extends Controller
         $this->appMembersRepo->setToken($data);
     }
 
-    public function setMemberSettings(Request $request)
+    public function updateMemberSettings(Request $request)
     {
         $appID = $request["appID"];
-        $appToken = $request["appToken"];
         $notificationsInterval = $request["notificationsInterval"];
 
         $data = [
             "appID" => $appID,
-            "appToken" => $appToken,
             "notificationsInterval" => $notificationsInterval,
         ];
 
-        $this->appMembersRepo->setSettings($data);
+        $this->appMembersRepo->updateSettings($data);
     }
 
     /**
