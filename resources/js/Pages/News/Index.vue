@@ -14,20 +14,14 @@
                 <div class="col-xl-6 col-lg-5 col-md-4 mb-4 mt-2">
                     <input @change="searchNews" type="text" v-model="search" class="form-control" placeholder="Search Laravel News" />
                 </div>
-                <div class="col-xl-4 col-lg-5 col-md-4 col-6">
-                    <div class="form-check form-switch mt-2">
-                        <div class="row">
-                            <div class="col-12">
-                                <select @change="searchNews" v-model="category" id="newsCategory" class="form-control">
-                                    <option value="all">All Categories</option>
-                                    <option value="news">News</option>
-                                    <option value="packages">Packages</option>
-                                    <option value="videos">Videos</option>
-                                    <option value="tips">Tips</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-xl-4 col-lg-5 col-md-4 col-6 mt-2">
+                    <select @change="searchNews" v-model="category" id="newsCategory" class="form-control">
+                        <option value="all">All Categories</option>
+                        <option value="news">News</option>
+                        <option value="packages">Packages</option>
+                        <option value="videos">Videos</option>
+                        <option value="tips">Tips</option>
+                    </select>
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 text-end mt-1"><app-button class="buttonBlack" type="submit" @click.prevent="searchNews">SEARCH</app-button></div>
             </div>
@@ -81,7 +75,7 @@ export default {
         return { form };
     },
     mounted() {
-        this.search = localStorage.getItem("search");
+        this.search = localStorage.getItem("search_news");
         this.category = localStorage.getItem("category") ?? "all";
 
         this.getNews();

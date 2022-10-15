@@ -4,6 +4,7 @@
 
         <div class="mobileMenu__content"></div>
         <ul class="mobileMenu__primary">
+            <li><inertia-link @click="closeMobileMenu" :href="route('news.show')">News</inertia-link></li>
             <li><inertia-link @click="closeMobileMenu" :href="route('contact.show')">Contact</inertia-link></li>
             <li><inertia-link @click="closeMobileMenu" :href="route('job.post')">Post a Free Job</inertia-link></li>
         </ul>
