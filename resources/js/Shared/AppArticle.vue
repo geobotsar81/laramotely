@@ -2,7 +2,7 @@
     <div class="article">
         <div class="row align-items-center">
             <div class="article__imageContainer">
-                <a :href="article.url" target="_blank" v-if="article.formated_image"><img class="article__image" :src="'https://www.laramotely.com/storage/news/' + article.formated_image" /> </a>
+                <a :href="article.url" target="_blank" v-if="article.formated_image"><img class="article__image" :src="storageUrl + 'news/' + article.formated_image" /> </a>
                 <a :href="article.url" target="_blank" v-else><img class="article__image" :src="publicUrl + 'img/laravel-news.jpg'" /> </a>
             </div>
 
