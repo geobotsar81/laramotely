@@ -24,9 +24,11 @@ class AppMembersRepository
     {
         $appID = $data["appID"];
         $notificationsInterval = $data["notificationsInterval"];
+        $inCountries = $data["inCountries"];
 
         $appMember = AppMember::where("appID", $appID)->firstOrFail();
         $appMember->notificationsInterval = $notificationsInterval;
+        $appMember->inCountries = $inCountries;
         $appMember->save();
     }
 }

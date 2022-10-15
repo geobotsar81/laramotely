@@ -1,6 +1,11 @@
 <?php
 namespace App\Services;
 
+use App\Models\Job;
+use App\Models\AppMember;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
+
 class FirebaseNotificationService
 {
     protected $apiKey;
@@ -45,5 +50,78 @@ class FirebaseNotificationService
             die("Curl failed: " . curl_error($ch));
         }
         curl_close($ch);
+    }
+
+    public function sendJobNotifications()
+    {
+        $deviceType = "Android";
+        $current = Carbon::now();
+        $hourOfTheDay = $current->format("H");
+
+        $appMembers = AppMember::where("notificationsInterval", "!=", 0)->get();
+
+        Log::info(["count" => $appMembers->count()]);
+
+        if ($appMembers->count() > 0) {
+            foreach ($appMembers as $member) {
+                $appID = $member->appToken;
+                $notificationsInterval = $member->notificationsInterval;
+
+                Log::info([
+                    "appID" => $appID,
+                    "notificationsInterval" => $notificationsInterval,
+                    "hourOfTheDay" => $hourOfTheDay,
+                ]);
+
+                //If the user's notifications interval is within the current hour, then send the notification
+                if ($hourOfTheDay % $notificationsInterval == 0) {
+                    //Get jobs that were created within this hour interval, but not older than a week
+                    $job = Job::laravel(false)
+                        ->published()
+                        ->notother()
+                        ->whereDate("created_at", ">=", $current->subHours($notificationsInterval))
+                        ->whereDate("posted_date", ">=", Carbon::now()->subDays(7))
+                        ->orderBy("views", "desc")
+                        ->first();
+
+                    if ($job->count() == 0) {
+                        //Get jobs that were created within this hour interval, but not older than 2 weeks
+                        $job = Job::laravel(false)
+                            ->published()
+                            ->notother()
+                            ->whereDate("created_at", ">=", $current->subHours($notificationsInterval))
+                            ->whereDate("posted_date", ">=", Carbon::now()->subDays(14))
+                            ->orderBy("views", "desc")
+                            ->first();
+                    }
+
+                    Log::info([
+                        "jobs-count" => $job->count(),
+                        "time-now" => $current->format("d-m-y H:i:s"),
+                    ]);
+
+                    if ($job->count() > 0) {
+                        Log::info([
+                            "id" => $job->id,
+                            "title" => $job->title,
+                            "created_at" => $job->created_at->format("d-m-y H:i:s"),
+                        ]);
+
+                        $notification = [];
+                        $notification["body"] = $job->company . " is looking for a " . $job->title . ". Location: " . $job->location;
+                        $notification["title"] = $job->title;
+                        $notification["sound"] = "default";
+                        $notification["type"] = 1;
+                        $notification["section"] = "job";
+                        $notification["id"] = $job->id;
+                        $notification["notification_foreground"] = "true";
+                        $notification["icon"] = "notification_icon";
+
+                        $this->sendNotification($appID, $notification, $deviceType);
+                    }
+                }
+                Log::info("----------------------------");
+            }
+        }
     }
 }
