@@ -15,6 +15,7 @@ use App\Services\ReedjobsScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use App\Services\GlassDoorScraperService;
+use App\Services\LaravelIOScraperService;
 use App\Services\CleverjobsScraperService;
 use App\Services\LaravelLinkScraperService;
 use Illuminate\Console\Scheduling\Schedule;
@@ -98,6 +99,13 @@ class Kernel extends ConsoleKernel
                 $soScraper->scrape();
             })
             ->hourlyAt(25);
+
+        $schedule
+            ->call(function () {
+                $soScraper = new LaravelIOScraperService();
+                $soScraper->scrape();
+            })
+            ->hourlyAt(28);
 
         $schedule
             ->call(function () {

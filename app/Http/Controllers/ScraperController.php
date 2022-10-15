@@ -17,6 +17,7 @@ use App\Services\ReedjobsScraperService;
 use App\Services\RemoteokScraperService;
 use App\Services\RemotiveScraperService;
 use App\Services\GlassDoorScraperService;
+use App\Services\LaravelIOScraperService;
 use App\Services\CleverjobsScraperService;
 use App\Services\LaravelLinkScraperService;
 use App\Services\ZipRecruiterScraperService;
@@ -119,6 +120,11 @@ class ScraperController extends Controller
 
         if ($type == 17) {
             $laranewsScraper = new LaravelLinkScraperService();
+            $laranewsScraper->scrape();
+        }
+
+        if ($type == 18) {
+            $laranewsScraper = new LaravelIOScraperService();
             $laranewsScraper->scrape();
         }
     }
