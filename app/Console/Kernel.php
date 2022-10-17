@@ -20,6 +20,7 @@ use App\Services\CleverjobsScraperService;
 use App\Services\LaravelLinkScraperService;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Services\ZipRecruiterScraperService;
+use App\Services\FirebaseNotificationService;
 use App\Services\StackOverflowScraperService;
 use App\Services\WorkingNomadsScraperService;
 use App\Http\Controllers\NewsletterController;
