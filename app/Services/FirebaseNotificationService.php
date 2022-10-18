@@ -60,7 +60,7 @@ class FirebaseNotificationService
 
         $appMembers = AppMember::where("notificationsInterval", "!=", 0)->get();
 
-        Log::info(["count" => $appMembers->count()]);
+        //Log::info(["count" => $appMembers->count()]);
 
         if ($appMembers->count() > 0) {
             foreach ($appMembers as $member) {
@@ -68,20 +68,23 @@ class FirebaseNotificationService
                 $notificationsInterval = $member->notificationsInterval;
                 $inCountries = $member->inCountries;
 
-                Log::info([
+                /*Log::info([
                     "appID" => $appID,
                     "notificationsInterval" => $notificationsInterval,
                     "hourOfTheDay" => $hourOfTheDay,
-                ]);
+                ]);*/
 
                 //If the user's notifications interval is within the current hour, then send the notification
                 if ($hourOfTheDay % $notificationsInterval == 0) {
+                    $timeNow = $current->format("d-m-y H:i:s");
+                    $timeToBeat = $current->subHours($notificationsInterval)->toDateTimeString();
+
                     //Get jobs that were created within this hour interval, but not older than a week
                     $job = Job::laravel(false)
                         ->published()
                         ->notother()
-                        ->whereDate("created_at", ">=", $current->subHours($notificationsInterval))
-                        ->whereDate("posted_date", ">=", Carbon::now()->subDays(7));
+                        ->where("created_at", ">=", $timeToBeat)
+                        ->where("posted_date", ">=", Carbon::now()->subDays(7));
 
                     if (!empty($inCountries)) {
                         $countriesArray = explode(",", $inCountries);
@@ -92,11 +95,12 @@ class FirebaseNotificationService
 
                     if (empty($job)) {
                         //Get jobs that were created within this hour interval, but not older than 2 weeks
+
                         $job = Job::laravel(false)
                             ->published()
                             ->notother()
-                            ->whereDate("created_at", ">=", $current->subHours($notificationsInterval))
-                            ->whereDate("posted_date", ">=", Carbon::now()->subDays(14));
+                            ->where("created_at", ">=", $timeToBeat)
+                            ->where("posted_date", ">=", Carbon::now()->subDays(14));
 
                         if (!empty($inCountries)) {
                             $countriesArray = explode(",", $inCountries);
@@ -106,16 +110,17 @@ class FirebaseNotificationService
                         $job = $job->orderBy("views", "desc")->first();
                     }
 
-                    Log::info([
-                        "time-now" => $current->format("d-m-y H:i:s"),
-                    ]);
+                    /*Log::info([
+                        "time-now" => $timeNow,
+                        "time-to-beat" => $timeToBeat,
+                    ]);*/
 
                     if (!empty($job)) {
-                        Log::info([
+                        /*Log::info([
                             "id" => $job->id,
                             "title" => $job->title,
                             "created_at" => $job->created_at->format("d-m-y H:i:s"),
-                        ]);
+                        ]);*/
 
                         $notification = [];
                         $notification["body"] = $job->company . " is looking for a " . $job->title . ". Location: " . $job->location;
@@ -130,7 +135,7 @@ class FirebaseNotificationService
                         $this->sendNotification($appID, $notification, $deviceType);
                     }
                 }
-                Log::info("----------------------------");
+                //Log::info("----------------------------");
             }
         }
     }
