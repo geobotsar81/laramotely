@@ -52,7 +52,13 @@ class FirebaseNotificationService
         curl_close($ch);
     }
 
-    public function sendJobNotifications()
+    public function testJobNotifications()
+    {
+        $appToken = "en0kSdadSo6tHMMUha-u1I:APA91bE63pBprj5SfDt_O93cZArNqnMOldn-_LMfeID7rlpBG-yC4R9UG38wuUg9vBqGfo-dPP57bNMemRF5gunMKhc-TQFfNVcOENyblhtVunAapGE7Lto0JkLJPMavSM9IuRccn89y";
+        $this->sendJobNotifications($appToken);
+    }
+
+    public function sendJobNotifications($appToken = null)
     {
         $deviceType = "Android";
         $current = Carbon::now();
@@ -60,7 +66,12 @@ class FirebaseNotificationService
 
         $appMembers = AppMember::where("notificationsInterval", "!=", 0)->get();
 
-        //Log::info(["count" => $appMembers->count()]);
+        if ($appToken) {
+            $appMembers = AppMember::where("notificationsInterval", "!=", 0)
+                ->where("appToken", $appToken)
+                ->get();
+            Log::info(["count" => $appMembers->count()]);
+        }
 
         if ($appMembers->count() > 0) {
             foreach ($appMembers as $member) {
@@ -68,11 +79,11 @@ class FirebaseNotificationService
                 $notificationsInterval = $member->notificationsInterval;
                 $inCountries = $member->inCountries;
 
-                /*Log::info([
+                Log::info([
                     "appID" => $appID,
                     "notificationsInterval" => $notificationsInterval,
                     "hourOfTheDay" => $hourOfTheDay,
-                ]);*/
+                ]);
 
                 //If the user's notifications interval is within the current hour, then send the notification
                 if ($hourOfTheDay % $notificationsInterval == 0) {
@@ -110,17 +121,17 @@ class FirebaseNotificationService
                         $job = $job->orderBy("views", "desc")->first();
                     }
 
-                    /*Log::info([
+                    Log::info([
                         "time-now" => $timeNow,
                         "time-to-beat" => $timeToBeat,
-                    ]);*/
+                    ]);
 
                     if (!empty($job)) {
-                        /*Log::info([
+                        Log::info([
                             "id" => $job->id,
                             "title" => $job->title,
                             "created_at" => $job->created_at->format("d-m-y H:i:s"),
-                        ]);*/
+                        ]);
 
                         $notification = [];
                         $notification["body"] = $job->company . " is looking for a " . $job->title . ". Location: " . $job->location;
@@ -135,7 +146,7 @@ class FirebaseNotificationService
                         $this->sendNotification($appID, $notification, $deviceType);
                     }
                 }
-                //Log::info("----------------------------");
+                Log::info("----------------------------");
             }
         }
     }
