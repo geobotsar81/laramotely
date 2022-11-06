@@ -87,7 +87,7 @@ class FirebaseNotificationService
 
                 //If the user's notifications interval is within the current hour, then send the notification
                 if ($hourOfTheDay % $notificationsInterval == 0) {
-                    $timeNow = $current->format("d-m-y H:i:s");
+                    $timeNow = $current->format("d-m-y H:i:s")->toDateTimeString();
                     $timeToBeat = $current->subHours($notificationsInterval)->toDateTimeString();
 
                     //Get jobs that were created within this hour interval, but not older than a week
